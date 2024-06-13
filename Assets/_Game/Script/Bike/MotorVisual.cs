@@ -10,6 +10,17 @@ public class MotorVisual : MonoBehaviour
     private Transform visualBackWheel;
     [SerializeField]
     private float tyreRotation = 1000f;
+    [SerializeField]
+    private float skidWidth = 0.05f;
+    [SerializeField]
+    private TrailRenderer skidMark1;
+    [SerializeField]
+    private TrailRenderer skidMark2;
+    public void Initialize()
+    {
+        skidMark1.startWidth = skidWidth;
+        skidMark2.startWidth = skidWidth;
+    }
     public void RotateFrontWheel(float velocity)
     {
         visualFrontWheel.Rotate(Vector3.right, velocity * tyreRotation * Time.fixedTime);
@@ -23,12 +34,7 @@ public class MotorVisual : MonoBehaviour
         RotateFrontWheel(velocity);
         RotateBackWheel(velocity);
     }
-    [SerializeField]
-    private float skidWidth = 0.05f;
-    [SerializeField]
-    private TrailRenderer skidMark1;
-    [SerializeField]
-    private TrailRenderer skidMark2;
+
     public void SkidMarks()
     {
         skidMark1.emitting = true;
