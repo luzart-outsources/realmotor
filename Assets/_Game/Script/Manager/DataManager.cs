@@ -64,3 +64,11 @@ public class GameData
 {
     public int level = 0;
 }
+[System.Serializable]
+public class InforMotorbike
+{
+    public float maxSpeed = 100;
+    public float acceleration = 20;
+    public float handling = 30f;
+    public float brake = 50f;
+}
