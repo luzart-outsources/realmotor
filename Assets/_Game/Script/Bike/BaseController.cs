@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    private BaseMotorbike baseMotorBike;
+    protected BaseMotorbike baseMotorBike;
     private bool IsInit = false;
     public virtual void Initialized(BaseMotorbike baseMotorbike)
     {
@@ -77,5 +77,14 @@ public class BaseController : MonoBehaviour
     public void UnVerticle()
     {
         baseMotorBike.UnVerticle();
+    }
+    public void MoveVisual(Vector3 velocity)
+    {
+        baseMotorBike.MoveVisual(velocity);
+    }
+
+    public void MoveSteerVisual(int steerInput, float currentSpeed)
+    {
+        baseMotorBike.MoveSteerVisual(steerInput, currentSpeed);
     }
 }

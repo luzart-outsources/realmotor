@@ -71,4 +71,7 @@ public class InforMotorbike
     public float acceleration = 20;
     public float handling = 30f;
     public float brake = 50f;
+    public float reverseSpeed = 10f;
+    public float maxTiltAngle = 70f;
+    public float drag = 20f;
 }

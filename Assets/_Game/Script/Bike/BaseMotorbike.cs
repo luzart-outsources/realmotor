@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Profiling.Memory.Experimental;
@@ -12,17 +13,29 @@ public class BaseMotorbike : MonoBehaviour
     private BaseController baseController;
     public InforMotorbike inforMotorbike;
 
+
+
 #if UNITY_EDITOR
 
     public InforMotorbike fakeData;
     private void Start()
     {
-        var baseController =  this.gameObject.AddComponent<BaseController>();
+        var baseController =  this.gameObject.GetComponent<BaseController>();
+        if (baseController == null)
+        {
+            baseController = this.gameObject.AddComponent<BaseController>();
+        }
         baseController.Initialized(this);
         Initialize(fakeData, baseController);
+        InitAction();
     }
 
 #endif
+
+    private void InitAction()
+    {
+        baseMotor.ActionCollisionWall = OnVisualCharacterCollisionWall;
+    }
 
     public void Initialize(InforMotorbike inforMotorbike, BaseController baseController)
     {
@@ -31,6 +44,11 @@ public class BaseMotorbike : MonoBehaviour
         baseMotor.Initialize(this);
         baseCharacter.Initialize(this);
 
+    }
+
+    private void OnVisualCharacterCollisionWall (Vector3 velocity)
+    {
+        baseCharacter.OnCollisionWall(velocity);    
     }
     private void FixedUpdate()
     {
@@ -85,4 +103,15 @@ public class BaseMotorbike : MonoBehaviour
         baseMotor.UnVerticle();
         baseCharacter.UnVerticle();
     }
+
+    public void MoveVisual(Vector3 velocity)
+    {
+        baseMotor.OnVisualMove(velocity);
+    }
+
+    public void MoveSteerVisual(int steerInput, float currentSpeed)
+    {
+        baseMotor.OnVisualTilt(steerInput, currentSpeed);
+    }
+
 }

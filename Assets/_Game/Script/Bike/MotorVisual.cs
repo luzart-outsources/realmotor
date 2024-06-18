@@ -1,25 +1,79 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MotorVisual : MonoBehaviour
 {
     [SerializeField]
+    private Transform motorVisual;
+    [SerializeField] 
+    private Transform Handle;
+
+    [Space, Header("Wheel")]
+    [SerializeField]
     private Transform visualFrontWheel;
     [SerializeField]
     private Transform visualBackWheel;
     [SerializeField]
     private float tyreRotation = 1000f;
+
+    [Space, Header("Drift")]
     [SerializeField]
     private float skidWidth = 0.05f;
     [SerializeField]
     private TrailRenderer skidMark1;
     [SerializeField]
     private TrailRenderer skidMark2;
-    public void Initialize()
+    [SerializeField]
+    private FXDust fxDustDriftFront;
+    [SerializeField]
+    private FXDust fxDustDriftBack;
+
+    [Space, Header("Ground")]
+    [SerializeField]
+    private GameObject obDustGroundFront;
+    [SerializeField]
+    private GameObject obDustGroundBack;
+    [SerializeField]
+    private FXDust fxDustGroundFront;
+    [SerializeField]
+    private FXDust fxDustGroundBack;
+
+    public InforMotorbike motorbikeInfo; // Thông tin của xe máy
+    public void Initialize(BaseMotor baseMotor)
     {
+        motorbikeInfo = baseMotor.baseMotorbike.inforMotorbike;
         skidMark1.startWidth = skidWidth;
         skidMark2.startWidth = skidWidth;
+    }
+    public void OnShowDustGround(float velocity)
+    {
+        obDustGroundFront.SetActive(true);
+        obDustGroundBack.SetActive(true);
+        fxDustGroundFront.gameObject.SetActive(true);
+        fxDustGroundBack.gameObject.SetActive(true);
+        fxDustGroundFront.EmissionOnVelocity(velocity);
+        fxDustGroundBack.EmissionOnVelocity(velocity);
+
+    }
+    public void UnEnableFXDustGround()
+    {
+        obDustGroundFront.SetActive(false);
+        obDustGroundBack.SetActive(false);
+        fxDustGroundFront.gameObject.SetActive(false);
+        fxDustGroundBack.gameObject.SetActive(false);
+    }
+    public void ControlFXDustDrift(float velocity)
+    {
+        fxDustDriftFront.gameObject.SetActive(true);
+        fxDustDriftBack.gameObject.SetActive(true);
+        fxDustDriftFront.EmissionOnVelocity(velocity);
+        fxDustDriftBack.EmissionOnVelocity(velocity);
+    }
+    public void UnEnableFXDustDrift()
+    {
+        fxDustDriftFront.gameObject.SetActive(false);
+        fxDustDriftBack.gameObject.SetActive(false);
     }
     public void RotateFrontWheel(float velocity)
     {
@@ -44,5 +98,33 @@ public class MotorVisual : MonoBehaviour
     {
         skidMark1.emitting = false;
         skidMark2.emitting = false;
+    }
+    private float tiltAmount = 0f; // Góc nghiêng hiện tại của xe
+    private float tailAmount = 0f; // Góc nghiêng hiện tại của xe
+    private float maxVelocityRotate = 45f;
+    public float deltaTilt = 10f;
+    public float deltaTail = 10f;
+    public void OnVisualTilt(int steerInput, float currentSpeed)
+    {
+        // Tính toán góc tilt dựa trên vận tốc hiện tại
+        float valueAngle = Mathf.Clamp01(currentSpeed/maxVelocityRotate);
+        float maxTiltAngle = -motorbikeInfo.maxTiltAngle * steerInput * valueAngle;
+        //float targetTiltAngle = Mathf.Lerp(0f, maxTiltAngle,Time.deltaTime);
+        float factorTitl = 1f;
+        if (steerInput == 0)
+        {
+            factorTitl = 3f;
+        }else if(Mathf.Sign(tiltAmount) != Mathf.Sign(maxTiltAngle))
+        {
+            factorTitl = 5f;
+        }
+        Handle.localRotation = Quaternion.Slerp(Handle.localRotation, Quaternion.Euler(Handle.localRotation.eulerAngles.x,
+                               20 * steerInput, Handle.localRotation.eulerAngles.z), Time.deltaTime*deltaTilt);
+        tiltAmount = Mathf.MoveTowards(tiltAmount, maxTiltAngle, factorTitl* deltaTilt * Time.deltaTime);
+        float maxTailAngle = 10f * steerInput * valueAngle;
+        tailAmount = Mathf.MoveTowards(tailAmount, maxTailAngle, factorTitl* deltaTail * Time.deltaTime);
+        //tiltAmount = Mathf.Lerp(tiltAmount, maxTiltAngle, deltaTilt * Time.deltaTime); // Sử dụng Lerp để làm mượt hành động nghiêng
+        Quaternion targetTilt = Quaternion.Euler(0, tailAmount, tiltAmount);
+        motorVisual.localRotation = targetTilt;
     }
 }

@@ -8,6 +8,8 @@ public class BaseCharacter : MonoBehaviour
     private CharacterVisual characterVisual;
     [SerializeField]
     private CharacterAnimation characterAnimation;
+    [SerializeField]
+    private Rigidbody rbRagdoll;
 
     public BaseMotorbike baseMotorbike;
     public void Initialize(BaseMotorbike baseMotorbike)
@@ -38,5 +40,19 @@ public class BaseCharacter : MonoBehaviour
     public void UnVerticle()
     {
         characterAnimation.UnVerticle();
+    }
+    private bool IsCollisionWall = false;
+    public void OnCollisionWall(Vector3 velocity)
+    {
+        if (IsCollisionWall)
+        {
+            return;
+        }
+        IsCollisionWall= true;
+        characterAnimation.gameObject.SetActive(false);
+        rbRagdoll.transform.parent = null;
+        rbRagdoll.gameObject.SetActive(true);
+        Vector3 velocityUp = -transform.forward * velocity.magnitude;
+        rbRagdoll.AddForce(velocityUp,ForceMode.Force);
     }
 }
