@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +15,10 @@ public class MotorMovement : MonoBehaviour
     public Action ActionOnGround = null;
     public Action<Vector3> ActionOnBrake = null;
     public Action<Vector3> ActionCollisionWall = null;
+
+    public float currentSpeed = 0f; // Tốc độ hiện tại của xe
+
+    public Vector3 velocity; // Vận tốc hiện tại
 
 
     public virtual void Initialize(BaseMotor baseMotor)

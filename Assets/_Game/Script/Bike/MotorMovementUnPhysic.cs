@@ -10,9 +10,7 @@ public class MotorMovementUnPhysic : MotorMovement
     public InforMotorbike motorbikeInfo; // Thông tin của xe máy
     public Rigidbody rb;
     public WheelCollider[] w; 
-    public float currentSpeed = 0f; // Tốc độ hiện tại của xe
 
-    public Vector3 velocity; // Vận tốc hiện tại
 
     public RaycastLayer[] raycastDowns;
     private ETypeMove eTypeMove;

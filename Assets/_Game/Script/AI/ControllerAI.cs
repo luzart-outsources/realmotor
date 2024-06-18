@@ -54,13 +54,17 @@ public class ControllerAI : BaseController
         {
             preIndex = allPoint.Length - 1;
         }
+        int afterIndex = index + 1;
+        if(afterIndex > allPoint.Length - 1)
+        {
+            afterIndex = 0;
+        }
         int currentIndex = index;
         Vector3 target = allPoint[currentIndex].position;
         Vector3 direction = target  - transform.position;
         Quaternion quaDir = Quaternion.LookRotation(direction, Vector3.up);
         Vector3 curDirection = transform.forward;
         float angle = Vector3.SignedAngle(direction, curDirection, transform.up);
-        Debug.Log(angle);
         float steerInput = Mathf.Sign(angle);
         float currentSpeed = baseMotorBike.inforMotorbike.acceleration * Time.deltaTime*10f;
 
