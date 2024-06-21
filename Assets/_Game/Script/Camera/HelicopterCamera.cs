@@ -13,7 +13,7 @@ public class HelicopterCamera : MonoBehaviour
 
     public float lookAtHeight = 0.0f;
 
-    public Rigidbody parentRigidbody;
+    public BaseMotorbike parentRigidbody;
 
     public float rotationSnapTime = 0.3F;
 
@@ -47,9 +47,14 @@ public class HelicopterCamera : MonoBehaviour
     {
         perfectMouseLook = GetComponent<PerfectMouseLook>();
         initialdistanceMultiplier = distanceMultiplier;
-        target = PrimaryTarget.transform;
-        parentRigidbody = PrimaryTarget.GetComponent<Rigidbody>();
+
         //motorbikeController = FindObjectOfType<MotorbikeController>();
+    }
+    public void SetTargetFollow(Transform target)
+    {
+        this.target = target;
+        PrimaryTarget = target.gameObject;
+        parentRigidbody = PrimaryTarget.GetComponent<BaseMotorbike>();
     }
 
     void LateUpdate()
@@ -73,6 +78,10 @@ public class HelicopterCamera : MonoBehaviour
         //    changed = true;
         //}
 
+        if(target == null)
+        {
+            return;
+        }
         wantedHeight = target.position.y + height;
         currentHeight = transform.position.y;
 

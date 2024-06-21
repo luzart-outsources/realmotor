@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87dfbc448f32014a887cb24c1867a0a, type: 3}
+  m_Name: MotorSO
+  m_EditorClassIdentifier: 
+  motorModelInfor:
+  - id: 0
+    path: Motor_0
+  - id: 1
+    path: Motor_1
+  - id: 2
+    path: Motor_2
+  - id: 3
+    path: Motor_3
+  dB_Motors:
+  - idMotor: 0
+    inforMotorbike:
+      maxSpeed: 50
+      acceleration: 10
+      handling: 60
+      brake: 30
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 3
+      brake: 3
+  - idMotor: 1
+    inforMotorbike:
+      maxSpeed: 60
+      acceleration: 15
+      handling: 70
+      brake: 35
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 4
+      brake: 3
+  - idMotor: 2
+    inforMotorbike:
+      maxSpeed: 80
+      acceleration: 20
+      handling: 80
+      brake: 40
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 4
+      brake: 3
+  - idMotor: 3
+    inforMotorbike:
+      maxSpeed: 100
+      acceleration: 30
+      handling: 90
+      brake: 50
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 4
+      brake: 3
+  db_MotorBots:
+  - idMotor: 0
+    inforMotorbike:
+      maxSpeed: 30
+      acceleration: 10
+      handling: 50
+      brake: 20
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 3
+      brake: 3
+  - idMotor: 1
+    inforMotorbike:
+      maxSpeed: 35
+      acceleration: 10
+      handling: 70
+      brake: 28
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 4
+      brake: 3
+  - idMotor: 2
+    inforMotorbike:
+      maxSpeed: 40
+      acceleration: 10
+      handling: 80
+      brake: 40
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 4
+      brake: 3
+  - idMotor: 1
+    inforMotorbike:
+      maxSpeed: 60
+      acceleration: 15
+      handling: 100
+      brake: 35
+    inforUpgrade:
+      maxSpeed: 3
+      acceleration: 2
+      handling: 4
+      brake: 3

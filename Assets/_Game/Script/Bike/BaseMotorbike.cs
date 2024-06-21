@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
@@ -12,47 +13,95 @@ public class BaseMotorbike : MonoBehaviour
     private BaseCharacter baseCharacter;
     private BaseController baseController;
     public InforMotorbike inforMotorbike;
+    public int currentIndex = 0;
+    [SerializeField]
+    private float radiusCheckPoint = 10f;
+    [SerializeField]
+    private LayerMask layerCheckPoint;
+    public ETeam eTeam;
+    [SerializeField]
+    private Transform parentVisualMotor;
+    private DB_Motorbike dbMotorbike;
+    private DB_Character dbCharacter;
 
-
-
-#if UNITY_EDITOR
-
-    public InforMotorbike fakeData;
-    private void Start()
+    public float Speed => baseMotor.Speed;
+    public Vector3 velocity
     {
-        var baseController =  this.gameObject.GetComponent<BaseController>();
-        if (baseController == null)
+        get
         {
-            baseController = this.gameObject.AddComponent<BaseController>();
+            return transform.InverseTransformDirection(transform.forward * Speed);
         }
-        baseController.Initialized(this);
-        Initialize(fakeData, baseController);
-        InitAction();
     }
 
-#endif
+    public void Initialize(InforMotorbike inforMotorbike, BaseController baseController, ETeam eTeam)
+    {
+        this.inforMotorbike = inforMotorbike;
+        this.baseController = baseController;
+        this.eTeam = eTeam;
+        this.baseMotor.Initialize(this);
+        this.baseCharacter.Initialize(this);
+        this.baseController.Initialized(this);
+
+        GetCurrentCheckPoint();
+        transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllTransPoint()[currentIndex]);
+        if(eTeam == ETeam.Player)
+        {
+            CameraManager.Instance.SetFollowCamera(this.gameObject);
+        }
+        InitAction();
+    }
+    public void InitSpawn(DB_Character db_Character, DB_Motorbike dbMotorBike)
+    {
+        this.dbMotorbike = dbMotorBike;
+        this.dbCharacter = db_Character;
+        var prefabs = ResourcesManager.Instance.LoadMotor(dbMotorbike.idMotor);
+        baseMotor.visualMotor = Instantiate(prefabs, parentVisualMotor);
+        baseMotor.visualMotor.transform.localPosition = Vector3.zero;
+        baseCharacter.InitSpawn(db_Character);
+        baseMotor.InitSpawn();
+    }
+
+    public void ReInitialize()
+    {
+        Initialize(inforMotorbike, baseController, eTeam);
+        Transform transPoint =  GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllTransPoint()[currentIndex];
+        transform.position = transPoint.position;
+        transform.rotation = transPoint.rotation;
+    }
 
     private void InitAction()
     {
         baseMotor.ActionCollisionWall = OnVisualCharacterCollisionWall;
     }
 
-    public void Initialize(InforMotorbike inforMotorbike, BaseController baseController)
+    public void GetCurrentCheckPoint()
     {
-        this.inforMotorbike = inforMotorbike;
-        this.baseController = baseController;
-        baseMotor.Initialize(this);
-        baseCharacter.Initialize(this);
-
+        var col = Physics.OverlapSphere(transform.position, radiusCheckPoint, layerCheckPoint);
+        if (col != null && col.Length>0)
+        {
+            List<Collider> listCol = col.ToList();
+            listCol.Sort(
+                (collider1, collider2) 
+                => Vector3.Distance(transform.position, collider1.transform.position).CompareTo(Vector3.Distance(transform.position, collider2.transform.position))
+                );
+            foreach (var c in listCol)
+            {
+                var checkPointCol = c.GetComponent<WavingPoint>();
+                currentIndex = checkPointCol.indexPoint;
+                return;
+            }
+        }
     }
 
     private void OnVisualCharacterCollisionWall (Vector3 velocity)
     {
-        baseCharacter.OnCollisionWall(velocity);    
+        baseCharacter.OnCollisionWall(velocity);
+        GameUtil.Instance.WaitAndDo(2f, ReInitialize);
     }
     private void FixedUpdate()
     {
         FixedUpdateController();
+        GetCurrentCheckPoint();
     }
     private void Update()
     {
@@ -114,4 +163,16 @@ public class BaseMotorbike : MonoBehaviour
         baseMotor.OnVisualTilt(steerInput, currentSpeed);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,radiusCheckPoint);
+    }
+}
+
+public enum ETeam
+{
+    None =0,
+    Player = 1,
+    AI = 2,
 }

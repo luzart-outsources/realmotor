@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
-    public GameData GameData => _gameData;
+    [Space, Header("BaseGameLuzart")]
     public GameData _gameData;
+    public GameData GameData => _gameData;
+
+    [Space, Header("SO")]
+    public LevelSO levelSO;
+    public MotorbikeSO motorbikeSO;
+    public MotorSO motorSO;
+    public CharacterSO characterSO;
+    public EnvironmentSO environmentSO;
+
 
     private const string KEY_GAME_DATA = "key_gamedata";
     public void Initialize()
@@ -63,6 +73,31 @@ public class DataManager : Singleton<DataManager>
 public class GameData
 {
     public int level = 0;
+    public DB_Character curCharacter;
+    public int idCurMotor;
+    public DB_Motorbike[] motorbikeDatas;
+    public void BuyMotorbike(DB_Motorbike db)
+    {
+        List<DB_Motorbike> list = new List<DB_Motorbike>();
+        if (motorbikeDatas != null)
+        {
+            list = motorbikeDatas.ToList();
+        }
+        bool isAdd = true;
+        for (int i = 0;i < list.Count;i++)
+        {
+            if (list[i].idMotor == db.idMotor)
+            {
+                isAdd = false;
+                break;
+            }
+        }
+        if(isAdd)
+        {
+            list.Add(db);
+        }
+        motorbikeDatas = list.ToArray();
+    }
 }
 [System.Serializable]
 public class InforMotorbike
@@ -71,7 +106,14 @@ public class InforMotorbike
     public float acceleration = 20;
     public float handling = 30f;
     public float brake = 50f;
-    public float reverseSpeed = 10f;
-    public float maxTiltAngle = 70f;
-    public float drag = 20f;
+
+    public InforMotorbike Clone()
+    {
+        InforMotorbike infor = new InforMotorbike();
+        infor.maxSpeed = maxSpeed;
+        infor.acceleration = acceleration;
+        infor.handling = handling;
+        infor.brake = brake;
+        return infor;
+    }
 }

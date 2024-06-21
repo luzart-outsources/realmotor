@@ -170,6 +170,11 @@ public class GameUtil : Singleton<GameUtil>
     {
         return new Vector2(value[0], value[1]);
     }
+
+    public static bool IsLayerInLayerMask(int layer, LayerMask layerMask)
+    {
+        return ((layerMask.value & (1 << layer)) != 0);
+    }
 }
 
 

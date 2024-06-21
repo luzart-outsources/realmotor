@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class MotorVisual : MonoBehaviour
 {
-    [SerializeField]
-    private Transform motorVisual;
+    public Transform motorVisual;
+    [Space, Header("Handle")]
     [SerializeField] 
     private Transform Handle;
+    [SerializeField]
+    private float maxRotationHandle = 20f;
+
+    [Space, Header("Tilt")]
+    [SerializeField]
+    private float maxTiltAngle = 50f;
+    [SerializeField]
+    private float deltaTilt = 60f;
+
+
+    [Space, Header("Tail")]
+    [SerializeField]
+    private float maxTailAngle = 10f;
+    [SerializeField]
+    private float deltaTail = 10f;
 
     [Space, Header("Wheel")]
     [SerializeField]
@@ -38,6 +53,10 @@ public class MotorVisual : MonoBehaviour
     private FXDust fxDustGroundFront;
     [SerializeField]
     private FXDust fxDustGroundBack;
+
+    private float tiltAmount = 0f; // Góc nghiêng hiện tại của xe
+    private float tailAmount = 0f; // Góc nghiêng hiện tại của xe
+    private float maxVelocityRotate = 45f;
 
     public InforMotorbike motorbikeInfo; // Thông tin của xe máy
     public void Initialize(BaseMotor baseMotor)
@@ -99,30 +118,26 @@ public class MotorVisual : MonoBehaviour
         skidMark1.emitting = false;
         skidMark2.emitting = false;
     }
-    private float tiltAmount = 0f; // Góc nghiêng hiện tại của xe
-    private float tailAmount = 0f; // Góc nghiêng hiện tại của xe
-    private float maxVelocityRotate = 45f;
-    public float deltaTilt = 10f;
-    public float deltaTail = 10f;
+
     public void OnVisualTilt(int steerInput, float currentSpeed)
     {
         // Tính toán góc tilt dựa trên vận tốc hiện tại
         float valueAngle = Mathf.Clamp01(currentSpeed/maxVelocityRotate);
-        float maxTiltAngle = -motorbikeInfo.maxTiltAngle * steerInput * valueAngle;
+        float _maxTiltAngle = -maxTiltAngle * steerInput * valueAngle;
         //float targetTiltAngle = Mathf.Lerp(0f, maxTiltAngle,Time.deltaTime);
         float factorTitl = 1f;
         if (steerInput == 0)
         {
-            factorTitl = 3f;
-        }else if(Mathf.Sign(tiltAmount) != Mathf.Sign(maxTiltAngle))
+            factorTitl = 1f;
+        }else if(Mathf.Sign(tiltAmount) != Mathf.Sign(_maxTiltAngle))
         {
-            factorTitl = 5f;
+            factorTitl = 2f;
         }
         Handle.localRotation = Quaternion.Slerp(Handle.localRotation, Quaternion.Euler(Handle.localRotation.eulerAngles.x,
-                               20 * steerInput, Handle.localRotation.eulerAngles.z), Time.deltaTime*deltaTilt);
-        tiltAmount = Mathf.MoveTowards(tiltAmount, maxTiltAngle, factorTitl* deltaTilt * Time.deltaTime);
-        float maxTailAngle = 10f * steerInput * valueAngle;
-        tailAmount = Mathf.MoveTowards(tailAmount, maxTailAngle, factorTitl* deltaTail * Time.deltaTime);
+                               maxRotationHandle * steerInput, Handle.localRotation.eulerAngles.z), Time.deltaTime*deltaTilt);
+        tiltAmount = Mathf.MoveTowards(tiltAmount, _maxTiltAngle, factorTitl* deltaTilt * Time.deltaTime);
+        float _maxTailAngle = maxTailAngle * steerInput * valueAngle;
+        tailAmount = Mathf.MoveTowards(tailAmount, _maxTailAngle, factorTitl* deltaTail * Time.deltaTime);
         //tiltAmount = Mathf.Lerp(tiltAmount, maxTiltAngle, deltaTilt * Time.deltaTime); // Sử dụng Lerp để làm mượt hành động nghiêng
         Quaternion targetTilt = Quaternion.Euler(0, tailAmount, tiltAmount);
         motorVisual.localRotation = targetTilt;

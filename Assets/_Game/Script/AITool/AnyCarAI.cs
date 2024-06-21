@@ -220,46 +220,43 @@ public class AnyCarAI : BaseController
     public Vector3 curVelocity;
     public void Move(float steering, float Accel, float footbrake, float handbrake)
     {
+        //curSpeed += Accel * Time.deltaTime;
+        //// Xử lý tăng tốc và phanh
 
-        // Xử lý tăng tốc và phanh
-        if (Accel > 0)
-        {
-            curSpeed += Accel * Time.deltaTime;
-        }
-        else if (footbrake < 0)
-        {
-            if (curSpeed > 0)
-            {
-                // Phanh
-                curSpeed -= motorbikeInfo.brake * Time.deltaTime;
-                if (Mathf.Abs(curSpeed) <= 0.5f)
-                {
-                    curSpeed = 0;
-                }
-            }
-            else
-            {
-                // Lùi từ từ
-                curSpeed -= Accel * Time.deltaTime ;
-            }
-        }
-        else
-        {
-            // Giảm tốc từ từ khi không có đầu vào
-            if (curSpeed > 0)
-            {
-                curSpeed -= motorbikeInfo.drag * Time.deltaTime;
-            }
-            else if (curSpeed < 0)
-            {
-                curSpeed += motorbikeInfo.drag * Time.deltaTime;
-            }
-            if (Mathf.Abs(curSpeed) <= 0.5f)
-            {
-                curSpeed = 0;
-            }
-        }
-
+        //if (footbrake > 0)
+        //{
+        //    if (curSpeed > 0)
+        //    {
+        //        // Phanh
+        //        curSpeed -= motorbikeInfo.brake * Time.deltaTime;
+        //        if (Mathf.Abs(curSpeed) <= 0.5f)
+        //        {
+        //            curSpeed = 0;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Lùi từ từ
+        //        curSpeed -= Accel * Time.deltaTime ;
+        //    }
+        //}
+        //else
+        //{
+        //    // Giảm tốc từ từ khi không có đầu vào
+        //    if (curSpeed > 0)
+        //    {
+        //        curSpeed -= drag * Time.deltaTime;
+        //    }
+        //    else if (curSpeed < 0)
+        //    {
+        //        curSpeed += motorbikeInfo.drag * Time.deltaTime;
+        //    }
+        //    if (Mathf.Abs(curSpeed) <= 0.5f)
+        //    {
+        //        curSpeed = 0;
+        //    }
+        //}
+        Debug.Log($"curSpeed {curSpeed}  steer {steering} accel {Accel}  footBrake {footbrake}  handBrake {handbrake}");
 
         curVelocity = transform.forward * curSpeed;
         MoveVisual(curVelocity);
@@ -416,10 +413,10 @@ public class AnyCarAI : BaseController
     #region AERODYNAMICS
     private void AddDownForce()
     {
-        if (currentSpeed > 0)
-        {
-            currentSpeed -= motorbikeInfo.drag * Time.deltaTime;
-        }
+        //if (currentSpeed > 0)
+        //{
+        //    currentSpeed -= motorbikeInfo.drag * Time.deltaTime;
+        //}
     }
 
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,23 @@ public class BaseCharacter : MonoBehaviour
     private CharacterAnimation characterAnimation;
     [SerializeField]
     private Rigidbody rbRagdoll;
+    private Rigidbody _rbRagdoll;
 
     public BaseMotorbike baseMotorbike;
+    public void InitSpawn(DB_Character dbCharacter)
+    {
+        characterVisual.InitDBCharacter(dbCharacter);
+    }
     public void Initialize(BaseMotorbike baseMotorbike)
     {
         this.baseMotorbike = baseMotorbike;
+        if(_rbRagdoll != null)
+        {
+            Destroy(_rbRagdoll.gameObject);
+        }
+
+        characterAnimation.gameObject.SetActive(true);
+        IsCollisionWall = false;
     }
 
     public void MoveLeft()
@@ -50,9 +63,15 @@ public class BaseCharacter : MonoBehaviour
         }
         IsCollisionWall= true;
         characterAnimation.gameObject.SetActive(false);
-        rbRagdoll.transform.parent = null;
-        rbRagdoll.gameObject.SetActive(true);
+        _rbRagdoll = Instantiate(this.rbRagdoll, null);
+        _rbRagdoll.transform.position = rbRagdoll.transform.position;
+        if(baseMotorbike.eTeam == ETeam.Player)
+        {
+            CameraManager.Instance.SetFollowCamera(_rbRagdoll.gameObject);
+        }
+
+        _rbRagdoll.gameObject.SetActive(true);
         Vector3 velocityUp = -transform.forward * velocity.magnitude;
-        rbRagdoll.AddForce(velocityUp,ForceMode.Force);
+        _rbRagdoll.AddForce(velocityUp,ForceMode.Force);
     }
 }

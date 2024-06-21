@@ -5,11 +5,7 @@ using UnityEngine;
 public class OverlapMotor : RaycastLayer
 {
     [SerializeField]
-    private BoxCollider boxCollider;
-    private void Awake()
-    {
-        
-    }
+    protected BoxCollider boxCollider;
     public override ResultRaycast GetResultRaycast()
     {
         var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);

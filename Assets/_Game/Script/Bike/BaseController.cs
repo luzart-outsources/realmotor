@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     protected BaseMotorbike baseMotorBike;
-    private bool IsInit = false;
+    protected bool IsInit = false;
     public virtual void Initialized(BaseMotorbike baseMotorbike)
     {
         this.baseMotorBike = baseMotorbike;

@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class BaseMotor : MonoBehaviour
 {
+    public MotorVisual visualMotor;
+    public MotorMovement movementMotor;
+
     [SerializeField]
-    private MotorVisual visualMotor;
-    [SerializeField]
-    private MotorMovement movementMotor;
-    public BaseMotorbike baseMotorbike;
+    private Transform transformVisualMotor;
+    public BaseMotorbike baseMotorbike {  get; private set; }
     public ELayerRaycastMotorbike ELayerCurrent;
     private bool IsBrake = false;
+    public float Speed => movementMotor.currentSpeed;
 
     public Action<Vector3> ActionCollisionWall = null;
 
+    public void InitSpawn()
+    {
+        visualMotor.motorVisual = transformVisualMotor;
+    }
     public void Initialize(BaseMotorbike baseMotorbike)
     {
         this.baseMotorbike = baseMotorbike;
@@ -94,7 +100,7 @@ public class BaseMotor : MonoBehaviour
     public void OnVisualMove(Vector3 velocity)
     {
         RotationWheel(velocity.z);
-        if ((IsBrake ||Mathf.Abs(velocity.x) > 0.1) && ELayerCurrent == ELayerRaycastMotorbike.Road)
+        if ((IsBrake /*||Mathf.Abs(velocity.x) > 0.1*/) && ELayerCurrent == ELayerRaycastMotorbike.Road)
         {
             Drift();
             ControlFXDustDrift(velocity.z);

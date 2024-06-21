@@ -21,10 +21,10 @@ public class GameManager : Singleton<GameManager>
         UIManager.Instance.ShowUI(UIName.Splash);
         LoadReferent();
         DataManager.Instance.Initialize();
-        DataTypeResource dataTypeResource = new DataTypeResource();
-        dataTypeResource.type = RES_type.Magnifier;
-        dataTypeResource.id = 0;
-        DataManager.AddRes(dataTypeResource, 10);
+        DB_Motorbike db = new DB_Motorbike();
+        db.idMotor = 0;
+        db.levelUpgrade = 0;
+        DataManager.Instance.GameData.BuyMotorbike(db);
     }
     private void LoadReferent()
     {

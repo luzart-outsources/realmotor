@@ -9,8 +9,9 @@ public class MotorMovementUnPhysic : MotorMovement
     public Transform motorbikeTransform; // Transform của xe máy
     public InforMotorbike motorbikeInfo; // Thông tin của xe máy
     public Rigidbody rb;
-    public WheelCollider[] w; 
 
+    public float reverseSpeed = 10f;
+    public float drag = 20f;
 
     public RaycastLayer[] raycastDowns;
     private ETypeMove eTypeMove;
@@ -21,6 +22,15 @@ public class MotorMovementUnPhysic : MotorMovement
         base.Initialize(baseMotor);
         motorbikeInfo = baseMotor.baseMotorbike.inforMotorbike;
         raycastDowns = gameObject.GetComponents<RaycastLayer>();
+        if(rb != null)
+        {
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            Destroy(rb);
+        }
+        IsDead = false;
+
+        drag = Mathf.Clamp(drag, 0f, motorbikeInfo.maxSpeed/10);
     }
     protected override void UpdateMovement()
     {
@@ -78,11 +88,11 @@ public class MotorMovementUnPhysic : MotorMovement
             // Giảm tốc từ từ khi không có đầu vào
             if (currentSpeed > 0)
             {
-                currentSpeed -= motorbikeInfo.drag * Time.deltaTime;
+                currentSpeed -= drag * Time.deltaTime;
             }
             else if (currentSpeed < 0)
             {
-                currentSpeed += motorbikeInfo.drag * Time.deltaTime;
+                currentSpeed += drag * Time.deltaTime;
             }
             if (Mathf.Abs(currentSpeed) <= 0.5f)
             {
@@ -91,7 +101,7 @@ public class MotorMovementUnPhysic : MotorMovement
         }
 
         // Giới hạn tốc độ của xe
-        currentSpeed = Mathf.Clamp(currentSpeed, -motorbikeInfo.reverseSpeed, motorbikeInfo.maxSpeed);
+        currentSpeed = Mathf.Clamp(currentSpeed, -reverseSpeed, motorbikeInfo.maxSpeed);
 
 
         // Di chuyển xe theo hướng phía trước
@@ -184,24 +194,27 @@ public class MotorMovementUnPhysic : MotorMovement
         }
         else
         {
-            currentSpeed = Mathf.Clamp(currentSpeed, -motorbikeInfo.reverseSpeed, velocityTarget);
+            currentSpeed = Mathf.Clamp(currentSpeed, -reverseSpeed, velocityTarget);
         }
 
         velocity = motorbikeTransform.forward * currentSpeed;
         baseMotor.ELayerCurrent = ELayerRaycastMotorbike.Ground;
     }
 
+    private bool IsDead = false;
     private void CheckWall(RaycastLayer.ResultRaycast result)
     {
+        if(IsDead) return;
+        if(rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody>();
+        }
         rb.velocity = velocity;
         rb.useGravity = true;
-        //for (int i = 0; i < w.Length; i++)
-        //{
-        //    w[i].enabled = true;
-        //}
         ActionCollisionWall?.Invoke(velocity);
         currentSpeed = 0;
         velocity = Vector3.zero;
+        IsDead = true;
     }
     private void Gravity(RaycastLayer.ResultRaycast result)
     {

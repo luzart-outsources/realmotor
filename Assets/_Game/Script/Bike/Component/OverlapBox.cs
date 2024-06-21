@@ -1,18 +1,31 @@
 using UnityEngine;
 
-public class OverlapBox : MonoBehaviour
+public class OverlapBox : OverlapMotor
 {
-    [SerializeField]
-    private LayerMask layer;
-    private void OnCollisionEnter(Collision collision)
+    public override ResultRaycast GetResultRaycast()
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("BikeBody"))
+        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
+        if (colliders != null)
         {
-            Debug.LogError("Call");
-            //Vector3 pos = collision.contacts[0].point;
-            //Vector3 dir = pos - transform.position;
-            //var rb = collision.gameObject.GetComponent<Rigidbody>();
-            //rb.AddForce(dir, ForceMode.Force);
+            bool isCollider = false;
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i] != null)
+                {
+                    isCollider = true;
+                    break;
+                }
+
+            }
+            if (isCollider)
+            {
+                resultRaycast = new ResultRaycast();
+                resultRaycast.hit = hit;
+                resultRaycast.eLayer = eLayer;
+                return resultRaycast;
+            }
+
         }
+        return null;
     }
 }
