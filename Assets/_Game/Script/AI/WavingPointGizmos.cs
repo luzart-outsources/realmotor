@@ -1,58 +1,27 @@
-using System.Collections;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WavingPointGizmos : MonoBehaviour
 {
-    public Transform[] allWavePoint;
+    public WavingPoint[] allWavePoint;
     public List<Vector3> GetAllWavePoint()
     {
-        List<Vector3> result = new List<Vector3>();
-        for (int i = 0; i < allWavePoint.Length; i++)
-        {
-            if(i == 0)
-            {
-                continue;
-            }
-            result.Add(allWavePoint[i].position);
-        }
-        return result;
+        return allWavePoint.Select(wave => wave.transform.position).ToList();
     }
-    public List<Transform> GetAllTransPoint()
+    //public List<Transform> GetAllTransPoint()
+    //{
+    //    return allWavePoint.ToList();
+    //}
+    public Transform GetTransformIndex(int index)
     {
-        List<Transform> result = new List<Transform>();
-        for (int i = 0; i < allWavePoint.Length; i++)
-        {
-            if (i == 0)
-            {
-                continue;
-            }
-            result.Add(allWavePoint[i]);
-        }
-        return result;
+        index = index % allWavePoint.Length;
+        return allWavePoint[index].transform;
     }
-    private void OnDrawGizmos()
+    [Button]
+    private void GetAllWavePointEditor()
     {
-        allWavePoint = GetComponentsInChildren<Transform>();
-        List<Transform> listWave = new List<Transform>();
-        for (int i = 0; i < allWavePoint.Length; i++)
-        {
-            if(i == 0)
-            {
-                continue;
-            }
-            listWave.Add(allWavePoint[i]);
-        }
-        for (int i = 0; i < listWave.Count; i++)
-        {
-            Gizmos.color = Color.yellow;
-            int nextIndex = i + 1;
-            if (i >= listWave.Count - 1)
-            {
-                nextIndex = 0;
-            }
-            Gizmos.DrawLine(listWave[i].position, listWave[nextIndex].position);
-            listWave[i].LookAt(listWave[nextIndex].position);
-        }
+        allWavePoint = transform.GetComponentsInChildren<WavingPoint>();
     }
 }

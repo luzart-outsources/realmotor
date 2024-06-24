@@ -74,7 +74,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8023
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -114,8 +114,8 @@ MonoBehaviour:
   lookAtHeight: 0
   parentRigidbody: {fileID: 0}
   rotationSnapTime: 0.5
-  distanceSnapTime: 0
-  distanceMultiplier: 0
+  distanceSnapTime: 0.001
+  distanceMultiplier: 0.1
   counterRotation: 0
 --- !u!114 &6806323254612977228
 MonoBehaviour:

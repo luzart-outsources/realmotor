@@ -13,7 +13,11 @@ public class CoinObserver : MonoBehaviour
 
     private void Awake()
     {
-        GameUtil.ButtonOnClick(btnAddCoin, ClickAddCoin,true);
+        if(btnAddCoin != null)
+        {
+            GameUtil.ButtonOnClick(btnAddCoin, ClickAddCoin, true);
+        }
+
     }
     private void OnEnable()
     {

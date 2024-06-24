@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 4187e188948226b4d883295f013bef4f, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -230,6 +230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1385285336015598454, guid: a1f970f0a40067044bfc11988c253bec, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 8055
+      objectReference: {fileID: 0}
     - target: {fileID: 3748700735534717940, guid: a1f970f0a40067044bfc11988c253bec, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -326,6 +330,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1349569367}
+    - target: {fileID: 6908612785454524362, guid: a1f970f0a40067044bfc11988c253bec, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -356,6 +364,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 383663076254976222, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440503168244353358, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 443295762006071247, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1748368523962841705, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -400,6 +420,10 @@ PrefabInstance:
       propertyPath: PrimaryTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2701501436242780231, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
+      propertyPath: distanceMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3821148737664148204, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
       propertyPath: gameCoordinator
       value: 
@@ -408,7 +432,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6806323254612977228, guid: 1c97fd2be94bc6f4d9f81eb67d659b62, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -491,6 +516,7 @@ MonoBehaviour:
   baseMotorBike: {fileID: 3970734084713082468, guid: 9373e3294b83f73459298579ff195323, type: 3}
   parentEnvironment: {fileID: 165360083}
   parentMotor: {fileID: 1512475665}
+  listLeaderBoard: []
 --- !u!1 &8714920714817034238
 GameObject:
   m_ObjectHideFlags: 0

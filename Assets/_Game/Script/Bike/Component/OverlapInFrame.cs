@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OverlapBox : OverlapMotor
+public class OverlapInFrame : OverlapEachFrame
 {
     public override ResultRaycast GetResultRaycast()
     {
@@ -17,6 +17,7 @@ public class OverlapBox : OverlapMotor
                 }
 
             }
+            IsCheckEditor(isCollider);
             if (isCollider)
             {
                 resultRaycast = new ResultRaycast();

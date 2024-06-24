@@ -9,9 +9,11 @@ public class RaycastLayer : MonoBehaviour
     protected ResultRaycast resultRaycast = null;
     protected RaycastHit hit;
 
+
     public virtual ResultRaycast GetResultRaycast()
     {
         bool isRayHit =  Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, layerMask);
+        IsCheckEditor(isRayHit);
         if (isRayHit)
         {
             resultRaycast = new ResultRaycast();
@@ -25,12 +27,35 @@ public class RaycastLayer : MonoBehaviour
             return null;
         }
     }
+#if UNITY_EDITOR
+    public bool isRaycast = false;
+#endif
+    protected void IsCheckEditor(bool isCheck)
+    {
+#if UNITY_EDITOR
+        if (isCheck)
+        {
+            isRaycast = true;
+        }
+        else
+        {
+            isRaycast = false;
+        }
+#endif
+    }
+
+
     [System.Serializable]
     public class ResultRaycast
     {
         public ELayerRaycastMotorbike eLayer;
         public RaycastHit hit;
         public BaseMotorbike baseMotorbikes; 
+    }
+    [System.Serializable]
+    public class ResultOverlapBool : ResultRaycast
+    {
+        public bool isFinishRaycast = false;
     }
 }
 public enum ELayerRaycastMotorbike
@@ -40,4 +65,5 @@ public enum ELayerRaycastMotorbike
     Ground = 2,
     Wall = 3,
     Bike = 4,
+    FinishLine = 5,
 }

@@ -24,7 +24,9 @@ public class BaseMotorbike : MonoBehaviour
     private DB_Motorbike dbMotorbike;
     private DB_Character dbCharacter;
 
+    public int round = 0;
     public float Speed => baseMotor.Speed;
+
     public Vector3 velocity
     {
         get
@@ -43,7 +45,7 @@ public class BaseMotorbike : MonoBehaviour
         this.baseController.Initialized(this);
 
         GetCurrentCheckPoint();
-        transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllTransPoint()[currentIndex]);
+        transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
         if(eTeam == ETeam.Player)
         {
             CameraManager.Instance.SetFollowCamera(this.gameObject);
@@ -60,20 +62,21 @@ public class BaseMotorbike : MonoBehaviour
         baseCharacter.InitSpawn(db_Character);
         baseMotor.InitSpawn();
     }
-
+    public void InitStartRace()
+    {
+        round = 0;
+    }
     public void ReInitialize()
     {
         Initialize(inforMotorbike, baseController, eTeam);
-        Transform transPoint =  GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllTransPoint()[currentIndex];
+        Transform transPoint =  GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex);
         transform.position = transPoint.position;
         transform.rotation = transPoint.rotation;
     }
-
     private void InitAction()
     {
         baseMotor.ActionCollisionWall = OnVisualCharacterCollisionWall;
     }
-
     public void GetCurrentCheckPoint()
     {
         var col = Physics.OverlapSphere(transform.position, radiusCheckPoint, layerCheckPoint);
@@ -92,6 +95,32 @@ public class BaseMotorbike : MonoBehaviour
             }
         }
     }
+    public void OnFinishLine()
+    {
+        round++;
+        GameManager.Instance.gameCoordinator.OnPassFinishLine(this);
+    }
+
+    public void OnFinishRace()
+    {
+        if(eTeam == ETeam.AI)
+        {
+            OnFinishRaceAI();
+        }
+        else if(eTeam == ETeam.Player)
+        {
+            OnFinishRacePlayer();
+        }
+    }
+
+    private void OnFinishRaceAI()
+    {
+        Debug.Log($"FinishRace AI {name}");
+    }
+    private void OnFinishRacePlayer()
+    {
+        Debug.Log($"FinishRace Player {name}");
+    }
 
     private void OnVisualCharacterCollisionWall (Vector3 velocity)
     {
@@ -107,13 +136,21 @@ public class BaseMotorbike : MonoBehaviour
     {
         UpdateController();
     }
+    public float GetDistanceFromTarget()
+    {
+        Transform target = GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex + 1);
+        return Vector3.Distance(transform.position, target.position);
+    }
+
+
+
+    #region Controller
     private void FixedUpdateController()
     {
         if (baseController != null)
         {
             baseController.FixedUpdateController();
         }
-
     }
     private void UpdateController()
     {
@@ -152,16 +189,15 @@ public class BaseMotorbike : MonoBehaviour
         baseMotor.UnVerticle();
         baseCharacter.UnVerticle();
     }
-
     public void MoveVisual(Vector3 velocity)
     {
         baseMotor.OnVisualMove(velocity);
     }
-
     public void MoveSteerVisual(int steerInput, float currentSpeed)
     {
         baseMotor.OnVisualTilt(steerInput, currentSpeed);
     }
+    #endregion
 
     private void OnDrawGizmos()
     {

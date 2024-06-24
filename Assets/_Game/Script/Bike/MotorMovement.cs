@@ -59,7 +59,19 @@ public class MotorMovement : MonoBehaviour
         }
         UpdateMovement();
     }
+    private void FixedUpdate()
+    {
+        if (!IsInit)
+        {
+            return;
+        }
+        FixedUpdateMovement();
+    }
     protected virtual void UpdateMovement()
+    {
+
+    }
+    protected virtual void FixedUpdateMovement()
     {
 
     }

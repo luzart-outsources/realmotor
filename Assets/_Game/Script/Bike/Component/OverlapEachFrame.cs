@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OverlapMotor : RaycastLayer
+public class OverlapEachFrame : RaycastLayer
 {
     [SerializeField]
     protected BoxCollider boxCollider;
@@ -22,9 +22,11 @@ public class OverlapMotor : RaycastLayer
                         resultRaycast.hit = hit;
                         resultRaycast.eLayer = eLayer;
                         resultRaycast.baseMotorbikes = baseMotorbike;
+                        IsCheckEditor(true);
                         return resultRaycast;
                     }
                 }
+                IsCheckEditor(false);
             }
 
         }

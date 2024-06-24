@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameCoordinator : MonoBehaviour
 {
     public Action ActionOnLoadDoneLevel = null;
+    public Action<BaseMotorbike> ActionOnFinishLine = null;
     public Action<bool> ActionOnEndGame = null;
 
     public WavingPointGizmos wavingPointGizmos;
@@ -26,6 +27,8 @@ public class GameCoordinator : MonoBehaviour
     private BaseMotorbike myMotorbike;
     private DB_Motorbike myDBMotorbike = null;
 
+
+    private List<BaseMotorbike> leaderBoard = new List<BaseMotorbike>();
     private DB_Level db_Level;
 
     public void StartGame(DB_Level _dbLevel)
@@ -39,11 +42,14 @@ public class GameCoordinator : MonoBehaviour
         InitMap();
         InitPlayer();
         InitBot();
+        StartUpdateLeaderBoard();
     }
     private void ResetData()
     {
         listBot.Clear();
+        listDBBot.Clear();
         myMotorbike = null;
+        myDBMotorbike = null;
     }
     private void LoadMap()
     {
@@ -64,6 +70,7 @@ public class GameCoordinator : MonoBehaviour
 
         myMotorbike = Instantiate(baseMotorBike, parentMotor);
         myMotorbike.transform.position = environmentMap.GetStartPoint(db_Level.indexStart).position;
+        SetNameEditor(myMotorbike.gameObject, $"Player");
         myMotorbike.InitSpawn(dbChar, myDBMotorbike);
     }
     private void LoadBot()
@@ -80,6 +87,8 @@ public class GameCoordinator : MonoBehaviour
             DB_Character character = DataManager.Instance.characterSO.GetDB_CharacterBot(db.idCharacterBot);
 
             baseBot.InitSpawn(character, db.db_Motorbike);
+            SetNameEditor(baseBot.gameObject, $"BOT_{i}");
+
             listBot.Add(baseBot);
             listDBBot.Add(db);
         }
@@ -94,8 +103,9 @@ public class GameCoordinator : MonoBehaviour
         InforMotorbike infor = ConfigStats.GetInforMotorbike(myDBMotorbike.idMotor, myDBMotorbike.levelUpgrade);
         BaseController controller = myMotorbike.AddComponent<BaseController>();
         myMotorbike.Initialize(infor, controller, ETeam.Player);
-    }
+        myMotorbike.InitStartRace();
 
+    }
     private void InitBot()
     {
         var ids = db_Level.idBot;
@@ -108,7 +118,72 @@ public class GameCoordinator : MonoBehaviour
             InforMotorbike infor = ConfigStats.GetInforMotorbikeBot(db.db_Motorbike.idMotor, db.db_Motorbike.levelUpgrade);
             VehicleAI controller = bot.AddComponent<VehicleAI>();
             bot.Initialize(infor,controller, ETeam.AI);
+            bot.InitStartRace();
         }
     }
 
+    public void OnPassFinishLine(BaseMotorbike motorFinish)
+    {
+        if(motorFinish.round >= db_Level.lapRequire)
+        {
+            motorFinish.OnFinishRace();
+        }
+        if(motorFinish.eTeam == ETeam.Player)
+        {
+            EndGame();
+            UpdateLeaderBoard();
+        }
+    }
+    private void EndGame()
+    {
+        StopUpdateLeaderBoard();
+    }
+    private void StartUpdateLeaderBoard()
+    {
+        listLeaderBoard = new List<BaseMotorbike>(listBot);
+        listLeaderBoard.Add(myMotorbike);
+        StopUpdateLeaderBoard();
+        corUpdateLeaderBoard = StartCoroutine(IEUpdateLeaderBoard());
+    }
+    private void StopUpdateLeaderBoard()
+    {
+        if (corUpdateLeaderBoard != null)
+        {
+            StopCoroutine(corUpdateLeaderBoard);
+        }
+    }
+    private Coroutine corUpdateLeaderBoard = null;
+    private IEnumerator IEUpdateLeaderBoard()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.1f);
+        while (true)
+        {
+            UpdateLeaderBoard();
+            yield return wait;
+        }
+    }
+
+    public List<BaseMotorbike> listLeaderBoard = new List<BaseMotorbike>();
+    private void UpdateLeaderBoard()
+    {
+        listLeaderBoard.Sort((x, y) =>
+        {
+            int currentComparison = y.currentIndex.CompareTo(x.currentIndex);
+            if (currentComparison == 0)
+            {
+                return y.GetDistanceFromTarget().CompareTo(x.GetDistanceFromTarget());
+            }
+            return currentComparison;
+        });
+    }
+
+
+
+
+    private void SetNameEditor(GameObject ob, string name)
+    {
+#if UNITY_EDITOR
+        ob.name = name;
+#endif
+    }
 }

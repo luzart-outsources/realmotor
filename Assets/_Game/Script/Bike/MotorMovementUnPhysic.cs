@@ -117,15 +117,31 @@ public class MotorMovementUnPhysic : MotorMovement
         Vector3 pos = motorbikeTransform.position + velocity * Time.deltaTime;
         motorbikeTransform.position = pos;
     }
+    protected override void FixedUpdateMovement()
+    {
+        //if(rb== null)
+        //{
+        //    return;
+        //}
+        //rb.velocity = velocity;
+    }
     private void OnRotate()
     {
         // Xử lý quay xe
         if( Math.Abs(currentSpeed) >= 3f)
         {
-            float turn = steerInput * motorbikeInfo.handling * Time.deltaTime;
+            float turn = 0;
+            if (currentSpeed >= 0)
+            {
+                turn = steerInput * motorbikeInfo.handling * Time.deltaTime;
+            }
+            else
+            {
+                turn = -1 * steerInput * motorbikeInfo.handling * Time.deltaTime;
+            }
+
             motorbikeTransform.Rotate(0, turn, 0);
         }
-
         ActionTiltRotate?.Invoke(steerInput,currentSpeed);
     }
     private bool IsGrounded = true;
@@ -170,6 +186,11 @@ public class MotorMovementUnPhysic : MotorMovement
             case ELayerRaycastMotorbike.Bike:
                 {
                     CheckBike(result); 
+                    break;
+                }
+            case ELayerRaycastMotorbike.FinishLine:
+                {
+                    CheckFinishLine(result);
                     break;
                 }
         }
@@ -225,8 +246,51 @@ public class MotorMovementUnPhysic : MotorMovement
         // Nếu không có mặt đất dưới xe, di chuyển xe xuống dưới
         motorbikeTransform.position = result.hit.point;
     }
+    private bool isRayBike = false;
     private void CheckBike(RaycastLayer.ResultRaycast result)
     {
+        //RaycastLayer.ResultOverlapBool resultFinish = result as RaycastLayer.ResultOverlapBool;
+        //if (resultFinish == null)
+        //{
+        //    return;
+        //}
+        //bool isFinished = resultFinish.isFinishRaycast;
+        //if (isRayBike == isFinished)
+        //{
+        //    return;
+        //}
+        //isRayBike = isFinished;
+        //if (isFinished)
+        //{
+        //    if (rb == null)
+        //    {
+        //        rb = gameObject.AddComponent<Rigidbody>();
+        //    }
+        //}
+        //else
+        //{
+        //    Destroy(rb);
+        //}
+    }
+
+    private bool isRayFinish = false;
+    private void CheckFinishLine(RaycastLayer.ResultRaycast result)
+    {
+        RaycastLayer.ResultOverlapBool resultFinish = result as RaycastLayer.ResultOverlapBool;
+        if (resultFinish == null)
+        {
+            return;
+        }
+        bool isFinished = resultFinish.isFinishRaycast;
+        if (isRayFinish == isFinished)
+        {
+            return;
+        }
+        isRayFinish = isFinished;
+        if (isFinished)
+        {
+            baseMotor.baseMotorbike.OnFinishLine();
+        }
 
     }
     public enum ETypeMove

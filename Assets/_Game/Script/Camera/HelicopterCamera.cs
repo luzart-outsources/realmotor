@@ -45,7 +45,7 @@ public class HelicopterCamera : MonoBehaviour
 
     void Start()
     {
-        perfectMouseLook = GetComponent<PerfectMouseLook>();
+        //perfectMouseLook = GetComponent<PerfectMouseLook>();
         initialdistanceMultiplier = distanceMultiplier;
 
         //motorbikeController = FindObjectOfType<MotorbikeController>();
@@ -87,30 +87,29 @@ public class HelicopterCamera : MonoBehaviour
 
         wantedRotationAngle = target.eulerAngles.y;
         currentRotationAngle = transform.eulerAngles.y;
-        if (counterRotation)
-        {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                LateRot += 0.333f;
-            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                LateRot -= 0.333f;
-            else
-                LateRot = Mathf.Lerp(LateRot, 0, 0.1f);
-            LateRot = Mathf.Clamp(LateRot, -50 / (parentRigidbody.velocity.magnitude / 20) + 1, 50 / (parentRigidbody.velocity.magnitude / 20) + 1);
-        }
-        if (perfectMouseLook.movement == false)
-            currentRotationAngle = Mathf.SmoothDampAngle(currentRotationAngle, wantedRotationAngle + LateRot, ref yVelocity, rotationSnapTime);
-
+        //if (counterRotation)
+        //{
+        //    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        //        LateRot += 0.333f;
+        //    else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        //        LateRot -= 0.333f;
+        //    else
+        //        LateRot = Mathf.Lerp(LateRot, 0, 0.1f);
+        //    LateRot = Mathf.Clamp(LateRot, -50 / (parentRigidbody.velocity.magnitude / 20) + 1, 50 / (parentRigidbody.velocity.magnitude / 20) + 1);
+        //}
+        currentRotationAngle = Mathf.SmoothDampAngle(currentRotationAngle, wantedRotationAngle + LateRot, ref yVelocity, rotationSnapTime);
         currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
         wantedPosition = target.position;
         wantedPosition.y = currentHeight;
+        float speed = 0;
+        if (parentRigidbody != null)
+        {
+            speed = parentRigidbody.Speed / parentRigidbody.inforMotorbike.maxSpeed;
+        }
+        speed = Mathf.Clamp(speed,0, 1)*10;
 
-        if (Input.GetKey(KeyCode.W))
-            distanceMultiplier = initialdistanceMultiplier;
-        else
-            distanceMultiplier = 0;
-
-        usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (parentRigidbody.velocity.magnitude * distanceMultiplier), ref zVelocity, distanceSnapTime);
+        usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
 
         wantedPosition += Quaternion.Euler(0, currentRotationAngle, 0) * new Vector3(0, 0, -usedDistance);
         lookAtVector = new Vector3(0, lookAtHeight, 0);

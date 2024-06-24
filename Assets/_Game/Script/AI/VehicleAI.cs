@@ -110,7 +110,6 @@ namespace MoreMountains.HighroadEngine
             {
                 MoveLeft();
             }
-            Debug.Log(_direction);
         }
 
         /// <summary>
