@@ -14,6 +14,6 @@ public class UIMainMenu : UIBase
     }
     private void ClickPlay()
     {
-        GameManager.Instance.PlayGameMode(EGameMode.Classic, 0);
+
     }
 }

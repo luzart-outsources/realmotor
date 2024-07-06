@@ -19,7 +19,7 @@ public class UISplash : UIBase
     }
     private void InitStartGame()
     {
-        UIManager.Instance.ShowUI(UIName.MainMenu);
+        UIManager.Instance.ShowGarage();
         Hide();
     }
 }

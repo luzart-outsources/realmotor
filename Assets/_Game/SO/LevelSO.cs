@@ -31,14 +31,16 @@ public class LevelSO : ScriptableObject
             dictLevel.Add(db.level, db);
         }
     }
-    private void Reset()
+    public EnvironmentSO environmentSO;
+    [Sirenix.OdinInspector.Button]
+    private void ResetLevel()
     {
         List<DB_Level> list = new List<DB_Level>();
         for (int i = 0; i < 20; i++)
         {
             DB_Level level = new DB_Level();
             level.level = i;
-            level.idEnvironment = i % 3;
+            level.idEnvironment = i % environmentSO.allEnvironment.Length;
             level.lapRequire = i / 5 + 1;
             int num = Random.Range(3, 7);
             level.idBot = new int[num];

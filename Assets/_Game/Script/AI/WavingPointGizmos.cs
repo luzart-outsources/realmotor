@@ -20,8 +20,33 @@ public class WavingPointGizmos : MonoBehaviour
         return allWavePoint[index].transform;
     }
     [Button]
-    private void GetAllWavePointEditor()
+    public void AddWavingPointChildren()
+    {
+        int length = transform.childCount;
+        for (int i = 0; i < length; i++)
+        {
+            var item = transform.GetChild(i);
+            var component = item.GetComponent<WavingPoint>();
+            if(component == null)
+            {
+                component = item.gameObject.AddComponent<WavingPoint>();
+            }
+            var col = item.GetComponent<Collider>();
+            if(col == null)
+            {
+                col = item.gameObject.AddComponent<SphereCollider>();
+            }
+            col.isTrigger = true;
+            item.gameObject.layer = LayerMask.NameToLayer("WavingPoint");
+        }
+    }
+    [Button]
+    public void GetAllWavePointEditor()
     {
         allWavePoint = transform.GetComponentsInChildren<WavingPoint>();
+        //for (int i = 0; i < allWavePoint.Length; i++)
+        //{
+        //    allWavePoint[i].indexPoint = allWavePoint[i].transform.GetSiblingIndex();
+        //}
     }
 }

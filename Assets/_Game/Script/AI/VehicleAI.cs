@@ -32,10 +32,10 @@ namespace MoreMountains.HighroadEngine
 
 		// Constants used by the AI engine
 		// Feel free to edit these values. Just be sure to test thoroughly the new AI vehicle driving behaviour
-		protected const float _largeAngleDistance = 90f; // When angle between front of the vehicle and target waypoint are distant 
-		protected const float _smallAngleDistance = 5f;  // When angle between front of the vehicle and target waypoint are near
-		protected const float _minimalSpeedForBrakes = 0.5f; // When vehicle is at least at this speed, AI can use brakes
-		protected const float _maximalDistanceStuck = 0.5f; // Distance to consider vehicle stuck
+		public float _largeAngleDistance = 90f; // When angle between front of the vehicle and target waypoint are distant 
+        public  float _smallAngleDistance = 5f;  // When angle between front of the vehicle and target waypoint are near
+        public float _minimalSpeedForBrakes = 0.5f; // When vehicle is at least at this speed, AI can use brakes
+        public float _maximalDistanceStuck = 0.5f; // Distance to consider vehicle stuck
 
 		protected List<Vector3> _AIWaypoints;
 		protected int _currentWaypoint;
@@ -69,19 +69,32 @@ namespace MoreMountains.HighroadEngine
             {
                 return;
             }
-			// if the AI can't control this vehicle, we do nothing and exit
-			//if (!_controller.IsPlaying || !Active)
-			//{
-			//	return;
-			//}
+            // if the AI can't control this vehicle, we do nothing and exit
+            //if (!_controller.IsPlaying || !Active)
+            //{
+            //	return;
+            //}
 
-			// we override the AI's steering speed if needed
-			if (OverrideSteringSpeed)
-			{
-           
-			}
+            switch (baseMotorBike.eState)
+            {
+                case EStateMotorbike.None:
+                    {
+                        OnAIMoveNormal();
+                        break;
+                    }
+                case EStateMotorbike.Finish:
+                    {
+                        OnAIMoveFinish();
+                        break;
+                    }
+            }
 
-			if (IsStuck())
+			
+        }
+
+        private void OnAIMoveNormal()
+        {
+            if (IsStuck())
             {
                 //_controller.Respawn();
                 return;
@@ -89,9 +102,9 @@ namespace MoreMountains.HighroadEngine
 
             EvaluateNextWaypoint();
 
-			EvaluateDirection();
+            EvaluateDirection();
 
-			CalculateValues();
+            CalculateValues();
 
             // we update controller inputs
             if (_acceleration > 0)
@@ -102,16 +115,55 @@ namespace MoreMountains.HighroadEngine
             {
                 Brake();
             }
+            if (IsDontControll)
+            {
+                return;
+            }
             if (_direction > 0f)
             {
                 MoveRight();
             }
-            else
+            else if (_direction < 0f)
             {
                 MoveLeft();
             }
+            else
+            {
+                UnHorizontal();
+            }
         }
+        private void OnAIMoveFinish()
+        {
+            if (IsStuck())
+            {
+                //_controller.Respawn();
+                return;
+            }
 
+            EvaluateNextWaypoint();
+
+            EvaluateDirection();
+
+            CalculateValues();
+
+            if (IsDontControll)
+            {
+                return;
+            }
+
+            if (_direction > 0f)
+            {
+                MoveRight();
+            }
+            else if (_direction < 0f)
+            {
+                MoveLeft();
+            }
+            else
+            {
+                UnHorizontal();
+            }
+        }
         /// <summary>
         /// Reset next AI waypoint to closest
         /// </summary>
@@ -191,10 +243,12 @@ namespace MoreMountains.HighroadEngine
 			}
 		}
 
-		/// <summary>
-		/// Determine direction towards the waypoint
-		/// </summary>
-		protected virtual void EvaluateDirection()
+        Vector3 targetVector;
+        private bool IsDontControll = false;
+        /// <summary>
+        /// Determine direction towards the waypoint
+        /// </summary>
+        protected virtual void EvaluateDirection()
 		{
 			// In case of SolidController, dans les les loopings et les déplacements "non classiques", on désactive la direction et laisse
 			// foncer la voiture tout droit
@@ -206,16 +260,36 @@ namespace MoreMountains.HighroadEngine
 			//	}
 			//}
 			// we compute the target vector between the vehicle and the next waypoint on a plane (without Y axis)
-			Vector3 targetVector = _targetWaypoint - transform.position;
+			targetVector = _targetWaypoint - transform.position;
 			targetVector.y = 0;
 			Vector3 transformForwardPlane = transform.forward;
 			transformForwardPlane.y = 0;
 			// then we measure the angle from vehicle forward to target Vector
 			_targetAngleAbsolute = Vector3.Angle(transformForwardPlane, targetVector);
-			// we also compute the cross product in order to find out if the angle is positive 
-			Vector3 cross = Vector3.Cross(transformForwardPlane, targetVector);
+
+            // we also compute the cross product in order to find out if the angle is positive 
+            Vector3 cross = Vector3.Cross(transformForwardPlane, targetVector);
 			// this value indicates if the vehicle has to move towards the left or right
-			_newDirection = cross.y >= 0 ? 1 : -1;
+            int newDir = cross.y >= 0 ? 1 : -1;
+            float turn = baseMotorBike.inforMotorbike.handling * Time.deltaTime;
+            _newDirection = 0;
+
+            if (turn > _targetAngleAbsolute)
+            {
+                transform.LookAt(_targetWaypoint);
+                IsDontControll = true;
+                return;
+            }
+            IsDontControll = false;
+            if (cross.y < 0)
+            {
+                _newDirection = -1;
+            }
+            else if (cross.y > 0)
+            {
+                _newDirection = 1;
+            }
+
 		}
 
 		/// <summary>

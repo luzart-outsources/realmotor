@@ -1,5 +1,4 @@
-using JetBrains.Annotations;
-using System.Collections;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,7 +55,28 @@ public class CharacterSO : ScriptableObject
         }
         return "";
     }
-
+    [Button]
+    public void GenIDCharacter()
+    {
+        int lengthHelmet = helmetPaths.Length;
+        int lengthClothes = clothesPaths.Length;
+        int id = 0;
+        List<DB_CharacterBot> dB_CharacterBots = new List<DB_CharacterBot>();
+        for (int i = 0;i < lengthHelmet;i++)
+        {
+            for(int j = 0;j < lengthClothes;j++)
+            {
+                DB_CharacterBot bot = new DB_CharacterBot();    
+                bot.id = id;
+                bot.db_Character = new DB_Character();
+                bot.db_Character.idHelmet = i;
+                bot.db_Character.idClothes = j;
+                dB_CharacterBots.Add(bot);
+                id++;
+            }
+        }
+        this.dB_CharacterBots = dB_CharacterBots.ToArray();
+    }
 
 }
 [System.Serializable]

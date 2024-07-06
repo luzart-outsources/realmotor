@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class MotorMovementUnPhysic : MotorMovement
@@ -14,7 +11,6 @@ public class MotorMovementUnPhysic : MotorMovement
     public float drag = 20f;
 
     public RaycastLayer[] raycastDowns;
-    private ETypeMove eTypeMove;
 
 
     public override void Initialize(BaseMotor baseMotor)
@@ -38,6 +34,7 @@ public class MotorMovementUnPhysic : MotorMovement
         CalculatorPosition();
         CheckRaycast();
         OnRotate();
+
         OnChangePosition();
     }
     public override void Brake()
@@ -292,10 +289,5 @@ public class MotorMovementUnPhysic : MotorMovement
             baseMotor.baseMotorbike.OnFinishLine();
         }
 
-    }
-    public enum ETypeMove
-    {
-        MoveNormal = 0,
-        MoveControl = 1 ,
     }
 }

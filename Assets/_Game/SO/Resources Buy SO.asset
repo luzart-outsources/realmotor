@@ -1,0 +1,355 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39acfb6512ac47446b009a828499272a, type: 3}
+  m_Name: Resources Buy SO
+  m_EditorClassIdentifier: 
+  dbResBuyBike:
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 0
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 500
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 1
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 2
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 2
+    valueBuy: 3
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 3
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 2000
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 4
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 2500
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 5
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 2
+    valueBuy: 7
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 6
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 3500
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 7
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 4000
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 8
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 4500
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 9
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 5000
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 10
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 2
+    valueBuy: 10
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 11
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 6000
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 12
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 6500
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 2
+        id: 13
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 7000
+  dbResBuyHelmet:
+  - titleBuy: Blue
+    dataRes:
+      type:
+        type: 3
+        id: 0
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: c2b2b419294712443a0a3fc184c5c2b2, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Green
+    dataRes:
+      type:
+        type: 3
+        id: 1
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: a5dcec377a750474da3e537475944de6, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Purple
+    dataRes:
+      type:
+        type: 3
+        id: 2
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: 3108ac18c26991f4a95302eafb3e939e, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Red
+    dataRes:
+      type:
+        type: 3
+        id: 3
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: af15e94819f79d14d9698c7a6b690bae, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: White
+    dataRes:
+      type:
+        type: 3
+        id: 4
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: 50a08d6228926ae41bc61701de03b7a9, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Yellow
+    dataRes:
+      type:
+        type: 3
+        id: 5
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: 67150b02572ab604483f0f66a0261b01, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  dbResBuyBody:
+  - titleBuy: Blue
+    dataRes:
+      type:
+        type: 4
+        id: 0
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: a32ef41c788324c4a870ed3446801c4f, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Green
+    dataRes:
+      type:
+        type: 4
+        id: 1
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: 2f4578ccca2876c4faf3dc05ff4db107, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Purple
+    dataRes:
+      type:
+        type: 4
+        id: 2
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: b4348374272eb2846bb3ddb83af7c647, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Red
+    dataRes:
+      type:
+        type: 4
+        id: 3
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: d74e22757657a72419a58c8ccb1bc72b, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: White
+    dataRes:
+      type:
+        type: 4
+        id: 4
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: e9174b3e78e217748bfd035756d9f7a3, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000
+  - titleBuy: Yellow
+    dataRes:
+      type:
+        type: 4
+        id: 5
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 21300000, guid: 3139f1dd3a53fca47a5ec5ac5d77f55c, type: 3}
+      spBg: {fileID: 0}
+    placeBuy: 1
+    typeBuy: 1
+    valueBuy: 1000

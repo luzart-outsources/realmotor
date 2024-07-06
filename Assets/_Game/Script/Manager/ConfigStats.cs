@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ConfigStats 
 {
-    public static InforMotorbike GetInforMotorbike(int idMotor, int levelUpgrade)
+    public static InforMotorbike GetInforMotorbike(int idMotor, int[] levelUpgrade)
     {
         InforMotorbike inforMotorbike = new InforMotorbike();
         inforMotorbike = DataManager.Instance.motorSO.GetDBMotor(idMotor).GetInforMotorbike(levelUpgrade);
@@ -17,9 +17,9 @@ public class ConfigStats
         inforMotorbike = DataManager.Instance.motorSO.GetDBMotorBot(idMotor).GetInforMotorbike(levelUpgrade);
         return inforMotorbike;
     }
-    public static int GetLevelUpgrade(int curMotor, DB_Motorbike[] db)
+    public static int GetLevelUpgrade(int curMotor, List<DB_Motorbike> db)
     {
-        for (int i = 0; i < db.Length; i++)
+        for (int i = 0; i < db.Count; i++)
         {
             if (curMotor == db[i].idMotor)
             {

@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
+using MoreMountains.HighroadEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class BaseMotorbike : MonoBehaviour
@@ -18,11 +16,21 @@ public class BaseMotorbike : MonoBehaviour
     private float radiusCheckPoint = 10f;
     [SerializeField]
     private LayerMask layerCheckPoint;
+    //[SerializeField]
+    //private MiniMapPlayer miniMapPlayer;
+    public string strMyName;
     public ETeam eTeam;
     [SerializeField]
     private Transform parentVisualMotor;
     private DB_Motorbike dbMotorbike;
     private DB_Character dbCharacter;
+
+    public SoundMotorbike soundMotorbike;
+    [Sirenix.OdinInspector.ShowInInspector]
+    private List<int> listIndex = new List<int>();
+    public EStateMotorbike eState;
+
+    public Transform parentCam;
 
     public int round = 0;
     public float Speed => baseMotor.Speed;
@@ -43,9 +51,11 @@ public class BaseMotorbike : MonoBehaviour
         this.baseMotor.Initialize(this);
         this.baseCharacter.Initialize(this);
         this.baseController.Initialized(this);
-
+        this.soundMotorbike.Initialize(this);
+        //this.miniMapPlayer.Initialize(this);
+        eState = EStateMotorbike.None;
         GetCurrentCheckPoint();
-        transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
+        //transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
         if(eTeam == ETeam.Player)
         {
             CameraManager.Instance.SetFollowCamera(this.gameObject);
@@ -65,13 +75,23 @@ public class BaseMotorbike : MonoBehaviour
     public void InitStartRace()
     {
         round = 0;
+        currentIndex = 0;
+        listIndex.Add(0);
     }
     public void ReInitialize()
     {
+        if(eState == EStateMotorbike.Finish)
+        {
+            return;
+        }
         Initialize(inforMotorbike, baseController, eTeam);
         Transform transPoint =  GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex);
         transform.position = transPoint.position;
         transform.rotation = transPoint.rotation;
+        if (eTeam == ETeam.Player)
+        {
+            GameManager.Instance.gameCoordinator.ShowHideUIController(true);
+        }
     }
     private void InitAction()
     {
@@ -79,6 +99,10 @@ public class BaseMotorbike : MonoBehaviour
     }
     public void GetCurrentCheckPoint()
     {
+        if(eState == EStateMotorbike.Finish)
+        {
+            return;
+        }
         var col = Physics.OverlapSphere(transform.position, radiusCheckPoint, layerCheckPoint);
         if (col != null && col.Length>0)
         {
@@ -90,20 +114,41 @@ public class BaseMotorbike : MonoBehaviour
             foreach (var c in listCol)
             {
                 var checkPointCol = c.GetComponent<WavingPoint>();
-                currentIndex = checkPointCol.indexPoint;
-                return;
+                if( checkPointCol != null )
+                {
+                    currentIndex = checkPointCol.indexPoint;
+                    if (!listIndex.Contains(currentIndex))
+                    {
+                        listIndex.Add(currentIndex);
+                    }
+                    return;
+
+                }
             }
         }
     }
     public void OnFinishLine()
     {
-        round++;
-        GameManager.Instance.gameCoordinator.OnPassFinishLine(this);
+        if(listIndex.Count < GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint.Length*4/5)
+        {
+            return;
+        }
+        else
+        {
+            round++;
+            currentIndex = 0;
+            listIndex.Clear();
+
+            GameManager.Instance.gameCoordinator.OnPassFinishLine(this);
+
+        }
+
     }
 
     public void OnFinishRace()
     {
-        if(eTeam == ETeam.AI)
+        eState = EStateMotorbike.Finish;
+        if (eTeam == ETeam.AI)
         {
             OnFinishRaceAI();
         }
@@ -115,26 +160,45 @@ public class BaseMotorbike : MonoBehaviour
 
     private void OnFinishRaceAI()
     {
-        Debug.Log($"FinishRace AI {name}");
+        Destroy(baseController);
+        GameUtil.Instance.WaitAndDo(1, StopWinGame);
     }
     private void OnFinishRacePlayer()
     {
-        Debug.Log($"FinishRace Player {name}");
+        Destroy(baseController);
+        baseController = gameObject.AddComponent<VehicleAI>();
+        baseController.Initialized(this);
+
+        GameUtil.Instance.WaitAndDo(1, StopWinGame);
+    }
+    private void StopWinGame()
+    {
+        Brake();
     }
 
     private void OnVisualCharacterCollisionWall (Vector3 velocity)
     {
+        if(eTeam == ETeam.Player)
+        {
+            GameManager.Instance.gameCoordinator.ShowHideUIController(false);
+        }
         baseCharacter.OnCollisionWall(velocity);
+        UnVerticle();
+        UnHorizontal();
         GameUtil.Instance.WaitAndDo(2f, ReInitialize);
     }
-    private void FixedUpdate()
+    public void StartRace()
     {
-        FixedUpdateController();
-        GetCurrentCheckPoint();
+        IsStartRace = true;
     }
     private void Update()
     {
+        if(!IsStartRace)
+        {
+            return;
+        }
         UpdateController();
+        GetCurrentCheckPoint();
     }
     public float GetDistanceFromTarget()
     {
@@ -142,7 +206,7 @@ public class BaseMotorbike : MonoBehaviour
         return Vector3.Distance(transform.position, target.position);
     }
 
-
+    private bool IsStartRace = false;
 
     #region Controller
     private void FixedUpdateController()
@@ -196,6 +260,7 @@ public class BaseMotorbike : MonoBehaviour
     public void MoveSteerVisual(int steerInput, float currentSpeed)
     {
         baseMotor.OnVisualTilt(steerInput, currentSpeed);
+        baseCharacter.OnVisualTilt(steerInput);
     }
     #endregion
 
@@ -211,4 +276,11 @@ public enum ETeam
     None =0,
     Player = 1,
     AI = 2,
+}
+
+public enum EStateMotorbike
+{
+    None = 0,
+    Start = 1,
+    Finish = 2,
 }

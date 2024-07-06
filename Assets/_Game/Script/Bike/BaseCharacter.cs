@@ -46,6 +46,21 @@ public class BaseCharacter : MonoBehaviour
     {
         characterAnimation.Brake();
     }
+    public void OnVisualTilt(int teer)
+    {
+        if(teer > 0)
+        {
+            MoveRight();
+        }
+        else if(teer < 0)
+        {
+            MoveLeft();
+        }
+        else
+        {
+            UnHorizontal();
+        }
+    }
     public void UnHorizontal()
     {
         characterAnimation.UnHorizontal();
@@ -67,7 +82,7 @@ public class BaseCharacter : MonoBehaviour
         _rbRagdoll.transform.position = rbRagdoll.transform.position;
         if(baseMotorbike.eTeam == ETeam.Player)
         {
-            CameraManager.Instance.SetFollowCamera(_rbRagdoll.gameObject);
+            CameraManager.Instance.SetFollowCamera(_rbRagdoll.transform.GetChild(0).GetChild(0).gameObject);
         }
 
         _rbRagdoll.gameObject.SetActive(true);

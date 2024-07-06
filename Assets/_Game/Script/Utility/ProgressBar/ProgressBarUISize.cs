@@ -17,7 +17,7 @@ public class ProgressBarUISize : ProgressBarUI
     private float width;
     private float height;
 
-    private void Start()
+    private void Awake()
     {
         width = rtContain.sizeDelta.x;
         height = rtFill.sizeDelta.y;

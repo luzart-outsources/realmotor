@@ -8,6 +8,8 @@ public class CharacterAnimation : MonoBehaviour
     public Animator animator;
     public const string KEY_NGHIENGXE = "NghiengXe";
     private float valueRotate = 0f;
+    [SerializeField]
+    private float factor = 1f;
 
     private ETypeRotate typeRotate = ETypeRotate.Default;
     public void MoveLeft()
@@ -34,7 +36,7 @@ public class CharacterAnimation : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float step = Time.fixedDeltaTime;
+        float step = Time.fixedDeltaTime* factor;
         switch (typeRotate)
         {
             case ETypeRotate.Default:

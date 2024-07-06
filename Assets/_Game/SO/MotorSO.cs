@@ -1,6 +1,9 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(menuName = "SO/MotorSO", fileName = "MotorSO")]
 public class MotorSO : ScriptableObject
@@ -36,6 +39,80 @@ public class MotorSO : ScriptableObject
         return db_MotorBots[id];
     }
 
+    [Button]
+    public void AddMotorModelInfor()
+    {
+        List<MotorInforPath> list = new List<MotorInforPath>();
+        list = motorModelInfor.ToList();
+        MotorInforPath newM = new MotorInforPath();
+        newM.id = list.Count;
+        newM.path = $"Motor_{newM.id}";
+        list.Add(newM);
+        motorModelInfor = list.ToArray();
+    }
+    [Button]
+    public void AddDB_Motor()
+    {
+        int length = 14;
+        string[] tenXes = new string[] { "Xe Rom Nhat", "Xe Rom Vua", "Xe Rom", "Xe binh thuong", "Xe Xin", "Xe Xin Hon", "Xe Xin Nhat" };
+        int lengthTenXe = tenXes.Length;
+        List<DB_Motor> list = new List<DB_Motor>();
+        for (int i = 0; i < length; i++)
+        {
+            DB_Motor _ = new DB_Motor();
+            int indexTenXe = Mathf.RoundToInt( ((float)(lengthTenXe-1) / (float)(length - 1)) * (float)i);
+            _.nameMotor = $"{tenXes[indexTenXe]} {i}";
+            _.nameModelMotor = "Khum bit dou";
+            int indexRank = Mathf.RoundToInt(((float)(5-1)/ (float)(length-1)) * (float)i);
+            _.rank = (ClassRankMotor)indexRank;
+            _.idMotor = i;
+            _.inforMotorbike = new InforMotorbike();
+            _.inforMotorbike.maxSpeed = 50 + 5 * i;
+            _.inforMotorbike.acceleration = 10 + 5 * i;
+            _.inforMotorbike.handling = 30 + 5 * i;
+            _.inforMotorbike.brake = 20 + 5 * i;
+            _.inforUpgrade = new InforMotorbike();
+            _.inforUpgrade.maxSpeed = 5 +  i;
+            _.inforUpgrade.acceleration = 4 +  i;
+            _.inforUpgrade.handling = 3 +  i;
+            _.inforUpgrade.brake = 2 +  i;
+            list.Add(_);
+        }
+        dB_Motors = list.ToArray();
+
+    }
+
+    [Button]
+    public void AddDB_MotorBot()
+    {
+        int length = 14;
+        string[] tenXes = new string[] { "Xe Rom Nhat", "Xe Rom Vua", "Xe Rom", "Xe binh thuong", "Xe Xin", "Xe Xin Hon", "Xe Xin Nhat" };
+        int lengthTenXe = tenXes.Length;
+        List<DB_Motor> list = new List<DB_Motor>();
+        for (int i = 0; i < length; i++)
+        {
+            DB_Motor _ = new DB_Motor();
+            int indexTenXe = Mathf.RoundToInt(((float)(lengthTenXe - 1) / (float)(length - 1)) * (float)i);
+            _.nameMotor = $"{tenXes[indexTenXe]} {i}";
+            _.nameModelMotor = "Khum bit dou";
+            int indexRank = Mathf.RoundToInt(((float)(5 - 1) / (float)(length - 1)) * (float)i);
+            _.rank = (ClassRankMotor)indexRank;
+            _.idMotor = i;
+            _.inforMotorbike = new InforMotorbike();
+            _.inforMotorbike.maxSpeed = 20 + 5 * i;
+            _.inforMotorbike.acceleration = 5 + 5 * i;
+            _.inforMotorbike.handling = 10 + 5 * i;
+            _.inforMotorbike.brake = 15 + 5 * i;
+            _.inforUpgrade = new InforMotorbike();
+            _.inforUpgrade.maxSpeed = 5 + i;
+            _.inforUpgrade.acceleration = 4 + i;
+            _.inforUpgrade.handling = 3 + i;
+            _.inforUpgrade.brake = 2 + i;
+            list.Add(_);
+        }
+        db_MotorBots = list.ToArray();
+
+    }
 }
 [System.Serializable]
 public struct MotorInforPath
@@ -46,6 +123,9 @@ public struct MotorInforPath
 [System.Serializable]
 public class DB_Motor
 {
+    public string nameMotor;
+    public string nameModelMotor;
+    public ClassRankMotor rank;
     public int idMotor;
     public InforMotorbike inforMotorbike;
     public InforMotorbike inforUpgrade;
@@ -58,5 +138,33 @@ public class DB_Motor
         infor.brake = inforMotorbike.brake + inforUpgrade.brake * levelUpgrade;
         return infor;
     }
+    public InforMotorbike GetInforMotorbike(int[] levelUpgrade)
+    {
+        InforMotorbike infor = new InforMotorbike();
+        infor.acceleration = inforMotorbike.acceleration + inforUpgrade.acceleration * levelUpgrade[0];
+        infor.maxSpeed = inforMotorbike.maxSpeed + inforUpgrade.maxSpeed * levelUpgrade[1];
+        infor.handling = inforMotorbike.handling + inforUpgrade.handling * levelUpgrade[2];
+        infor.brake = inforMotorbike.brake + inforUpgrade.brake * levelUpgrade[3];
+        return infor;
+    }
 
+    public DB_Motor Clone()
+    {
+        DB_Motor newDB = new DB_Motor();
+        newDB.nameMotor = nameMotor;
+        newDB.nameModelMotor = nameModelMotor;
+        newDB.rank = rank;
+        newDB.idMotor = idMotor;
+        newDB.inforMotorbike = inforMotorbike.Clone();
+        newDB.inforUpgrade = inforUpgrade.Clone();
+        return newDB;
+    }
+}
+public enum ClassRankMotor
+{
+    D =0,
+    C =1,
+    B = 2,
+    A =3,
+    S =4,
 }

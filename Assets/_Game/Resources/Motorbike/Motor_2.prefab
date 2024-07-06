@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1453324440374839135}
   - component: {fileID: 6137056419338846710}
   - component: {fileID: 235897130316056042}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Headlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177091830075649544}
   - component: {fileID: 2721287728136637626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Motor_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,7 @@ MonoBehaviour:
     acceleration: 20
     handling: 30
     brake: 50
+  baseMotor: {fileID: 0}
 --- !u!1 &949831068658068875
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +169,7 @@ GameObject:
   - component: {fileID: 4335478425908839385}
   - component: {fileID: 6125815805269239297}
   - component: {fileID: 2761643411776929477}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +219,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5997459344444611244, guid: 1ee0765c234693a45b6e8d092d11bf69, type: 3}
+  - {fileID: 2100000, guid: f2284c2058730b34fbcdd3fb61c422ac, type: 2}
   - {fileID: 2100000, guid: 933b55c47f9d3394d8b5036aa3f3b0a1, type: 2}
   - {fileID: 2100000, guid: dbc1a60c3d7e2bf49bde3b07b01b36e1, type: 2}
   - {fileID: 2100000, guid: 75e3008353a73d644b2fd8b7cf7e5999, type: 2}
@@ -255,7 +256,7 @@ GameObject:
   - component: {fileID: 8447136185041881573}
   - component: {fileID: 8700250970150434898}
   - component: {fileID: 212753434250965048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Handle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +307,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5997459344444611244, guid: 1ee0765c234693a45b6e8d092d11bf69, type: 3}
+  - {fileID: 2100000, guid: f2284c2058730b34fbcdd3fb61c422ac, type: 2}
   - {fileID: 2100000, guid: 933b55c47f9d3394d8b5036aa3f3b0a1, type: 2}
   - {fileID: 2100000, guid: dbc1a60c3d7e2bf49bde3b07b01b36e1, type: 2}
   m_StaticBatchInfo:
@@ -341,7 +342,7 @@ GameObject:
   - component: {fileID: 9204277383775109736}
   - component: {fileID: 9090159639835204015}
   - component: {fileID: 8966442877550769003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rear MudGuard System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +395,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: 46d399a2e07a26e4cbb550f4c50c35f9, type: 2}
   - {fileID: 2100000, guid: 933b55c47f9d3394d8b5036aa3f3b0a1, type: 2}
   - {fileID: 2100000, guid: dbc1a60c3d7e2bf49bde3b07b01b36e1, type: 2}
-  - {fileID: -5997459344444611244, guid: 1ee0765c234693a45b6e8d092d11bf69, type: 3}
+  - {fileID: 2100000, guid: f2284c2058730b34fbcdd3fb61c422ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -464,6 +465,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576746036231253985, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7648438520902380107, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
       propertyPath: m_Name
       value: FrontWheel
@@ -491,6 +496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 177091830075649544}
     m_Modifications:
+    - target: {fileID: 1022954806531484197, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1650149096997846387, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_Name
       value: AfterWheel
@@ -558,9 +567,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 177091830075649544}
     m_Modifications:
+    - target: {fileID: 2869080075828214976, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186754858667023575, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308858425928060689, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7982809106616986927, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
       propertyPath: m_Name
       value: FullTrailFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982809106616986927, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8424307319885734461, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8843799543413884081, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
       propertyPath: m_LocalPosition.x

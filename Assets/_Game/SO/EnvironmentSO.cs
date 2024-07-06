@@ -11,6 +11,10 @@ public class EnvironmentSO : ScriptableObject
     {
         return $"{PATH_ENVIRONMENT}/{GetPathEnvironment(id)}";
     }
+    public string GetPathScene(int id)
+    {
+        return GetPathEnvironment(id);
+    }
     private string GetPathEnvironment(int id)
     {
         for (int i = 0; i < allEnvironment.Length; i++)

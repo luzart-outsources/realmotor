@@ -21,93 +21,417 @@ MonoBehaviour:
     path: Motor_2
   - id: 3
     path: Motor_3
+  - id: 4
+    path: Motor_4
+  - id: 5
+    path: Motor_5
+  - id: 6
+    path: Motor_6
+  - id: 7
+    path: Motor_7
+  - id: 8
+    path: Motor_8
+  - id: 9
+    path: Motor_9
+  - id: 10
+    path: Motor_10
+  - id: 11
+    path: Motor_11
+  - id: 12
+    path: Motor_12
+  - id: 13
+    path: Motor_13
   dB_Motors:
-  - idMotor: 0
+  - nameMotor: Xe Rom Nhat 0
+    nameModelMotor: Khum bit dou
+    rank: 0
+    idMotor: 0
     inforMotorbike:
       maxSpeed: 50
       acceleration: 10
-      handling: 60
-      brake: 30
-    inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
-      handling: 3
-      brake: 3
-  - idMotor: 1
-    inforMotorbike:
-      maxSpeed: 60
-      acceleration: 15
-      handling: 70
-      brake: 35
-    inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
-      handling: 4
-      brake: 3
-  - idMotor: 2
-    inforMotorbike:
-      maxSpeed: 80
-      acceleration: 20
-      handling: 80
-      brake: 40
-    inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
-      handling: 4
-      brake: 3
-  - idMotor: 3
-    inforMotorbike:
-      maxSpeed: 100
-      acceleration: 30
-      handling: 90
-      brake: 50
-    inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
-      handling: 4
-      brake: 3
-  db_MotorBots:
-  - idMotor: 0
-    inforMotorbike:
-      maxSpeed: 30
-      acceleration: 10
-      handling: 50
+      handling: 30
       brake: 20
     inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
+      maxSpeed: 5
+      acceleration: 4
       handling: 3
-      brake: 3
-  - idMotor: 1
+      brake: 2
+  - nameMotor: Xe Rom Nhat 1
+    nameModelMotor: Khum bit dou
+    rank: 0
+    idMotor: 1
     inforMotorbike:
-      maxSpeed: 35
-      acceleration: 10
-      handling: 70
-      brake: 28
+      maxSpeed: 55
+      acceleration: 15
+      handling: 35
+      brake: 25
     inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
+      maxSpeed: 6
+      acceleration: 5
       handling: 4
       brake: 3
-  - idMotor: 2
-    inforMotorbike:
-      maxSpeed: 40
-      acceleration: 10
-      handling: 80
-      brake: 40
-    inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
-      handling: 4
-      brake: 3
-  - idMotor: 1
+  - nameMotor: Xe Rom Vua 2
+    nameModelMotor: Khum bit dou
+    rank: 1
+    idMotor: 2
     inforMotorbike:
       maxSpeed: 60
-      acceleration: 15
-      handling: 100
+      acceleration: 20
+      handling: 40
+      brake: 30
+    inforUpgrade:
+      maxSpeed: 7
+      acceleration: 6
+      handling: 5
+      brake: 4
+  - nameMotor: Xe Rom Vua 3
+    nameModelMotor: Khum bit dou
+    rank: 1
+    idMotor: 3
+    inforMotorbike:
+      maxSpeed: 65
+      acceleration: 25
+      handling: 45
       brake: 35
     inforUpgrade:
-      maxSpeed: 3
-      acceleration: 2
+      maxSpeed: 8
+      acceleration: 7
+      handling: 6
+      brake: 5
+  - nameMotor: Xe Rom 4
+    nameModelMotor: Khum bit dou
+    rank: 1
+    idMotor: 4
+    inforMotorbike:
+      maxSpeed: 70
+      acceleration: 30
+      handling: 50
+      brake: 40
+    inforUpgrade:
+      maxSpeed: 9
+      acceleration: 8
+      handling: 7
+      brake: 6
+  - nameMotor: Xe Rom 5
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 5
+    inforMotorbike:
+      maxSpeed: 75
+      acceleration: 35
+      handling: 55
+      brake: 45
+    inforUpgrade:
+      maxSpeed: 10
+      acceleration: 9
+      handling: 8
+      brake: 7
+  - nameMotor: Xe binh thuong 6
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 6
+    inforMotorbike:
+      maxSpeed: 80
+      acceleration: 40
+      handling: 60
+      brake: 50
+    inforUpgrade:
+      maxSpeed: 11
+      acceleration: 10
+      handling: 9
+      brake: 8
+  - nameMotor: Xe binh thuong 7
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 7
+    inforMotorbike:
+      maxSpeed: 85
+      acceleration: 45
+      handling: 65
+      brake: 55
+    inforUpgrade:
+      maxSpeed: 12
+      acceleration: 11
+      handling: 10
+      brake: 9
+  - nameMotor: Xe Xin 8
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 8
+    inforMotorbike:
+      maxSpeed: 90
+      acceleration: 50
+      handling: 70
+      brake: 60
+    inforUpgrade:
+      maxSpeed: 13
+      acceleration: 12
+      handling: 11
+      brake: 10
+  - nameMotor: Xe Xin 9
+    nameModelMotor: Khum bit dou
+    rank: 3
+    idMotor: 9
+    inforMotorbike:
+      maxSpeed: 95
+      acceleration: 55
+      handling: 75
+      brake: 65
+    inforUpgrade:
+      maxSpeed: 14
+      acceleration: 13
+      handling: 12
+      brake: 11
+  - nameMotor: Xe Xin Hon 10
+    nameModelMotor: Khum bit dou
+    rank: 3
+    idMotor: 10
+    inforMotorbike:
+      maxSpeed: 100
+      acceleration: 60
+      handling: 80
+      brake: 70
+    inforUpgrade:
+      maxSpeed: 15
+      acceleration: 14
+      handling: 13
+      brake: 12
+  - nameMotor: Xe Xin Hon 11
+    nameModelMotor: Khum bit dou
+    rank: 3
+    idMotor: 11
+    inforMotorbike:
+      maxSpeed: 105
+      acceleration: 65
+      handling: 85
+      brake: 75
+    inforUpgrade:
+      maxSpeed: 16
+      acceleration: 15
+      handling: 14
+      brake: 13
+  - nameMotor: Xe Xin Nhat 12
+    nameModelMotor: Khum bit dou
+    rank: 4
+    idMotor: 12
+    inforMotorbike:
+      maxSpeed: 110
+      acceleration: 70
+      handling: 90
+      brake: 80
+    inforUpgrade:
+      maxSpeed: 17
+      acceleration: 16
+      handling: 15
+      brake: 14
+  - nameMotor: Xe Xin Nhat 13
+    nameModelMotor: Khum bit dou
+    rank: 4
+    idMotor: 13
+    inforMotorbike:
+      maxSpeed: 115
+      acceleration: 75
+      handling: 95
+      brake: 85
+    inforUpgrade:
+      maxSpeed: 18
+      acceleration: 17
+      handling: 16
+      brake: 15
+  db_MotorBots:
+  - nameMotor: Xe Rom Nhat 0
+    nameModelMotor: Khum bit dou
+    rank: 0
+    idMotor: 0
+    inforMotorbike:
+      maxSpeed: 20
+      acceleration: 5
+      handling: 10
+      brake: 15
+    inforUpgrade:
+      maxSpeed: 5
+      acceleration: 4
+      handling: 3
+      brake: 2
+  - nameMotor: Xe Rom Nhat 1
+    nameModelMotor: Khum bit dou
+    rank: 0
+    idMotor: 1
+    inforMotorbike:
+      maxSpeed: 25
+      acceleration: 10
+      handling: 15
+      brake: 20
+    inforUpgrade:
+      maxSpeed: 6
+      acceleration: 5
       handling: 4
       brake: 3
+  - nameMotor: Xe Rom Vua 2
+    nameModelMotor: Khum bit dou
+    rank: 1
+    idMotor: 2
+    inforMotorbike:
+      maxSpeed: 30
+      acceleration: 15
+      handling: 20
+      brake: 25
+    inforUpgrade:
+      maxSpeed: 7
+      acceleration: 6
+      handling: 5
+      brake: 4
+  - nameMotor: Xe Rom Vua 3
+    nameModelMotor: Khum bit dou
+    rank: 1
+    idMotor: 3
+    inforMotorbike:
+      maxSpeed: 35
+      acceleration: 20
+      handling: 25
+      brake: 30
+    inforUpgrade:
+      maxSpeed: 8
+      acceleration: 7
+      handling: 6
+      brake: 5
+  - nameMotor: Xe Rom 4
+    nameModelMotor: Khum bit dou
+    rank: 1
+    idMotor: 4
+    inforMotorbike:
+      maxSpeed: 40
+      acceleration: 25
+      handling: 30
+      brake: 35
+    inforUpgrade:
+      maxSpeed: 9
+      acceleration: 8
+      handling: 7
+      brake: 6
+  - nameMotor: Xe Rom 5
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 5
+    inforMotorbike:
+      maxSpeed: 45
+      acceleration: 30
+      handling: 35
+      brake: 40
+    inforUpgrade:
+      maxSpeed: 10
+      acceleration: 9
+      handling: 8
+      brake: 7
+  - nameMotor: Xe binh thuong 6
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 6
+    inforMotorbike:
+      maxSpeed: 50
+      acceleration: 35
+      handling: 40
+      brake: 45
+    inforUpgrade:
+      maxSpeed: 11
+      acceleration: 10
+      handling: 9
+      brake: 8
+  - nameMotor: Xe binh thuong 7
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 7
+    inforMotorbike:
+      maxSpeed: 55
+      acceleration: 40
+      handling: 45
+      brake: 50
+    inforUpgrade:
+      maxSpeed: 12
+      acceleration: 11
+      handling: 10
+      brake: 9
+  - nameMotor: Xe Xin 8
+    nameModelMotor: Khum bit dou
+    rank: 2
+    idMotor: 8
+    inforMotorbike:
+      maxSpeed: 60
+      acceleration: 45
+      handling: 50
+      brake: 55
+    inforUpgrade:
+      maxSpeed: 13
+      acceleration: 12
+      handling: 11
+      brake: 10
+  - nameMotor: Xe Xin 9
+    nameModelMotor: Khum bit dou
+    rank: 3
+    idMotor: 9
+    inforMotorbike:
+      maxSpeed: 65
+      acceleration: 50
+      handling: 55
+      brake: 60
+    inforUpgrade:
+      maxSpeed: 14
+      acceleration: 13
+      handling: 12
+      brake: 11
+  - nameMotor: Xe Xin Hon 10
+    nameModelMotor: Khum bit dou
+    rank: 3
+    idMotor: 10
+    inforMotorbike:
+      maxSpeed: 70
+      acceleration: 55
+      handling: 60
+      brake: 65
+    inforUpgrade:
+      maxSpeed: 15
+      acceleration: 14
+      handling: 13
+      brake: 12
+  - nameMotor: Xe Xin Hon 11
+    nameModelMotor: Khum bit dou
+    rank: 3
+    idMotor: 11
+    inforMotorbike:
+      maxSpeed: 75
+      acceleration: 60
+      handling: 65
+      brake: 70
+    inforUpgrade:
+      maxSpeed: 16
+      acceleration: 15
+      handling: 14
+      brake: 13
+  - nameMotor: Xe Xin Nhat 12
+    nameModelMotor: Khum bit dou
+    rank: 4
+    idMotor: 12
+    inforMotorbike:
+      maxSpeed: 80
+      acceleration: 65
+      handling: 70
+      brake: 75
+    inforUpgrade:
+      maxSpeed: 17
+      acceleration: 16
+      handling: 15
+      brake: 14
+  - nameMotor: Xe Xin Nhat 13
+    nameModelMotor: Khum bit dou
+    rank: 4
+    idMotor: 13
+    inforMotorbike:
+      maxSpeed: 85
+      acceleration: 70
+      handling: 75
+      brake: 80
+    inforUpgrade:
+      maxSpeed: 18
+      acceleration: 17
+      handling: 16
+      brake: 15

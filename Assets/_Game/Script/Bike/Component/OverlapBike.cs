@@ -11,7 +11,7 @@ public class OverlapBike : OverlapEachFrame
         bool isCollider = false;
         var resultRaycast = new ResultOverlapBool();
         resultRaycast.eLayer = eLayer;
-        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size*3f, Quaternion.identity, layerMask);
+        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
         if (colliders != null)
         {
             for (int i = 0; i < colliders.Length; i++)

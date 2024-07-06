@@ -1,8 +1,71 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class UIGameplay : UIBase
 {
+    public UIController UIController;
+    public Button btnPause;
+    public LeaderBoardUIInGame leaderBoard;
+    public TMP_Text txtTime;
+    public TMP_Text txtLap;
+    public TMP_Text txtVelocity;
+    public CountdownUI countdown;
+    private DB_Level db_Level;
+    public float maxClockwise = 0.675f;
+    public Image imClockFilled;
+    protected override void Setup()
+    {
+        base.Setup();
+        GameUtil.ButtonOnClick(btnPause, ClickPause, true);
+    }
 
+    private void ClickPause()
+    {
+        UIManager.Instance.ShowUI(UIName.Resume);
+    }
+    public override void Show(Action onHideDone)
+    {
+        base.Show(onHideDone);
+        SetStatusUIController(false);
+    }
+    public void SetStatusUIController(bool status)
+    {
+        UIController.gameObject.SetActive(status);
+    }
+    public void InitData(DB_Level db)
+    {
+        db_Level = db;
+    }
+    public void InitList(List<DB_LeaderBoardInGame> list)
+    {
+        leaderBoard.InitList(list);
+    }
+    public void UpdateLeaderBoard(List<DB_LeaderBoardInGame> list)
+    {
+        leaderBoard.UpdateList(list);
+    }
+    public void UpdateUI()
+    {
+       int round =  GameManager.Instance.gameCoordinator.myMotorbike.round;
+       txtLap.text = $"{round}/{db_Level.lapRequire}";
+       int speed = (int)GameManager.Instance.gameCoordinator.myMotorbike.Speed;
+       int maxSpeed = (int)GameManager.Instance.gameCoordinator.myMotorbike.inforMotorbike.maxSpeed;
+       txtVelocity.text = $"{speed}";
+       float factor = (float)speed / (float)maxSpeed;
+       float valueClock = maxClockwise * factor;   
+       imClockFilled.fillAmount = valueClock;
+        txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, false, "", "", "", "");
+
+    }
+    public void StartCountDown()
+    {
+        countdown.InitCountDown(3, 0, ()=> StartGame()) ;
+    }
+    public void StartGame()
+    {
+        countdown.gameObject.SetActive(false);
+        SetStatusUIController(true);
+    }
 }

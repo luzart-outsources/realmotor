@@ -64,10 +64,12 @@ public class BaseMotor : MonoBehaviour
     public void Drift()
     {
         visualMotor.SkidMarks();
+        baseMotorbike.soundMotorbike.SoundDrifEnable(true);
     }
     public void UnDrift()
     {
         visualMotor.BackSkidMarks();
+        baseMotorbike.soundMotorbike.SoundDrifEnable(false);
     }
     public void RotationWheel(float velocity)
     {
@@ -118,6 +120,10 @@ public class BaseMotor : MonoBehaviour
         {
             OnUnableVisualDust();
         }
+    }
+    public void ForceStop()
+    {
+        movementMotor.currentSpeed = 0;
     }
     private void OnCollisionWall(Vector3 velocity)
     {

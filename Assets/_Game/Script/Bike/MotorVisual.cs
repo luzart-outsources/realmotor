@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MotorVisual : MonoBehaviour
 {
+    [HideInInspector]
     public Transform motorVisual;
     [Space, Header("Handle")]
     [SerializeField] 
@@ -30,7 +31,7 @@ public class MotorVisual : MonoBehaviour
     [SerializeField]
     private Transform visualBackWheel;
     [SerializeField]
-    private float tyreRotation = 1000f;
+    private float tyreRotations = 200f;
 
     [Space, Header("Drift")]
     [SerializeField]
@@ -59,8 +60,10 @@ public class MotorVisual : MonoBehaviour
     private float maxVelocityRotate = 45f;
 
     public InforMotorbike motorbikeInfo; // Thông tin của xe máy
+    public BaseMotor baseMotor; // Thông tin của xe máy
     public void Initialize(BaseMotor baseMotor)
     {
+        this.baseMotor = baseMotor;
         motorbikeInfo = baseMotor.baseMotorbike.inforMotorbike;
         skidMark1.startWidth = skidWidth;
         skidMark2.startWidth = skidWidth;
@@ -96,11 +99,11 @@ public class MotorVisual : MonoBehaviour
     }
     public void RotateFrontWheel(float velocity)
     {
-        visualFrontWheel.Rotate(Vector3.right, velocity * tyreRotation * Time.fixedTime);
+        visualFrontWheel.Rotate(Vector3.right, velocity * tyreRotations * Time.fixedTime);
     }
     public void RotateBackWheel(float velocity)
     {
-        visualBackWheel.Rotate(Vector3.right, velocity * tyreRotation * Time.fixedTime);
+        visualBackWheel.Rotate(Vector3.right, velocity * tyreRotations * Time.fixedTime);
     }
     public void RotateWheel(float velocity)
     {
@@ -119,8 +122,12 @@ public class MotorVisual : MonoBehaviour
         skidMark2.emitting = false;
     }
 
-    public void OnVisualTilt(int steerInput, float currentSpeed)
+    public void OnVisualTilt(int steerInput, float currentSpeed = -1)
     {
+        if(currentSpeed == -1)
+        {
+             currentSpeed = baseMotor.Speed;
+        }
         // Tính toán góc tilt dựa trên vận tốc hiện tại
         float valueAngle = Mathf.Clamp01(currentSpeed/maxVelocityRotate);
         float _maxTiltAngle = -maxTiltAngle * steerInput * valueAngle;
@@ -129,12 +136,13 @@ public class MotorVisual : MonoBehaviour
         if (steerInput == 0)
         {
             factorTitl = 1f;
-        }else if(Mathf.Sign(tiltAmount) != Mathf.Sign(_maxTiltAngle))
+        }
+        else if(Mathf.Sign(tiltAmount) != Mathf.Sign(_maxTiltAngle))
         {
             factorTitl = 2f;
         }
         Handle.localRotation = Quaternion.Slerp(Handle.localRotation, Quaternion.Euler(Handle.localRotation.eulerAngles.x,
-                               maxRotationHandle * steerInput, Handle.localRotation.eulerAngles.z), Time.deltaTime*deltaTilt);
+                               maxRotationHandle * steerInput, Handle.localRotation.eulerAngles.z), Time.deltaTime);
         tiltAmount = Mathf.MoveTowards(tiltAmount, _maxTiltAngle, factorTitl* deltaTilt * Time.deltaTime);
         float _maxTailAngle = maxTailAngle * steerInput * valueAngle;
         tailAmount = Mathf.MoveTowards(tailAmount, _maxTailAngle, factorTitl* deltaTail * Time.deltaTime);

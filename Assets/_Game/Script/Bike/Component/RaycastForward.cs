@@ -7,7 +7,7 @@ public class RaycastForward : RaycastLayer
     public MotorMovementUnPhysic movementUnPhysic;
     public override ResultRaycast GetResultRaycast()
     {
-        float distance = 2*Time.deltaTime* movementUnPhysic.currentSpeed ;
+        float distance = Time.deltaTime* movementUnPhysic.currentSpeed ;
         bool isRayHit = Physics.Raycast(transform.position , Vector3.forward, out hit, distance, layerMask);
         if (isRayHit)
         {

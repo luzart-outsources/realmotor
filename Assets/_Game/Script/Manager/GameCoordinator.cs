@@ -1,10 +1,13 @@
+using DG.Tweening;
 using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameCoordinator : MonoBehaviour
 {
@@ -24,39 +27,88 @@ public class GameCoordinator : MonoBehaviour
     private EnvironmentMap environmentMap;
     private List<BaseMotorbike> listBot = new List<BaseMotorbike>();
     private List<DB_MotorbikeBot> listDBBot = new List<DB_MotorbikeBot>();
-    private BaseMotorbike myMotorbike;
+    public BaseMotorbike myMotorbike;
     private DB_Motorbike myDBMotorbike = null;
 
 
-    private List<BaseMotorbike> leaderBoard = new List<BaseMotorbike>();
+    public List<BaseMotorbike> listLeaderBoard = new List<BaseMotorbike>();
+    private List<DB_LeaderBoardInGame> listDBLeaderBoardInGame = new List<DB_LeaderBoardInGame>();
+
+
+    public int countLeaderBoard = 0;
     private DB_Level db_Level;
 
+
+    public float timePlay = 0;
+    private UIGameplay uiGameplay = null;
+
+    public MiniMap miniMap;
     public void StartGame(DB_Level _dbLevel)
     {
-        db_Level = _dbLevel;
         ResetData();
+        db_Level = _dbLevel;
+
+
+        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
+        EnvironmentMap.actionMap = OnLoadMapDone;
+
         LoadMap();
+        uiGameplay = UIManager.Instance.ShowUI<UIGameplay>(UIName.Gameplay);
+        uiGameplay.InitData(db_Level);
+
+
+    }
+    private void OnLoadMapDone(EnvironmentMap map)
+    {
+        environmentMap = map;
+        environmentMap.transform.localPosition = Vector3.zero;
+        environmentMap.transform.rotation = Quaternion.identity;
         LoadPlayer();
         LoadBot();
 
         InitMap();
         InitPlayer();
         InitBot();
+        InitLeaderBoard();
+        InitAllOtherData();
+    }
+    public void ShowHideUIController(bool status)
+    {
+        uiGameplay.SetStatusUIController(status);
+    }
+    public void StartInGame()
+    {
+        uiGameplay.StartCountDown();
+        DOVirtual.DelayedCall(3, StartRace);
+    }
+    public void StartRace()
+    {
+        foreach (var item in listLeaderBoard)
+        {
+            item.StartRace();
+        }
         StartUpdateLeaderBoard();
     }
     private void ResetData()
     {
+        timePlay = 0;
         listBot.Clear();
         listDBBot.Clear();
         myMotorbike = null;
         myDBMotorbike = null;
+        listResult = new List<BaseMotorbike>();
+    }
+    private void InitAllOtherData()
+    {
+        UpdateDbLeaderBoardInGameUI();
+        uiGameplay.InitList(listDBLeaderBoardInGame);
+        miniMap.player1 = myMotorbike.transform;
+        miniMap.opponents = listBot.Select(item => item.transform).ToArray();
+        miniMap.Init();
     }
     private void LoadMap()
     {
-        var enviMap = ResourcesManager.Instance.LoadMap(db_Level.idEnvironment);
-        environmentMap = Instantiate(enviMap, parentEnvironment);
-        environmentMap.transform.localPosition = Vector3.zero;
-        environmentMap.transform.rotation = Quaternion.identity;
+        ResourcesManager.Instance.LoadMapScene(db_Level.idEnvironment);
     }
     private void LoadPlayer()
     {
@@ -69,7 +121,9 @@ public class GameCoordinator : MonoBehaviour
         myDBMotorbike.levelUpgrade = levelUpgrade;
 
         myMotorbike = Instantiate(baseMotorBike, parentMotor);
-        myMotorbike.transform.position = environmentMap.GetStartPoint(db_Level.indexStart).position;
+        Transform transPos = environmentMap.GetStartPoint(db_Level.indexStart);
+        myMotorbike.transform.position = transPos.position;
+        myMotorbike.transform.rotation = transPos.rotation;
         SetNameEditor(myMotorbike.gameObject, $"Player");
         myMotorbike.InitSpawn(dbChar, myDBMotorbike);
     }
@@ -80,8 +134,10 @@ public class GameCoordinator : MonoBehaviour
 
         for (int i = 0; i < ids.Length; i++)
         {
-            BaseMotorbike baseBot = Instantiate(baseMotorBike, parentMotor);
-            baseBot.transform.position = environmentMap.GetStartPoint(indexS[i]).position;
+            BaseMotorbike baseBot = Instantiate(baseMotorBike, environmentMap.parentMotorbike);
+            Transform transPos = environmentMap.GetStartPoint(indexS[i]);
+            baseBot.transform.position = transPos.position;
+            baseBot.transform.rotation = transPos.rotation;
 
             DB_MotorbikeBot db = DataManager.Instance.motorbikeSO.GetMotorbikeBot(ids[i]);
             DB_Character character = DataManager.Instance.characterSO.GetDB_CharacterBot(db.idCharacterBot);
@@ -100,10 +156,12 @@ public class GameCoordinator : MonoBehaviour
     }
     private void InitPlayer()
     {
-        InforMotorbike infor = ConfigStats.GetInforMotorbike(myDBMotorbike.idMotor, myDBMotorbike.levelUpgrade);
-        BaseController controller = myMotorbike.AddComponent<BaseController>();
+        InforMotorbike infor = ConfigStats.GetInforMotorbike(myDBMotorbike.idMotor, myDBMotorbike.levelUpgrades);
+        //BaseController controller = myMotorbike.AddComponent<VehicleAI>();
+        BaseController controller = uiGameplay.UIController;
         myMotorbike.Initialize(infor, controller, ETeam.Player);
         myMotorbike.InitStartRace();
+        myMotorbike.strMyName = DataManager.Instance.GameData.name;
 
     }
     private void InitBot()
@@ -119,29 +177,54 @@ public class GameCoordinator : MonoBehaviour
             VehicleAI controller = bot.AddComponent<VehicleAI>();
             bot.Initialize(infor,controller, ETeam.AI);
             bot.InitStartRace();
+            bot.strMyName = db.name;
         }
     }
-
+    public List<BaseMotorbike> listResult = new List<BaseMotorbike>();
     public void OnPassFinishLine(BaseMotorbike motorFinish)
     {
         if(motorFinish.round >= db_Level.lapRequire)
         {
+            listResult.Add(motorFinish);
             motorFinish.OnFinishRace();
+            if (motorFinish.eTeam == ETeam.Player)
+            {
+                StopUpdateLeaderBoard();
+                UpdateCoordinator();
+                UpdateLeaderBoard();
+                countLeaderBoard = listResult.Count - 1; 
+                bool isWin = listResult.Count <= 3;
+                GameUtil.Instance.WaitAndDo(3f, () => ActionOnEndGame?.Invoke(isWin));
+
+            }
         }
-        if(motorFinish.eTeam == ETeam.Player)
+
+    }
+    public void EndGame(bool isWin)
+    {
+        CameraManager.Instance.helicopterCamera.animator.enabled = false;
+        CameraManager.Instance.helicopterCamera.transform.SetParent(CameraManager.Instance.transform);
+        StopUpdateLeaderBoard();
+        DestroyAllBike();
+        void DestroyAllBike()
         {
-            EndGame();
-            UpdateLeaderBoard();
+            Destroy(myMotorbike.gameObject);
+            for (int i = 0; i < listBot.Count; i++)
+            {
+                Destroy(listBot[i].gameObject);
+                listBot.RemoveAt(0);
+            }
         }
     }
-    private void EndGame()
+    private void InitLeaderBoard()
     {
-        StopUpdateLeaderBoard();
+        listLeaderBoard = new List<BaseMotorbike>(listBot)
+        {
+            myMotorbike
+        };
     }
     private void StartUpdateLeaderBoard()
     {
-        listLeaderBoard = new List<BaseMotorbike>(listBot);
-        listLeaderBoard.Add(myMotorbike);
         StopUpdateLeaderBoard();
         corUpdateLeaderBoard = StartCoroutine(IEUpdateLeaderBoard());
     }
@@ -155,25 +238,89 @@ public class GameCoordinator : MonoBehaviour
     private Coroutine corUpdateLeaderBoard = null;
     private IEnumerator IEUpdateLeaderBoard()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.1f);
+
         while (true)
         {
+            yield return null;
             UpdateLeaderBoard();
-            yield return wait;
+            timePlay += Time.deltaTime;
+            UpdateCoordinator();
         }
     }
 
-    public List<BaseMotorbike> listLeaderBoard = new List<BaseMotorbike>();
+    private void UpdateCoordinator()
+    {
+        uiGameplay.UpdateUI();
+        UpdateDbLeaderBoardInGameUI();
+        uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
+    }
+    private void UpdateDbLeaderBoardInGameUI()
+    {
+        int length = listLeaderBoard.Count;
+        listDBLeaderBoardInGame.Clear();
+        for (int i = 0; i < length; i++)
+        {
+            DB_LeaderBoardInGame db = new DB_LeaderBoardInGame();
+            db.index = i;
+            db.name = listLeaderBoard[i].strMyName;
+            db.eTeam = listLeaderBoard[i].eTeam;
+            if (db.eTeam == ETeam.Player)
+            {
+                if (db.index == 0)
+                {
+                    db.distance = 0;
+                }
+                else
+                {
+                    db.distance = Mathf.Abs(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
+                }
+            }
+            listDBLeaderBoardInGame.Add(db);
+        }
+    }
+    private float DisFrom2Player(BaseMotorbike mine, BaseMotorbike enemy)
+    {
+        int cur = mine.currentIndex;
+        int next = enemy.currentIndex;
+        var disEnemy = enemy.GetDistanceFromTarget();
+        var disMe = mine.GetDistanceFromTarget();
+
+        int length = wavingPointGizmos.allWavePoint.Length;
+        next = next + (enemy.round - mine.round)* length;
+        if(cur == next)
+        {
+            return disMe - disEnemy;
+        }
+        cur++;
+        next++;
+        float disReal = 0;
+        for (int i = cur  ;i < next;i++)
+        {
+            int indexMe = i % length;
+            int indexReal = (i+1) % length;
+            float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
+            disReal += dis;
+        }
+        disReal = disReal - disEnemy + disMe;
+
+        return disReal;
+    }
+
     private void UpdateLeaderBoard()
     {
         listLeaderBoard.Sort((x, y) =>
         {
-            int currentComparison = y.currentIndex.CompareTo(x.currentIndex);
-            if (currentComparison == 0)
+            int roundComparison = y.round.CompareTo(x.round);
+            if (roundComparison == 0)
             {
-                return y.GetDistanceFromTarget().CompareTo(x.GetDistanceFromTarget());
+                int currentComparison = y.currentIndex.CompareTo(x.currentIndex);
+                if (currentComparison == 0)
+                {
+                    return y.GetDistanceFromTarget().CompareTo(x.GetDistanceFromTarget());
+                }
+                return currentComparison;
             }
-            return currentComparison;
+            return roundComparison;
         });
     }
 

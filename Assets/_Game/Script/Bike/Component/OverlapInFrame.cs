@@ -4,7 +4,7 @@ public class OverlapInFrame : OverlapEachFrame
 {
     public override ResultRaycast GetResultRaycast()
     {
-        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
+        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, valueX * boxCollider.size, Quaternion.identity, layerMask);
         if (colliders != null)
         {
             bool isCollider = false;
@@ -12,12 +12,14 @@ public class OverlapInFrame : OverlapEachFrame
             {
                 if (colliders[i] != null)
                 {
+                    Debug.Log($"Overlap {eLayer} with {colliders[i].name}");
                     isCollider = true;
                     break;
                 }
 
             }
             IsCheckEditor(isCollider);
+
             if (isCollider)
             {
                 resultRaycast = new ResultRaycast();

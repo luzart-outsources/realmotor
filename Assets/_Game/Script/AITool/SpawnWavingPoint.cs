@@ -1,6 +1,8 @@
+#if UNITY_EDITOR
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,22 +17,11 @@ public class SpawnWavingPoint : MonoBehaviour
     [Space, Header("Start- End Pos")]
     public Transform startPos;
     public Transform endPos;
-
-    //
     public int startIndex;
-    [Button]
-    private void GetStartIndex()
-    {
-        startIndex = GetNearestPoint(startPos);
-    }
-
-    //
     public int endIndex;
-    [Button]
-    private void GetEndIndex()
-    {
-        endIndex = GetNearestPoint(endPos);
-    }
+    //
+
+    
 
     public float velocity;
     [Range(-1,1)]
@@ -97,7 +88,7 @@ public class SpawnWavingPoint : MonoBehaviour
     {
         if (IsDrawGizmos)
         {
-            DrawGizmos();
+            GetWavingDemo();
         }
         if (IsStartMove)
         {
@@ -126,6 +117,100 @@ public class SpawnWavingPoint : MonoBehaviour
             MoveItem(allWavePoint[currentIndex]);
         }
     }
+    [Button]
+    public void autoGenWavingPoint()
+    {
+        bool IsStartMove = true;
+        IsStartMove = true;
+        itemMove.transform.position = startPos.transform.position;
+        var asd = parentWavingPointSpawn.GetComponentsInChildren<WavingPoint>();
+        for (int i = 0; i < asd.Length; i++)
+        {
+            DestroyImmediate(asd[i].gameObject);
+        }
+        currentIndex = startIndex;
+        currentIndex += direct;
+        child = 0;
+        draw = 0;
+        while (IsStartMove)
+        {
+            Debug.LogError(currentIndex);
+            float dis = Distance(itemMove, allWavePoint[currentIndex]);
+            if (dis <= 1f)
+            {
+                currentIndex += direct;
+            }
+            if (currentIndex == allWavePoint.Length)
+            {
+                currentIndex = 0;
+            }
+            if (currentIndex == -1)
+            {
+                currentIndex = allWavePoint.Length - 1;
+            }
+            if (currentIndex == endIndex)
+            {
+                float disEnd = Distance(itemMove, allWavePoint[currentIndex]);
+                if (disEnd <= 3f)
+                {
+                    IsStartMove = false;
+                    return;
+                }
+            }
+            MoveItem(allWavePoint[currentIndex]);
+        }
+        
+    }
+    [Button]
+    private void GetWavingDemo()
+    {
+        allWavePointEditor = parentWaving.GetComponentsInChildren<Transform>();
+        List<Transform> listWave = new List<Transform>();
+        for (int i = 0; i < allWavePointEditor.Length; i++)
+        {
+            if (i == 0)
+            {
+                continue;
+            }
+            listWave.Add(allWavePointEditor[i]);
+        }
+        allWavePoint = listWave.ToArray();
+        for (int i = 0; i < listWave.Count; i++)
+        {
+
+            int nextIndex = i + 1;
+            if (nextIndex >= listWave.Count)
+            {
+                nextIndex = 0;
+            }
+            if (IsDrawGizmos)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(listWave[i].position, listWave[nextIndex].position);
+            }
+
+            listWave[i].LookAt(listWave[nextIndex].position);
+        }
+        GetStartIndex();
+        GetEndIndex();
+    }
+
+    private void GetStartIndex()
+    {
+        startIndex = GetNearestPoint(startPos);
+    }
+
+    //
+
+    private void GetEndIndex()
+    {
+        endIndex = GetNearestPoint(endPos);
+        if(endIndex < allWavePointEditor.Length)
+        {
+            endIndex++;
+        }
+
+    }
 
     [Button]
     private void StartMove()
@@ -143,30 +228,22 @@ public class SpawnWavingPoint : MonoBehaviour
         draw = 0;
     }
 
+   
     [Button]
-    private void DrawGizmos()
+    private void SetLookAtParent()
     {
-        allWavePointEditor = parentWaving.GetComponentsInChildren<Transform>();
-        List<Transform> listWave = new List<Transform>();
-        for (int i = 0; i < allWavePointEditor.Length; i++)
+        var array = parentWavingPointSpawn.GetComponentsInChildren<WavingPoint>();
+        int length = array.Length;  
+        for (int i = 0; i < length; i++)
         {
-            if (i == 0)
-            {
-                continue;
-            }
-            listWave.Add(allWavePointEditor[i]);
-        }
-        allWavePoint = listWave.ToArray();
-        for (int i = 0; i < listWave.Count; i++)
-        {
-            Gizmos.color = Color.yellow;
             int nextIndex = i + 1;
-            if (i >= listWave.Count - 1)
+            if (nextIndex >= array.Length)
             {
+                break;
                 nextIndex = 0;
             }
-            Gizmos.DrawLine(listWave[i].position, listWave[nextIndex].position);
-            listWave[i].LookAt(listWave[nextIndex].position);
+            array[i].transform.LookAt(array[nextIndex].transform.position);
         }
     }
 }
+#endif

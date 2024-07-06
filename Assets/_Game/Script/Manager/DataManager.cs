@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
@@ -9,13 +11,17 @@ public class DataManager : Singleton<DataManager>
     public GameData _gameData;
     public GameData GameData => _gameData;
 
-    [Space, Header("SO")]
+    [Space, Header("DB")]
     public LevelSO levelSO;
     public MotorbikeSO motorbikeSO;
     public MotorSO motorSO;
     public CharacterSO characterSO;
     public EnvironmentSO environmentSO;
+    public DB_ResourceSO dB_ResourceSO;
+    public ResourcesSO resourceBuySO;
 
+    [Space, Header("SO Other")]
+    public SpriteResourcesSO spriteResourceSO;
 
     private const string KEY_GAME_DATA = "key_gamedata";
     public void Initialize()
@@ -43,7 +49,22 @@ public class DataManager : Singleton<DataManager>
     {
         return GameRes.GetRes(type);
     }
-    public static void AddRes(DataTypeResource type, int amount)
+    public void AddRes(DataResource dataRes, Action onDone = null)
+    {
+        bool isAddRes = GameRes.isAddRes(dataRes);
+        if (isAddRes)
+        {
+            AddRes(dataRes.type, dataRes.amount);
+            onDone?.Invoke();
+        }
+        else
+        {
+            UIManager.Instance.ShowUI(UIName.AddCoin);
+        }
+
+
+    } 
+    private void AddRes(DataTypeResource type, int amount)
     {
         GameRes.AddRes(type, amount);
     }
@@ -53,8 +74,22 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < length; i++)
         {
             DataResource resource = dataResource[i];
-            AddRes(resource.type, resource.amount);
+            if(resource.type.type == RES_type.Bike)
+            {
+                DB_Motorbike db = new DB_Motorbike(resource.type.id);
+                BuyMotorbike(db);
+            }
+            else if(resource.type.type == RES_type.Helmet)
+            {
+                BuyHelmet(resource.type.id);
+            }
+            else if (resource.type.type == RES_type.Body)
+            {
+                BuyBody(resource.type.id);
+            }
+            AddRes(resource);
         }
+        SaveGameData();
     }
     public int Gold
     {
@@ -68,23 +103,69 @@ public class DataManager : Singleton<DataManager>
 
     }
     public int CurrentLevel => _gameData.level;
-}
-[System.Serializable]
-public class GameData
-{
-    public int level = 0;
-    public DB_Character curCharacter;
-    public int idCurMotor;
-    public DB_Motorbike[] motorbikeDatas;
+
+    public int GetAdsCurrentResource(DataTypeResource dataType)
+    {
+        DataGetByAds data = GetDataGetByAds(dataType);
+        if(data != null)
+        {
+            return data.ads;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    private DataGetByAds GetDataGetByAds(DataTypeResource dataType)
+    {
+        var list = GameData.getBuyAds;
+        if (list == null || list.Count == 0)
+        {
+            return null;
+        }
+        int length = list.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (list[i].type.Compare(dataType))
+            {
+                return list[i]; 
+            }
+        }
+        return null;
+    }
+    public void AddGetAdsResource(DataTypeResource dataType, int count)
+    {
+        DataGetByAds data = GetDataGetByAds(dataType);
+        int value = 0;
+        if (data != null)
+        {
+            value = data.ads;
+        }
+        value += count;
+        if(data != null)
+        {
+            data.ads = value;
+        }
+        else
+        {
+            DataGetByAds dataNew = new DataGetByAds();
+            dataNew.ads = value;
+            dataNew.type = dataType;
+            _gameData.getBuyAds.Add(dataNew);
+        }
+        SaveGameData();
+
+    }
+
     public void BuyMotorbike(DB_Motorbike db)
     {
         List<DB_Motorbike> list = new List<DB_Motorbike>();
-        if (motorbikeDatas != null)
+        if (_gameData.motorbikeDatas != null)
         {
-            list = motorbikeDatas.ToList();
+            list = _gameData.motorbikeDatas;
         }
         bool isAdd = true;
-        for (int i = 0;i < list.Count;i++)
+        for (int i = 0; i < list.Count; i++)
         {
             if (list[i].idMotor == db.idMotor)
             {
@@ -92,12 +173,84 @@ public class GameData
                 break;
             }
         }
-        if(isAdd)
+        if (isAdd)
         {
             list.Add(db);
         }
-        motorbikeDatas = list.ToArray();
+        _gameData.motorbikeDatas = list;
     }
+
+    private void BuyHelmet(int id)
+    {
+        List<int> list = new List<int>();
+        if(_gameData.listHelmet != null)
+        {
+            list = _gameData.listHelmet;
+        }
+        if (!list.Contains(id))
+        {
+            list.Add(id);
+        }
+        _gameData.listHelmet = list;
+    }
+
+    private void BuyBody(int id)
+    {
+        List<int> list = new List<int>();
+        if (_gameData.listBody != null)
+        {
+            list = _gameData.listBody;
+        }
+        if (!list.Contains(id))
+        {
+            list.Add(id);
+        }
+        _gameData.listBody = list;
+    }
+
+    public bool IsHasMotor(int idMotor, ref int levelUpgrade)
+    {
+        levelUpgrade = 0;
+        for (int i = 0; i < _gameData.motorbikeDatas.Count; i++)
+        {
+            var data = _gameData.motorbikeDatas[i];
+            if (idMotor == data.idMotor)
+            {
+                levelUpgrade = data.levelUpgrade;
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool IsHasHelmet(int id)
+    {
+        if(_gameData.listHelmet == null || _gameData.listHelmet.Count == 0)
+        {
+            return false;
+        }
+        return _gameData.listHelmet.Contains(id);
+    }
+    public bool IsHasBody(int id)
+    {
+        if (_gameData.listBody == null || _gameData.listBody.Count == 0)
+        {
+            return false;
+        }
+        return _gameData.listBody.Contains(id);
+    }
+}
+[System.Serializable]
+public class GameData
+{
+    public string name = "Player";
+    public int level = 0;
+    public DB_Character curCharacter;
+    public int idCurMotor;
+    public List<DB_Motorbike> motorbikeDatas = new List<DB_Motorbike>();
+    public List<DataGetByAds> getBuyAds = new List<DataGetByAds>();
+    public List<int> listHelmet = new List<int>();
+    public List<int> listBody = new List<int>();
+
 }
 [System.Serializable]
 public class InforMotorbike
@@ -116,4 +269,10 @@ public class InforMotorbike
         infor.brake = brake;
         return infor;
     }
+}
+[System.Serializable]
+public class DataGetByAds
+{
+    public DataTypeResource type;
+    public int ads;
 }

@@ -1,5 +1,8 @@
+﻿#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class AddObjectOnMouseClick : EditorWindow
 {
@@ -11,7 +14,47 @@ public class AddObjectOnMouseClick : EditorWindow
     {
         GetWindow<AddObjectOnMouseClick>("Add Object On Mouse Click");
     }
+    [MenuItem("Tools/Play")]
+    public static void Play()
+    {
+        // Tên của scene bạn muốn chuyển đến
+        string sceneName = "Game";
 
+        // Kiểm tra xem scene có tồn tại trong Build Settings hay không
+        if (IsSceneInBuildSettings(sceneName))
+        {
+            // Chuyển scene
+            EditorSceneManager.OpenScene(SceneUtility.GetScenePathByBuildIndex(GetBuildIndex(sceneName)));
+            EditorApplication.isPlaying = true;
+        }
+    }
+    // Kiểm tra xem scene có tồn tại trong Build Settings hay không
+    static bool IsSceneInBuildSettings(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            if (sceneFileName == sceneName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    static int GetBuildIndex(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            if (sceneFileName == sceneName)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
     private void OnGUI()
     {
         GUILayout.Label("Settings", EditorStyles.boldLabel);
@@ -49,4 +92,50 @@ public class AddObjectOnMouseClick : EditorWindow
             e.Use();
         }
     }
+    // Thêm mục vào menu Tools
+    [MenuItem("Tools/Hide Layer")]
+    static void HideLayer()
+    {
+        // Tên của layer bạn muốn ẩn
+        string layerName = "MiniMapLayer";
+
+        // Lấy số thứ tự của layer từ tên layer
+        int layer = LayerMask.NameToLayer(layerName);
+
+        if (layer != -1)
+        {
+            // Tạo một mask để ẩn layer
+            Tools.visibleLayers &= ~(1 << layer);
+            SceneView.RepaintAll();
+            Debug.Log("Layer '" + layerName + "' is now hidden in the Scene view.");
+        }
+        else
+        {
+            Debug.LogError("Layer '" + layerName + "' does not exist.");
+        }
+    }
+
+    // Thêm mục vào menu Tools
+    [MenuItem("Tools/Show Layer")]
+    static void ShowLayer()
+    {
+        // Tên của layer bạn muốn hiển thị
+        string layerName = "MiniMapLayer";
+
+        // Lấy số thứ tự của layer từ tên layer
+        int layer = LayerMask.NameToLayer(layerName);
+
+        if (layer != -1)
+        {
+            // Tạo một mask để hiển thị layer
+            Tools.visibleLayers |= (1 << layer);
+            SceneView.RepaintAll();
+            Debug.Log("Layer '" + layerName + "' is now visible in the Scene view.");
+        }
+        else
+        {
+            Debug.LogError("Layer '" + layerName + "' does not exist.");
+        }
+    }
 }
+#endif

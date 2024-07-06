@@ -3,9 +3,8 @@ using System.Collections;
 
 public class HelicopterCamera : MonoBehaviour
 {
-
-    Transform target;
-    public GameObject PrimaryTarget;
+    public Animator animator;
+    public Transform PrimaryTarget;
     public GameObject SecondaryTarget;
     public float distance = 20.0f;
     public float height = 5.0f;
@@ -13,7 +12,7 @@ public class HelicopterCamera : MonoBehaviour
 
     public float lookAtHeight = 0.0f;
 
-    public BaseMotorbike parentRigidbody;
+    public BaseMotorbike baseMotorbike;
 
     public float rotationSnapTime = 0.3F;
 
@@ -42,7 +41,6 @@ public class HelicopterCamera : MonoBehaviour
     bool changed,prevFallen;
 
 
-
     void Start()
     {
         //perfectMouseLook = GetComponent<PerfectMouseLook>();
@@ -52,9 +50,11 @@ public class HelicopterCamera : MonoBehaviour
     }
     public void SetTargetFollow(Transform target)
     {
-        this.target = target;
-        PrimaryTarget = target.gameObject;
-        parentRigidbody = PrimaryTarget.GetComponent<BaseMotorbike>();
+        PrimaryTarget = target;
+        baseMotorbike = PrimaryTarget.GetComponent<BaseMotorbike>();
+        IsFirstTimeFinish = false;
+        IsFirstTimeNone = false;
+        IsFirstTimeStart = false;
     }
 
     void LateUpdate()
@@ -78,14 +78,66 @@ public class HelicopterCamera : MonoBehaviour
         //    changed = true;
         //}
 
-        if(target == null)
+        if(PrimaryTarget == null)
         {
             return;
         }
-        wantedHeight = target.position.y + height;
+        CameraNone();
+        if (baseMotorbike == null)
+        {
+            return;
+        }
+        switch (baseMotorbike.eState)
+        {
+            case EStateMotorbike.None:
+                {
+                    if (!IsFirstTimeNone)
+                    {
+                        this.transform.SetParent(CameraManager.Instance.transform);
+                        IsFirstTimeNone = true;
+                    }
+
+                    IsFirstTimeNone = true;
+                    CameraNone();
+
+                    break;
+                }
+            case EStateMotorbike.Start:
+                {
+                    if (IsFirstTimeStart)
+                    {
+                        return;
+                    }
+                    this.transform.SetParent(baseMotorbike.parentCam);
+                    transform.localPosition = Vector3.zero;
+                    transform.localEulerAngles = Vector3.zero;
+                    IsFirstTimeStart = true;
+                    break;
+                }
+            case EStateMotorbike.Finish:
+                {
+                    if (IsFirstTimeFinish)
+                    {
+                        return;
+                    }
+                    this.transform.SetParent(baseMotorbike.parentCam);
+                    transform.localPosition = Vector3.zero;
+                    transform.localEulerAngles = Vector3.zero;
+                    IsFirstTimeFinish = true;
+                    animator.enabled = true;
+                    animator.SetTrigger("StartCamFinish");
+                    break;
+                }
+        }
+       
+
+    }
+    private void CameraNone()
+    {
+        wantedHeight = PrimaryTarget.transform.position.y + height;
         currentHeight = transform.position.y;
 
-        wantedRotationAngle = target.eulerAngles.y;
+        wantedRotationAngle = PrimaryTarget.transform.eulerAngles.y;
         currentRotationAngle = transform.eulerAngles.y;
         //if (counterRotation)
         //{
@@ -100,14 +152,16 @@ public class HelicopterCamera : MonoBehaviour
         currentRotationAngle = Mathf.SmoothDampAngle(currentRotationAngle, wantedRotationAngle + LateRot, ref yVelocity, rotationSnapTime);
         currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
-        wantedPosition = target.position;
+        wantedPosition = PrimaryTarget.transform.position;
         wantedPosition.y = currentHeight;
         float speed = 0;
-        if (parentRigidbody != null)
+        if (baseMotorbike != null)
         {
-            speed = parentRigidbody.Speed / parentRigidbody.inforMotorbike.maxSpeed;
+            speed = baseMotorbike.Speed / baseMotorbike.inforMotorbike.maxSpeed;
         }
-        speed = Mathf.Clamp(speed,0, 1)*10;
+        rotationSnapTime = maxRotationSnaptime - speed * (maxRotationSnaptime - mínRotationSnaptime);
+        speed = Mathf.Clamp(speed, 0, 1) * 10;
+
 
         usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
 
@@ -117,8 +171,11 @@ public class HelicopterCamera : MonoBehaviour
 
         transform.position = wantedPosition;
 
-        transform.LookAt(target.position + lookAtVector);
-
+        transform.LookAt(PrimaryTarget.transform.position + lookAtVector);
     }
-
+    private bool IsFirstTimeNone = false;
+    private bool IsFirstTimeStart = false;
+    private bool IsFirstTimeFinish = false;
+    public float mínRotationSnaptime = 0.5f;
+    public float maxRotationSnaptime = 2f;
 }

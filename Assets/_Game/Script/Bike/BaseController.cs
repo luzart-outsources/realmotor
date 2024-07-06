@@ -54,27 +54,27 @@ public class BaseController : MonoBehaviour
             UnHorizontal();
         }
     }
-    public void MoveLeft()
+    public virtual void MoveLeft()
     {
         baseMotorBike.MoveLeft();
     }
-    public void MoveRight()
+    public virtual void MoveRight()
     {
         baseMotorBike.MoveRight();
     }
-    public void MoveUp()
+    public virtual void MoveUp()
     {
         baseMotorBike.MoveUp();
     }
-    public void Brake()
+    public virtual void Brake()
     {
         baseMotorBike.Brake();
     }
-    public void UnHorizontal()
+    public virtual void UnHorizontal()
     {
         baseMotorBike.UnHorizontal();
     }
-    public void UnVerticle()
+    public virtual void UnVerticle()
     {
         baseMotorBike.UnVerticle();
     }

@@ -26,6 +26,10 @@ public class GameRes
     {
         string stringRes = getStringRes(dataTypeResource);
         int preValue = getRes(stringRes);
+        if(dataTypeResource.type == RES_type.Gold)
+        {
+            Observer.Instance.Notify(ObserverKey.CoinObserverNormal);
+        }
         int targetValue = preValue + amount;
         PlayerPrefs.SetInt(stringRes, targetValue);
         Debug.Log($"To Add RES {stringRes} _ currentvalue {targetValue}");
@@ -44,22 +48,54 @@ public class GameRes
 [System.Serializable]
 public class DataResource
 {
+    public DataResource()
+    {
+
+    }
+    public DataResource(DataTypeResource type,  int amount)
+    {
+        this.type = type;
+        this.amount = amount;
+    }
     public DataTypeResource type;
     public int amount;
     [JsonIgnore]
     public int idIcon = 0;
     [JsonIgnore]
     public int idBg = 0;
+    [JsonIgnore]
+    public Sprite spIcon;
+    [JsonIgnore]
+    public Sprite spBg;
+    public DataResource Clone()
+    {
+        return new DataResource(this.type, this.amount);
+    }
 }
 [System.Serializable]
 public struct DataTypeResource
 {
+    public DataTypeResource(RES_type type, int id = 0)
+    {
+        this.type = type;
+        this.id = id;
+    }
     public RES_type type;
     public int id;
+    public bool Compare(DataTypeResource dataOther)
+    {
+        if(type == dataOther.type &&  id == dataOther.id)
+        {
+            return true;
+        }
+        return false;
+    }
 }
 public enum RES_type
 {
     None = 0,
     Gold = 1,
-    Magnifier =2,
+    Bike =2,
+    Helmet = 3,
+    Body = 4,
 }

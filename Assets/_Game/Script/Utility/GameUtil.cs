@@ -33,6 +33,18 @@ public class GameUtil : Singleton<GameUtil>
         TimeSpan dateTime = TimeSpan.FromSeconds(unixTimeSeconds);
         return TimeSpanToUnixTime(dateTime, isDoubleParam, day, hour, minutes, second);
     }
+    public static string FloatTimeSecondToUnixTime(float unixTimeSeconds, bool isDoubleParam = false, string day = "D", string hour = "H", string minutes = "M", string second = "S")
+    {
+        TimeSpan dateTime = TimeSpan.FromSeconds(unixTimeSeconds);
+        string strValue = TimeSpanToUnixTime(dateTime, isDoubleParam, day, hour, minutes, second);
+        int milliseconds = dateTime.Milliseconds;
+        if (milliseconds > 0)
+        {
+            strValue += $".{milliseconds:D3}";
+        }
+        return strValue;
+
+    }
     public static string TimeSpanToUnixTime(TimeSpan dateTime, bool isDoubleParam = false, string day = "D", string hour = "H", string minutes = "M", string second = "S")
     {
         string strValue = "";

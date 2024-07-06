@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using UnityEngine.Device;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -29,9 +30,13 @@ public class UIManager : Singleton<UIManager>
             {UIName.Settings,"1,0,UISettings" },
             {UIName.WinClassic,"1,0,UIWinClassic" },
             {UIName.LoseClassic,"1,0,UILoseClassic" },
-            {UIName.Resume,"1,0,UIResume" },
             {UIName.Splash,"0,0,UISplash" },
             {UIName.LoadScene,"2,0,UILoadScene" },
+            {UIName.Garage,"0,0,UIGarage" },
+            {UIName.Toast,"3,0,UIToast" },
+            {UIName.AddCoin,"2,0,UIAddCoin" },
+            {UIName.Resume,"2,0,UIResume" },
+            {UIName.Racer,"0,0,UIRacer" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -68,18 +73,34 @@ public class UIManager : Singleton<UIManager>
     }
     public void ShowUI(UIName uIScreen, Action onHideDone = null)
     {
-        UIBase current = listScreenActive.Find(x => x.uiName == uIScreen);
-        if (!current)
-        {
-            current = LoadUI(uIScreen);
-            current.uiName = uIScreen;
-            AddScreenActive(current, true);
-        }
-        current.transform.SetAsLastSibling();
-        current.Show(onHideDone);
-        CurrentName = uIScreen;
+        ShowUI<UIBase>(uIScreen, onHideDone);
     }
+    public void ShowGarage(UIName uiName = UIName.Garage)
+    {
+        ResourcesManager.Instance.LoadSceneGarage((garage) => ShowScreen(uiName,garage));
+    }
+    private void ShowScreen(UIName uiName, GarageManager garage)
+    {
+        HideAllUiActive();
+        switch (uiName)
+        {
+            case UIName.Garage:
+                {
+                    UIGarage uiGarage = ShowUI<UIGarage>(UIName.Garage);
+                    uiGarage.garageManager = garage;
+                    uiGarage.RefreshUI();
+                    break;
+                }
+            case UIName.Racer:
+                {
 
+                    UIRacer uiRacer = ShowUI<UIRacer>(UIName.Racer);
+                    uiRacer.garageManager = garage;
+                    uiRacer.RefreshUIOnShow();
+                    break;
+                }
+        }
+    }
     public T ShowUI<T>(UIName uIScreen, Action onHideDone = null) where T : UIBase
     {
         UIBase current = listScreenActive.Find(x => x.uiName == uIScreen);
@@ -114,10 +135,10 @@ public class UIManager : Singleton<UIManager>
             }
         }
     }
-    public void LoadScene(Action onLoad)
+    public void LoadScene(Action onLoad, Action onDone)
     {
         UILoadScene uILoadScene = ShowUI<UILoadScene>(UIName.LoadScene);
-        uILoadScene.LoadSceneCloud(onLoad);
+        uILoadScene.LoadSceneCloud(onLoad, onDone);
     }
 
 
@@ -281,6 +302,10 @@ public enum UIName
     Splash = 6,
     Resume = 7,
     LoadScene = 8,
+    Garage = 9,
+    Toast = 10,
+    AddCoin = 11,
+    Racer = 12,
 }
 public class DataUIBase
 {

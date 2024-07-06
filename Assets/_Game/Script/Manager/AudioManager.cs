@@ -85,6 +85,37 @@ public class AudioManager : Singleton<AudioManager>
             PlayerPrefs.Save();
         }
     }
+
+    private const string VOLUMN_SFX = "volumn_sfx";
+    public float volumnSFX
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat(VOLUMN_SFX, 1f);
+        }
+        set
+        {
+            audioSFX.volume = value;
+            PlayerPrefs.SetFloat(VOLUMN_SFX, value);
+            PlayerPrefs.Save();
+        }
+    }
+    private const string VOLUMN_MUSIC = "volumn_music";
+    public float volumnMusic
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat(VOLUMN_MUSIC, 1f);
+        }
+        set
+        {
+            audioMusic.volume = value;
+            PlayerPrefs.SetFloat(VOLUMN_MUSIC, value);
+            PlayerPrefs.Save();
+        }
+    }
+
+
     [SerializeField] private AudioClip audioClick;
 
 
@@ -95,6 +126,8 @@ public class AudioManager : Singleton<AudioManager>
         audioSFX.mute = isMuteSFX;
         audioMusic.mute = isMuteMusic;
         _isMuteVibra = isMuteVibra;
+        audioSFX.volume = volumnSFX;
+        audioMusic.volume= volumnMusic;
     }
     public void PlaySFXBtn()
     {
