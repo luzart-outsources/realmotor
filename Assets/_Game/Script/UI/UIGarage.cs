@@ -121,9 +121,7 @@ public class UIGarage : UIBase
             itemSelectMotorOld.SelectMotorBike(false);
         }
         itemCache = itemSelectMotor;
-        itemCache.SelectMotorBike(true);
-        currentItemClick = itemCache.currentIndex;
-        RefreshUI();
+        CurrentItemClick();
     }
     public void ClickItem(ListBox listBoxNew)
     {
@@ -133,6 +131,10 @@ public class UIGarage : UIBase
             itemCache.SelectMotorBike(false);
         }
         itemCache = itemSelectMotor;
+        CurrentItemClick();
+    }
+    private void CurrentItemClick()
+    {
         itemCache.SelectMotorBike(true);
         currentItemClick = itemCache.currentIndex;
         RefreshUI();

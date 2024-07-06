@@ -36,12 +36,12 @@ public class ResourcesSO : ScriptableObject
             {
                 for (int j = 0; j < dbResMotor.dB_ResourcesUpgradeMotorLevel.Length; j++)
                 {
-                    if(level == j)
+                    if(indexStats == j)
                     {
                         var dbResLevel = dbResMotor.dB_ResourcesUpgradeMotorLevel[j];
                         for (int k = 0; k < dbResLevel.dB_ResourcesBuys.Length; k++)
                         {
-                            if (k == indexStats)
+                            if (k == level)
                             {
                                 return dbResLevel.dB_ResourcesBuys[k];
                             }

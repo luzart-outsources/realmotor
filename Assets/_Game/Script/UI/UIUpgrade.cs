@@ -88,9 +88,14 @@ public class UIUpgrade : UIBase
         int indexStats = GameUtil.GetIndexStats(myStats);
         int levelStats = 0;
         levelStats = levelUpgrades[indexStats];
-        db_Resbuy = DataManager.Instance.resourceBuySO.GetResourcesBuyUpgradeMotor(idCurMotor,indexStats,levelStats);
-        txtValue.text = db_Resbuy.valueBuy.ToString();
         bool isStatus = (levelStats < 5);
         btnUpgrade.gameObject.SetActive(isStatus);
+        if (!isStatus)
+        {
+            return;
+        }
+        db_Resbuy = DataManager.Instance.resourceBuySO.GetResourcesBuyUpgradeMotor(idCurMotor,indexStats,levelStats);
+        txtValue.text = db_Resbuy.valueBuy.ToString();
+
     }
 }
