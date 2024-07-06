@@ -187,6 +187,34 @@ public class GameUtil : Singleton<GameUtil>
     {
         return ((layerMask.value & (1 << layer)) != 0);
     }
+    public static int GetIndexStats(StatsMotorbike myStats)
+    {
+        int indexStats = 0;
+        switch (myStats)
+        {
+            case StatsMotorbike.MaxSpeed:
+                {
+                    indexStats = 0;
+                    break;
+                }
+            case StatsMotorbike.Acceleration:
+                {
+                    indexStats = 1;
+                    break;
+                }
+            case StatsMotorbike.Handling:
+                {
+                    indexStats = 2;
+                    break;
+                }
+            case StatsMotorbike.Brake:
+                {
+                    indexStats = 3;
+                    break;
+                }
+        }
+        return indexStats;
+    }
 }
 
 

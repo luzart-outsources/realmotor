@@ -16,6 +16,10 @@ public class GarageManager : MonoBehaviour
     {
         ActionInitGarage?.Invoke(this);
     }
+    public void SetActiveMotorCharacter(bool active)
+    {
+        parentSpawn.gameObject.SetActive(active);
+    }
     public void SpawnMotorVisual(int idMotor)
     {
         RemoveMotorCache();

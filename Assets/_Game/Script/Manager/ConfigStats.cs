@@ -23,9 +23,27 @@ public class ConfigStats
         {
             if (curMotor == db[i].idMotor)
             {
-                return i;
+                return db[i].levelUpgrade;
             }
         }
         return 0;
     }
+    public static int[] GetLevelsUpgrade(int curMotor, List<DB_Motorbike> db)
+    {
+        for(int i = 0;i < db.Count; i++)
+        {
+            if (curMotor == db[i].idMotor)
+            {
+                return db[i].levelUpgrades;
+            }
+        }
+        return new int[4];
+    }
+}
+public enum StatsMotorbike
+{
+    MaxSpeed = 0,
+    Acceleration = 1,
+    Handling = 2,
+    Brake = 3,
 }

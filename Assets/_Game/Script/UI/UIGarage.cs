@@ -75,7 +75,7 @@ public class UIGarage : UIBase
     }
     public void ClickUpgrade()
     {
-
+        UIManager.Instance.ShowGarage(UIName.Upgrade);
     }
     public void ClickRacer()
     {

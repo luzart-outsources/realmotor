@@ -133,6 +133,20 @@ public class DataManager : Singleton<DataManager>
         }
         return null;
     }
+    public void UpgradeMotor(int idMotor, int indexStats)
+    {
+        int length = GameData.motorbikeDatas.Count;
+        for (int i = 0; i < length; i++)
+        {
+            var car = GameData.motorbikeDatas[i];
+            if(car.idMotor == idMotor)
+            {
+                car.levelUpgrades[indexStats]++;
+            }
+        }
+        SaveGameData();
+
+    }
     public void AddGetAdsResource(DataTypeResource dataType, int count)
     {
         DataGetByAds data = GetDataGetByAds(dataType);
@@ -180,7 +194,7 @@ public class DataManager : Singleton<DataManager>
         _gameData.motorbikeDatas = list;
     }
 
-    private void BuyHelmet(int id)
+    public void BuyHelmet(int id)
     {
         List<int> list = new List<int>();
         if(_gameData.listHelmet != null)
@@ -192,9 +206,15 @@ public class DataManager : Singleton<DataManager>
             list.Add(id);
         }
         _gameData.listHelmet = list;
+        if(_gameData.curCharacter == null)
+        {
+            _gameData.curCharacter = new DB_Character();
+        }
+        _gameData.curCharacter.idHelmet = id;
+        SaveGameData();
     }
 
-    private void BuyBody(int id)
+    public void BuyBody(int id)
     {
         List<int> list = new List<int>();
         if (_gameData.listBody != null)
@@ -206,6 +226,12 @@ public class DataManager : Singleton<DataManager>
             list.Add(id);
         }
         _gameData.listBody = list;
+        if (_gameData.curCharacter == null)
+        {
+            _gameData.curCharacter = new DB_Character();
+        }
+        _gameData.curCharacter.idClothes = id;
+        SaveGameData();
     }
 
     public bool IsHasMotor(int idMotor, ref int levelUpgrade)

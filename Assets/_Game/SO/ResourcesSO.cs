@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +11,8 @@ public class ResourcesSO : ScriptableObject
     public DB_ResourcesBuy[] dbResBuyBike;
     public DB_ResourcesBuy[] dbResBuyHelmet;
     public DB_ResourcesBuy[] dbResBuyBody;
+
+    public DB_ResourcesUpgradeMotor[] dbResUpgradeMotor;
 
     public DB_ResourcesBuy GetResourcesBuy(DataTypeResource dataTypeResource, PlaceBuy place)
     {
@@ -23,11 +27,40 @@ public class ResourcesSO : ScriptableObject
         }
         return null;
     }
+    public DB_ResourcesBuy GetResourcesBuyUpgradeMotor(int idMotor, int indexStats, int level)
+    {
+        for (int i = 0;i < dbResUpgradeMotor.Length;i++)
+        {
+            var dbResMotor = dbResUpgradeMotor[i];
+            if(idMotor == dbResMotor.idMotor)
+            {
+                for (int j = 0; j < dbResMotor.dB_ResourcesUpgradeMotorLevel.Length; j++)
+                {
+                    if(level == j)
+                    {
+                        var dbResLevel = dbResMotor.dB_ResourcesUpgradeMotorLevel[j];
+                        for (int k = 0; k < dbResLevel.dB_ResourcesBuys.Length; k++)
+                        {
+                            if (k == indexStats)
+                            {
+                                return dbResLevel.dB_ResourcesBuys[k];
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        }
+        return null;
+    }
+
+
 #if UNITY_EDITOR
     [Sirenix.OdinInspector.Button]
     private void SetDBResBuyBike()
     {
-        List<DB_ResourcesBuy> list= new List<DB_ResourcesBuy> ();
+        List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
         int length = 14;
         for (int i = 0; i < length; i++)
         {
@@ -37,11 +70,42 @@ public class ResourcesSO : ScriptableObject
             data.type = new DataTypeResource(RES_type.Bike, i);
             newA.dataRes = data;
             newA.placeBuy = PlaceBuy.Garage;
-            newA.valueBuy = 500 + 500*i;
+            newA.valueBuy = 500 + 500 * i;
             newA.typeBuy = TypeBuy.Gold;
             list.Add(newA);
         }
         dbResBuyBike = list.ToArray();
+    }
+    [Sirenix.OdinInspector.Button]
+    private void SetDBResUpgradeButton()
+    {
+        List<DB_ResourcesUpgradeMotor> list = new List<DB_ResourcesUpgradeMotor>();
+        int length = 14;
+        int thongSoXe = 4;
+        int maxLevel = 5;
+        for (int i = 0; i < length; i++)
+        {
+            DB_ResourcesUpgradeMotor newA = new DB_ResourcesUpgradeMotor();
+            newA.idMotor = i;
+            newA.dB_ResourcesUpgradeMotorLevel = new DB_ResourcesUpgradeMotorLevel[thongSoXe];
+
+            for (int j = 0; j < thongSoXe; j++)
+            {
+                newA.dB_ResourcesUpgradeMotorLevel[j] = new DB_ResourcesUpgradeMotorLevel();
+                newA.dB_ResourcesUpgradeMotorLevel[j].dB_ResourcesBuys = new DB_ResourcesBuy[maxLevel];
+
+                for (int k = 0; k < maxLevel; k++)
+                {
+                    var dataBuy = new DB_ResourcesBuy();
+                    dataBuy.placeBuy = PlaceBuy.Upgrade;
+                    dataBuy.valueBuy = 50 * i + 15 * k;
+                    dataBuy.typeBuy = TypeBuy.Gold;
+                    newA.dB_ResourcesUpgradeMotorLevel[j].dB_ResourcesBuys[k] = dataBuy;
+                }
+            }
+            list.Add(newA);
+        }
+        dbResUpgradeMotor = list.ToArray();
     }
     [Sirenix.OdinInspector.Button]
     private void SetDBResBuyHelmet()
@@ -96,6 +160,7 @@ public enum PlaceBuy
 {
     None = 0,
     Garage = 1,
+    Upgrade =2,
 }
 public enum TypeBuy
 {
@@ -104,4 +169,15 @@ public enum TypeBuy
     Ads =2,
     IAP = 3,
     Other = 4,
+}
+[System.Serializable]
+public class DB_ResourcesUpgradeMotor
+{
+    public int idMotor;
+    public DB_ResourcesUpgradeMotorLevel[] dB_ResourcesUpgradeMotorLevel = new DB_ResourcesUpgradeMotorLevel[5];
+}
+[System.Serializable]
+public class DB_ResourcesUpgradeMotorLevel
+{
+    public DB_ResourcesBuy[] dB_ResourcesBuys = new DB_ResourcesBuy[4];
 }

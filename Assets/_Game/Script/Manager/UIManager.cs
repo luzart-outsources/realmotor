@@ -37,6 +37,7 @@ public class UIManager : Singleton<UIManager>
             {UIName.AddCoin,"2,0,UIAddCoin" },
             {UIName.Resume,"2,0,UIResume" },
             {UIName.Racer,"0,0,UIRacer" },
+            {UIName.Upgrade,"0,0,UIUpgrade" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -88,6 +89,7 @@ public class UIManager : Singleton<UIManager>
                 {
                     UIGarage uiGarage = ShowUI<UIGarage>(UIName.Garage);
                     uiGarage.garageManager = garage;
+                    garage.SetActiveMotorCharacter(true);
                     uiGarage.RefreshUI();
                     break;
                 }
@@ -96,7 +98,14 @@ public class UIManager : Singleton<UIManager>
 
                     UIRacer uiRacer = ShowUI<UIRacer>(UIName.Racer);
                     uiRacer.garageManager = garage;
+                    garage.SetActiveMotorCharacter(true);
                     uiRacer.RefreshUIOnShow();
+                    break;
+                }
+            case UIName.Upgrade:
+                {
+                    UIRacer uiRacer = ShowUI<UIRacer>(UIName.Upgrade);
+                    garage.SetActiveMotorCharacter(false);
                     break;
                 }
         }
@@ -306,6 +315,7 @@ public enum UIName
     Toast = 10,
     AddCoin = 11,
     Racer = 12,
+    Upgrade = 13,
 }
 public class DataUIBase
 {

@@ -114,11 +114,11 @@ public class GameCoordinator : MonoBehaviour
     {
         DB_Character dbChar = DataManager.Instance.GameData.curCharacter;
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
-        int levelUpgrade = ConfigStats.GetLevelUpgrade(idCurMotor, DataManager.Instance.GameData.motorbikeDatas);
+        int[] levelUpgrades = ConfigStats.GetLevelsUpgrade(idCurMotor, DataManager.Instance.GameData.motorbikeDatas);
 
         myDBMotorbike = new DB_Motorbike();
         myDBMotorbike.idMotor = idCurMotor;
-        myDBMotorbike.levelUpgrade = levelUpgrade;
+        myDBMotorbike.levelUpgrades = levelUpgrades;
 
         myMotorbike = Instantiate(baseMotorBike, parentMotor);
         Transform transPos = environmentMap.GetStartPoint(db_Level.indexStart);

@@ -25,6 +25,8 @@ public class GameManager : Singleton<GameManager>
         db.idMotor = 0;
         db.levelUpgrade = 0;
         DataManager.Instance.BuyMotorbike(db);
+        DataManager.Instance.BuyHelmet(0);
+        DataManager.Instance.BuyBody(0);
     }
     private void LoadReferent()
     {
