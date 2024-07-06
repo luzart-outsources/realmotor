@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4902163063910806402}
   - component: {fileID: 5016287404132804677}
   - component: {fileID: 5176015432168817281}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rear MudGuard System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5656964562313246735}
   - component: {fileID: 4829638907751696824}
   - component: {fileID: 4127558721560084946}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Handle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   deltaTail: 10
   visualFrontWheel: {fileID: 8160570377834596821}
   visualBackWheel: {fileID: 2503042313842460864}
-  tyreRotation: 1000
+  tyreRotations: 200
   skidWidth: 0.05
   skidMark1: {fileID: 5335012332529878238}
   skidMark2: {fileID: 1815485615247104547}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8013421846831841105}
   - component: {fileID: 6000339366308426151}
   - component: {fileID: 6580351991942798289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
