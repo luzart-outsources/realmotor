@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -24,6 +23,7 @@ public class EnvironmentMap : MonoBehaviour
 #if UNITY_EDITOR
     [Space, Header("Editor")]
     public Transform startPointEditor;
+    public bool IsSetStart = false;
     [Sirenix.OdinInspector.Button]
     public void GetAllStartPoint()
     {
@@ -68,8 +68,14 @@ public class EnvironmentMap : MonoBehaviour
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
             PrefabUtility.InstantiatePrefab(prefab, transform);
         }
-        startRace = GameObject.Find("StartRace");
+        startRace = GameObject.Find("StartEndRace");
         startPointEditor = startRace.transform;
+        GameObject startGrid = GameObject.Find("StartGrid");
+        if (startGrid != null)
+        {
+            startPointEditor.transform.position = startGrid.transform.position;
+        }
+
         GetAllStartPoint();
     }
     public void FindParentMotorbike()
@@ -105,6 +111,19 @@ public class EnvironmentMap : MonoBehaviour
         foreach (GameObject item in obRoad)
         {
             item.layer = layerRoad;
+        }
+        List<GameObject> obBridge = FindGameObjectsByName("Collider-Bridge");
+        foreach (GameObject item in obBridge)
+        {
+            item.layer = layerRoad;
+        }
+    }
+    public void RemoveCameraBigScreen()
+    {
+        List<GameObject> obs = FindGameObjectsByName("Camera");
+        for (int i = 0; i < obs.Count; i++)
+        {
+
         }
     }
     public List<GameObject> FindGameObjectsByName(string name)

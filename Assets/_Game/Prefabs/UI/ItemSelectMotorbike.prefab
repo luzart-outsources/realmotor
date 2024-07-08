@@ -143,6 +143,7 @@ MonoBehaviour:
   obLock: {fileID: 0}
   db_Motorbike:
     idMotor: 0
+    levelUpgrades: 00000000000000000000000000000000
     levelUpgrade: 0
     isHas: 0
   currentIndex: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 8785888028395561910}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -255,7 +256,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1636743194877355195
 CanvasRenderer:
@@ -330,7 +331,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.0000038146973, y: 0}
+  m_SizeDelta: {x: -3.9999979, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1431493448442435880
 CanvasRenderer:

@@ -22,6 +22,7 @@ public class WavingPointGizmos : MonoBehaviour
     [Button]
     public void AddWavingPointChildren()
     {
+        LayerMask layerRoad = LayerMask.NameToLayer("Road");
         int length = transform.childCount;
         for (int i = 0; i < length; i++)
         {
@@ -38,6 +39,17 @@ public class WavingPointGizmos : MonoBehaviour
             }
             col.isTrigger = true;
             item.gameObject.layer = LayerMask.NameToLayer("WavingPoint");
+            RaycastHit rayUp, rayDown;
+            bool isRayUp = Physics.Raycast(item.position, Vector3.up, out rayUp, Mathf.Infinity, layerRoad);
+            bool isRayDown = Physics.Raycast(item.position, Vector3.down, out rayDown, Mathf.Infinity, layerRoad);
+            if (isRayUp)
+            {
+                item.transform.position = rayUp.point;
+            }
+            else if(isRayDown)
+            {
+                item.transform.position = rayDown.point;
+            }
         }
     }
     [Button]

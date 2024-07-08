@@ -229,6 +229,7 @@ public class MotorMovementUnPhysic : MotorMovement
         }
         rb.velocity = velocity;
         rb.useGravity = true;
+        rb.mass = 100;
         ActionCollisionWall?.Invoke(velocity);
         currentSpeed = 0;
         velocity = Vector3.zero;

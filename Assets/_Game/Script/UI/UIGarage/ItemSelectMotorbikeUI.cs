@@ -19,6 +19,7 @@ public class ItemSelectMotorbikeUI : ListBox
 
     public DB_Motorbike db_Motorbike = null;
     public int currentIndex;
+    private DB_ResourcesBuy resourcesBuy;
     private void Start()
     {
         //GameUtil.ButtonOnClick(btn, ClickMotor, true);
@@ -29,6 +30,8 @@ public class ItemSelectMotorbikeUI : ListBox
         this.db_Motorbike = dbMotorbike;
         this.actionMotor = onClick;
         SetLock(!dbMotorbike.isHas);
+        resourcesBuy = DataManager.Instance.resourceBuySO.GetResourcesBuy(new DataTypeResource(RES_type.Bike,dbMotorbike.idMotor), PlaceBuy.Garage);
+        imMotorBike.sprite = resourcesBuy.dataRes.spIcon;
     }
 
     public void SelectMotorBike(bool status)
