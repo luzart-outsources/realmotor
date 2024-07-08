@@ -891,7 +891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &597410744194583719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4996,7 +4996,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 26.6, y: 1.1}
-  m_SizeDelta: {x: 0, y: 60}
+  m_SizeDelta: {x: 116.95, y: 60}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &5547405853851308516
 CanvasRenderer:
@@ -6552,6 +6552,7 @@ GameObject:
   - component: {fileID: 4291845846397831539}
   - component: {fileID: 2312307144289886995}
   - component: {fileID: 8984365151968371382}
+  - component: {fileID: 2773467680848899}
   m_Layer: 5
   m_Name: btnRace
   m_TagString: Untagged
@@ -6661,6 +6662,39 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2773467680848899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666825823912064995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 300
+  m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
+  m_EffectFactor: 0
+  m_Width: 0.11
+  m_Rotation: 135
+  m_Softness: 0.01
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 1
+    initialPlayDelay: 2.54
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
+  m_Play: 0
+  m_Loop: 0
+  m_Duration: 1
+  m_LoopDelay: 1
+  m_UpdateMode: 0
 --- !u!1 &6957849383461423964
 GameObject:
   m_ObjectHideFlags: 0
@@ -6819,7 +6853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2314583957597267532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7877,7 +7911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6247374702575615567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8127,8 +8161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 238, y: -42}
-  m_SizeDelta: {x: 476, y: 84}
+  m_AnchoredPosition: {x: 144.43427, y: -42}
+  m_SizeDelta: {x: 288.8685, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &866114209053678187
 CanvasRenderer:

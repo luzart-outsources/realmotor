@@ -78,6 +78,7 @@ public class GameCoordinator : MonoBehaviour
     }
     public void StartInGame()
     {
+        AudioManager.Instance.PlayMusicBgInGame();
         uiGameplay.StartCountDown();
         DOVirtual.DelayedCall(3, StartRace);
     }

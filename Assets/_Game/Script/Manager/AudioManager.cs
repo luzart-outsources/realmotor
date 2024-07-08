@@ -116,7 +116,8 @@ public class AudioManager : Singleton<AudioManager>
     }
 
 
-    [SerializeField] private AudioClip audioClick;
+    [SerializeField] private AudioClip clipClick;
+    [SerializeField] private AudioClip clipMusic;
 
 
     private void Awake()
@@ -131,7 +132,12 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlaySFXBtn()
     {
-        audioSFX.PlayOneShot(audioClick);
+        audioSFX.PlayOneShot(clipClick);
+    }
+    public void PlayMusicBgInGame()
+    {
+        audioMusic.clip = clipMusic;
+        audioMusic.Play();
     }
     public void Vibrate()
     {

@@ -23,7 +23,7 @@ public class UIWinClassic : UIBase
         this.dataWin = db;
         if (isWin )
         {
-            txt_Title.text = "Sucess";
+            txt_Title.text = "Success";
         }
         else
         {
