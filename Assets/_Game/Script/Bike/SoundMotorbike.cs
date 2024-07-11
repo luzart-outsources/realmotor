@@ -23,8 +23,12 @@ public class SoundMotorbike : MonoBehaviour
         {
             audioDrift.enabled = false;
             audioMotor.enabled = false;
+
             return;
         }
+        float volumSFX = AudioManager.Instance.volumnSFX;
+        audioMotor.volume = audioMotor.volume * volumSFX;
+        audioDrift.volume = audioDrift.volume * volumSFX;
 
     }
     private void Update()

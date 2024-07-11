@@ -10,6 +10,7 @@ public class ItemLeaderBoardUI : MonoBehaviour
     public GameObject obPlayer;
     public GameObject obBot;
     public TMP_Text txtDistance;
+    public TMP_Text txtRound,txtPoint,txtDisIndex;
 
     private DB_LeaderBoardInGame data;
     private const string WhiteColor = "#FFFFFF";
@@ -26,6 +27,10 @@ public class ItemLeaderBoardUI : MonoBehaviour
         txtIndex.text = $"<color={color}>{db.index}</color>";
         txtName.text = $"<color={color}>{db.name}</color>";
         txtDistance.text = $"{System.Math.Round(db.distance, 2)}";
+
+        txtRound.text = db.round.ToString();
+        txtPoint.text = db.curIndex.ToString();
+        txtDisIndex.text = $"{System.Math.Round(db.disFromIndex, 2)}";
     }
 }
 [System.Serializable]
@@ -34,5 +39,8 @@ public class DB_LeaderBoardInGame
     public int index;
     public string name;
     public float distance;
+    public int curIndex;
+    public int round;
+    public float disFromIndex;
     public ETeam eTeam;   
 }

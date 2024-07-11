@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class ButtonSelect : MonoBehaviour
 {
     public Button btn;
-    public Image imSelect;
-    public Sprite spSelect;
-    public Sprite spUnSelect;
+    public Image[] imSelect;
+    public Sprite[] spSelect;
+    public Sprite[] spUnSelect;
     public bool IsAnim = true;
     private Action ActionSelect;
     private void Start()
@@ -27,13 +27,19 @@ public class ButtonSelect : MonoBehaviour
     }
     public void Select(bool isSelect)
     {
-        if (isSelect)
+        int length = imSelect.Length;
+        for (int i = 0; i < length; i++)
         {
-            imSelect.sprite = spSelect;
+            if (isSelect)
+            {
+                imSelect[i].sprite = spSelect[i];
+            }
+            else
+            {
+                imSelect[i].sprite = spUnSelect[i];
+            }
+
         }
-        else
-        {
-            imSelect.sprite= spUnSelect;
-        }
+       
     }
 }

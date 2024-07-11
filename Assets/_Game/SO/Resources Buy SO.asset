@@ -26,6 +26,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -39,6 +40,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -52,6 +54,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -65,6 +68,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 2000
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -78,6 +82,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 2500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -91,6 +96,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 3000
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -104,6 +110,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 3500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -117,6 +124,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 4000
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -130,6 +138,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 4500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -143,6 +152,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 5000
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -156,6 +166,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 5500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -169,6 +180,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 6000
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -182,6 +194,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 6500
+    isHas: 0
   - titleBuy: 
     dataRes:
       type:
@@ -195,6 +208,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 7000
+    isHas: 0
   dbResBuyHelmet:
   - titleBuy: Blue
     dataRes:
@@ -209,6 +223,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 1
   - titleBuy: Green
     dataRes:
       type:
@@ -217,11 +232,12 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 0dfb695ec6fb9214a9c612debde3db8d, type: 3}
+      spIcon: {fileID: 21300000, guid: 18ebe1de02904ca459aca7d58972a151, type: 3}
       spBg: {fileID: 0}
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   - titleBuy: Purple
     dataRes:
       type:
@@ -230,11 +246,12 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: b4dc88faa5efa5f4c848e9c63c116885, type: 3}
+      spIcon: {fileID: 21300000, guid: 0dfb695ec6fb9214a9c612debde3db8d, type: 3}
       spBg: {fileID: 0}
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 1
   - titleBuy: Red
     dataRes:
       type:
@@ -243,11 +260,12 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: e76d563b51d4cdc4a9a6f12930390277, type: 3}
+      spIcon: {fileID: 21300000, guid: b4dc88faa5efa5f4c848e9c63c116885, type: 3}
       spBg: {fileID: 0}
     placeBuy: 1
-    typeBuy: 1
-    valueBuy: 1000
+    typeBuy: 2
+    valueBuy: 3
+    isHas: 0
   - titleBuy: White
     dataRes:
       type:
@@ -256,11 +274,12 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 0af1b0cbe76a2b14290014d474ca29cf, type: 3}
+      spIcon: {fileID: 21300000, guid: e76d563b51d4cdc4a9a6f12930390277, type: 3}
       spBg: {fileID: 0}
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   - titleBuy: Yellow
     dataRes:
       type:
@@ -269,11 +288,12 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 18ebe1de02904ca459aca7d58972a151, type: 3}
+      spIcon: {fileID: 21300000, guid: 0af1b0cbe76a2b14290014d474ca29cf, type: 3}
       spBg: {fileID: 0}
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   dbResBuyBody:
   - titleBuy: Blue
     dataRes:
@@ -288,6 +308,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 1
   - titleBuy: Green
     dataRes:
       type:
@@ -301,6 +322,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   - titleBuy: Purple
     dataRes:
       type:
@@ -314,6 +336,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   - titleBuy: Red
     dataRes:
       type:
@@ -325,8 +348,9 @@ MonoBehaviour:
       spIcon: {fileID: 21300000, guid: ec3de29c4d77931419142b11a1258a03, type: 3}
       spBg: {fileID: 0}
     placeBuy: 1
-    typeBuy: 1
-    valueBuy: 1000
+    typeBuy: 2
+    valueBuy: 3
+    isHas: 0
   - titleBuy: White
     dataRes:
       type:
@@ -340,6 +364,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   - titleBuy: Yellow
     dataRes:
       type:
@@ -353,6 +378,7 @@ MonoBehaviour:
     placeBuy: 1
     typeBuy: 1
     valueBuy: 1000
+    isHas: 0
   dbResUpgradeMotor:
   - idMotor: 0
     dB_ResourcesUpgradeMotorLevel:
@@ -370,6 +396,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 0
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -383,6 +410,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 15
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -396,6 +424,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 30
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -409,6 +438,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 45
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -422,6 +452,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 60
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -436,6 +467,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 0
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -449,6 +481,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 15
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -462,6 +495,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 30
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -475,6 +509,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 45
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -488,6 +523,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 60
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -502,6 +538,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 0
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -515,6 +552,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 15
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -528,6 +566,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 30
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -541,6 +580,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 45
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -554,6 +594,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 60
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -568,6 +609,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 0
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -581,6 +623,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 15
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -594,6 +637,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 30
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -607,6 +651,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 45
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -620,6 +665,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 60
+        isHas: 0
   - idMotor: 1
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -636,6 +682,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 50
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -649,6 +696,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 65
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -662,6 +710,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 80
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -675,6 +724,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 95
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -688,6 +738,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 110
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -702,6 +753,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 50
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -715,6 +767,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 65
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -728,6 +781,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 80
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -741,6 +795,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 95
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -754,6 +809,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 110
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -768,6 +824,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 50
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -781,6 +838,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 65
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -794,6 +852,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 80
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -807,6 +866,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 95
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -820,6 +880,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 110
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -834,6 +895,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 50
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -847,6 +909,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 65
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -860,6 +923,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 80
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -873,6 +937,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 95
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -886,6 +951,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 110
+        isHas: 0
   - idMotor: 2
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -902,6 +968,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 100
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -915,6 +982,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 115
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -928,6 +996,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 130
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -941,6 +1010,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 145
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -954,6 +1024,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 160
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -968,6 +1039,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 100
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -981,6 +1053,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 115
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -994,6 +1067,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 130
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1007,6 +1081,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 145
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1020,6 +1095,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 160
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1034,6 +1110,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 100
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1047,6 +1124,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 115
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1060,6 +1138,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 130
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1073,6 +1152,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 145
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1086,6 +1166,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 160
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1100,6 +1181,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 100
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1113,6 +1195,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 115
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1126,6 +1209,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 130
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1139,6 +1223,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 145
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1152,6 +1237,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 160
+        isHas: 0
   - idMotor: 3
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -1168,6 +1254,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 150
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1181,6 +1268,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 165
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1194,6 +1282,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 180
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1207,6 +1296,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 195
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1220,6 +1310,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 210
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1234,6 +1325,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 150
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1247,6 +1339,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 165
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1260,6 +1353,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 180
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1273,6 +1367,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 195
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1286,6 +1381,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 210
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1300,6 +1396,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 150
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1313,6 +1410,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 165
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1326,6 +1424,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 180
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1339,6 +1438,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 195
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1352,6 +1452,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 210
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1366,6 +1467,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 150
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1379,6 +1481,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 165
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1392,6 +1495,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 180
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1405,6 +1509,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 195
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1418,6 +1523,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 210
+        isHas: 0
   - idMotor: 4
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -1434,6 +1540,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 200
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1447,6 +1554,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 215
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1460,6 +1568,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 230
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1473,6 +1582,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 245
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1486,6 +1596,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 260
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1500,6 +1611,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 200
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1513,6 +1625,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 215
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1526,6 +1639,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 230
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1539,6 +1653,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 245
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1552,6 +1667,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 260
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1566,6 +1682,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 200
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1579,6 +1696,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 215
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1592,6 +1710,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 230
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1605,6 +1724,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 245
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1618,6 +1738,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 260
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1632,6 +1753,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 200
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1645,6 +1767,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 215
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1658,6 +1781,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 230
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1671,6 +1795,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 245
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1684,6 +1809,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 260
+        isHas: 0
   - idMotor: 5
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -1700,6 +1826,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 250
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1713,6 +1840,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 265
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1726,6 +1854,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 280
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1739,6 +1868,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 295
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1752,6 +1882,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 310
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1766,6 +1897,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 250
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1779,6 +1911,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 265
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1792,6 +1925,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 280
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1805,6 +1939,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 295
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1818,6 +1953,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 310
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1832,6 +1968,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 250
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1845,6 +1982,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 265
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1858,6 +1996,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 280
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1871,6 +2010,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 295
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1884,6 +2024,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 310
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -1898,6 +2039,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 250
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1911,6 +2053,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 265
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1924,6 +2067,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 280
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1937,6 +2081,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 295
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1950,6 +2095,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 310
+        isHas: 0
   - idMotor: 6
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -1966,6 +2112,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 300
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1979,6 +2126,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 315
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -1992,6 +2140,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 330
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2005,6 +2154,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 345
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2018,6 +2168,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 360
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2032,6 +2183,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 300
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2045,6 +2197,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 315
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2058,6 +2211,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 330
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2071,6 +2225,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 345
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2084,6 +2239,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 360
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2098,6 +2254,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 300
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2111,6 +2268,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 315
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2124,6 +2282,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 330
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2137,6 +2296,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 345
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2150,6 +2310,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 360
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2164,6 +2325,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 300
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2177,6 +2339,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 315
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2190,6 +2353,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 330
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2203,6 +2367,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 345
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2216,6 +2381,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 360
+        isHas: 0
   - idMotor: 7
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -2232,6 +2398,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 350
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2245,6 +2412,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 365
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2258,6 +2426,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 380
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2271,6 +2440,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 395
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2284,6 +2454,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 410
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2298,6 +2469,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 350
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2311,6 +2483,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 365
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2324,6 +2497,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 380
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2337,6 +2511,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 395
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2350,6 +2525,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 410
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2364,6 +2540,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 350
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2377,6 +2554,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 365
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2390,6 +2568,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 380
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2403,6 +2582,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 395
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2416,6 +2596,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 410
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2430,6 +2611,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 350
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2443,6 +2625,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 365
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2456,6 +2639,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 380
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2469,6 +2653,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 395
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2482,6 +2667,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 410
+        isHas: 0
   - idMotor: 8
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -2498,6 +2684,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 400
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2511,6 +2698,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 415
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2524,6 +2712,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 430
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2537,6 +2726,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 445
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2550,6 +2740,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 460
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2564,6 +2755,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 400
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2577,6 +2769,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 415
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2590,6 +2783,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 430
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2603,6 +2797,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 445
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2616,6 +2811,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 460
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2630,6 +2826,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 400
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2643,6 +2840,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 415
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2656,6 +2854,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 430
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2669,6 +2868,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 445
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2682,6 +2882,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 460
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2696,6 +2897,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 400
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2709,6 +2911,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 415
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2722,6 +2925,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 430
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2735,6 +2939,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 445
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2748,6 +2953,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 460
+        isHas: 0
   - idMotor: 9
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -2764,6 +2970,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 450
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2777,6 +2984,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 465
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2790,6 +2998,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 480
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2803,6 +3012,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 495
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2816,6 +3026,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 510
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2830,6 +3041,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 450
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2843,6 +3055,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 465
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2856,6 +3069,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 480
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2869,6 +3083,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 495
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2882,6 +3097,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 510
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2896,6 +3112,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 450
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2909,6 +3126,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 465
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2922,6 +3140,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 480
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2935,6 +3154,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 495
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2948,6 +3168,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 510
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -2962,6 +3183,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 450
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2975,6 +3197,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 465
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -2988,6 +3211,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 480
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3001,6 +3225,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 495
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3014,6 +3239,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 510
+        isHas: 0
   - idMotor: 10
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -3030,6 +3256,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 500
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3043,6 +3270,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 515
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3056,6 +3284,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 530
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3069,6 +3298,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 545
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3082,6 +3312,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 560
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3096,6 +3327,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 500
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3109,6 +3341,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 515
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3122,6 +3355,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 530
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3135,6 +3369,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 545
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3148,6 +3383,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 560
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3162,6 +3398,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 500
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3175,6 +3412,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 515
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3188,6 +3426,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 530
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3201,6 +3440,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 545
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3214,6 +3454,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 560
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3228,6 +3469,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 500
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3241,6 +3483,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 515
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3254,6 +3497,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 530
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3267,6 +3511,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 545
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3280,6 +3525,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 560
+        isHas: 0
   - idMotor: 11
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -3296,6 +3542,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 550
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3309,6 +3556,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 565
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3322,6 +3570,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 580
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3335,6 +3584,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 595
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3348,6 +3598,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 610
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3362,6 +3613,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 550
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3375,6 +3627,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 565
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3388,6 +3641,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 580
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3401,6 +3655,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 595
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3414,6 +3669,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 610
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3428,6 +3684,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 550
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3441,6 +3698,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 565
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3454,6 +3712,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 580
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3467,6 +3726,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 595
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3480,6 +3740,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 610
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3494,6 +3755,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 550
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3507,6 +3769,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 565
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3520,6 +3783,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 580
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3533,6 +3797,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 595
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3546,6 +3811,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 610
+        isHas: 0
   - idMotor: 12
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -3562,6 +3828,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 600
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3575,6 +3842,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 615
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3588,6 +3856,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 630
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3601,6 +3870,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 645
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3614,6 +3884,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 660
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3628,6 +3899,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 600
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3641,6 +3913,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 615
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3654,6 +3927,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 630
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3667,6 +3941,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 645
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3680,6 +3955,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 660
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3694,6 +3970,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 600
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3707,6 +3984,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 615
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3720,6 +3998,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 630
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3733,6 +4012,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 645
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3746,6 +4026,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 660
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3760,6 +4041,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 600
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3773,6 +4055,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 615
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3786,6 +4069,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 630
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3799,6 +4083,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 645
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3812,6 +4097,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 660
+        isHas: 0
   - idMotor: 13
     dB_ResourcesUpgradeMotorLevel:
     - dB_ResourcesBuys:
@@ -3828,6 +4114,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 650
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3841,6 +4128,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 665
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3854,6 +4142,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 680
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3867,6 +4156,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 695
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3880,6 +4170,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 710
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3894,6 +4185,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 650
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3907,6 +4199,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 665
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3920,6 +4213,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 680
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3933,6 +4227,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 695
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3946,6 +4241,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 710
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -3960,6 +4256,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 650
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3973,6 +4270,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 665
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3986,6 +4284,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 680
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -3999,6 +4298,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 695
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -4012,6 +4312,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 710
+        isHas: 0
     - dB_ResourcesBuys:
       - titleBuy: 
         dataRes:
@@ -4026,6 +4327,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 650
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -4039,6 +4341,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 665
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -4052,6 +4355,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 680
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -4065,6 +4369,7 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 695
+        isHas: 0
       - titleBuy: 
         dataRes:
           type:
@@ -4078,3 +4383,4 @@ MonoBehaviour:
         placeBuy: 2
         typeBuy: 1
         valueBuy: 710
+        isHas: 0

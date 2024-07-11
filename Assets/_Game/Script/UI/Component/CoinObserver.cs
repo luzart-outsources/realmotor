@@ -36,7 +36,8 @@ public class CoinObserver : MonoBehaviour
     }
     private void ClickAddCoin()
     {
-        actionAddCoin?.Invoke();
+        //actionAddCoin?.Invoke();
+        UIManager.Instance.ShowUI(UIName.AddCoin);
     }
     private void SetText(object data)
     {

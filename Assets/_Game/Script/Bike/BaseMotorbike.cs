@@ -26,14 +26,14 @@ public class BaseMotorbike : MonoBehaviour
     private DB_Character dbCharacter;
 
     public SoundMotorbike soundMotorbike;
-    [Sirenix.OdinInspector.ShowInInspector]
-    private List<int> listIndex = new List<int>();
+    public List<int> listIndex = new List<int>();
     public EStateMotorbike eState;
 
     public Transform parentCam;
 
     public int round = 0;
     public float Speed => baseMotor.Speed;
+    public bool isFall = false;
 
     public Vector3 velocity
     {
@@ -61,6 +61,7 @@ public class BaseMotorbike : MonoBehaviour
             CameraManager.Instance.SetFollowCamera(this.gameObject);
         }
         InitAction();
+        isFall = false;
     }
     public void InitSpawn(DB_Character db_Character, DB_Motorbike dbMotorBike)
     {
@@ -99,24 +100,38 @@ public class BaseMotorbike : MonoBehaviour
     }
     public void GetCurrentCheckPoint()
     {
+        if (isFall)
+        {
+            return;
+        }
         if(eState == EStateMotorbike.Finish)
         {
             return;
         }
-        var col = Physics.OverlapSphere(transform.position, radiusCheckPoint, layerCheckPoint);
-        if (col != null && col.Length>0)
+        List<Collider> listCol = GetListCol(1);
+        if(listCol !=null && listCol.Count > 0)
         {
-            List<Collider> listCol = col.ToList();
             listCol.Sort(
-                (collider1, collider2) 
-                => Vector3.Distance(transform.position, collider1.transform.position).CompareTo(Vector3.Distance(transform.position, collider2.transform.position))
-                );
+                (collider1, collider2)
+                            => DistanceForWavingPoint(collider1.transform).CompareTo(DistanceForWavingPoint(collider2.transform))
+                            );
             foreach (var c in listCol)
             {
                 var checkPointCol = c.GetComponent<WavingPoint>();
-                if( checkPointCol != null )
+                if (checkPointCol != null)
                 {
-                    currentIndex = checkPointCol.indexPoint;
+                    int currentIndex = checkPointCol.indexPoint;
+                    //if (this.currentIndex == GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1)
+                    //{
+                    //    if (!listIndex.Contains(currentIndex))
+                    //    {
+                    //        this.currentIndex = currentIndex;
+                    //    }
+                    //}
+                    //else
+                    {
+                        this.currentIndex = currentIndex;
+                    }
                     if (!listIndex.Contains(currentIndex))
                     {
                         listIndex.Add(currentIndex);
@@ -125,6 +140,49 @@ public class BaseMotorbike : MonoBehaviour
 
                 }
             }
+        }
+    }
+    private List<Collider> GetListCol(int factor)
+    {
+        var col = Physics.OverlapSphere(transform.position, radiusCheckPoint * factor, layerCheckPoint);
+        if (col != null && col.Length > 0)
+        {
+            List<Collider> listCol = col.ToList();
+            listCol.RemoveAll(collider => DistanceForWavingPoint(collider.transform) <= 0);
+            if (listCol.Count == 0)
+            {
+                factor++;
+                return null;
+            }
+            return listCol;
+        }
+        return null;
+    }
+    public float DistanceForWavingPoint(Transform posWavingPoint)
+    {
+        Vector3 directPos = posWavingPoint.position - transform.position;
+        float dotProduct = Vector3.Dot(transform.forward, directPos);
+        if (dotProduct < 0)
+        {
+            return -Vector3.Distance(transform.position, posWavingPoint.position);
+        }
+        else
+        {
+            return Vector3.Distance(transform.position, posWavingPoint.position);
+        }
+    }
+    public float DistanceForWavingPoint()
+    {
+        Transform posWavingPoint = GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint[currentIndex].transform;
+        Vector3 directPos = posWavingPoint.position - transform.position;
+        float dotProduct = Vector3.Dot(transform.forward, directPos);
+        if (dotProduct < 0)
+        {
+            return -Vector3.Distance(transform.position, posWavingPoint.position);
+        }
+        else
+        {
+            return Vector3.Distance(transform.position, posWavingPoint.position);
         }
     }
     public void OnFinishLine()
@@ -185,6 +243,7 @@ public class BaseMotorbike : MonoBehaviour
         baseCharacter.OnCollisionWall(velocity);
         UnVerticle();
         UnHorizontal();
+        isFall = true; 
         GameUtil.Instance.WaitAndDo(2f, ReInitialize);
     }
     public void StartRace()

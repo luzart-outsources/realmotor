@@ -8,27 +8,51 @@ using UnityEngine.UI;
 
 public class ItemUpgradePopUp : MonoBehaviour
 {
+    private RectTransform _rt;
+    public RectTransform rtMe
+    {
+        get
+        {
+            if(_rt == null)
+            {
+                _rt = GetComponent<RectTransform>();
+
+            }
+            return _rt;
+        }
+    }
     public TMP_Text txtTitle;
     public TMP_Text txtValueUpgrade;
     public LineUpgradeSlider lineUpgradeSlider;
     public Button btn;
     public Image imButton;
+    public Image imIcon;
     public Action<ItemUpgradePopUp> ActionClick;
     public Sprite spClick, spUnclick;
+    public Sprite spClickIcon, spUnclickIcon;
     public StatsMotorbike stats;
     private string strTitle;
+    private Vector2 size;
+    public GameObject obUpdateDetail;
+    private int levelUpgrade;
+    public float valueStats;
     private void Start()
     {
         GameUtil.ButtonOnClick(btn, Click, true);
+        size = rtMe.sizeDelta;
+
     }
     public void Initialize(StatsMotorbike stats ,float value, int levelUpgrade ,Action<ItemUpgradePopUp> action )
     {
         this.ActionClick = action;
         this.stats = stats;
+        this.valueStats = value;
         this.txtValueUpgrade.text = value.ToString();
-        this.lineUpgradeSlider.SetLevelUpgrade(levelUpgrade);
+        this.levelUpgrade = levelUpgrade;
+        this.lineUpgradeSlider.SetLevelUpgrade(levelUpgrade - 1);
         SetText();
         SelectButton(false);
+
     }
     private void SetText()
     {
@@ -59,6 +83,7 @@ public class ItemUpgradePopUp : MonoBehaviour
     public void Click()
     {
         ActionClick?.Invoke(this);
+        //Canvas.ForceUpdateCanvases();
     }
     private string colorBlack = "#000000";
     private string colorWhite = "#FFFFFF";
@@ -67,12 +92,22 @@ public class ItemUpgradePopUp : MonoBehaviour
         if(isActive)
         {
             imButton.sprite = spClick;
-            txtTitle.text = $"<color={colorBlack}>{strTitle}</color>";
+            txtTitle.text = $"<color={colorWhite}>{strTitle}</color>";
+            imIcon.sprite = spClickIcon;
+            transform.localScale = Vector3.one*1.1f;
         }
         else
         {
             imButton.sprite= spUnclick;
-            txtTitle.text = $"<color={colorWhite}>{strTitle}</color>";
+            txtTitle.text = $"<color={colorBlack}>{strTitle}</color>";
+            imIcon.sprite = spUnclickIcon;
+            transform.localScale = Vector3.one;
         }
+        obUpdateDetail.SetActive(isActive);
+        if (levelUpgrade > 5)
+        {
+            obUpdateDetail.SetActive(false);
+        }
+
     }
 }

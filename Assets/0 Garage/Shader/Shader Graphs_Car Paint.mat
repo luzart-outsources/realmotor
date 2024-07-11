@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6168845366293976240
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Car Paint
+  m_Shader: {fileID: -6465566751694194690, guid: 526e353666d127e4c9f8c03e17099d0d, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Base_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CarPaintBaseColorCustomThanh_e1adc2e4acc44f4d896cc37c2ede9acd_BaseTexture2D_260821823_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flake_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e570e72da1ed9204bb8f8ebb43c543a9, type: 3}
+        m_Scale: {x: 1000, y: 1000}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: d9340b89558dd7c4ead9bbd9e317a197, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AO: 1
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
+    - _Coat_Smoothness: 0
+    - _Flake_Gen_1: 0.902
+    - _Flake_Gen_2: 1
+    - _Flake_Gen_Cell_Density: 20000
+    - _Flake_Roughness: 1
+    - _Fresnel_Power: 0.44
+    - _Fresnel_Strength: 0.55
+    - _Metalic: 0
+    - _Normal_Strength: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Reflact_Idensity: 1
+    - _Reflection_Idensity: 1
+    - _Reflection_Strength: 1
+    - _Roughness_Frensel_1: 0
+    - _Roughness_Frensel_2: 0
+    - _Roughness_Strength: 0
+    - _Smoothness_Frensel_1: 1
+    - _Smoothness_Frensel_2: 1
+    - _Smoothness_Strength: 1
+    m_Colors:
+    - _Base_Color_1: {r: 1, g: 0.6037736, b: 0.2783019, a: 0}
+    - _Base_Color_2: {r: 0.5687462, g: 1, b: 0, a: 0}
+    - _Flake_Color_Dark: {r: 1, g: 1, b: 1, a: 0}
+    - _Flake_Color_Saturated: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor1: {r: 0.4636886, g: 1, b: 0, a: 0}
+    - _MainColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _SkinColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Specular_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &6938709777851879973
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7

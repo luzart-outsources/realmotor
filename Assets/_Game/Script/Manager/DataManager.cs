@@ -234,19 +234,62 @@ public class DataManager : Singleton<DataManager>
         SaveGameData();
     }
 
-    public bool IsHasMotor(int idMotor, ref int levelUpgrade)
+    public bool IsHasMotor(int idMotor, ref int [] levelUpgrades)
     {
-        levelUpgrade = 0;
+        levelUpgrades = new int[4];
         for (int i = 0; i < _gameData.motorbikeDatas.Count; i++)
         {
             var data = _gameData.motorbikeDatas[i];
             if (idMotor == data.idMotor)
             {
-                levelUpgrade = data.levelUpgrade;
+                levelUpgrades = data.levelUpgrades;
                 return true;
             }
         }
         return false;
+    }
+    public bool IsHasMotor(int idMotor)
+    {
+        for (int i = 0; i < _gameData.motorbikeDatas.Count; i++)
+        {
+            var data = _gameData.motorbikeDatas[i];
+            if (idMotor == data.idMotor)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool IsMaxData(int idMotor)
+    {
+        int[] levelUpgrades = new int[4];
+        bool isHas = IsHasMotor(idMotor, ref levelUpgrades);
+        bool IsMaxLevel = true;
+        if (isHas)
+        {
+            for (int i = 0; i < levelUpgrades.Length; i++)
+            {
+                if (levelUpgrades[i] < 5)
+                {
+                    IsMaxLevel = false;
+                }
+            }
+        }
+        return IsMaxLevel;
+    }
+    public bool[] IsMaxDataArray(int idMotor)
+    {
+        int[] levelUpgrades = new int[4];
+        bool isHas = IsHasMotor(idMotor, ref levelUpgrades);
+        bool[] array = new bool[levelUpgrades.Length];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (levelUpgrades[i] >= 5)
+            {
+                array[i] = true;
+            }
+        }
+        return array;
     }
     public bool IsHasHelmet(int id)
     {
@@ -294,6 +337,15 @@ public class InforMotorbike
         infor.handling = handling;
         infor.brake = brake;
         return infor;
+    }
+    public int[] ToArray()
+    {
+        int [] array = new int[4];
+        array[0] = (int)maxSpeed;
+        array[1] = (int)acceleration;
+        array[2] = (int)handling;
+        array[3] = (int)brake;
+        return array;
     }
 }
 [System.Serializable]

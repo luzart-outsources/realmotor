@@ -104,10 +104,10 @@ public class UIGarage : UIBase
             int index = i;
             DB_Motorbike db = new DB_Motorbike();
             int idMotor = allDBMotor[index].idMotor;
-            int levelUpgrade = 0;
+            int [] levelUpgrades = new int[4];
             db.idMotor = idMotor;
-            db.isHas = DataManager.Instance.IsHasMotor(idMotor, ref levelUpgrade);
-            db.levelUpgrade = levelUpgrade;
+            db.isHas = DataManager.Instance.IsHasMotor(idMotor, ref levelUpgrades);
+            db.levelUpgrades = levelUpgrades;
             listDB.Add(db);
         }
         scrollView.InitListDB(listDB);
@@ -142,20 +142,23 @@ public class UIGarage : UIBase
     public override void RefreshUI()
     {
         base.RefreshUI();
+
         DB_Motor dbGet = DataManager.Instance.motorSO.GetDBMotor(itemCache.db_Motorbike.idMotor).Clone();
-        int levelUpgrade = 0;
-        bool isHasData = DataManager.Instance.IsHasMotor(dbGet.idMotor, ref levelUpgrade);
-        bool isMaxData = levelUpgrade >= 9;
+        int[] levelUpgrade = new int[4];
+        bool isHasData = DataManager.Instance.IsHasMotor(itemCache.db_Motorbike.idMotor, ref levelUpgrade);
+        bool[] isMaxData = DataManager.Instance.IsMaxDataArray(itemCache.db_Motorbike.idMotor);
         if (isHasData)
         {
             dbGet.inforMotorbike = dbGet.GetInforMotorbike(levelUpgrade);
             DataManager.Instance.GameData.idCurMotor = itemCache.db_Motorbike.idMotor;
         }
+        btnUpgrade.interactable = isHasData;
         popupUpgrade.SelectDB(dbGet, isMaxData);
         if (isHasData)
         {
             DataManager.Instance.GameData.idCurMotor = dbGet.idMotor;
         }
+        itemCache.SetLock(!isHasData);
         SetStatusButtonRace();
         if (garageManager != null)
         {
@@ -168,8 +171,7 @@ public class UIGarage : UIBase
     private void SetStatusButtonRace()
     {
         DisableAllButton();
-        int levelUpgrade = 0;
-        bool isHasData = DataManager.Instance.IsHasMotor(itemCache.db_Motorbike.idMotor, ref levelUpgrade);
+        bool isHasData = DataManager.Instance.IsHasMotor(itemCache.db_Motorbike.idMotor);
         if (isHasData)
         {
             btnRacing.gameObject.SetActive(true);

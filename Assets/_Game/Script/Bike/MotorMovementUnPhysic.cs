@@ -60,7 +60,13 @@ public class MotorMovementUnPhysic : MotorMovement
         // Xử lý tăng tốc và phanh
         if (moveInput > 0)
         {
-            currentSpeed += motorbikeInfo.acceleration * Time.deltaTime * moveInput;
+            float acce = motorbikeInfo.acceleration;
+            float targetSpeed = motorbikeInfo.maxSpeed * 0.3f;
+            if (currentSpeed < targetSpeed)
+            {
+                acce = (3 - 2*Mathf.Lerp(currentSpeed, 0, targetSpeed) / targetSpeed)* acce;
+            }
+            currentSpeed += acce * Time.deltaTime * moveInput;
         }
         else if (moveInput < 0)
         {
@@ -111,7 +117,7 @@ public class MotorMovementUnPhysic : MotorMovement
     {
         trueVelocity = transform.InverseTransformDirection(velocity);
         ActionOnMove?.Invoke(trueVelocity);
-        Vector3 pos = motorbikeTransform.position + velocity * Time.deltaTime;
+        Vector3 pos = motorbikeTransform.position + velocity * Time.deltaTime / 2;
         motorbikeTransform.position = pos;
     }
     protected override void FixedUpdateMovement()
@@ -227,7 +233,8 @@ public class MotorMovementUnPhysic : MotorMovement
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
-        rb.velocity = velocity;
+        //rb.velocity = velocity;
+        rb.AddExplosionForce(velocity.magnitude, transform.position, 5);
         rb.useGravity = true;
         rb.mass = 100;
         ActionCollisionWall?.Invoke(velocity);

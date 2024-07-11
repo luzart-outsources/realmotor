@@ -27,4 +27,11 @@ public class UIController : BaseController
         btnRight.ForcePointUp();
         base.MoveLeft();
     }
+    private void OnEnable()
+    {
+        btnUp.ForcePointUp();
+        btnDown.ForcePointUp();
+        btnLeft.ForcePointUp();
+        btnRight.ForcePointUp();
+    }
 }

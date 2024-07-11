@@ -6,6 +6,12 @@ public class AudioManager : Singleton<AudioManager>
 {
     private AudioSource audioSFX;
     private AudioSource audioMusic;
+
+    [SerializeField] private AudioClip clipClick;
+    [SerializeField] private AudioClip clipMusicBg;
+    [SerializeField] private AudioClip[] clipMusicBgInGame;
+
+
     private const string MUTE_SFX = "mute_sfx";
     public bool isMuteSFX
     {
@@ -95,7 +101,7 @@ public class AudioManager : Singleton<AudioManager>
         }
         set
         {
-            audioSFX.volume = value;
+            audioSFX.volume = value / 2;
             PlayerPrefs.SetFloat(VOLUMN_SFX, value);
             PlayerPrefs.Save();
         }
@@ -109,15 +115,14 @@ public class AudioManager : Singleton<AudioManager>
         }
         set
         {
-            audioMusic.volume = value;
+            audioMusic.volume = value / 2;
             PlayerPrefs.SetFloat(VOLUMN_MUSIC, value);
             PlayerPrefs.Save();
         }
     }
 
 
-    [SerializeField] private AudioClip clipClick;
-    [SerializeField] private AudioClip clipMusic;
+
 
 
     private void Awake()
@@ -127,8 +132,8 @@ public class AudioManager : Singleton<AudioManager>
         audioSFX.mute = isMuteSFX;
         audioMusic.mute = isMuteMusic;
         _isMuteVibra = isMuteVibra;
-        audioSFX.volume = volumnSFX;
-        audioMusic.volume= volumnMusic;
+        audioSFX.volume = volumnSFX/2;
+        audioMusic.volume= volumnMusic/2;
     }
     public void PlaySFXBtn()
     {
@@ -136,8 +141,24 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlayMusicBgInGame()
     {
-        audioMusic.clip = clipMusic;
+        int index = DataManager.Instance.CurrentLevel % clipMusicBgInGame.Length;
+        audioMusic.clip = clipMusicBgInGame[index];
+        audioMusic.loop = true;
         audioMusic.Play();
+    }
+    public void PlayMusicBg()
+    {
+        if(audioMusic.clip == clipMusicBg)
+        {
+            return;
+        }
+        audioMusic.clip = clipMusicBg;
+        audioMusic.loop = true;
+        audioMusic.Play();
+    }
+    public void StopMusic()
+    {
+        audioMusic.Stop();
     }
     public void Vibrate()
     {

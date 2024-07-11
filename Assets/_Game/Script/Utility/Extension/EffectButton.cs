@@ -1,13 +1,23 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EffectButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
+    public bool isAutoButton = false;
+    private Button btn;
+
     private Vector3 m_localScale = Vector3.one;
     private float valueScale = 0.9f;
     private float timeScale = 0.1f;
-
+    private void Awake()
+    {
+        if (!isAutoButton)
+        {
+            btn = GetComponent<Button>();
+        }
+    }
     private Coroutine corIEScale = null;
     private IEnumerator IEScale()
     {
@@ -36,6 +46,10 @@ public class EffectButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     }
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!btn.interactable)
+        {
+            return;
+        }
         if (corIEScale != null)
         {
             StopCoroutine(corIEScale);
@@ -50,6 +64,10 @@ public class EffectButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (!btn.interactable)
+        {
+            return;
+        }
         if (corIEDeScale != null)
         {
             StopCoroutine(corIEDeScale);

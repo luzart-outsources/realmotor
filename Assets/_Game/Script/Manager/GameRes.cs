@@ -26,14 +26,14 @@ public class GameRes
     {
         string stringRes = getStringRes(dataTypeResource);
         int preValue = getRes(stringRes);
-        if(dataTypeResource.type == RES_type.Gold)
-        {
-            Observer.Instance.Notify(ObserverKey.CoinObserverNormal);
-        }
         int targetValue = preValue + amount;
         PlayerPrefs.SetInt(stringRes, targetValue);
         Debug.Log($"To Add RES {stringRes} _ currentvalue {targetValue}");
         PlayerPrefs.Save();
+        if (dataTypeResource.type == RES_type.Gold)
+        {
+            Observer.Instance.Notify(ObserverKey.CoinObserverNormal);
+        }
     }
     private static string getStringRes(DataTypeResource dataTypeResource)
     {

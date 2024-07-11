@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
@@ -155,6 +156,9 @@ public class DB_ResourcesBuy
     public PlaceBuy placeBuy;
     public TypeBuy typeBuy;
     public int valueBuy;
+    [JsonIgnore]
+    [HideInInspector]
+    public bool isHas;
 }
 public enum PlaceBuy
 {

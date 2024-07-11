@@ -12,7 +12,6 @@ public class OverlapInFrame : OverlapEachFrame
             {
                 if (colliders[i] != null)
                 {
-                    Debug.Log($"Overlap {eLayer} with {colliders[i].name}");
                     isCollider = true;
                     break;
                 }

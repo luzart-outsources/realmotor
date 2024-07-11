@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 2135081742596067394}
   - component: {fileID: 8629069200748681315}
   - component: {fileID: 5705533299472976189}
+  - component: {fileID: 1311862880131130511}
   m_Layer: 5
   m_Name: Noti
   m_TagString: Untagged
@@ -209,6 +210,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1311862880131130511
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723959860728202530}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a0d6670ea56b2f45a72df4ba8134762, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6382293926967630568
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +365,7 @@ GameObject:
   - component: {fileID: 4997990921099485044}
   - component: {fileID: 5654699345266437688}
   - component: {fileID: 6466571175821881801}
+  - component: {fileID: 7371246132365456895}
   m_Layer: 5
   m_Name: btnAds
   m_TagString: Untagged
@@ -474,8 +497,43 @@ MonoBehaviour:
     amount: 2000
     idIcon: 0
     idBg: 0
+    spIcon: {fileID: 0}
+    spBg: {fileID: 0}
   resUI: {fileID: 8225869896222376845}
   isAnim: 1
+--- !u!114 &7371246132365456895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917039941362119763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 300
+  m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
+  m_EffectFactor: 0
+  m_Width: 0.11
+  m_Rotation: 135
+  m_Softness: 0.01
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 1
+    initialPlayDelay: 2.54
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
+  m_Play: 0
+  m_Loop: 0
+  m_Duration: 1
+  m_LoopDelay: 1
+  m_UpdateMode: 0
 --- !u!1 &6981306638085709861
 GameObject:
   m_ObjectHideFlags: 0

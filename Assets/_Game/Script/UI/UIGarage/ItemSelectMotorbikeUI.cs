@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using AirFishLab.ScrollingList;
 using AirFishLab.ScrollingList.ContentManagement;
-using AirFishLab.ScrollingList.Demo;
-using static AirFishLab.ScrollingList.ListBank;
 
 public class ItemSelectMotorbikeUI : ListBox
 {
@@ -15,7 +10,7 @@ public class ItemSelectMotorbikeUI : ListBox
     public Button btn;
     public GameObject obSelect;
     public GameObject obLock;
-    public Action<ItemSelectMotorbikeUI> actionMotor;
+    //public Action<ItemSelectMotorbikeUI> actionMotor;
 
     public DB_Motorbike db_Motorbike = null;
     public int currentIndex;
@@ -28,12 +23,11 @@ public class ItemSelectMotorbikeUI : ListBox
     public void InitDB(DB_Motorbike dbMotorbike, Action<ItemSelectMotorbikeUI> onClick)
     {
         this.db_Motorbike = dbMotorbike;
-        this.actionMotor = onClick;
+        //this.actionMotor = onClick;
         SetLock(!dbMotorbike.isHas);
         resourcesBuy = DataManager.Instance.resourceBuySO.GetResourcesBuy(new DataTypeResource(RES_type.Bike,dbMotorbike.idMotor), PlaceBuy.Garage);
         imMotorBike.sprite = resourcesBuy.dataRes.spIcon;
     }
-
     public void SelectMotorBike(bool status)
     {
         if(status)
@@ -57,10 +51,6 @@ public class ItemSelectMotorbikeUI : ListBox
     private void UnSelected()
     {
         obSelect.SetActive(false);
-    }
-    public void ClickMotor()
-    {
-        actionMotor?.Invoke(this);
     }
 
     protected override void UpdateDisplayContent(IListContent listContent)

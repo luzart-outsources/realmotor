@@ -7,8 +7,13 @@ using UnityEngine.UI;
 
 public class GameUtil : Singleton<GameUtil>
 {
-    public static void ButtonOnClick(Button bt, UnityAction _action, bool isAnim = false)
+    public static void ButtonOnClick(Button bt, UnityAction action, bool isAnim = false)
     {
+        UnityAction _action = () =>
+        {
+            action?.Invoke();
+            AudioManager.Instance.PlaySFXBtn();
+        };
         if (isAnim)
         {
             bt.OnClickAnim(_action);

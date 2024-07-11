@@ -254,6 +254,7 @@ public class GameCoordinator : MonoBehaviour
         uiGameplay.UpdateUI();
         UpdateDbLeaderBoardInGameUI();
         uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
+        uiGameplay.SetFXLineSpeed(myMotorbike.Speed, myMotorbike.inforMotorbike.maxSpeed);
     }
     private void UpdateDbLeaderBoardInGameUI()
     {
@@ -276,6 +277,9 @@ public class GameCoordinator : MonoBehaviour
                     db.distance = Mathf.Abs(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
                 }
             }
+            db.round = listLeaderBoard[i].round;
+            db.curIndex = listLeaderBoard[i].currentIndex;
+            db.disFromIndex = listLeaderBoard[i].DistanceForWavingPoint();
             listDBLeaderBoardInGame.Add(db);
         }
     }
@@ -312,12 +316,13 @@ public class GameCoordinator : MonoBehaviour
         listLeaderBoard.Sort((x, y) =>
         {
             int roundComparison = y.round.CompareTo(x.round);
+
             if (roundComparison == 0)
             {
                 int currentComparison = y.currentIndex.CompareTo(x.currentIndex);
                 if (currentComparison == 0)
                 {
-                    return y.GetDistanceFromTarget().CompareTo(x.GetDistanceFromTarget());
+                    return x.DistanceForWavingPoint().CompareTo(y.DistanceForWavingPoint());
                 }
                 return currentComparison;
             }

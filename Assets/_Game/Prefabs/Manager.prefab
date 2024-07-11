@@ -69,7 +69,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 500
-  field of view: 90.926056
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -102,12 +102,12 @@ MonoBehaviour:
   animator: {fileID: 301806493219080082}
   PrimaryTarget: {fileID: 0}
   SecondaryTarget: {fileID: 0}
-  distance: 4
+  distance: 8
   height: 3.5
   heightDamping: 2
   lookAtHeight: 0
   baseMotorbike: {fileID: 0}
-  rotationSnapTime: 0.5
+  rotationSnapTime: 1.5
   distanceSnapTime: 0.001
   distanceMultiplier: 0.1
   counterRotation: 0
@@ -316,8 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c966943dbe0394042b6e4ee8fe53b68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipClick: {fileID: 0}
-  clipMusic: {fileID: 8300000, guid: 89ad1245050d51e4e81e153ce866820e, type: 3}
+  clipClick: {fileID: 8300000, guid: c62950231d10cda41aa833a11e20f6b5, type: 3}
+  clipMusicBg: {fileID: 8300000, guid: ff36441bdaaaf3c419ed399b90c7662b, type: 3}
+  clipMusicBgInGame:
+  - {fileID: 8300000, guid: f97d8725cde22814a93f4921f721fd21, type: 3}
+  - {fileID: 8300000, guid: 89ad1245050d51e4e81e153ce866820e, type: 3}
+  - {fileID: 8300000, guid: 001efab9e387ae849a104a51a4714f4d, type: 3}
 --- !u!1 &2888517203533286332
 GameObject:
   m_ObjectHideFlags: 0

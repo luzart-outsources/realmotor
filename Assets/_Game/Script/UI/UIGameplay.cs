@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine;
+using DG.Tweening;
 
 public class UIGameplay : UIBase
 {
@@ -13,8 +15,10 @@ public class UIGameplay : UIBase
     public TMP_Text txtVelocity;
     public CountdownUI countdown;
     private DB_Level db_Level;
-    public float maxClockwise = 0.675f;
+    private float minClockwise = 0.1f;
+    private float maxClockwise = 0.72f;
     public Image imClockFilled;
+    public ParticleSystem fxLine;
     protected override void Setup()
     {
         base.Setup();
@@ -54,9 +58,9 @@ public class UIGameplay : UIBase
        int maxSpeed = (int)GameManager.Instance.gameCoordinator.myMotorbike.inforMotorbike.maxSpeed;
        txtVelocity.text = $"{speed}";
        float factor = (float)speed / (float)maxSpeed;
-       float valueClock = maxClockwise * factor;   
-       imClockFilled.fillAmount = valueClock;
-        txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, false, "", "", "", "");
+       float valueClock = (maxClockwise - minClockwise) * factor;
+       imClockFilled.fillAmount = minClockwise + valueClock; 
+       txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, false, "", "", "", "");
 
     }
     public void StartCountDown()
@@ -67,5 +71,20 @@ public class UIGameplay : UIBase
     {
         countdown.gameObject.SetActive(false);
         SetStatusUIController(true);
+    }
+    public float emissionMax = 400;
+    public float emissionMin = 100;
+    public void SetFXLineSpeed(float velocity, float maxSpeed)
+    {
+        var emission = fxLine.emission;
+
+        if(velocity > 50)
+        {
+            emission.rateOverTime = emissionMin+ (emissionMax - emissionMin)* (velocity/ maxSpeed);
+        }
+        else
+        {
+            emission.rateOverTime = 0;
+        }
     }
 }

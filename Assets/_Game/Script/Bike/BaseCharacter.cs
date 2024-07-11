@@ -12,6 +12,8 @@ public class BaseCharacter : MonoBehaviour
     [SerializeField]
     private Rigidbody rbRagdoll;
     private Rigidbody _rbRagdoll;
+    [SerializeField]
+    private float factorRagdoll = 1f;
 
     public BaseMotorbike baseMotorbike;
     public void InitSpawn(DB_Character dbCharacter)
@@ -86,7 +88,7 @@ public class BaseCharacter : MonoBehaviour
         }
 
         _rbRagdoll.gameObject.SetActive(true);
-        Vector3 velocityUp = -transform.forward * velocity.magnitude;
+        Vector3 velocityUp = -baseMotorbike.transform.forward * velocity.magnitude* factorRagdoll;
         _rbRagdoll.AddForce(velocityUp,ForceMode.Force);
     }
 }

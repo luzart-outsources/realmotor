@@ -16,16 +16,16 @@ public class PopUpUpgradeGarage : MonoBehaviour
     {
         widthLine = rectTransformLineRef.rect.width;
     }
-    public void SelectDB(DB_Motor db, bool isMaxData)
+    public void SelectDB(DB_Motor db, bool[] isMaxData)
     {
         DB_Motor = db;
         txtName.text = db.nameMotor;
         txtNameModel.text = db.nameModelMotor;
         txtRank.text = $"Rank-{db.rank}";
-        ShowData(itemUpgradeGarageRefs[0], "Top Speed", db.inforMotorbike.maxSpeed, db.inforUpgrade.maxSpeed, isMaxData);
-        ShowData(itemUpgradeGarageRefs[1], "Acceleration", db.inforMotorbike.acceleration, db.inforUpgrade.acceleration, isMaxData);
-        ShowData(itemUpgradeGarageRefs[2], "Handling", db.inforMotorbike.handling, db.inforUpgrade.handling, isMaxData);
-        ShowData(itemUpgradeGarageRefs[3], "Brake", db.inforMotorbike.brake, db.inforUpgrade.brake, isMaxData);
+        ShowData(itemUpgradeGarageRefs[0], "Top Speed", db.inforMotorbike.maxSpeed, db.inforUpgrade.maxSpeed, isMaxData[0]);
+        ShowData(itemUpgradeGarageRefs[1], "Acceleration", db.inforMotorbike.acceleration, db.inforUpgrade.acceleration, isMaxData[1]);
+        ShowData(itemUpgradeGarageRefs[2], "Handling", db.inforMotorbike.handling, db.inforUpgrade.handling, isMaxData[2]);
+        ShowData(itemUpgradeGarageRefs[3], "Brake", db.inforMotorbike.brake, db.inforUpgrade.brake, isMaxData[3]);
     }
     private void ShowData(ItemUpgradeGarageRef itemUpgrade, string title, float curData, float upGradeData,bool isMaxData)
     {

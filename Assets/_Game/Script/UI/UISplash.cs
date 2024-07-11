@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,21 +6,18 @@ using UnityEngine;
 
 public class UISplash : UIBase
 {
-    public RectTransform rtSliderParent;
-    public RectTransform rtSliderChild;
+    public Transform transload;
     public override void Show(Action onHideDone)
     {
-        Vector2 sizeParent = rtSliderParent.sizeDelta;
-        Vector2 size = rtSliderChild.sizeDelta;
-        base.Show(onHideDone);
-        GameUtil.Instance.StartLerpValue(this, 0, sizeParent.x, 5f, (x) =>
-        {
-            rtSliderChild.sizeDelta = new Vector2(x, size.y);
-        }, InitStartGame);
+        Sequence sq = DOTween.Sequence();
+        sq.Append(transload.DORotate(new Vector3(0, 0, 720), 2, RotateMode.FastBeyond360));
+        sq.AppendCallback(InitStartGame);
+        //sq.Append(transload.DORotate(new Vector3(0, 0, 360), 1, RotateMode.FastBeyond360));
+        //sq.AppendCallback(Hide);
+
     }
     private void InitStartGame()
     {
         UIManager.Instance.ShowGarage();
-        Hide();
     }
 }

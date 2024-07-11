@@ -30,7 +30,7 @@ public class UIManager : Singleton<UIManager>
             {UIName.Settings,"1,0,UISettings" },
             {UIName.WinClassic,"1,0,UIWinClassic" },
             {UIName.LoseClassic,"1,0,UILoseClassic" },
-            {UIName.Splash,"0,0,UISplash" },
+            {UIName.Splash,"1,0,UISplash" },
             {UIName.LoadScene,"2,0,UILoadScene" },
             {UIName.Garage,"0,0,UIGarage" },
             {UIName.Toast,"3,0,UIToast" },
@@ -109,6 +109,7 @@ public class UIManager : Singleton<UIManager>
                     break;
                 }
         }
+        AudioManager.Instance.PlayMusicBg();
     }
     public T ShowUI<T>(UIName uIScreen, Action onHideDone = null) where T : UIBase
     {
