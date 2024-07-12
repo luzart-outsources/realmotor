@@ -17,7 +17,7 @@ public class MotorbikeSO : ScriptableObject
     {
         int count = 0;
         List<DB_MotorbikeBot> list = new List<DB_MotorbikeBot>();
-        for (int j = 0; j < 11; j++)
+        for (int j = 0; j < 6; j++)
         {
             for (int i = 0; i < motorSO.db_MotorBots.Length; i++)
             {

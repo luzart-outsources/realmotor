@@ -28,8 +28,8 @@ public class UIRacer : UIBase
     protected override void Setup()
     {
         base.Setup();
-        btnRacer.InitAction(ClickRacer);
-        btnClothes.InitAction(ClickClothes);
+        btnRacer.InitAction(0,ClickRacer);
+        btnClothes.InitAction(1,ClickClothes);
         GameUtil.ButtonOnClick(btnBack,Hide);
         GameUtil.ButtonOnClick(btnEquip, ClickSelect, true);
         GameUtil.ButtonOnClick(btnBuy,ClickBuy, true);
@@ -47,10 +47,10 @@ public class UIRacer : UIBase
     }
     public void RefreshUIOnShow() 
     {
-        ClickRacer();
+        ClickRacer(null,0);
         garageManager.SpawnMotorVisual(DataManager.Instance.GameData.idCurMotor);
     }
-    public void ClickRacer()
+    public void ClickRacer(ButtonSelect btn, int ia)
     {
         isOnRacer = true;
         btnRacer.Select(true);
@@ -71,7 +71,7 @@ public class UIRacer : UIBase
         itemCache = (ItemScrollViewRacer)scrollViewHelmet.circular.GetFocusingBox();
         RefreshUI();
     }
-    public void ClickClothes()
+    public void ClickClothes(ButtonSelect btn,int a)
     {
         isOnRacer = false;
         btnRacer.Select(false);

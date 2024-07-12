@@ -14,8 +14,8 @@ public class AddObjectOnMouseClick : EditorWindow
     {
         GetWindow<AddObjectOnMouseClick>("Add Object On Mouse Click");
     }
-    [MenuItem("Tools/Play")]
-    public static void Play()
+    [MenuItem("Tools/Game")]
+    public static void Game()
     {
         // Tên của scene bạn muốn chuyển đến
         string sceneName = "Game";
@@ -25,8 +25,27 @@ public class AddObjectOnMouseClick : EditorWindow
         {
             // Chuyển scene
             EditorSceneManager.OpenScene(SceneUtility.GetScenePathByBuildIndex(GetBuildIndex(sceneName)));
-            EditorApplication.isPlaying = true;
         }
+    }
+
+    [MenuItem("Tools/Garage")]
+    public static void Garage()
+    {
+        // Tên của scene bạn muốn chuyển đến
+        string sceneName = "Garage";
+
+        // Kiểm tra xem scene có tồn tại trong Build Settings hay không
+        if (IsSceneInBuildSettings(sceneName))
+        {
+            // Chuyển scene
+            EditorSceneManager.OpenScene(SceneUtility.GetScenePathByBuildIndex(GetBuildIndex(sceneName)));
+        }
+    }
+    [MenuItem("Tools/Play")]
+    public static void Play()
+    {
+        Game();
+        EditorApplication.isPlaying = true;
     }
     // Kiểm tra xem scene có tồn tại trong Build Settings hay không
     static bool IsSceneInBuildSettings(string sceneName)

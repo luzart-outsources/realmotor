@@ -121,14 +121,18 @@ public class BaseMotorbike : MonoBehaviour
                 if (checkPointCol != null)
                 {
                     int currentIndex = checkPointCol.indexPoint;
-                    //if (this.currentIndex == GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1)
-                    //{
-                    //    if (!listIndex.Contains(currentIndex))
-                    //    {
-                    //        this.currentIndex = currentIndex;
-                    //    }
-                    //}
-                    //else
+                    if (currentIndex == GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1)
+                    {
+                        if (listIndex.Count >=3)
+                        {
+                            this.currentIndex = currentIndex;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
                     {
                         this.currentIndex = currentIndex;
                     }

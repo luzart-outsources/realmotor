@@ -24,13 +24,17 @@ public class ItemLeaderBoardUI : MonoBehaviour
         obPlayer.SetActive(isPlayer);
         string color = isPlayer ? BlackColor : WhiteColor;
         txtDistance.gameObject.SetActive(isPlayer);
-        txtIndex.text = $"<color={color}>{db.index}</color>";
+        txtIndex.text = $"<color={color}>{db.index+1}</color>";
         txtName.text = $"<color={color}>{db.name}</color>";
         txtDistance.text = $"{System.Math.Round(db.distance, 2)}";
-
+#if ENABLE_TEST_LEADERBOARD
+        txtRound.gameObject.SetActive(true); 
+        txtPoint.gameObject.SetActive(true); 
+        txtDisIndex.gameObject.SetActive(true); 
         txtRound.text = db.round.ToString();
         txtPoint.text = db.curIndex.ToString();
         txtDisIndex.text = $"{System.Math.Round(db.disFromIndex, 2)}";
+#endif
     }
 }
 [System.Serializable]

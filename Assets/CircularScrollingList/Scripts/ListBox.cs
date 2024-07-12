@@ -106,8 +106,9 @@ namespace AirFishLab.ScrollingList
         /// </summary>
         private void RegisterClickEvent()
         {
-            if (TryGetComponent<Button>(out var button)) {
-                button.onClick.AddListener(OnButtonClick);
+            if (TryGetComponent<Button>(out var button)) 
+            {
+                GameUtil.ButtonOnClick(button, OnButtonClick);
             }
         }
 

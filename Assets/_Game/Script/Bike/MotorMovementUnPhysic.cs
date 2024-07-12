@@ -233,8 +233,7 @@ public class MotorMovementUnPhysic : MotorMovement
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
-        //rb.velocity = velocity;
-        rb.AddExplosionForce(velocity.magnitude, transform.position, 5);
+        rb.velocity = velocity;
         rb.useGravity = true;
         rb.mass = 100;
         ActionCollisionWall?.Invoke(velocity);

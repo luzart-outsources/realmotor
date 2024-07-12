@@ -37,7 +37,7 @@ namespace MoreMountains.HighroadEngine
         public float _minimalSpeedForBrakes = 0.5f; // When vehicle is at least at this speed, AI can use brakes
         public float _maximalDistanceStuck = 0.5f; // Distance to consider vehicle stuck
 
-		protected List<Vector3> _AIWaypoints;
+		public List<Vector3> _AIWaypoints;
 		protected int _currentWaypoint;
 		protected float _direction = 0f;
 		protected float _acceleration = 0f;
@@ -54,7 +54,14 @@ namespace MoreMountains.HighroadEngine
         public override void Initialized(BaseMotorbike baseMotorbike)
         {
             base.Initialized(baseMotorbike);
-            _AIWaypoints = GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllWavePoint();
+            List<Vector3> ais = GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllWavePoint();
+            int length = ais.Count;
+            for (int i = 0; i < length; i++)
+            {
+                var item = ais[i];
+                ais[i] = new Vector3(item.x + Random.Range(-5, 5), item.y, item.z + Random.Range(-5, 5));
+            }
+            _AIWaypoints = ais;
             baseMotorBike.GetCurrentCheckPoint();
             _currentWaypoint = baseMotorbike.currentIndex;
             _targetWaypoint = _AIWaypoints[_currentWaypoint];

@@ -108,6 +108,36 @@ public class MotorSO : ScriptableObject
         }
     }
     [Button]
+    public void ChangeDataMotorBot()
+    {
+        int length = db_MotorBots.Length;
+        db_MotorBots[0].inforMotorbike.maxSpeed = 50;
+        for (int i = 0; i < length; i++)
+        {
+            InforMotorbike infor = new InforMotorbike();
+            if (i - 1 >= 0)
+            {
+                infor.maxSpeed = db_MotorBots[i - 1].inforMotorbike.maxSpeed + Random.Range(3,8);
+            }
+            else
+            {
+                infor.maxSpeed = 50;
+            }
+
+            infor.acceleration = 5 + 5 * i;
+            infor.handling = 20 + 5 * i;
+            infor.brake = 10 + 5 * i;
+            InforMotorbike inforUpgrade = new InforMotorbike();
+            inforUpgrade.maxSpeed = Random.Range(1, 4);
+            inforUpgrade.acceleration = Random.Range(1, 4);
+            inforUpgrade.handling = Random.Range(1, 4);
+            inforUpgrade.brake = Random.Range(1, 4);
+            db_MotorBots[i].inforMotorbike = infor;
+            db_MotorBots[i].inforUpgrade = inforUpgrade;
+
+        }
+    }
+    [Button]
     public void AddDB_MotorBot()
     {
         int length = 14;

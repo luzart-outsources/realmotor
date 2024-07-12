@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class UIResume : UIBase
 {
     public Button btnResume;
+    public Button btnRestart;
     public Button btnGarage;
     protected override void Setup()
     {
         base.Setup();
         GameUtil.ButtonOnClick(btnResume, Resume, true);
+        GameUtil.ButtonOnClick(btnRestart, Restart, true);
         GameUtil.ButtonOnClick(btnGarage, GoToGarage, true);
     }
     public override void Show(Action onHideDone)
@@ -22,6 +24,12 @@ public class UIResume : UIBase
     private void Resume()
     {
         Hide();
+    }
+    private void Restart()
+    {
+        GameManager.Instance.DisableCurrentMode();
+        UIManager.Instance.HideAll();
+        GameManager.Instance.PlayGameMode(EGameMode.Classic,DataManager.Instance.CurrentLevel);
     }
     private void GoToGarage()
     {

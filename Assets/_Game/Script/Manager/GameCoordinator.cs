@@ -277,9 +277,11 @@ public class GameCoordinator : MonoBehaviour
                     db.distance = Mathf.Abs(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
                 }
             }
+#if ENABLE_TEST_LEADERBOARD
             db.round = listLeaderBoard[i].round;
             db.curIndex = listLeaderBoard[i].currentIndex;
             db.disFromIndex = listLeaderBoard[i].DistanceForWavingPoint();
+#endif
             listDBLeaderBoardInGame.Add(db);
         }
     }

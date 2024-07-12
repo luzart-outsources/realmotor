@@ -1937,6 +1937,7 @@ MonoBehaviour:
   characterVisual: {fileID: 5159349871287881159}
   characterAnimation: {fileID: 45784357339987509}
   rbRagdoll: {fileID: 1880661410530814243}
+  factorRagdoll: 1
   baseMotorbike: {fileID: 0}
 --- !u!114 &5159349871287881159
 MonoBehaviour:
@@ -3344,9 +3345,11 @@ MonoBehaviour:
   eTeam: 0
   parentVisualMotor: {fileID: 8275714411754204416}
   soundMotorbike: {fileID: 3219073044407644697}
+  listIndex: 
   eState: 0
   parentCam: {fileID: 7764731331384706181}
   round: 0
+  isFall: 0
 --- !u!114 &5941011238601377135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3462,7 +3465,7 @@ MonoBehaviour:
   eLayer: 3
   isRaycast: 0
   boxCollider: {fileID: 7191590784543998876}
-  valueX: 0.5
+  valueX: 0.3
 --- !u!114 &231161997980726783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3529,7 +3532,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1d713665fd046a44697bf6441e1927ef, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3625,7 +3628,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b18700ed1b148614cbbe4696070d3c0f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0

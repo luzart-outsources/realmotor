@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         UIManager.Instance.ShowUI(UIName.Splash);
         LoadReferent();
         DataManager.Instance.Initialize();
@@ -27,6 +28,7 @@ public class GameManager : Singleton<GameManager>
         DataManager.Instance.BuyMotorbike(db);
         DataManager.Instance.BuyHelmet(0);
         DataManager.Instance.BuyBody(0);
+        
     }
     private void LoadReferent()
     {
