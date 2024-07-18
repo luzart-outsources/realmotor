@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39acfb6512ac47446b009a828499272a, type: 3}
   m_Name: Resources Buy SO
   m_EditorClassIdentifier: 
+  motorSO: {fileID: 11400000, guid: 929e76814661ceb4e9faeb13116c78eb, type: 2}
+  characterSO: {fileID: 11400000, guid: 760cb69252f8d1c4ea17cce6f42fc5c0, type: 2}
   dbResBuyBike:
   - titleBuy: 
     dataRes:
@@ -210,7 +212,7 @@ MonoBehaviour:
     valueBuy: 7000
     isHas: 0
   dbResBuyHelmet:
-  - titleBuy: Blue
+  - titleBuy: 
     dataRes:
       type:
         type: 3
@@ -218,13 +220,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 5162f8bbd5345ec45861dc42c9268242, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
-    isHas: 1
-  - titleBuy: Green
+    isHas: 0
+  - titleBuy: 
     dataRes:
       type:
         type: 3
@@ -232,13 +234,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 18ebe1de02904ca459aca7d58972a151, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0
-  - titleBuy: Purple
+  - titleBuy: 
     dataRes:
       type:
         type: 3
@@ -246,13 +248,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 0dfb695ec6fb9214a9c612debde3db8d, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
-    isHas: 1
-  - titleBuy: Red
+    isHas: 0
+  - titleBuy: 
     dataRes:
       type:
         type: 3
@@ -260,13 +262,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: b4dc88faa5efa5f4c848e9c63c116885, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
-    typeBuy: 2
-    valueBuy: 3
+    placeBuy: 3
+    typeBuy: 1
+    valueBuy: 1000
     isHas: 0
-  - titleBuy: White
+  - titleBuy: 
     dataRes:
       type:
         type: 3
@@ -274,13 +276,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: e76d563b51d4cdc4a9a6f12930390277, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0
-  - titleBuy: Yellow
+  - titleBuy: 
     dataRes:
       type:
         type: 3
@@ -288,14 +290,42 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 0af1b0cbe76a2b14290014d474ca29cf, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
+    typeBuy: 1
+    valueBuy: 1000
+    isHas: 0
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 3
+        id: 6
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 3
+    typeBuy: 1
+    valueBuy: 1000
+    isHas: 0
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 3
+        id: 7
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0
   dbResBuyBody:
-  - titleBuy: Blue
+  - titleBuy: 
     dataRes:
       type:
         type: 4
@@ -303,13 +333,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: e5646de96db35dd4abdb0362de309793, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
-    isHas: 1
-  - titleBuy: Green
+    isHas: 0
+  - titleBuy: 
     dataRes:
       type:
         type: 4
@@ -317,13 +347,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 1872cb7a3fee78c46b2a810f315e9c3a, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0
-  - titleBuy: Purple
+  - titleBuy: 
     dataRes:
       type:
         type: 4
@@ -331,13 +361,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 3bc06d5272619334ca06ce429f670bb8, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0
-  - titleBuy: Red
+  - titleBuy: 
     dataRes:
       type:
         type: 4
@@ -345,13 +375,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: ec3de29c4d77931419142b11a1258a03, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
-    typeBuy: 2
-    valueBuy: 3
+    placeBuy: 3
+    typeBuy: 1
+    valueBuy: 1000
     isHas: 0
-  - titleBuy: White
+  - titleBuy: 
     dataRes:
       type:
         type: 4
@@ -359,13 +389,13 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: f7c691b531109394d8eb409de42aff37, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0
-  - titleBuy: Yellow
+  - titleBuy: 
     dataRes:
       type:
         type: 4
@@ -373,9 +403,37 @@ MonoBehaviour:
       amount: 1
       idIcon: 0
       idBg: 0
-      spIcon: {fileID: 21300000, guid: 33888b71276a5f840ab250eefb55bcb5, type: 3}
+      spIcon: {fileID: 0}
       spBg: {fileID: 0}
-    placeBuy: 1
+    placeBuy: 3
+    typeBuy: 1
+    valueBuy: 1000
+    isHas: 0
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 4
+        id: 6
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 3
+    typeBuy: 1
+    valueBuy: 1000
+    isHas: 0
+  - titleBuy: 
+    dataRes:
+      type:
+        type: 4
+        id: 7
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 3
     typeBuy: 1
     valueBuy: 1000
     isHas: 0

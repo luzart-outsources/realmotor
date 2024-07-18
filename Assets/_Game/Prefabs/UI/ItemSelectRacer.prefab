@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3114403848626172836}
   - component: {fileID: 4023971577903637677}
   - component: {fileID: 3757620929661623633}
+  - component: {fileID: 700428676243279970}
   m_Layer: 5
   m_Name: imLock
   m_TagString: Untagged
@@ -75,6 +76,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &700428676243279970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714192396359001382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610d6c7af2f6c7e4b8bd9fd616c6506d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imSelect:
+  - {fileID: 3757620929661623633}
+  spSelect:
+  - {fileID: 21300000, guid: 19ad802c826e2884599dee40ff3e5060, type: 3}
+  spUnSelect:
+  - {fileID: 21300000, guid: 80aaccef8ce045646845f57f12d7a304, type: 3}
 --- !u!1 &3445346893258681111
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +105,7 @@ GameObject:
   - component: {fileID: 2544454353958549759}
   - component: {fileID: 5376648655353691031}
   - component: {fileID: 7205546240031712663}
+  - component: {fileID: 6680008894281380917}
   m_Layer: 5
   m_Name: imBg
   m_TagString: Untagged
@@ -150,6 +170,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6680008894281380917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445346893258681111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610d6c7af2f6c7e4b8bd9fd616c6506d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imSelect:
+  - {fileID: 7205546240031712663}
+  spSelect:
+  - {fileID: 21300000, guid: 10c2fd255fad8ab42bc80db38e179f0a, type: 3}
+  spUnSelect:
+  - {fileID: 21300000, guid: 6a11e6483865e4b4bb0f956352c634fc, type: 3}
 --- !u!1 &5713387875948076151
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +298,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10, y: -10}
+  m_SizeDelta: {x: -30, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5762073699896657412
 CanvasRenderer:
@@ -439,13 +477,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imIcon: {fileID: 7948874957742107497}
   obSelect: {fileID: 5713387875948076151}
-  imSelect: {fileID: 7205546240031712663}
-  spSelect: {fileID: 21300000, guid: 40fd17e31eac6d4488a21b81bfc0a3d7, type: 3}
-  spUnSelect: {fileID: 21300000, guid: 082f1223e96372a40b866b23c5343d05, type: 3}
-  obLock: {fileID: 1714192396359001382}
-  db_Motorbike:
-    idMotor: 0
-    levelUpgrades: 00000000000000000000000000000000
-    levelUpgrade: 0
-    isHas: 0
+  imSelect: {fileID: 6680008894281380917}
+  obLock: {fileID: 700428676243279970}
   currentIndex: 0
+  resourcesBuy:
+    titleBuy: 
+    dataRes:
+      type:
+        type: 0
+        id: 0
+      amount: 0
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    placeBuy: 0
+    typeBuy: 0
+    valueBuy: 0
+    isHas: 0

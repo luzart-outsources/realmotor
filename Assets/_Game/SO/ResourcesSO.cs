@@ -9,6 +9,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="ResourcesSO", menuName = "Config/ResourcesSO")]
 public class ResourcesSO : ScriptableObject
 {
+    public MotorSO motorSO;
+    public CharacterSO characterSO;
+    [Space]
     public DB_ResourcesBuy[] dbResBuyBike;
     public DB_ResourcesBuy[] dbResBuyHelmet;
     public DB_ResourcesBuy[] dbResBuyBody;
@@ -112,7 +115,7 @@ public class ResourcesSO : ScriptableObject
     private void SetDBResBuyHelmet()
     {
         List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
-        int length = 6;
+        int length = characterSO.helmetPaths.Length;
         for (int i = 0; i < length; i++)
         {
             DB_ResourcesBuy newA = new DB_ResourcesBuy();
@@ -120,7 +123,7 @@ public class ResourcesSO : ScriptableObject
             data.amount = 1;
             data.type = new DataTypeResource(RES_type.Helmet, i);
             newA.dataRes = data;
-            newA.placeBuy = PlaceBuy.Garage;
+            newA.placeBuy = PlaceBuy.Racer;
             newA.valueBuy = 1000;
             newA.typeBuy = TypeBuy.Gold;
             list.Add(newA);
@@ -131,7 +134,7 @@ public class ResourcesSO : ScriptableObject
     private void SetDBResBuyBody()
     {
         List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
-        int length = 6;
+        int length = characterSO.clothesPaths.Length;
         for (int i = 0; i < length; i++)
         {
             DB_ResourcesBuy newA = new DB_ResourcesBuy();
@@ -139,7 +142,7 @@ public class ResourcesSO : ScriptableObject
             data.amount = 1;
             data.type = new DataTypeResource(RES_type.Body, i);
             newA.dataRes = data;
-            newA.placeBuy = PlaceBuy.Garage;
+            newA.placeBuy = PlaceBuy.Racer;
             newA.valueBuy = 1000;
             newA.typeBuy = TypeBuy.Gold;
             list.Add(newA);
@@ -165,6 +168,7 @@ public enum PlaceBuy
     None = 0,
     Garage = 1,
     Upgrade =2,
+    Racer = 3,
 }
 public enum TypeBuy
 {

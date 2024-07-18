@@ -14,30 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helmetPaths:
   - id: 0
-    path: Blue
+    path: 0
   - id: 1
-    path: Green
+    path: 1
   - id: 2
-    path: Purple
+    path: 2
   - id: 3
-    path: Red
+    path: 3
   - id: 4
-    path: White
+    path: 4
   - id: 5
-    path: Yellow
+    path: 5
+  - id: 6
+    path: 6
+  - id: 7
+    path: 7
   clothesPaths:
   - id: 0
-    path: Blue
+    path: 0
   - id: 1
-    path: Green
+    path: 1
   - id: 2
-    path: Purple
+    path: 2
   - id: 3
-    path: Red
+    path: 3
   - id: 4
-    path: White
+    path: 4
   - id: 5
-    path: Yellow
+    path: 5
+  - id: 6
+    path: 6
+  - id: 7
+    path: 7
   dB_CharacterBots:
   - id: 0
     db_Character:
@@ -65,121 +73,233 @@ MonoBehaviour:
       idClothes: 5
   - id: 6
     db_Character:
-      idHelmet: 1
-      idClothes: 0
+      idHelmet: 0
+      idClothes: 6
   - id: 7
     db_Character:
-      idHelmet: 1
-      idClothes: 1
+      idHelmet: 0
+      idClothes: 7
   - id: 8
     db_Character:
       idHelmet: 1
-      idClothes: 2
+      idClothes: 0
   - id: 9
     db_Character:
       idHelmet: 1
-      idClothes: 3
+      idClothes: 1
   - id: 10
     db_Character:
       idHelmet: 1
-      idClothes: 4
+      idClothes: 2
   - id: 11
     db_Character:
       idHelmet: 1
-      idClothes: 5
+      idClothes: 3
   - id: 12
     db_Character:
-      idHelmet: 2
-      idClothes: 0
+      idHelmet: 1
+      idClothes: 4
   - id: 13
     db_Character:
-      idHelmet: 2
-      idClothes: 1
+      idHelmet: 1
+      idClothes: 5
   - id: 14
     db_Character:
-      idHelmet: 2
-      idClothes: 2
+      idHelmet: 1
+      idClothes: 6
   - id: 15
     db_Character:
-      idHelmet: 2
-      idClothes: 3
+      idHelmet: 1
+      idClothes: 7
   - id: 16
     db_Character:
       idHelmet: 2
-      idClothes: 4
+      idClothes: 0
   - id: 17
     db_Character:
       idHelmet: 2
-      idClothes: 5
+      idClothes: 1
   - id: 18
     db_Character:
-      idHelmet: 3
-      idClothes: 0
+      idHelmet: 2
+      idClothes: 2
   - id: 19
     db_Character:
-      idHelmet: 3
-      idClothes: 1
+      idHelmet: 2
+      idClothes: 3
   - id: 20
     db_Character:
-      idHelmet: 3
-      idClothes: 2
+      idHelmet: 2
+      idClothes: 4
   - id: 21
     db_Character:
-      idHelmet: 3
-      idClothes: 3
+      idHelmet: 2
+      idClothes: 5
   - id: 22
     db_Character:
-      idHelmet: 3
-      idClothes: 4
+      idHelmet: 2
+      idClothes: 6
   - id: 23
     db_Character:
-      idHelmet: 3
-      idClothes: 5
+      idHelmet: 2
+      idClothes: 7
   - id: 24
     db_Character:
-      idHelmet: 4
+      idHelmet: 3
       idClothes: 0
   - id: 25
     db_Character:
-      idHelmet: 4
+      idHelmet: 3
       idClothes: 1
   - id: 26
     db_Character:
-      idHelmet: 4
+      idHelmet: 3
       idClothes: 2
   - id: 27
     db_Character:
-      idHelmet: 4
+      idHelmet: 3
       idClothes: 3
   - id: 28
     db_Character:
-      idHelmet: 4
+      idHelmet: 3
       idClothes: 4
   - id: 29
     db_Character:
-      idHelmet: 4
+      idHelmet: 3
       idClothes: 5
   - id: 30
     db_Character:
+      idHelmet: 3
+      idClothes: 6
+  - id: 31
+    db_Character:
+      idHelmet: 3
+      idClothes: 7
+  - id: 32
+    db_Character:
+      idHelmet: 4
+      idClothes: 0
+  - id: 33
+    db_Character:
+      idHelmet: 4
+      idClothes: 1
+  - id: 34
+    db_Character:
+      idHelmet: 4
+      idClothes: 2
+  - id: 35
+    db_Character:
+      idHelmet: 4
+      idClothes: 3
+  - id: 36
+    db_Character:
+      idHelmet: 4
+      idClothes: 4
+  - id: 37
+    db_Character:
+      idHelmet: 4
+      idClothes: 5
+  - id: 38
+    db_Character:
+      idHelmet: 4
+      idClothes: 6
+  - id: 39
+    db_Character:
+      idHelmet: 4
+      idClothes: 7
+  - id: 40
+    db_Character:
       idHelmet: 5
       idClothes: 0
-  - id: 31
+  - id: 41
     db_Character:
       idHelmet: 5
       idClothes: 1
-  - id: 32
+  - id: 42
     db_Character:
       idHelmet: 5
       idClothes: 2
-  - id: 33
+  - id: 43
     db_Character:
       idHelmet: 5
       idClothes: 3
-  - id: 34
+  - id: 44
     db_Character:
       idHelmet: 5
       idClothes: 4
-  - id: 35
+  - id: 45
     db_Character:
       idHelmet: 5
       idClothes: 5
+  - id: 46
+    db_Character:
+      idHelmet: 5
+      idClothes: 6
+  - id: 47
+    db_Character:
+      idHelmet: 5
+      idClothes: 7
+  - id: 48
+    db_Character:
+      idHelmet: 6
+      idClothes: 0
+  - id: 49
+    db_Character:
+      idHelmet: 6
+      idClothes: 1
+  - id: 50
+    db_Character:
+      idHelmet: 6
+      idClothes: 2
+  - id: 51
+    db_Character:
+      idHelmet: 6
+      idClothes: 3
+  - id: 52
+    db_Character:
+      idHelmet: 6
+      idClothes: 4
+  - id: 53
+    db_Character:
+      idHelmet: 6
+      idClothes: 5
+  - id: 54
+    db_Character:
+      idHelmet: 6
+      idClothes: 6
+  - id: 55
+    db_Character:
+      idHelmet: 6
+      idClothes: 7
+  - id: 56
+    db_Character:
+      idHelmet: 7
+      idClothes: 0
+  - id: 57
+    db_Character:
+      idHelmet: 7
+      idClothes: 1
+  - id: 58
+    db_Character:
+      idHelmet: 7
+      idClothes: 2
+  - id: 59
+    db_Character:
+      idHelmet: 7
+      idClothes: 3
+  - id: 60
+    db_Character:
+      idHelmet: 7
+      idClothes: 4
+  - id: 61
+    db_Character:
+      idHelmet: 7
+      idClothes: 5
+  - id: 62
+    db_Character:
+      idHelmet: 7
+      idClothes: 6
+  - id: 63
+    db_Character:
+      idHelmet: 7
+      idClothes: 7

@@ -22,12 +22,13 @@ public class PopUpUpgradeGarage : MonoBehaviour
         txtName.text = db.nameMotor;
         txtNameModel.text = db.nameModelMotor;
         txtRank.text = $"Rank-{db.rank}";
-        ShowData(itemUpgradeGarageRefs[0], "Top Speed", db.inforMotorbike.maxSpeed, db.inforUpgrade.maxSpeed, isMaxData[0]);
-        ShowData(itemUpgradeGarageRefs[1], "Acceleration", db.inforMotorbike.acceleration, db.inforUpgrade.acceleration, isMaxData[1]);
-        ShowData(itemUpgradeGarageRefs[2], "Handling", db.inforMotorbike.handling, db.inforUpgrade.handling, isMaxData[2]);
-        ShowData(itemUpgradeGarageRefs[3], "Brake", db.inforMotorbike.brake, db.inforUpgrade.brake, isMaxData[3]);
+        InforMotorbike inforMax = db.GetInforMotorbikeMax();
+        ShowData(itemUpgradeGarageRefs[0], "Top Speed", db.inforMotorbike.maxSpeed,db.inforUpgrade.maxSpeed, inforMax.maxSpeed, isMaxData[0]);
+        ShowData(itemUpgradeGarageRefs[1], "Acceleration", db.inforMotorbike.acceleration,  db.inforUpgrade.acceleration,inforMax.acceleration, isMaxData[1]);
+        ShowData(itemUpgradeGarageRefs[2], "Handling", db.inforMotorbike.handling, db.inforUpgrade.handling,inforMax.handling, isMaxData[2]);
+        ShowData(itemUpgradeGarageRefs[3], "Brake", db.inforMotorbike.brake, db.inforUpgrade.brake,inforMax.brake , isMaxData[3]);
     }
-    private void ShowData(ItemUpgradeGarageRef itemUpgrade, string title, float curData, float upGradeData,bool isMaxData)
+    private void ShowData(ItemUpgradeGarageRef itemUpgrade, string title, float curData, float upGradeData,float maxData ,bool isMaxData)
     {
         itemUpgrade.txtTitle.text = title;
         itemUpgrade.txtCurValue.text = curData.ToString();
@@ -40,7 +41,7 @@ public class PopUpUpgradeGarage : MonoBehaviour
         }
         else
         {
-            itemUpgrade.txtUpgrade.text = upGradeData.ToString();
+            itemUpgrade.txtUpgrade.text = maxData.ToString();
             SetLine(itemUpgrade.rtUpgrade, upGradeData, itemUpgrade.maxRange);
         }
         itemUpgrade.obUp.SetActive(!isMaxData);

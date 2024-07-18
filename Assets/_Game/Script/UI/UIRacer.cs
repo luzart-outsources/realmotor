@@ -70,6 +70,7 @@ public class UIRacer : UIBase
         scrollViewHelmet.circular.SelectContentID(index);
         itemCache = (ItemScrollViewRacer)scrollViewHelmet.circular.GetFocusingBox();
         RefreshUI();
+        garageManager.ChangeCameraHeader();
     }
     public void ClickClothes(ButtonSelect btn,int a)
     {
@@ -92,6 +93,7 @@ public class UIRacer : UIBase
         itemCache = (ItemScrollViewRacer)scrollViewBody.circular.GetFocusingBox();
         itemCache.SelectMotorBike(true);
         RefreshUI();
+        garageManager.ChangeCameraBody();
     }
     public void ClickItem(ListBox listBoxOld, ListBox listBoxNew)
     {
@@ -225,6 +227,7 @@ public class UIRacer : UIBase
             case RES_type.Helmet:
                 {
                     DataManager.Instance.GameData.curCharacter.idHelmet = resourcesBuy.dataRes.type.id;
+
                     break;
                 }
             case RES_type.Body:
@@ -233,6 +236,7 @@ public class UIRacer : UIBase
                     break;
                 }
         }
+        DataManager.Instance.SaveGameData();
         RefreshUI();
     }
     private void SetStatusIfDontBuy()

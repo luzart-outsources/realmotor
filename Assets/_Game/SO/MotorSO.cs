@@ -202,6 +202,11 @@ public class DB_Motor
         infor.brake = inforMotorbike.brake + inforUpgrade.brake * levelUpgrade[3];
         return infor;
     }
+    public InforMotorbike GetInforMotorbikeMax()
+    {
+        int[] levelUpgrades = new int[] { 5, 5, 5, 5 };
+        return GetInforMotorbike(levelUpgrades);
+    }
 
     public DB_Motor Clone()
     {

@@ -38,6 +38,8 @@ public class UIManager : Singleton<UIManager>
             {UIName.Resume,"2,0,UIResume" },
             {UIName.Racer,"0,0,UIRacer" },
             {UIName.Upgrade,"0,0,UIUpgrade" },
+            {UIName.SelectMode,"0,0,UISelectMode" },
+            {UIName.SelectLevel,"0,0,UISelect" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -90,6 +92,8 @@ public class UIManager : Singleton<UIManager>
                     UIGarage uiGarage = ShowUI<UIGarage>(UIName.Garage);
                     uiGarage.garageManager = garage;
                     garage.SetActiveMotorCharacter(true);
+                    garage.OnInScreenUIGarage();
+                    garage.ChangeCameraMotor();
                     uiGarage.RefreshUI();
                     break;
                 }
@@ -99,6 +103,7 @@ public class UIManager : Singleton<UIManager>
                     UIRacer uiRacer = ShowUI<UIRacer>(UIName.Racer);
                     uiRacer.garageManager = garage;
                     garage.SetActiveMotorCharacter(true);
+                    garage.OnInScreenUIRacer();
                     uiRacer.RefreshUIOnShow();
                     break;
                 }
@@ -317,6 +322,8 @@ public enum UIName
     AddCoin = 11,
     Racer = 12,
     Upgrade = 13,
+    SelectMode = 14,
+    SelectLevel = 15,
 }
 public class DataUIBase
 {

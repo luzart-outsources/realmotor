@@ -11,10 +11,8 @@ public class ItemScrollViewRacer : ListBox
 {
     public Image imIcon;
     public GameObject obSelect;
-    public Image imSelect;
-    public Sprite spSelect;
-    public Sprite spUnSelect;
-    public GameObject obLock;
+    public BaseSelect imSelect;
+    public BaseSelect obLock;
 
     public int currentIndex;
     public DB_ResourcesBuy resourcesBuy;
@@ -27,29 +25,14 @@ public class ItemScrollViewRacer : ListBox
     }
     public void SelectMotorBike(bool status)
     {
-        if (status)
-        {
-            Selected();
-        }
-        else
-        {
-            UnSelected();
-        }
+        obSelect.SetActive(status);
+        imSelect.Select(status);
+        obLock.Select(status);
     }
     public void SetLock(bool isStatus)
     {
         if (obLock != null)
-            obLock.SetActive(isStatus);
-    }
-    private void Selected()
-    {
-        obSelect.SetActive(true);
-        imSelect.sprite = spSelect;
-    }
-    private void UnSelected()
-    {
-        obSelect.SetActive(false);
-        imSelect.sprite = spUnSelect;
+            obLock.gameObject.SetActive(isStatus);
     }
 
     protected override void UpdateDisplayContent(IListContent listContent)

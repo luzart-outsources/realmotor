@@ -56,7 +56,7 @@ MonoBehaviour:
   deltaTail: 10
   visualFrontWheel: {fileID: 1076475161212966817}
   visualBackWheel: {fileID: 6704967351094433460}
-  tyreRotation: 1000
+  tyreRotations: 200
   skidWidth: 0.05
   skidMark1: {fileID: 3871273248780769962}
   skidMark2: {fileID: 7386366821654053975}
@@ -71,6 +71,7 @@ MonoBehaviour:
     acceleration: 20
     handling: 30
     brake: 50
+  baseMotor: {fileID: 0}
 --- !u!1001 &28428399563034608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +384,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339120387, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745657887523, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745657887523, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745657887529, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745657887529, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
+      propertyPath: m_ReflectionProbeUsage
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

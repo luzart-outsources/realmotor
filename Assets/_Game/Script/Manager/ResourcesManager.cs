@@ -52,9 +52,9 @@ public class ResourcesManager : Singleton<ResourcesManager>
         string path = DataManager.Instance.characterSO.GetPathHelmet(id);
         return Resources.Load<Texture2D>(path);
     }
-    public Texture2D LoadBody(int id)
+    public Texture2D[] LoadBody(int id)
     {
         string path = DataManager.Instance.characterSO.GetPathClothes(id);
-        return Resources.Load<Texture2D>(path);
+        return Resources.LoadAll<Texture2D>(path);
     }
 }

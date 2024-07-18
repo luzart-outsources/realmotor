@@ -1,0 +1,64 @@
+Realistic Car Shaders - Mobile: Release notes:
+
+v1.7
+- Fixed a bug when enabling/disabling reflection on diffuse texture not worked properly
+- Re-designed the car model from scratch to a more recent looking car model
+- Improved all paint shaders reaction to scene lighting
+- Improved the script for rotating the camera used for rendering reflections
+- Improved the orbit camera controller made for demo scenes
+- Added a new shader designed for car lamps
+- Added textures for car lamps
+- Added an option allowing users to customize the metallic appearance of certain paintable materials
+- Added more example materials
+- Slightly modified all demo scenes
+- Added a new demo controller script for demo scene
+- Other small changes
+- Updated the Documentation.pdf
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.6
+- Added a script that will help changing reflection type on runtime
+- Added a demo scene for demonstrating the above mentioned feature
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.5
+- Added an option to enable reflection on diffuse texture
+- Added namespaces to scripts, if you're getting an error because of this, just add "using SkrilStudio;" to your script(s) that got error(s)
+- Improved "rusty_bump" texture
+- Small changes in editor scripts
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.4
+- Added a new shader for blurry wheels
+- Added blurry wheel effect to Drag Racing demo scenes
+- Added an option to Holographic shaders to enable/disable decal highlight (previously it was the same as "always on" now)
+- Improved the code for flakes, now they are way nicer and more realistic
+- Improved decal sharpnes, no outline visible anymore around decals
+- Changed plastic textures colour from black/silver to white, now plastic materials color can be changed to any color
+- Added some new example plastic materials
+- Small changes in included decal textures, one decal texture has been completely remade
+- Small changes and bugfixes in demo scenes
+- Updated documentation
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.3
+- Added support for assigned cubemaps
+- Updated documentation
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.2
+- Added support for Unity 2017.1 (but minimum 2018 version is still recommended to experience this asset fully)
+- Added 2 simple drag racing demo scenes
+- Added building textures and demo controller scripts for drag racing scenes
+- Removed cubemap rotation feature had to remove to make this asset compatible with Unity 2017.1 this feature was never used in any demo scenes)
+- Modified some parts of the m4 car's 3D model
+- Updated documentation
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.1
+- Modified "Both Reflections" in all shaders, now realtime reflection will be more visible on custom cubemap's transparent part and less likely will be visible on non transparent parts of custom cubemap
+- Added a new video tutorial to Documentation.pdf about how to bake custom cubemap for "Both Reflections"
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.0
+First release.

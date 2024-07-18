@@ -142,7 +142,6 @@ public class UIGarage : UIBase
     public override void RefreshUI()
     {
         base.RefreshUI();
-
         DB_Motor dbGet = DataManager.Instance.motorSO.GetDBMotor(itemCache.db_Motorbike.idMotor).Clone();
         int[] levelUpgrade = new int[4];
         bool isHasData = DataManager.Instance.IsHasMotor(itemCache.db_Motorbike.idMotor, ref levelUpgrade);

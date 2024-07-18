@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class CharacterVisual : MonoBehaviour
 {
+    [Space, Header("Skin Mesh Animation")]
     [SerializeField]
-    private SkinnedMeshRenderer skinMeshAnim;
+    private SkinnedMeshRenderer[] skinMeshHeader;
     [SerializeField]
-    private SkinnedMeshRenderer skinMeshRagdoll;
+    private SkinnedMeshRenderer[] skinMeshBody;
+    [SerializeField]
+    private SkinnedMeshRenderer[] skinMeshBody1;
+    [Space, Header("Skin Mesh Ragdoll")]
+    [SerializeField]
+    private SkinnedMeshRenderer[] skinMeshHeaderRd;
+    [SerializeField]
+    private SkinnedMeshRenderer[] skinMeshBodyRd;
+    [SerializeField]
+    private SkinnedMeshRenderer[] skinMeshBody1Rd;
     private DB_Character character;
     public void InitDBCharacter(DB_Character character)
     {
@@ -17,19 +27,27 @@ public class CharacterVisual : MonoBehaviour
     }
     public void ChangeHeader()
     {
-        ChangeMainTexture(skinMeshAnim, 1, ResourcesManager.Instance.LoadHelmet(character.idHelmet));
-        ChangeMainTexture(skinMeshRagdoll, 1, ResourcesManager.Instance.LoadHelmet(character.idHelmet));
+        var tx2D = ResourcesManager.Instance.LoadHelmet(character.idHelmet);
+        ChangeMainTexture(skinMeshHeader, 0, tx2D);
+        ChangeMainTexture(skinMeshHeaderRd, 0, tx2D);
     }
     public void ChangeBody()
     {
-        ChangeMainTexture(skinMeshAnim, 0, ResourcesManager.Instance.LoadBody(character.idClothes));
-        ChangeMainTexture(skinMeshRagdoll, 0, ResourcesManager.Instance.LoadBody(character.idClothes));
+        var array = ResourcesManager.Instance.LoadBody(character.idClothes);
+        ChangeMainTexture(skinMeshBody, 0, array[0]);
+        ChangeMainTexture(skinMeshBodyRd, 0, array[0]);
+        ChangeMainTexture(skinMeshBody1, 0, array[1]);
+        ChangeMainTexture(skinMeshBody1Rd, 0, array[1]);
     }
-    private void ChangeMainTexture(SkinnedMeshRenderer skinMeshAnim,int index, Texture2D tx2D)
+    private void ChangeMainTexture(SkinnedMeshRenderer[] skinMeshAnim,int index, Texture2D tx2D)
     {
-        if(skinMeshAnim != null)
+        if (skinMeshAnim != null && skinMeshAnim.Length > 0 )
         {
-            skinMeshAnim.materials[index].mainTexture = tx2D;
+            for (int i = 0; i < skinMeshAnim.Length; i++)
+            {
+                int idx = i;
+                skinMeshAnim[idx].materials[index].mainTexture = tx2D;
+            }
         }
     }
 }

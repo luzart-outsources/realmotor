@@ -9,7 +9,8 @@ public class ItemSelectMotorbikeUI : ListBox
     public Image imMotorBike;
     public Button btn;
     public GameObject obSelect;
-    public GameObject obLock;
+    public BaseSelect baseSelectBg;
+    public BaseSelect obLock;
     //public Action<ItemSelectMotorbikeUI> actionMotor;
 
     public DB_Motorbike db_Motorbike = null;
@@ -30,27 +31,14 @@ public class ItemSelectMotorbikeUI : ListBox
     }
     public void SelectMotorBike(bool status)
     {
-        if(status)
-        {
-            Selected();
-        }
-        else
-        {
-            UnSelected();
-        }
+        obSelect.SetActive(status);
+        baseSelectBg.Select(status);
+        obLock.Select(status);
     }
     public void SetLock(bool isStatus)
     {
         if(obLock != null)
-        obLock.SetActive(isStatus);
-    }
-    private void Selected()
-    {
-        obSelect.SetActive(true);
-    }
-    private void UnSelected()
-    {
-        obSelect.SetActive(false);
+            obLock.gameObject.SetActive(isStatus);
     }
 
     protected override void UpdateDisplayContent(IListContent listContent)
