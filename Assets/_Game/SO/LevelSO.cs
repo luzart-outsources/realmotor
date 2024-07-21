@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/LevelSO", fileName ="LevelSO")]
@@ -9,6 +10,7 @@ public class LevelSO : ScriptableObject
     private DB_Level[] db_Levels;
 
     private Dictionary<int, DB_Level> dictLevel = new Dictionary<int, DB_Level>();
+    private Dictionary<ThemeLevel, List<DB_Level>> dictThemeLevel = new Dictionary<ThemeLevel, List<DB_Level>>();
     public DB_Level GetDB_Level(int level)
     {
         InitDBLevel();
@@ -31,22 +33,50 @@ public class LevelSO : ScriptableObject
             dictLevel.Add(db.level, db);
         }
     }
+    private void InitThemeLevel()
+    {
+        if(dictThemeLevel != null && dictThemeLevel.Count > 0)
+        {
+            return;
+        }
+        dictThemeLevel.Clear();
+        for(int i = 0;i < db_Levels.Length; i++)
+        {
+            var db = db_Levels[i];
+            if (!dictThemeLevel.ContainsKey(db.themeLevel))
+            {
+                dictThemeLevel.Add(db.themeLevel, new List<DB_Level>());
+            }
+            dictThemeLevel[db.themeLevel].Add(db);
+        }
+    }
+    public List<DB_Level> GetAllDBThemeLevel(ThemeLevel themeLevel)
+    {
+        InitThemeLevel();
+        return dictThemeLevel[themeLevel];
+    }
     public EnvironmentSO environmentSO;
+    public MotorbikeSO motorbikeSO;
     [Sirenix.OdinInspector.Button]
     private void ResetLevel()
     {
         List<DB_Level> list = new List<DB_Level>();
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 45; i++)
         {
             DB_Level level = new DB_Level();
             level.level = i;
             level.idEnvironment = i % environmentSO.allEnvironment.Length;
-            level.lapRequire = i / 5 + 1;
+            level.lapRequire = i / 10 + 1;
+            int randomLevel = Random.Range(6, 8);
+            level.themeLevel = (ThemeLevel)(i / randomLevel);
             int num = Random.Range(3, 7);
             level.idBot = new int[num];
+            int maxMotor = motorbikeSO.db_Bots.Length;
             for (int j = 0; j < num; j++)
             {
-                level.idBot[j] = Random.Range(0, i*2+4);
+                int Min = Mathf.Clamp(i*2-4, 0, maxMotor);
+                int Max = Mathf.Clamp(i*2+4, 0, maxMotor);
+                level.idBot[j] = Random.Range(Min, Max);
             }
             level.indexStart = Random.Range(0, num+2);
             level.indexStartBot = new int[num];
@@ -72,10 +102,22 @@ public class DB_Level
     public int level;
     public int idEnvironment;
     public int lapRequire = 1;
-
+    public ThemeLevel themeLevel;
+    public Sprite spIcon;
+    [Header("BOT")]
     public int[] idBot;
-
     [Header("StartIndex")]
     public int indexStart = 5;
     public int[] indexStartBot;
+}
+[System.Serializable]
+public enum ThemeLevel
+{
+    Amateur = 0,
+    SemiPro = 1,
+    Pro =2,
+    Expert = 3,
+    Master = 4,
+    WorldClass =5,
+    Legend =6,
 }

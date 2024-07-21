@@ -28,7 +28,6 @@ public class ButtonWatchAdsUI : MonoBehaviour
     }
     private void OnShowFailed()
     {
-        var ui = UIManager.Instance.ShowUI<UIToast>(UIName.Toast);
-        ui.Init(KEYTOAST.NoInternetLoadAds);
+        UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
     }
 }

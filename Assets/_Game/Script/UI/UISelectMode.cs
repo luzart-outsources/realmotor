@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UISelectMode : UIBase
 {
+
     public Button btnSinglePlay;
     public Button btnChallenge;
     public Button btnPlayOther;

@@ -27,7 +27,7 @@ public class UIGameplay : UIBase
 
     private void ClickPause()
     {
-        UIManager.Instance.ShowUI(UIName.Resume);
+        var ui = UIManager.Instance.ShowUI<UIResume>(UIName.Resume);
     }
     public override void Show(Action onHideDone)
     {

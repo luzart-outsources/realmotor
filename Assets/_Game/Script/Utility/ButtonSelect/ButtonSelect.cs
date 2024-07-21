@@ -8,13 +8,13 @@ public class ButtonSelect : MonoBehaviour
     public BaseSelect[] baseSelects; 
 
     public bool IsAnim = true;
-    private int index;
-    private Action<ButtonSelect, int> ActionSelect;
+    public int index;
+    private Action<ButtonSelect> ActionSelect;
     private void Start()
     {
         GameUtil.ButtonOnClick(btn, ClickAction, IsAnim);
     }
-    public void InitAction(int index ,Action<ButtonSelect, int> action)
+    public virtual void InitAction(int index ,Action<ButtonSelect> action)
     {
         this.index = index;
         this.ActionSelect = action;
@@ -22,7 +22,7 @@ public class ButtonSelect : MonoBehaviour
     }
     private void ClickAction()
     {
-        ActionSelect?.Invoke(this, index);
+        ActionSelect?.Invoke(this);
         Select(true);
     }
     public void Select(bool isSelect)
@@ -38,6 +38,5 @@ public class ButtonSelect : MonoBehaviour
                 }
             }
         }
-
     }
 }

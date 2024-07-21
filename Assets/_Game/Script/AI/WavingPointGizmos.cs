@@ -19,6 +19,14 @@ public class WavingPointGizmos : MonoBehaviour
         index = index % allWavePoint.Length;
         return allWavePoint[index].transform;
     }
+    public int GetLastIndex()
+    {
+        return allWavePoint.Length - 1;
+    }
+    public Transform GetLastTransform()
+    {
+        return allWavePoint[GetLastIndex()].transform;
+    }
     [Button]
     public void AddWavingPointChildren()
     {

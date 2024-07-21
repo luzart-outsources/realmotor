@@ -14,6 +14,16 @@ public class DB_ResourceSO : ScriptableObject
     public DataResource dataResPosUpgrade;
     public DataResource dataResPosUpgradeLevel;
 
+    [Space, Header("Join")]
+    public DataResource dataResJoin;
+    [Space, Header("Result")]
+    public DataResource dataResResultMin;
+    public DataResource dataResResultMax;
+
+    public DataResource GetDataResResult()
+    {
+        return new DataResource(dataResResultMax.type,Random.Range(dataResResultMin.amount, dataResResultMax.amount));
+    }
 
     public DataResource GetDataResourceBaseLevel(int level)
     {

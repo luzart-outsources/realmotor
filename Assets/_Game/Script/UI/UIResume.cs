@@ -29,7 +29,7 @@ public class UIResume : UIBase
     {
         GameManager.Instance.DisableCurrentMode();
         UIManager.Instance.HideAll();
-        GameManager.Instance.PlayGameMode(EGameMode.Classic,DataManager.Instance.CurrentLevel);
+        GameManager.Instance.PlayGameMode(EGameMode.Classic, GameManager.Instance.gameCoordinator.db_Level.level);
     }
     private void GoToGarage()
     {

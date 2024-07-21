@@ -44,7 +44,7 @@ public class UISettings : UIBase
             }
         }
     }
-    private void ClickQuality(ButtonSelect btn,int index)
+    private void ClickQuality(ButtonSelect btn)
     {
         if (cacheQuality != null)
         {
@@ -53,7 +53,7 @@ public class UISettings : UIBase
         cacheQuality = btn;
         cacheQuality.Select(true);
     }
-    private void ClickControls(ButtonSelect btn, int index)
+    private void ClickControls(ButtonSelect btn)
     {
         if (cacheControls != null)
         {

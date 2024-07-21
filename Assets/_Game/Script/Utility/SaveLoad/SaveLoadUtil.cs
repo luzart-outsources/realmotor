@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using master;
 using Newtonsoft.Json;
 using UnityEditor;
 

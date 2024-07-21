@@ -47,10 +47,10 @@ public class UIRacer : UIBase
     }
     public void RefreshUIOnShow() 
     {
-        ClickRacer(null,0);
+        ClickRacer(null);
         garageManager.SpawnMotorVisual(DataManager.Instance.GameData.idCurMotor);
     }
-    public void ClickRacer(ButtonSelect btn, int ia)
+    public void ClickRacer(ButtonSelect btn)
     {
         isOnRacer = true;
         btnRacer.Select(true);
@@ -72,7 +72,7 @@ public class UIRacer : UIBase
         RefreshUI();
         garageManager.ChangeCameraHeader();
     }
-    public void ClickClothes(ButtonSelect btn,int a)
+    public void ClickClothes(ButtonSelect btn)
     {
         isOnRacer = false;
         btnRacer.Select(false);
@@ -380,8 +380,7 @@ public class UIRacer : UIBase
     }
     private void OnFailedShowAds()
     {
-        var ui = UIManager.Instance.ShowUI<UIToast>(UIName.Toast);
-        ui.Init(KEYTOAST.NoInternetLoadAds);
+        UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
     }
     private void BuyIAP()
     {

@@ -22,7 +22,7 @@ public class BaseMotorbike : MonoBehaviour
     public ETeam eTeam;
     [SerializeField]
     private Transform parentVisualMotor;
-    private DB_Motorbike dbMotorbike;
+    public DB_Motorbike dbMotorbike;
     private DB_Character dbCharacter;
 
     public SoundMotorbike soundMotorbike;
@@ -34,6 +34,8 @@ public class BaseMotorbike : MonoBehaviour
     public int round = 0;
     public float Speed => baseMotor.Speed;
     public bool isFall = false;
+
+    public float timePlay;
 
     public Vector3 velocity
     {
@@ -209,6 +211,7 @@ public class BaseMotorbike : MonoBehaviour
 
     public void OnFinishRace()
     {
+        this.timePlay = GameManager.Instance.gameCoordinator.timePlay;
         eState = EStateMotorbike.Finish;
         if (eTeam == ETeam.AI)
         {

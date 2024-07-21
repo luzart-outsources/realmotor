@@ -20,4 +20,5 @@ public static class KEYADS
     public const string ClickButtonWatchAdsGetBike = "click_btn_watch_ads_get_bike";
     public const string ClickButtonWatchAdsGetHelmet = "click_btn_watch_ads_get_helmet";
     public const string ClickButtonWatchAdsGetBody = "click_btn_watch_ads_get_body";
+    public const string ClickButtonXRewardOnWin = "click_btn_x_reward_on_win";
 }

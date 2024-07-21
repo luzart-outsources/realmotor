@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class GameCoordinator : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class GameCoordinator : MonoBehaviour
 
 
     public int countLeaderBoard = 0;
-    private DB_Level db_Level;
+    public DB_Level db_Level;
 
 
     public float timePlay = 0;
@@ -205,6 +206,7 @@ public class GameCoordinator : MonoBehaviour
     {
         CameraManager.Instance.helicopterCamera.animator.enabled = false;
         CameraManager.Instance.helicopterCamera.transform.SetParent(CameraManager.Instance.transform);
+        OnCompleteDataLeaderboard();
         StopUpdateLeaderBoard();
         DestroyAllBike();
         void DestroyAllBike()
@@ -215,6 +217,31 @@ public class GameCoordinator : MonoBehaviour
                 Destroy(listBot[i].gameObject);
                 listBot.RemoveAt(0);
             }
+        }
+    }
+    private List<DataItemWinLeaderboardUI> listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
+    private void OnCompleteDataLeaderboard()
+    {
+        List<DataItemWinLeaderboardUI> list = new List<DataItemWinLeaderboardUI>();
+        List<BaseMotorbike> listRemain = listLeaderBoard.Except(listResult).ToList();
+        int length = listResult.Count;
+        int countIndex = 0;
+        for (int i = 0; i < length; i++)
+        {
+            var item = listResult[i];
+            DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
+            data.index = (countIndex + 1).ToString();
+            data.time = GameUtil.FloatTimeSecondToUnixTime(item.timePlay);
+            if (item.eTeam == ETeam.Player)
+            {
+
+            }
+            else
+            {
+
+            }
+            list.Add(data);
+            countIndex++;
         }
     }
     private void InitLeaderBoard()
@@ -309,6 +336,27 @@ public class GameCoordinator : MonoBehaviour
             disReal += dis;
         }
         disReal = disReal - disEnemy + disMe;
+
+        return disReal;
+    }
+    private float DisFromTarget(BaseMotorbike mine)
+    {
+        int cur = mine.currentIndex;
+        int next = wavingPointGizmos.GetLastIndex();
+        var disMe = mine.GetDistanceFromTarget();
+        int length = wavingPointGizmos.allWavePoint.Length;
+        next = next + (db_Level.lapRequire - mine.round) * length;
+        cur++;
+        next++;
+        float disReal = 0;
+        for (int i = cur; i < next; i++)
+        {
+            int indexMe = i % length;
+            int indexReal = (i + 1) % length;
+            float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
+            disReal += dis;
+        }
+        disReal = disReal - disMe;
 
         return disReal;
     }

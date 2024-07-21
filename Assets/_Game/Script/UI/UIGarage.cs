@@ -69,9 +69,7 @@ public class UIGarage : UIBase
     }
     public void ClickRacing()
     {
-        int level = DataManager.Instance.GameData.level;
-        GameManager.Instance.PlayGameMode(EGameMode.Classic, level);
-        DataManager.Instance.SaveGameData();
+        UIManager.Instance.ShowUI(UIName.SelectMode);
     }
     public void ClickUpgrade()
     {
@@ -150,6 +148,7 @@ public class UIGarage : UIBase
         {
             dbGet.inforMotorbike = dbGet.GetInforMotorbike(levelUpgrade);
             DataManager.Instance.GameData.idCurMotor = itemCache.db_Motorbike.idMotor;
+            DataManager.Instance.SaveGameData();
         }
         btnUpgrade.interactable = isHasData;
         popupUpgrade.SelectDB(dbGet, isMaxData);
@@ -308,8 +307,7 @@ public class UIGarage : UIBase
     }
     private void OnFailedShowAds()
     {
-        var ui = UIManager.Instance.ShowUI<UIToast>(UIName.Toast);
-        ui.Init(KEYTOAST.NoInternetLoadAds);
+        UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
     }
     private void BuyIAP()
     {

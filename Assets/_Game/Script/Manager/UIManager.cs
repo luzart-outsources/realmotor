@@ -39,7 +39,7 @@ public class UIManager : Singleton<UIManager>
             {UIName.Racer,"0,0,UIRacer" },
             {UIName.Upgrade,"0,0,UIUpgrade" },
             {UIName.SelectMode,"0,0,UISelectMode" },
-            {UIName.SelectLevel,"0,0,UISelect" },
+            {UIName.SelectLevel,"0,0,UISelectLevel" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -130,7 +130,11 @@ public class UIManager : Singleton<UIManager>
         CurrentName = uIScreen;
         return current as T;
     }
-
+    public void ShowToast(string toast)
+    {
+        var ui = ShowUI<UIToast>(UIName.Toast);
+        ui.Init(toast);
+    }
     private void AddScreenActive(UIBase current, bool isTop)
     {
         var idx = listScreenActive.FindIndex(x => x.uiName == current.uiName);

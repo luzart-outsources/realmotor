@@ -5,7 +5,6 @@ using System.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Cinemachine.DocumentationSortingAttribute;
 public class ClassicMode : BaseMode
 {
     private UIGameplay uIGameplay;
@@ -35,30 +34,38 @@ public class ClassicMode : BaseMode
     public override void OnEndGame(bool isWin)
     {
         GameManager.Instance.gameCoordinator.EndGame(isWin);
+        OnDataWin();
+        OnReceiveRes();
+        ShowPopUp(isWin);
+        base.OnEndGame(isWin);
+    }
+    private void OnDataWin()
+    {
         int count = GameManager.Instance.gameCoordinator.countLeaderBoard;
         int length = GameManager.Instance.gameCoordinator.listLeaderBoard.Count;
         int valueCountLeaderBoard = length - count;
-        int level = DataManager.Instance.GameData.level;
+        int level = db_Level.level;
         dataValueWin = new DataValueWin();
         dataValueWin.valuePos = DataManager.Instance.dB_ResourceSO.GetDataResourcePosition(valueCountLeaderBoard, level).amount;
-        dataValueWin.valueLevel = DataManager.Instance.dB_ResourceSO.GetDataResourceBaseLevel( level).amount;
+        dataValueWin.valueLevel = DataManager.Instance.dB_ResourceSO.GetDataResourceBaseLevel(level).amount;
+        dataValueWin.valueJoin = DataManager.Instance.dB_ResourceSO.dataResJoin.amount;
+        dataValueWin.valueResult = DataManager.Instance.dB_ResourceSO.GetDataResResult().amount;
+    }
+    private void OnReceiveRes()
+    {
         DataResource dataResource = new DataResource();
         dataResource.type = new DataTypeResource(RES_type.Gold);
         dataResource.amount = dataValueWin.valueLevel + dataValueWin.valuePos;
         DataManager.Instance.ReceiveRes(dataResource);
-        ShowPopUp(isWin);
-        base.OnEndGame(isWin);
     }
     protected override void OnWinGame()
     {
         base.OnWinGame();
-        DataManager.Instance.GameData.level++;
-        DataManager.Instance.SaveGameData();
-    }
-
-    protected override void OnLoseGame()
-    {
-        base.OnLoseGame();
+        if(DataManager.Instance.CurrentLevel <= db_Level.level)
+        {
+            DataManager.Instance.GameData.level++;
+            DataManager.Instance.SaveGameData();
+        }
 
     }
     private DataValueWin dataValueWin;
