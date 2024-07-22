@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,22 +88,26 @@ public class ItemUpgradePopUp : MonoBehaviour
     }
     private string colorBlack = "#000000";
     private string colorWhite = "#FFFFFF";
+    private Tween twScale = null;
     public void SelectButton(bool isActive)
     {
+        Vector3 scale = Vector3.one;
         if(isActive)
         {
             imButton.sprite = spClick;
             txtTitle.text = $"<color={colorWhite}>{strTitle}</color>";
             imIcon.sprite = spClickIcon;
-            transform.localScale = Vector3.one*1.1f;
+            scale = Vector3.one*1.1f;
         }
         else
         {
             imButton.sprite= spUnclick;
             txtTitle.text = $"<color={colorBlack}>{strTitle}</color>";
             imIcon.sprite = spUnclickIcon;
-            transform.localScale = Vector3.one;
+            scale = Vector3.one;
         }
+        twScale?.Kill(true);
+        twScale = transform.DOScale(scale, 0.3f);
         obUpdateDetail.SetActive(isActive);
         if (levelUpgrade > 5)
         {

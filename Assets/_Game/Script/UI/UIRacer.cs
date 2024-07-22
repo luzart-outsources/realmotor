@@ -1,9 +1,6 @@
 using AirFishLab.ScrollingList;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,9 +62,9 @@ public class UIRacer : UIBase
             var item = data[i];
             item.isHas = DataManager.Instance.IsHasHelmet(item.dataRes.type.id);
         }
-        scrollViewHelmet.InitListDB(data);
         int index = DataManager.Instance.GameData.curCharacter.idHelmet;
-        scrollViewHelmet.circular.SelectContentID(index);
+        scrollViewHelmet.circular.ListSetting.SetInitFocusingContentID(index);
+        scrollViewHelmet.InitListDB(data);
         itemCache = (ItemScrollViewRacer)scrollViewHelmet.circular.GetFocusingBox();
         RefreshUI();
         garageManager.ChangeCameraHeader();
@@ -87,9 +84,9 @@ public class UIRacer : UIBase
             var item = data[i];
             item.isHas = DataManager.Instance.IsHasBody(item.dataRes.type.id);
         }
-        scrollViewBody.InitListDB(data);
         int index = DataManager.Instance.GameData.curCharacter.idClothes;
-        scrollViewBody.circular.SelectContentID(index);
+        scrollViewBody.circular.ListSetting.SetInitFocusingContentID(index);
+        scrollViewBody.InitListDB(data);
         itemCache = (ItemScrollViewRacer)scrollViewBody.circular.GetFocusingBox();
         itemCache.SelectMotorBike(true);
         RefreshUI();

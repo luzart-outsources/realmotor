@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,10 +24,19 @@ public class UISelectLevel : UIBase
     private List<ItemSelectLevelUI> listItemSelectLevel = new List<ItemSelectLevelUI>();
 
     private ButtonSelect btnSelectCache;
+
+    public Button btnBack;
+
     protected override void Setup()
     {
         base.Setup();
+        GameUtil.ButtonOnClick(btnBack, ClickBack, true);
 
+    }
+    private void ClickBack()
+    {
+        Hide();
+        UIManager.Instance.ShowUI(UIName.SelectMode);
     }
     public override void Show(Action onHideDone)
     {
@@ -44,6 +54,10 @@ public class UISelectLevel : UIBase
     }
     private void OnClickTitle(ButtonSelect btnSelect)
     {
+        if(btnSelect == btnSelectCache)
+        {
+            return;
+        }
         if(btnSelectCache!= null)
         {
             btnSelectCache.Select(false);
@@ -52,21 +66,49 @@ public class UISelectLevel : UIBase
         btnSelectCache.Select(true);
         SpawnLevel(btnSelect.index);
     }
+    public float timeShowLevelEach = 0.18f;
     private void SpawnLevel(int index)
     {
         ThemeLevel themeLevel = (ThemeLevel)index;
         List<DB_Level> list= levelSO.GetAllDBThemeLevel(themeLevel);
         int length = list.Count;
+        if(listItemSelectLevel!=null && listItemSelectLevel.Count > 0)
+        {
+            int lengthList = listItemSelectLevel.Count;
+            for (int i = 0; i < lengthList; i++)
+            {
+                listItemSelectLevel[i].gameObject.SetActive(false);
+            }
+        }
         MasterHelper.InitListObj<ItemSelectLevelUI>(length, itemSelectLevelPrefabs, listItemSelectLevel, parentSpawnLevel, (item, index) =>
         {
             item.gameObject.SetActive(true);
             item.InitItem(list[index], ClickLevel);
+            item.OnHideCanvasG();
         });
+        int lengthLevel = listItemSelectLevel.Count;
+        sequenceSpawn?.Kill(false);
+        sequenceSpawn = DOTween.Sequence();
+        for (int i = 0; i < lengthLevel; i++)
+        {
+            var item = listItemSelectLevel[i];
+            sequenceSpawn.AppendCallback(() =>
+            {
+                item.OnShowCanvasG();
+            });
+            sequenceSpawn.AppendInterval(timeShowLevelEach);
+
+        }
+        sequenceSpawn.SetId(this);
     }
+    private Sequence sequenceSpawn;
     private void ClickLevel(ItemSelectLevelUI item)
     {
         int level = item.db_Level.level;
         GameManager.Instance.PlayGameMode(EGameMode.Classic, level);
     }
-
+    private void OnDisable()
+    {
+        this.DOKill(false);
+    }
 }

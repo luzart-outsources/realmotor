@@ -1,4 +1,6 @@
 using AirFishLab.ScrollingList;
+using DG.Tweening;
+using Eco.TweenAnimation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,9 +89,13 @@ public class UIGarage : UIBase
     {
         base.Show(onHideDone);
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
-        SpawnList();
         currentItemClick = DataManager.Instance.GameData.idCurMotor;
-        scrollView.circular.SelectContentID(currentItemClick);
+        scrollView.circular.ListSetting.SetInitFocusingContentID(currentItemClick);
+
+        SpawnList();
+
+
+
         itemCache = (ItemSelectMotorbikeUI)scrollView.circular.GetFocusingBox();
         itemCache.SelectMotorBike(true);
     }
@@ -317,4 +323,6 @@ public class UIGarage : UIBase
     {
 
     }
+    public TweenAnimation[] tws; 
+
 }

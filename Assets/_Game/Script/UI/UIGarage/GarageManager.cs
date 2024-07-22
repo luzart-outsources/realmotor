@@ -23,11 +23,17 @@ public class GarageManager : MonoBehaviour
     [SerializeField]
     private Camera cameraMain;
     [SerializeField]
+    private Transform transformFirstCameraGarage;
+    [SerializeField]
     private Transform transformCameraGarage;
+    [SerializeField]
+    private Transform transformFirstCameraHeader;
     [SerializeField]
     private Transform transformCameraHeader;
     [SerializeField]
     private Transform transformCameraBody;
+    private Tween twMovePos;
+    private Tween twMoveRos;
 
     private void Start()
     {
@@ -74,20 +80,30 @@ public class GarageManager : MonoBehaviour
 
     public void ChangeCameraMotor()
     {
-        cameraMain.transform.DOMove(transformCameraGarage.position, 1f);
-        cameraMain.transform.DORotateQuaternion(transformCameraGarage.rotation, 1f);
+        twMoveRos?.Kill();
+        twMovePos?.Kill();
+        cameraMain.transform.rotation = transformFirstCameraGarage.transform.rotation;
+        cameraMain.transform.position = transformFirstCameraGarage.transform.position;
+        twMovePos = cameraMain.transform.DOMove(transformCameraGarage.position, 0.5f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraGarage.rotation, 0.5f);
     }
     public void ChangeCameraHeader()
     {
+        twMoveRos?.Kill();
+        twMovePos?.Kill();
         animator.Play("OrcIdle");
-        cameraMain.transform.DOMove(transformCameraHeader.position, 1f);
-        cameraMain.transform.DORotateQuaternion(transformCameraHeader.rotation, 1f);
+        cameraMain.transform.rotation = transformFirstCameraHeader.transform.rotation;
+        cameraMain.transform.position = transformFirstCameraHeader.transform.position;
+        twMovePos = cameraMain.transform.DOMove(transformCameraHeader.position, 0.5f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraHeader.rotation, 0.5f);
     }
     public void ChangeCameraBody()
     {
+        twMoveRos?.Kill();
+        twMovePos?.Kill();
         animator.Play("Standard Idle");
-        cameraMain.transform.DOMove(transformCameraBody.position, 1f);
-        cameraMain.transform.DORotateQuaternion(transformCameraBody.rotation, 1f);
+        twMovePos = cameraMain.transform.DOMove(transformCameraBody.position, 0.5f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraBody.rotation, 0.5f);
     }
     public void SetActiveMotor(bool status)
     {

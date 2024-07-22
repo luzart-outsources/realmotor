@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/LevelSO", fileName ="LevelSO")]
@@ -94,6 +95,38 @@ public class LevelSO : ScriptableObject
         }
         db_Levels = list.ToArray();
     }
+    [Sirenix.OdinInspector.Button]
+    public void SetAllNameIcon()
+    {
+        List<Sprite> list = LoadFifthImage();
+        int length = db_Levels.Length;
+        for (int i = 0; i < length; i++)
+        {
+            var item = db_Levels[i];
+            item.spIcon = list[item.idEnvironment];
+            item.name = list[item.idEnvironment].name;
+        }
+    }
+    public List<Sprite> LoadFifthImage()
+    {
+        List<Sprite> list = new List<Sprite>();
+        string folderPath = "Assets/_Game/Art/MapDemo";
+        string[] fileEntries = System.IO.Directory.GetFiles(folderPath);
+        string[] imageFiles = System.Array.FindAll(fileEntries, IsImageFile);
+        int length = imageFiles.Length;
+        for (int i = 0; i < length; i++)
+        {
+            Sprite texture = AssetDatabase.LoadAssetAtPath<Sprite>(imageFiles[i]);
+            list.Add(texture);
+        }
+        return list;
+    }
+
+    private static bool IsImageFile(string filePath)
+    {
+        string extension = System.IO.Path.GetExtension(filePath).ToLower();
+        return extension == ".png" || extension == ".jpg" || extension == ".jpeg" || extension == ".tga";
+    }
 }
 
 [System.Serializable]
@@ -104,6 +137,7 @@ public class DB_Level
     public int lapRequire = 1;
     public ThemeLevel themeLevel;
     public Sprite spIcon;
+    public string name;
     [Header("BOT")]
     public int[] idBot;
     [Header("StartIndex")]

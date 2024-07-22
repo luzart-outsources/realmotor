@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UISelectMode : UIBase
 {
+    public Button btnBack;
 
     public Button btnSinglePlay;
     public Button btnChallenge;
@@ -13,7 +14,14 @@ public class UISelectMode : UIBase
     protected override void Setup()
     {
         base.Setup();
+        GameUtil.ButtonOnClick(btnBack, ClickBack, true);
         GameUtil.ButtonOnClick(btnSinglePlay, ClickSinglePlay, true);
+
+    }
+    private void ClickBack()
+    {
+        Hide(); 
+        UIManager.Instance.ShowGarage();
     }
     private void ClickSinglePlay()
     {
