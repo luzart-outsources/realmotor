@@ -40,6 +40,7 @@ public class UIManager : Singleton<UIManager>
             {UIName.Upgrade,"0,0,UIUpgrade" },
             {UIName.SelectMode,"0,0,UISelectMode" },
             {UIName.SelectLevel,"0,0,UISelectLevel" },
+            {UIName.CoinSpawn,"3,0,UICoinSpawn" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -308,6 +309,13 @@ public class UIManager : Singleton<UIManager>
         if (listScreenActive.Count == 0) return null;
         return listScreenActive.Last();
     }
+    
+    public void ShowCoinSpawn(Action onFirstTime = null, Action onLastTime = null, Transform target = null)
+    {
+        var ui = UIManager.Instance.ShowUI<UICoinSpawn>(UIName.CoinSpawn);
+        ui.InitCoinSpawn(onFirstTime, onLastTime, target);
+    }
+
 }
 
 public enum UIName
@@ -328,6 +336,7 @@ public enum UIName
     Upgrade = 13,
     SelectMode = 14,
     SelectLevel = 15,
+    CoinSpawn = 16,
 }
 public class DataUIBase
 {

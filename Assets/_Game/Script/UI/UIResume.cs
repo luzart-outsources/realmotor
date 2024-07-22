@@ -27,9 +27,7 @@ public class UIResume : UIBase
     }
     private void Restart()
     {
-        GameManager.Instance.DisableCurrentMode();
-        UIManager.Instance.HideAll();
-        GameManager.Instance.PlayGameMode(EGameMode.Classic, GameManager.Instance.gameCoordinator.db_Level.level);
+        GameManager.Instance.Restart();
     }
     private void GoToGarage()
     {

@@ -47,6 +47,12 @@ public class GameManager : Singleton<GameManager>
         UIManager.Instance.HideAll();
         UIManager.Instance.ShowUI(UIName.MainMenu);
     }
+    public void Restart()
+    {
+        DisableCurrentMode();
+        UIManager.Instance.HideAll();
+        PlayGameMode(EGameMode.Classic, gameCoordinator.db_Level.level);
+    }
     public void PlayGameMode(EGameMode eGameMode, int level)
     {
         DisableCurrentMode();

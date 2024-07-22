@@ -3,6 +3,7 @@ using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -219,10 +220,10 @@ public class GameCoordinator : MonoBehaviour
             }
         }
     }
-    private List<DataItemWinLeaderboardUI> listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
+    public List<DataItemWinLeaderboardUI> listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
     private void OnCompleteDataLeaderboard()
     {
-        List<DataItemWinLeaderboardUI> list = new List<DataItemWinLeaderboardUI>();
+        listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
         List<BaseMotorbike> listRemain = listLeaderBoard.Except(listResult).ToList();
         int length = listResult.Count;
         int countIndex = 0;
@@ -232,15 +233,42 @@ public class GameCoordinator : MonoBehaviour
             DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
             data.index = (countIndex + 1).ToString();
             data.time = GameUtil.FloatTimeSecondToUnixTime(item.timePlay);
+            DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(item.dbMotorbike.idMotor);
+            data.nameModel = motor.nameMotor;
+
+            data.timeAll = ((int)item.inforMotorbike.PR).ToString();
             if (item.eTeam == ETeam.Player)
             {
-
+                data.name = DataManager.Instance.GameData.name;
             }
             else
             {
-
+                data.name = item.strMyName;
             }
-            list.Add(data);
+            listDataItemWinLeaderBoard.Add(data);
+            countIndex++;
+        }
+        int lengthExp = listRemain.Count;
+        for (int i = 0; i < lengthExp;i++)
+        {
+            var item = listRemain[i];
+            DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
+            data.index = (countIndex + 1).ToString();
+            float timeEach = timePlay + DisFromTarget(item) / (item.inforMotorbike.maxSpeed + UnityEngine.Random.Range(-5,5));
+            data.time = GameUtil.FloatTimeSecondToUnixTime(timeEach);
+            DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(item.dbMotorbike.idMotor);
+            data.nameModel = motor.nameMotor;
+
+            data.timeAll = ((int)item.inforMotorbike.PR).ToString();
+            if (item.eTeam == ETeam.Player)
+            {
+                data.name = DataManager.Instance.GameData.name;
+            }
+            else
+            {
+                data.name = item.strMyName;
+            }
+            listDataItemWinLeaderBoard.Add(data);
             countIndex++;
         }
     }

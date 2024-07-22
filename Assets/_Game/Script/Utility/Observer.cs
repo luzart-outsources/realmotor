@@ -52,4 +52,5 @@ public static class ObserverKey
     public static string TimeActionPerSecond = "TimeActionPerSecond";
     public static string CoinObserverNormal = "CoinObserverNormal";
     public static string CoinObserverTextRun = "CoinObserverTextRun";
+    public static string CoinObserverDontAuto = "CoinObserverDontAuto";
 }

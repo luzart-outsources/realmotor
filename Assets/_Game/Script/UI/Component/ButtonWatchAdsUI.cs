@@ -24,7 +24,10 @@ public class ButtonWatchAdsUI : MonoBehaviour
     }
     private void OnShowDone()
     {
+        Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, true);
         DataManager.Instance.ReceiveRes(_dataRes);
+        UIManager.Instance.ShowCoinSpawn();
+
     }
     private void OnShowFailed()
     {

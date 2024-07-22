@@ -79,27 +79,27 @@ public class RewardSliderXValue : MonoBehaviour
         if (pointerPos <= anchorPos + widthEach)
         {
             SetActiveObLighting(obShadow[0]);
-            coinRewardTxt.text = $"{curCoins * valueX[0]}";
+            coinRewardTxt.text = $"{Caculate(valueX[0])}";
         }
         else if (anchorPos + widthEach < pointerPos && pointerPos <= anchorPos + widthEach * 2)
         {
             SetActiveObLighting(obShadow[1]);
-            coinRewardTxt.text = $"{curCoins * valueX[1]}";
+            coinRewardTxt.text = $"{Caculate(valueX[1]) }";
         }
         else if (anchorPos + widthEach * 2 < pointerPos && pointerPos <= anchorPos + widthEach * 3)
         {
             SetActiveObLighting(obShadow[2]);
-            coinRewardTxt.text = $"{curCoins * valueX[2]}";
+            coinRewardTxt.text = $"{Caculate(valueX[2])}";
         }
         else if (anchorPos + widthEach * 3 < pointerPos && pointerPos <= anchorPos + widthEach * 4)
         {
             SetActiveObLighting(obShadow[3]);
-            coinRewardTxt.text = $"{curCoins * valueX[3]}";
+            coinRewardTxt.text = $"{Caculate(valueX[3])}";
         }
         else
         {
             SetActiveObLighting(obShadow[4]);
-            coinRewardTxt.text = $"{curCoins * valueX[4]}";
+            coinRewardTxt.text = $"{Caculate(valueX[4])}";
         }
     }
     private void SetActiveObLighting(GameObject go)

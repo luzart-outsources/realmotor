@@ -19,6 +19,7 @@ public class ItemWinDashboardUI : MonoBehaviour
         SetText(txtTime, data.time);
         SetText(txtTimeAll, data.timeAll);
         SetText(txtNameModel, data.nameModel);
+        obRed.SetActive(isMe);
     }
     private void SetText(TMP_Text txt, string str)
     {

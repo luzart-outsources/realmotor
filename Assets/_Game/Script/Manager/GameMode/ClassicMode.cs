@@ -75,6 +75,8 @@ public class ClassicMode : BaseMode
         if(ui != null)
         {
             ui.InitDataRes(isWin, dataValueWin);
+            ui.InitDataDashboard(GameManager.Instance.gameCoordinator.listDataItemWinLeaderBoard);
+            ui.OnShowPopUp();
         }
     }
 }

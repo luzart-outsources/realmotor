@@ -10,25 +10,24 @@ public class CoinObserver : MonoBehaviour
     public TMP_Text txtGold;
     public Button btnAddCoin;
     private Action actionAddCoin;
+    private bool IsAutoSetText = false;
 
     private void Awake()
     {
-        if(btnAddCoin != null)
-        {
-            GameUtil.ButtonOnClick(btnAddCoin, ClickAddCoin, true);
-        }
-
+        GameUtil.ButtonOnClick(btnAddCoin, ClickAddCoin, true);
     }
     private void OnEnable()
     {
         Observer.Instance.AddObserver(ObserverKey.CoinObserverNormal, SetText);
         Observer.Instance.AddObserver(ObserverKey.CoinObserverTextRun, SetTextTimeRun);
+        Observer.Instance.AddObserver(ObserverKey.CoinObserverDontAuto, AutoSetText);
         SetText(null);
     }
     private void OnDisable()
     {
         Observer.Instance.RemoveObserver(ObserverKey.CoinObserverNormal, SetText);
         Observer.Instance.RemoveObserver(ObserverKey.CoinObserverTextRun, SetTextTimeRun);
+        Observer.Instance.RemoveObserver(ObserverKey.CoinObserverDontAuto, AutoSetText);
     }
     public void InitAddCoin(Action onAddCoin)
     {
@@ -39,8 +38,25 @@ public class CoinObserver : MonoBehaviour
         //actionAddCoin?.Invoke();
         UIManager.Instance.ShowUI(UIName.AddCoin);
     }
+    private void AutoSetText(object data)
+    {
+        if (data == null)
+        {
+            return;
+        }
+        bool isTrue = (bool)data;
+        IsAutoSetText = isTrue;
+        if (!isTrue)
+        {
+            SetText(null);
+        }
+    }
     private void SetText(object data)
     {
+        if (IsAutoSetText)
+        {
+            return;
+        }
         txtGold.text = $"{DataManager.Instance.Gold}";
     }
     private void SetTextTimeRun(object data)
@@ -53,7 +69,9 @@ public class CoinObserver : MonoBehaviour
         GameUtil.Instance.StartLerpValue(this, dataRun.preGold, dataRun.targetGold, dataRun.timeRun, (x) =>
         {
             txtGold.text = $"{x}";
-        });
+        },
+        () => AutoSetText(false)
+        );
     }
 }
 public struct SetTextTimeRun

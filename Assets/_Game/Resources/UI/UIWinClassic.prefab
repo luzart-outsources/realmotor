@@ -477,7 +477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5861159911265335384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3938,6 +3938,7 @@ GameObject:
   - component: {fileID: 7706175950169304847}
   - component: {fileID: 1759734460251768955}
   - component: {fileID: 7995594979744973315}
+  - component: {fileID: 3702419791782592080}
   m_Layer: 5
   m_Name: BtnClaim
   m_TagString: Untagged
@@ -4047,6 +4048,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!111 &3702419791782592080
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914322763929316901}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 081a2601bdc653948bdbd3067f48d109, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 081a2601bdc653948bdbd3067f48d109, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5920271097741429256
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,10 +4118,15 @@ MonoBehaviour:
   uiName: 0
   closeBtn: {fileID: 0}
   isCache: 0
+  obLeaderboard: {fileID: 612523076415778307}
   parentDashboard: {fileID: 4097707102478312911}
   txtIndex: {fileID: 5959478084119956153}
   itemDashboardPf: {fileID: 7701445248217482812}
   listItemWinDashboard: []
+  btnHome: {fileID: 7363233954673574061}
+  btnReplay: {fileID: 2231131676733038281}
+  btnNext: {fileID: 7253786165213601153}
+  obSuccess: {fileID: 66247460367349975}
   txt_Title: {fileID: 2978628564994985864}
   refText:
   - txtTitle: {fileID: 5088589891705930023}
@@ -4879,7 +4901,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 60.999996}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1019667675138334810
 MonoBehaviour:
@@ -4955,8 +4977,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.75757, y: 0}
-  m_SizeDelta: {x: 137.4673, y: 36}
+  m_AnchoredPosition: {x: 0.9028, y: 0}
+  m_SizeDelta: {x: 220.7882, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5486826748201850754
 CanvasRenderer:
@@ -4986,7 +5008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NAMEEe
+  m_text: 00M:25S.920
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}
   m_sharedMaterial: {fileID: 9117417922495091417, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}

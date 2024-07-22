@@ -347,6 +347,13 @@ public class InforMotorbike
         array[3] = (int)brake;
         return array;
     }
+    public float PR
+    {
+        get
+        {
+            return maxSpeed+ acceleration+ handling + brake;
+        }
+    }
 }
 [System.Serializable]
 public class DataGetByAds
