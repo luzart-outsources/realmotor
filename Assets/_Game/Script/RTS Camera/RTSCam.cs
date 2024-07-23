@@ -64,8 +64,8 @@ public class RTSCam : Singleton<RTSCam>
 			dragged = true;
 			if (dragInfo.type != 2 && !dfDragFlag)
 			{
-				orbitSpeedX = -((0f - dragInfo.delta.y) * rotXSpeedModifier);
-				orbitSpeedY = dragInfo.delta.x * rotYSpeedModifier;
+				orbitSpeedX = (-(0f - dragInfo.delta.y) * rotXSpeedModifier);
+				orbitSpeedY = -dragInfo.delta.x * rotYSpeedModifier;
 			}
 		}
 	}
