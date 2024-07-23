@@ -1,3 +1,5 @@
+using DG.Tweening;
+using Eco.TweenAnimation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using UnityEngine.UI;
 public class UIWinClassic : UIBase
 {
     [Space, Header("PopupDashboard")]
+    public TweenAnimation twDashboard;
     public GameObject obLeaderboard;
     public Transform parentDashboard;
     public TMP_Text txtIndex;
@@ -19,6 +22,7 @@ public class UIWinClassic : UIBase
     public Button btnNext;
 
     [Space, Header("PopupSuccess")]
+    public TweenAnimation twSuccess;
     public GameObject obSuccess;
 
     public TMP_Text txt_Title;
@@ -27,6 +31,8 @@ public class UIWinClassic : UIBase
 
     public RewardSliderXValue rewardSliderXValue;
     public Button btnMissOut;
+
+
     private DataValueWin dataWin;
 
     protected override void Setup()
@@ -51,11 +57,19 @@ public class UIWinClassic : UIBase
     {
         GameManager.Instance.Restart();
     }
+    private Tween twMissOut;
     public void ClickNext()
     {
         obLeaderboard.SetActive(false);
         obSuccess.SetActive(true);
         rewardSliderXValue.Initialize(dataWin.Total, 1, ClickClaimReward);
+        twDashboard.Show();
+        twSuccess.Show();
+        twMissOut?.Kill();
+        twMissOut = DOVirtual.DelayedCall(3f, () =>
+        {
+            btnMissOut.gameObject.SetActive(true);
+        });
     }
     private List<DataItemWinLeaderboardUI> listDataItemWinLeaderboardUI = new List<DataItemWinLeaderboardUI>();
     public void InitDataDashboard(List<DataItemWinLeaderboardUI> listData)

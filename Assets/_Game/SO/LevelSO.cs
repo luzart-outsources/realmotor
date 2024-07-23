@@ -95,6 +95,7 @@ public class LevelSO : ScriptableObject
         }
         db_Levels = list.ToArray();
     }
+#if UNITY_EDITOR
     [Sirenix.OdinInspector.Button]
     public void SetAllNameIcon()
     {
@@ -121,7 +122,7 @@ public class LevelSO : ScriptableObject
         }
         return list;
     }
-
+#endif
     private static bool IsImageFile(string filePath)
     {
         string extension = System.IO.Path.GetExtension(filePath).ToLower();

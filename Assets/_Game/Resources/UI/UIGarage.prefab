@@ -1285,9 +1285,9 @@ RectTransform:
   - {fileID: 5253983813877142948}
   m_Father: {fileID: 8930146996532755844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 247.51196, y: 637}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 247.51196, y: 97}
   m_SizeDelta: {x: 457.0239, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4843241952550671652
@@ -1400,8 +1400,8 @@ MonoBehaviour:
     LoopType: 0
     DelayPerOneTimeLoop: 0
   _vector3Options:
-    From: {x: -247.512, y: 637, z: 0}
-    EndTo: {x: 247.512, y: 637, z: 0}
+    From: {x: -247.512, y: 97, z: 0}
+    EndTo: {x: 247.512, y: 97, z: 0}
   _canvasGroupOptions:
     From: 0
     To: 1
@@ -3486,8 +3486,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 17.5, y: -64}
-  m_SizeDelta: {x: 420.52, y: 80}
+  m_AnchoredPosition: {x: 8.9353, y: -64}
+  m_SizeDelta: {x: 403.3905, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6225193413637095618
 CanvasRenderer:
@@ -3677,7 +3677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.08403695
+  m_EffectFactor: 0.34979573
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -7075,7 +7075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_EffectFactor
-      value: 0.08403695
+      value: 0.34979573
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

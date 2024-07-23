@@ -64,6 +64,8 @@ public class UISelectLevel : UIBase
         }
         btnSelectCache = btnSelect;
         btnSelectCache.Select(true);
+        int level = DataManager.Instance.CurrentLevel;
+
         SpawnLevel(btnSelect.index);
     }
     public float timeShowLevelEach = 0.18f;
