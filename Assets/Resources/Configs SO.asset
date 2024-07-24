@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b5a6030cbad434297fac6c47fb3c69, type: 3}
   m_Name: Configs SO
   m_EditorClassIdentifier: 
-  debuggable: 1
+  debuggable: 0
   firebaseDebuggable: 0
   useAdImpressionValue: 0
   useAppOpenAdmob: 0
   ignoreAppOpenFirstTime: 0
   waitAppOpenTimer: 0
-  appOpenIdAdmobAndroid: 
-  appOpenIdAdmobIOS: 
+  appOpenIdAdmobAndroid: ca-app-pub-5457807375754173/2517346224
+  appOpenIdAdmobIOS: ca-app-pub-5457807375754173/9074149742
   isUseCollapByDefault: 1
   dataNetworkAndroid: '{   "typeMediation": 0,   "maxInforIns": {     "maxSDKKey":
     "0UL2IRfKLxrfrrB89PamTsmNpKDF1_JgsLGMQ8Jp1xtoLoktpGh0XcHCUDo5seO4eMUMhu6bzTfMv6W1Kn6Xbp",    
@@ -45,62 +45,62 @@ MonoBehaviour:
   adsConfigsAndroid: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
-    true,   "minTimeInterstitialShow": 60,   "decreaseInterTPI": 1,   "interstitial":
+    true,   "minTimeInterstitialShow": 30,   "decreaseInterTPI": 2,   "interstitial":
     [     {       "pos": "btn_garage_racing",       "isShow": true,       "timeShow":
-    90     },     {       "pos": "btn_garage_racer",       "isShow": true,      
-    "timeShow": 90     },     {       "pos": "btn_garage_upgrade",       "isShow":
-    true,       "timeShow": 90     },     {       "pos": "btn_garage_settings",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_garage_buy_bike_gold",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_selectmode_singleplayer",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_mode_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_level_title",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_level_level",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_level_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_helmet",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_clothes",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_equip",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_buy_helmet",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_buy_clothes",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_upgrade_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_upgrade_upgrade",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_settings_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_winclassic_next",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_winclassic_missout",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_gameplay_resume",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_resume",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_restart",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_home",      
-    "isShow": true,       "timeShow": 90     }   ],   "isEnableNative": false }'
+    60     },     {       "pos": "btn_garage_racer",       "isShow": true,      
+    "timeShow": 60     },     {       "pos": "btn_garage_upgrade",       "isShow":
+    true,       "timeShow": 60     },     {       "pos": "btn_garage_settings",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_garage_buy_bike_gold",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_selectmode_singleplayer",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_mode_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_level_title",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_level_level",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_level_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_helmet",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_clothes",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_equip",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_buy_helmet",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_buy_clothes",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_upgrade_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_upgrade_upgrade",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_settings_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_winclassic_next",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_winclassic_missout",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_gameplay_resume",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_resume",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_restart",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_home",      
+    "isShow": true,       "timeShow": 60     }   ],   "isEnableNative": false }'
   adsConfigsIOS: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
-    true,   "minTimeInterstitialShow": 60,   "decreaseInterTPI": 1,   "interstitial":
+    true,   "minTimeInterstitialShow": 30,   "decreaseInterTPI": 2,   "interstitial":
     [     {       "pos": "btn_garage_racing",       "isShow": true,       "timeShow":
-    90     },     {       "pos": "btn_garage_racer",       "isShow": true,      
-    "timeShow": 90     },     {       "pos": "btn_garage_upgrade",       "isShow":
-    true,       "timeShow": 90     },     {       "pos": "btn_garage_settings",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_garage_buy_bike_gold",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_selectmode_singleplayer",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_mode_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_level_title",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_level_level",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_select_level_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_helmet",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_clothes",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_equip",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_buy_helmet",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_racer_buy_clothes",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_upgrade_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_upgrade_upgrade",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_settings_back",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_winclassic_next",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_winclassic_missout",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_gameplay_resume",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_resume",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_restart",      
-    "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_home",      
-    "isShow": true,       "timeShow": 90     }   ],   "isEnableNative": false }'
-  customConfigsAndroid: '{   "levelShowAds": 8,   "levelShowRate":8 }'
-  customConfigsIOS: '{   "levelShowAds": 8,   "levelShowRate":8 }'
+    60     },     {       "pos": "btn_garage_racer",       "isShow": true,      
+    "timeShow": 60     },     {       "pos": "btn_garage_upgrade",       "isShow":
+    true,       "timeShow": 60     },     {       "pos": "btn_garage_settings",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_garage_buy_bike_gold",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_selectmode_singleplayer",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_mode_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_level_title",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_level_level",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_select_level_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_helmet",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_clothes",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_equip",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_buy_helmet",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_racer_buy_clothes",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_upgrade_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_upgrade_upgrade",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_settings_back",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_winclassic_next",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_winclassic_missout",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_gameplay_resume",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_resume",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_restart",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_home",      
+    "isShow": true,       "timeShow": 60     }   ],   "isEnableNative": false }'
+  customConfigsAndroid: '{   "levelShowAds": 0,   "levelShowRate":0 }'
+  customConfigsIOS: '{   "levelShowAds": 0,   "levelShowRate":0 }'
