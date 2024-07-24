@@ -5,33 +5,38 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-
-
 public class GameUtil : Singleton<GameUtil>
 {
-    public static void ButtonOnClick(Button bt, UnityAction action, bool isAnim = false)
+    public static void ButtonOnClick(Button bt, UnityAction action, bool isAnim = false, string where = null)
     {
-        UnityAction _action = () =>
+        UnityAction _action = null;
+        if (String.IsNullOrEmpty(where))
         {
-            action?.Invoke();
-            AudioManager.Instance.PlaySFXBtn();
-        };
+            _action = () =>
+            {
+                action?.Invoke();
+                AudioManager.Instance.PlaySFXBtn();
+            };
+        }
+        else
+        {
+            _action = () =>
+            {
+                AudioManager.Instance.PlaySFXBtn();
+                Action onDone = () =>
+                {
+                    action?.Invoke();
+                };
+                AdsWrapperManager.Instance.ShowInter(where, onDone);
+            };
+        }
         if (isAnim)
         {
             bt.OnClickAnim(_action);
         }
         else
         {
-            bt.onClick.AddListener(() =>
-            {
-                ClickNormal(_action);
-            });
-        }
-
-
-        void ClickNormal(UnityAction action)
-        {
-            action?.Invoke();
+            bt.onClick.AddListener(_action);
         }
     }
 
@@ -91,16 +96,24 @@ public class GameUtil : Singleton<GameUtil>
         }
         return strValue;
     }
+    private const string ColorRed = "#FF0000";
+    private const string ColorGreen = "#00FF06";
+    private const string ColorBlack = "#000000";
+    private const string ColorWhite = "#FFFFFF";
+    private const string ColorBlueLight = "#00FFF0";
+    private const string ColorBlueDark = "#000FFF";
+    private const string ColorYellow = "#FFFF00";
+
     public static void Log(string debug)
     {
 #if DEBUG_DA
-        Debug.Log($"DEBUG_DA: {debug}");
+        Debug.Log($"<color={ColorBlueLight}>DEBUG_DA: {debug}</color>");
 #endif
     }
     public static void LogError(string debug)
     {
 #if DEBUG_DA
-        Debug.LogError($"DEBUG_DA: {debug}");
+        Debug.LogError($"<color={ColorBlueLight}>DEBUG_DA: {debug}</color>");
 #endif
     }
     [SerializeField]

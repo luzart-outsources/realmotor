@@ -22,7 +22,7 @@ public class UIGameplay : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnPause, ClickPause, true);
+        GameUtil.ButtonOnClick(btnPause, ClickPause, true,KeyAds.BtnGameplayResume);
     }
 
     private void ClickPause()

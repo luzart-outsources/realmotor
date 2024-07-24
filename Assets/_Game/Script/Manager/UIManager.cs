@@ -79,13 +79,13 @@ public class UIManager : Singleton<UIManager>
     {
         ShowUI<UIBase>(uIScreen, onHideDone);
     }
-    public void ShowGarage(UIName uiName = UIName.Garage)
+    public void ShowGarage(UIName uiName = UIName.Garage, UIName uiIgnore = UIName.LoadScene)
     {
-        ResourcesManager.Instance.LoadSceneGarage((garage) => ShowScreen(uiName,garage));
+        ResourcesManager.Instance.LoadSceneGarage((garage) => ShowScreen(uiName,garage, uiIgnore));
     }
-    private void ShowScreen(UIName uiName, GarageManager garage)
+    private void ShowScreen(UIName uiName, GarageManager garage, UIName uiIgnore = UIName.LoadScene)
     {
-        HideAllUiActive();
+        HideAllUIIgnore(uiIgnore);
         switch (uiName)
         {
             case UIName.Garage:
@@ -155,10 +155,10 @@ public class UIManager : Singleton<UIManager>
             }
         }
     }
-    public void LoadScene(Action onLoad, Action onDone)
+    public void LoadScene(Action onLoad, Action onDone, float timeLoad = 2, float timeHide = 1f)
     {
         UILoadScene uILoadScene = ShowUI<UILoadScene>(UIName.LoadScene);
-        uILoadScene.LoadSceneCloud(onLoad, onDone);
+        uILoadScene.LoadSceneCloud(onLoad, onDone,timeLoad,timeHide);
     }
 
 
@@ -249,7 +249,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void HideAllUIIgnore(UIName uiName)
+    public void HideAllUIIgnore(UIName uiName = UIName.LoadScene)
     {
         int length = listScreenActive.Count;
         for (int i = 0; i < length; i++)

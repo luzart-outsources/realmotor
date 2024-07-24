@@ -24,8 +24,8 @@ public class UIUpgrade : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true);
-        GameUtil.ButtonOnClick(btnBack, ClickBack, true);
+        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnUpgradeUpgrade);
+        GameUtil.ButtonOnClick(btnBack, ClickBack, true,KeyAds.BtnUpgradeBack);
         //GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
     }
     public override void Show(Action onHideDone)
@@ -46,10 +46,10 @@ public class UIUpgrade : UIBase
             levelUpgrade[i]++;
         }
         InforMotorbike infor = ConfigStats.GetInforMotorbike(idCurMotor, levelUpgrade);
-        itemUpgradePopups[0].Initialize(StatsMotorbike.MaxSpeed, infor.maxSpeed, levelUpgrade[0], ClickItemUpgradePopUp);
-        itemUpgradePopups[1].Initialize(StatsMotorbike.Acceleration, infor.acceleration, levelUpgrade[1], ClickItemUpgradePopUp);
-        itemUpgradePopups[2].Initialize(StatsMotorbike.Handling, infor.handling, levelUpgrade[2], ClickItemUpgradePopUp);
-        itemUpgradePopups[3].Initialize(StatsMotorbike.Brake, infor.brake, levelUpgrade[3], ClickItemUpgradePopUp);
+        itemUpgradePopups[0].Initialize(StatsMotorbike.MaxSpeed, infor.maxSpeed, levelUpgrade[0], ClickItem);
+        itemUpgradePopups[1].Initialize(StatsMotorbike.Acceleration, infor.acceleration, levelUpgrade[1], ClickItem);
+        itemUpgradePopups[2].Initialize(StatsMotorbike.Handling, infor.handling, levelUpgrade[2], ClickItem);
+        itemUpgradePopups[3].Initialize(StatsMotorbike.Brake, infor.brake, levelUpgrade[3], ClickItem);
         if(itemCache != null)
         {
             ClickItemUpgradePopUp(itemCache);
@@ -60,9 +60,17 @@ public class UIUpgrade : UIBase
         }
 
     }
+    private void ClickItem(ItemUpgradePopUp item)
+    {
+        if(item == itemCache)
+        {
+            return;
+        }
+        ClickItemUpgradePopUp(item);
+    }
     private void ClickItemUpgradePopUp(ItemUpgradePopUp item)
     {
-        if(itemCache != null)
+        if (itemCache != null)
         {
             itemCache.SelectButton(false);
         }

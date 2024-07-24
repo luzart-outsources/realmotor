@@ -23,7 +23,7 @@ public class UIToast : UIBase
        
     }
 }
-public static class KEYTOAST
+public static class KeyToast
 {
     public const string NoInternetLoadAds = "No Internet to Load Ads. \n Try Again";
 }

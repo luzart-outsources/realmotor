@@ -30,7 +30,7 @@ public class UISelectLevel : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnBack, ClickBack, true);
+        GameUtil.ButtonOnClick(btnBack, ClickBack, true, KeyAds.BtnSelectLevelBack);
 
     }
     private void ClickBack()

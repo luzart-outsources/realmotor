@@ -20,7 +20,7 @@ public class ButtonWatchAdsUI : MonoBehaviour
     }
     public void ClickButton()
     {
-        AdsWrapperManager.Instance.ShowReward(KEYADS.ClickButtonWatchAds, OnShowDone, OnShowFailed);
+        AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonWatchAds, OnShowDone, OnShowFailed);
     }
     private void OnShowDone()
     {
@@ -31,6 +31,6 @@ public class ButtonWatchAdsUI : MonoBehaviour
     }
     private void OnShowFailed()
     {
-        UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
+        UIManager.Instance.ShowToast(KeyToast.NoInternetLoadAds);
     }
 }

@@ -14,8 +14,8 @@ public class UISelectMode : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnBack, ClickBack, true);
-        GameUtil.ButtonOnClick(btnSinglePlay, ClickSinglePlay, true);
+        GameUtil.ButtonOnClick(btnBack, ClickBack, true, KeyAds.BtnSelectModeBack);
+        GameUtil.ButtonOnClick(btnSinglePlay, ClickSinglePlay, true, KeyAds.BtnSelectModeSinglePlayer);
 
     }
     private void ClickBack()

@@ -25,10 +25,10 @@ public class UIRacer : UIBase
     protected override void Setup()
     {
         base.Setup();
-        btnRacer.InitAction(0,ClickRacer);
-        btnClothes.InitAction(1,ClickClothes);
-        GameUtil.ButtonOnClick(btnBack,Hide);
-        GameUtil.ButtonOnClick(btnEquip, ClickSelect, true);
+        btnRacer.InitAction(0,ClickRacer, KeyAds.BtnRacerHelmet);
+        btnClothes.InitAction(1,ClickClothes, KeyAds.BtnRacerClothes);
+        GameUtil.ButtonOnClick(btnBack,Hide,true ,KeyAds.BtnRacerBack);
+        GameUtil.ButtonOnClick(btnEquip, ClickSelect, true, KeyAds.BtnRacerEquip);
         GameUtil.ButtonOnClick(btnBuy,ClickBuy, true);
     }
     public override void Hide()
@@ -335,6 +335,19 @@ public class UIRacer : UIBase
 
     private void BuyGold()
     {
+        string keyAds = null;
+        if(resourcesBuy.dataRes.type.type == RES_type.Helmet)
+        {
+            keyAds = KeyAds.BtnRacerBuyHelmet;
+        }
+        else
+        {
+            keyAds = KeyAds.BtnRacerBuyClothes;
+        }
+        AdsWrapperManager.Instance.ShowInter(keyAds, OnBuyGold);
+    }
+    private void OnBuyGold()
+    {
         DataResource dataRemove = new DataResource(new DataTypeResource(RES_type.Gold), -resourcesBuy.valueBuy);
         DataManager.Instance.AddRes(dataRemove, OnBuyGoldDone);
     }
@@ -350,12 +363,12 @@ public class UIRacer : UIBase
         {
             case RES_type.Helmet:
                 {
-                    AdsWrapperManager.Instance.ShowReward(KEYADS.ClickButtonWatchAdsGetHelmet, OnDoneShowAds, OnFailedShowAds);
+                    AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonWatchAdsGetHelmet, OnDoneShowAds, OnFailedShowAds);
                     break;
                 }
             case RES_type.Body:
                 {
-                    AdsWrapperManager.Instance.ShowReward(KEYADS.ClickButtonWatchAdsGetBody, OnDoneShowAds, OnFailedShowAds);
+                    AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonWatchAdsGetBody, OnDoneShowAds, OnFailedShowAds);
                     break;
                 }
         }
@@ -377,7 +390,7 @@ public class UIRacer : UIBase
     }
     private void OnFailedShowAds()
     {
-        UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
+        UIManager.Instance.ShowToast(KeyToast.NoInternetLoadAds);
     }
     private void BuyIAP()
     {

@@ -10,17 +10,32 @@ public class ButtonSelect : MonoBehaviour
     public bool IsAnim = true;
     public int index;
     private Action<ButtonSelect> ActionSelect;
-    private void Start()
+    public bool IsAutoInitialize = true;
+    private string strKeyAds = null;
+
+    protected virtual void Start()
     {
-        GameUtil.ButtonOnClick(btn, ClickAction, IsAnim);
+        if (IsAutoInitialize)
+        {
+            InitializeButton();
+        }
     }
-    public virtual void InitAction(int index ,Action<ButtonSelect> action)
+    private void InitializeButton()
+    {
+        GameUtil.ButtonOnClick(btn, ClickAction, IsAnim, strKeyAds);
+    }
+    public virtual void InitAction(int index ,Action<ButtonSelect> action, string strKeyAds = null)
     {
         this.index = index;
         this.ActionSelect = action;
+        this.strKeyAds = strKeyAds;
+        if (!IsAutoInitialize)
+        {
+            InitializeButton();
+        }
         Select(false);
     }
-    private void ClickAction()
+    public void ClickAction()
     {
         ActionSelect?.Invoke(this);
         Select(true);

@@ -387,6 +387,7 @@ MonoBehaviour:
   - {fileID: 6581434410688726583}
   IsAnim: 1
   index: 0
+  IsAutoInitialize: 0
 --- !u!114 &6581434410688726583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,11 +440,11 @@ MonoBehaviour:
     EndTo: {x: -1, y: -1, z: -1}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &122873327454014231
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,11 +553,11 @@ MonoBehaviour:
     EndTo: {x: -164.0825, y: -42, z: 0}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &718610844815277841
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +735,7 @@ MonoBehaviour:
   - {fileID: 45873791657278528}
   IsAnim: 1
   index: 0
+  IsAutoInitialize: 0
 --- !u!114 &45873791657278528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,11 +788,11 @@ MonoBehaviour:
     EndTo: {x: -1, y: -1, z: -1}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &1120666954754009313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1155,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6220559203047076711}
   - {fileID: 8684523892301776586}
   - {fileID: 2583368627169951101}
   - {fileID: 352082961905485637}
@@ -1535,11 +1536,11 @@ MonoBehaviour:
     EndTo: {x: -1, y: -1, z: -1}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &3002334115265948791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,11 +1917,11 @@ MonoBehaviour:
     EndTo: {x: 200, y: -50, z: -1}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &3768999303827851278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,11 +2372,11 @@ MonoBehaviour:
     EndTo: {x: -1, y: -1, z: -1}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &4326112438048452902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3764,7 +3765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.50388175
+  m_EffectFactor: 0.07239722
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -3933,81 +3934,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
---- !u!1 &7365742965456614811
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6220559203047076711}
-  - component: {fileID: 357111005896550649}
-  - component: {fileID: 1418309410488316605}
-  m_Layer: 5
-  m_Name: Banner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6220559203047076711
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365742965456614811}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5443176838759260391}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 74.82}
-  m_SizeDelta: {x: 0, y: 150.07}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &357111005896550649
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365742965456614811}
-  m_CullTransparentMesh: 1
---- !u!114 &1418309410488316605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365742965456614811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7648689317374103132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,7 +4324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.50388175
+  m_EffectFactor: 0.07239722
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -4599,7 +4525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.50388175
+  m_EffectFactor: 0.07239722
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -4876,11 +4802,11 @@ MonoBehaviour:
     EndTo: {x: -1, y: -1, z: -1}
   _canvasGroupOptions:
     From: 0
-    To: 1
+    EndTo: -1
     BlockRaycast: 1
   _floatOptions:
     From: 0
-    To: 1
+    EndTo: -1
 --- !u!1 &8896965829725592664
 GameObject:
   m_ObjectHideFlags: 0
@@ -5847,7 +5773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_EffectFactor
-      value: 0.50388175
+      value: 0.07239722
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

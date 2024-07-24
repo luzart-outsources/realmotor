@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8056550066445774474}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   deltaTail: 10
   visualFrontWheel: {fileID: 1076475161212966817}
   visualBackWheel: {fileID: 6704967351094433460}
-  tyreRotation: 1000
+  tyreRotations: 200
   skidWidth: 0.05
   skidMark1: {fileID: 3871273248780769962}
   skidMark2: {fileID: 7386366821654053975}
@@ -71,6 +71,7 @@ MonoBehaviour:
     acceleration: 20
     handling: 30
     brake: 50
+  baseMotor: {fileID: 0}
 --- !u!1001 &28428399563034608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6730677139436181828, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.518
+      value: 0.458
       objectReference: {fileID: 0}
     - target: {fileID: 6730677139436181828, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -513,6 +514,26 @@ PrefabInstance:
     - target: {fileID: 1791457745339120366, guid: db9294b34edb4378a175eb021e337c96, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745339120399, guid: db9294b34edb4378a175eb021e337c96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9998562
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745339120399, guid: db9294b34edb4378a175eb021e337c96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.01696117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745339120399, guid: db9294b34edb4378a175eb021e337c96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745339120399, guid: db9294b34edb4378a175eb021e337c96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791457745339120399, guid: db9294b34edb4378a175eb021e337c96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.944
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

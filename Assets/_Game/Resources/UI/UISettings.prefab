@@ -320,6 +320,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4276962695572382891}
   - component: {fileID: 4362352542654354629}
+  - component: {fileID: 5967680647427358323}
+  - component: {fileID: 4701606612578563277}
   m_Layer: 5
   m_Name: Popup
   m_TagString: 
@@ -359,6 +361,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652960764870130465}
   m_CullTransparentMesh: 1
+--- !u!114 &5967680647427358323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652960764870130465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a1366293d64a8ca064c72b53f28096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: 3
+  _showOn: 2
+  _registerScreenToggle: 1
+  _canvasGroup: {fileID: 4701606612578563277}
+  _image: {fileID: 0}
+  _baseOptions:
+    ShowEase: 6
+    HideEase: 26
+    Duration: 0.25
+    StartDelay: 0
+    IgnoreTimeScale: 0
+    LoopTime: 0
+    LoopType: 0
+    DelayPerOneTimeLoop: 0
+  _vector3Options:
+    From: {x: 0.8, y: 0.8, z: 0.8}
+    EndTo: {x: -1, y: -1, z: -1}
+  _canvasGroupOptions:
+    From: 0
+    EndTo: -1
+    BlockRaycast: 1
+  _floatOptions:
+    From: 0
+    EndTo: -1
+--- !u!225 &4701606612578563277
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652960764870130465}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &791427920768403403
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,8 +949,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName: 0
-  closeBtn: {fileID: 76051838408450773}
+  closeBtn: {fileID: 0}
   isCache: 0
+  btnBack: {fileID: 76051838408450773}
   soundSettings: {fileID: 456117903462561311}
   buttonSelectsQuality:
   - {fileID: 168129145147342148}
@@ -1321,6 +1372,7 @@ MonoBehaviour:
   baseSelects:
   - {fileID: 5497654510114202408}
   IsAnim: 1
+  index: 0
 --- !u!114 &5497654510114202408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,6 +1718,7 @@ MonoBehaviour:
   - {fileID: 7128885403934573583}
   - {fileID: 7142559103739251117}
   IsAnim: 1
+  index: 0
 --- !u!222 &5571495966180095824
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2167,6 +2220,7 @@ MonoBehaviour:
   - {fileID: 1901821445969690447}
   - {fileID: 4874924800869351071}
   IsAnim: 1
+  index: 0
 --- !u!222 &9190639652324136305
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2685,6 +2739,7 @@ MonoBehaviour:
   baseSelects:
   - {fileID: 5981047985649850376}
   IsAnim: 1
+  index: 0
 --- !u!114 &5981047985649850376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2894,6 +2949,7 @@ MonoBehaviour:
   - {fileID: 2575223811919839885}
   - {fileID: 6655314520748170529}
   IsAnim: 1
+  index: 0
 --- !u!222 &6031481936669130670
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3632,6 +3688,7 @@ MonoBehaviour:
   baseSelects:
   - {fileID: 4641014590400120053}
   IsAnim: 1
+  index: 0
 --- !u!114 &4641014590400120053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,6 +4307,7 @@ MonoBehaviour:
   - {fileID: 8505108990854052788}
   - {fileID: 7286407608564563217}
   IsAnim: 1
+  index: 0
 --- !u!222 &8597645242047706306
 CanvasRenderer:
   m_ObjectHideFlags: 0

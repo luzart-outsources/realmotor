@@ -59,10 +59,10 @@ public class UIGarage : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
-        GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
-        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true);
-        GameUtil.ButtonOnClick(btnRacer, ClickRacer, true);
+        GameUtil.ButtonOnClick(btnSettings, ClickSettings, true, KeyAds.BtnGarageSettings);
+        GameUtil.ButtonOnClick(btnRacing, ClickRacing, true, KeyAds.BtnGarageRacing);
+        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnGarageUpgarde);
+        GameUtil.ButtonOnClick(btnRacer, ClickRacer, true, KeyAds.BtnGarageRacer);
         GameUtil.ButtonOnClick(btnBuy, ClickBuy, true);
     }
     public void ClickSettings()
@@ -286,6 +286,10 @@ public class UIGarage : UIBase
 
     private void BuyGold()
     {
+        AdsWrapperManager.Instance.ShowInter(KeyAds.BtnGarageBuyBikeGold, OnBuyGold);
+    }
+    private void OnBuyGold()
+    {
         DataResource dataRemove = new DataResource(new DataTypeResource(RES_type.Gold), -resourcesBuy.valueBuy);
         DataManager.Instance.AddRes(dataRemove, OnBuyGoldDone);
     }
@@ -297,7 +301,7 @@ public class UIGarage : UIBase
     }
     private void BuyAds()
     {
-        AdsWrapperManager.Instance.ShowReward(KEYADS.ClickButtonWatchAdsGetBike, OnDoneShowAds, OnFailedShowAds);
+        AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonWatchAdsGetBike, OnDoneShowAds, OnFailedShowAds);
     }
     private void OnDoneShowAds()
     {
@@ -313,7 +317,7 @@ public class UIGarage : UIBase
     }
     private void OnFailedShowAds()
     {
-        UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
+        UIManager.Instance.ShowToast(KeyToast.NoInternetLoadAds);
     }
     private void BuyIAP()
     {

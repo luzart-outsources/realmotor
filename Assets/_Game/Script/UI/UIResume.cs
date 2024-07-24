@@ -12,9 +12,9 @@ public class UIResume : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnResume, Resume, true);
-        GameUtil.ButtonOnClick(btnRestart, Restart, true);
-        GameUtil.ButtonOnClick(btnGarage, GoToGarage, true);
+        GameUtil.ButtonOnClick(btnResume, Resume, true, KeyAds.BtnResumeResume);
+        GameUtil.ButtonOnClick(btnRestart, Restart, true, KeyAds.BtnResumeRestart);
+        GameUtil.ButtonOnClick(btnGarage, GoToGarage, true, KeyAds.BtnResumeHome);
     }
     public override void Show(Action onHideDone)
     {

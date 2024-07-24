@@ -38,10 +38,10 @@ public class UIWinClassic : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnMissOut, ClickMissOut, true);
+        GameUtil.ButtonOnClick(btnMissOut, ClickMissOut, true, KeyAds.BtnWinClassicMissOut);
         GameUtil.ButtonOnClick(btnHome, ClickHome, true);
         GameUtil.ButtonOnClick(btnReplay, ClickReplay, true);
-        GameUtil.ButtonOnClick(btnNext, ClickNext, true);
+        GameUtil.ButtonOnClick(btnNext, ClickNext, true, KeyAds.BtnWinClassicNext);
     }
     public override void Show(Action onHideDone)
     {
@@ -117,14 +117,14 @@ public class UIWinClassic : UIBase
     }
     private void ClickClaimReward(float x)
     {
-        AdsWrapperManager.Instance.ShowReward(KEYADS.ClickButtonXRewardOnWin, () =>
+        AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonXRewardOnWin, () =>
         {
             IsShowCoinInWin = true;
             OnClickClaimReward(x);
         },
         () =>
         {
-            UIManager.Instance.ShowToast(KEYTOAST.NoInternetLoadAds);
+            UIManager.Instance.ShowToast(KeyToast.NoInternetLoadAds);
         });
     }
     private void ClickMissOut()
@@ -137,8 +137,11 @@ public class UIWinClassic : UIBase
     }
     private void OnHide()
     {
-        UIManager.Instance.HideAll();
-        UIManager.Instance.ShowGarage();
+        UIManager.Instance.LoadScene(() =>
+        {
+            UIManager.Instance.HideAllUIIgnore();
+            UIManager.Instance.ShowGarage();
+        }, null,1,1);
     }
 }
 [System.Serializable]
