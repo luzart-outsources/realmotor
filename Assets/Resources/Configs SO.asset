@@ -42,7 +42,7 @@ MonoBehaviour:
     {     "isEnable": false,     "timeDestroy": 0,     "hiID": "",     "meID": "",    
     "allID": ""   },   "nativeBannerInforsIns": {     "isEnable": false,     "timeDestroy":
     0,     "hiID": "",     "meID": "",     "allID": ""   } }'
-  adsConfigsAndroid: '{   "banner": {     "isShow": false,     "isAutoShow": false,    
+  adsConfigsAndroid: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
     true,   "minTimeInterstitialShow": 60,   "decreaseInterTPI": 1,   "interstitial":
@@ -72,7 +72,7 @@ MonoBehaviour:
     "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_restart",      
     "isShow": true,       "timeShow": 90     },     {       "pos": "btn_resume_home",      
     "isShow": true,       "timeShow": 90     }   ],   "isEnableNative": false }'
-  adsConfigsIOS: '{   "banner": {     "isShow": false,     "isAutoShow": false,    
+  adsConfigsIOS: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
     true,   "minTimeInterstitialShow": 60,   "decreaseInterTPI": 1,   "interstitial":

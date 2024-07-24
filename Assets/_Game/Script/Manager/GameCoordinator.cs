@@ -306,6 +306,10 @@ public class GameCoordinator : MonoBehaviour
 
     private void UpdateCoordinator()
     {
+        if(uiGameplay == null)
+        {
+            return;
+        }
         uiGameplay.UpdateUI();
         UpdateDbLeaderBoardInGameUI();
         uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
@@ -391,6 +395,13 @@ public class GameCoordinator : MonoBehaviour
 
     private void UpdateLeaderBoard()
     {
+        for (int i = 0; i < listLeaderBoard.Count; i++)
+        {
+            if(listLeaderBoard[i] == null)
+            {
+                return;
+            }
+        }
         listLeaderBoard.Sort((x, y) =>
         {
             int roundComparison = y.round.CompareTo(x.round);

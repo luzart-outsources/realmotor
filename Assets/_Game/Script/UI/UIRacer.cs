@@ -10,6 +10,7 @@ public class UIRacer : UIBase
     public GarageManager garageManager;
     public ButtonSelect btnRacer;
     public ButtonSelect btnClothes;
+    public ButtonSelect btnCache;
     public Button btnBack;
 
     public GameObject obScrollHelmet;
@@ -49,6 +50,11 @@ public class UIRacer : UIBase
     }
     public void ClickRacer(ButtonSelect btn)
     {
+        if(btnCache == btnRacer)
+        {
+            return;
+        }
+        btnCache = btnRacer;
         isOnRacer = true;
         btnRacer.Select(true);
         btnClothes.Select(false);
@@ -71,6 +77,11 @@ public class UIRacer : UIBase
     }
     public void ClickClothes(ButtonSelect btn)
     {
+        if (btnCache == btnClothes)
+        {
+            return;
+        }
+        btnCache = btnClothes;
         isOnRacer = false;
         btnRacer.Select(false);
         btnClothes.Select(true);

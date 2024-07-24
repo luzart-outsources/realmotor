@@ -25,6 +25,10 @@ public class CoinObserver : MonoBehaviour
     }
     private void OnDisable()
     {
+        if(Observer.Instance == null)
+        {
+            return;
+        } 
         Observer.Instance.RemoveObserver(ObserverKey.CoinObserverNormal, SetText);
         Observer.Instance.RemoveObserver(ObserverKey.CoinObserverTextRun, SetTextTimeRun);
         Observer.Instance.RemoveObserver(ObserverKey.CoinObserverDontAuto, AutoSetText);
