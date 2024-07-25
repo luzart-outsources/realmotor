@@ -207,6 +207,25 @@ public class GameUtil : Singleton<GameUtil>
     {
         return ((layerMask.value & (1 << layer)) != 0);
     }
+    public static List<GameObject> FindGameObjectsByName(string name)
+    {
+        // Tạo danh sách để lưu các GameObject tìm được
+        List<GameObject> objectsWithName = new List<GameObject>();
+
+        // Lấy tất cả các GameObject trong scene
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+
+        // Kiểm tra từng GameObject xem có tên là "collidd" không
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == name)
+            {
+                objectsWithName.Add(obj);
+            }
+        }
+
+        return objectsWithName;
+    }
     public static int GetIndexStats(StatsMotorbike myStats)
     {
         int indexStats = 0;

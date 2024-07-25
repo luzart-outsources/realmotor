@@ -95,24 +95,24 @@ public class EnvironmentMap : MonoBehaviour
         LayerMask layerGround = LayerMask.NameToLayer("Ground");
         LayerMask layerRoad = LayerMask.NameToLayer("Road");
 
-        List<GameObject> obFences = FindGameObjectsByName("Collider-Fences");
+        List<GameObject> obFences = GameUtil.FindGameObjectsByName("Collider-Fences");
         foreach (GameObject item in obFences)
         {
             item.layer = layerWall;
         }
 
-        List<GameObject> obGrass = FindGameObjectsByName("Collider-Grass");
+        List<GameObject> obGrass = GameUtil.FindGameObjectsByName("Collider-Grass");
         foreach (GameObject item in obGrass)
         {
             item.layer = layerGround;
         }
 
-        List<GameObject> obRoad = FindGameObjectsByName("Collider-Road");
+        List<GameObject> obRoad = GameUtil.FindGameObjectsByName("Collider-Road");
         foreach (GameObject item in obRoad)
         {
             item.layer = layerRoad;
         }
-        List<GameObject> obBridge = FindGameObjectsByName("Collider-Bridge");
+        List<GameObject> obBridge = GameUtil.FindGameObjectsByName("Collider-Bridge");
         foreach (GameObject item in obBridge)
         {
             item.layer = layerRoad;
@@ -120,30 +120,12 @@ public class EnvironmentMap : MonoBehaviour
     }
     public void RemoveCameraBigScreen()
     {
-        List<GameObject> obs = FindGameObjectsByName("Camera");
+        List<GameObject> obs = GameUtil.FindGameObjectsByName("Camera");
         for (int i = 0; i < obs.Count; i++)
         {
 
         }
     }
-    public List<GameObject> FindGameObjectsByName(string name)
-    {
-        // Tạo danh sách để lưu các GameObject tìm được
-        List<GameObject> objectsWithName = new List<GameObject>();
 
-        // Lấy tất cả các GameObject trong scene
-        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-
-        // Kiểm tra từng GameObject xem có tên là "collidd" không
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.name == name)
-            {
-                objectsWithName.Add(obj);
-            }
-        }
-
-        return objectsWithName;
-    }
 #endif
 }
