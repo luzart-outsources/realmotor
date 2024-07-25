@@ -72,6 +72,7 @@ public class ClassicMode : BaseMode
     private void ShowPopUp(bool isWin)
     {
         var ui = UIManager.Instance.ShowUI<UIWinClassic>(UIName.WinClassic);
+        UIManager.Instance.HideUiActive(UIName.Gameplay);
         if(ui != null)
         {
             ui.InitDataRes(isWin, dataValueWin);
