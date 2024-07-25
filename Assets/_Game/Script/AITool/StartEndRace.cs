@@ -15,7 +15,6 @@ public class StartEndRace : MonoBehaviour
     {
         int layer = LayerMask.NameToLayer("Road");
         LayerMask layerRoad = 1 << layer;
-        item.gameObject.layer = LayerMask.NameToLayer("WavingPoint");
         RaycastHit rayUp, rayDown;
         bool isRayUp = Physics.Raycast(item.position, Vector3.up, out rayUp, Mathf.Infinity, layerRoad);
         bool isRayDown = Physics.Raycast(item.position + 100 * Vector3.up, Vector3.down, out rayDown, Mathf.Infinity, layerRoad);
@@ -30,6 +29,7 @@ public class StartEndRace : MonoBehaviour
     }
     private void GetChildStartPoint()
     {
+        List<GameObject> listEndRace = GameUtil.FindGameObjectsByName("EndRace");
         startPoint = transform.GetComponentsInChildren<Transform>();
         List<Transform> listWave = new List<Transform>();
         for (int i = 0; i < startPoint.Length; i++)
@@ -44,6 +44,10 @@ public class StartEndRace : MonoBehaviour
         for (int i = 0;i < startPoint.Length;i++)
         {
             GetRaycast(startPoint[i]);
+        }
+        for (int i = 0; i < listEndRace.Count; i++)
+        {
+            GetRaycast(listEndRace[i].transform);
         }
     }
 }

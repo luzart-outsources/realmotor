@@ -33,11 +33,7 @@ public class Observer : Singleton<Observer>
 
     public void Notify(string topicName)
     {
-        HashSet<CallBackObserver> listObserver = CreateListObserverForTopic(topicName);
-        foreach (CallBackObserver observer in listObserver)
-        {
-            observer(null);
-        }
+        Notify(topicName, null);
     }
 
     protected HashSet<CallBackObserver> CreateListObserverForTopic(string topicName)
