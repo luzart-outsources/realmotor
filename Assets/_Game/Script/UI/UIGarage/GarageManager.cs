@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DynamicShadowProjector;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -12,6 +13,7 @@ public class GarageManager : MonoBehaviour
     public GameObject obMotor;
     public Transform parentSpawn;
     public MotorVisual _motorCache;
+    public DrawTargetObject softShadowProjector;
 
     [Space, Header("Character")]
     public GameObject obCharacter;
@@ -49,6 +51,7 @@ public class GarageManager : MonoBehaviour
         var motorVisual = ResourcesManager.Instance.LoadMotor(idMotor);
         _motorCache = Instantiate(motorVisual, parentSpawn);
         _motorCache.transform.localPosition = Vector3.zero;
+        softShadowProjector.SetCommandBufferDirty();
     }
     private void RemoveMotorCache()
     {
