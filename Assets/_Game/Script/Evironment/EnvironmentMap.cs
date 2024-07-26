@@ -69,6 +69,8 @@ public class EnvironmentMap : MonoBehaviour
             PrefabUtility.InstantiatePrefab(prefab, transform);
         }
         startRace = GameObject.Find("StartEndRace");
+        StartEndRace startEndRace = startRace.GetComponent<StartEndRace>();
+        startEndRace.GetAllStartPoint();
         startPointEditor = startRace.transform;
         GameObject startGrid = GameObject.Find("StartGrid");
         if (startGrid != null)
