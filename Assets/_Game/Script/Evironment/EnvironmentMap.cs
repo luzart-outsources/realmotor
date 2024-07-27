@@ -13,6 +13,10 @@ public class EnvironmentMap : MonoBehaviour
     public static Action<EnvironmentMap> actionMap;
     public void Start()
     {
+        InvokeRegisterMap();
+    }
+    public void InvokeRegisterMap()
+    {
         actionMap?.Invoke(this);
     }
     public Transform GetStartPoint(int index)

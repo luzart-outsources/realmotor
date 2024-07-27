@@ -15,8 +15,33 @@ public class GameManager : Singleton<GameManager>
     };
     private ClassicMode classicMode;
     public EGameState EGameStatus;
-
     private void Start()
+    {
+#if UNITY_EDITOR
+        if (TestManager.Instance != null)
+        {
+            StartGameTest();
+        }
+        else
+#endif
+        {
+            StartGame();
+        }
+    }
+    private void StartGameTest()
+    {
+        Application.targetFrameRate = 60;
+        LoadReferent();
+        DataManager.Instance.Initialize();
+        DB_Motorbike db = new DB_Motorbike();
+        db.idMotor = 0;
+        db.levelUpgrade = 0;
+        DataManager.Instance.BuyMotorbike(db);
+        DataManager.Instance.BuyHelmet(0);
+        DataManager.Instance.BuyBody(0);
+        gameCoordinator.StartTestLevel();
+    }
+    private void StartGame()
     {
         Application.targetFrameRate = 60;
         UIManager.Instance.ShowUI(UIName.Splash);
@@ -27,9 +52,9 @@ public class GameManager : Singleton<GameManager>
         db.levelUpgrade = 0;
         DataManager.Instance.BuyMotorbike(db);
         DataManager.Instance.BuyHelmet(0);
-        DataManager.Instance.BuyBody(0);
-        
+        DataManager.Instance.BuyBody(0);        
     }
+
     private void LoadReferent()
     {
         if (parentSpawn == null)

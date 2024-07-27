@@ -2082,7 +2082,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1791457745339120380}
   - component: {fileID: 1791457747335609266}
-  - component: {fileID: 1791457747184614329}
   m_Layer: 8
   m_Name: Lens Flare
   m_TagString: 
@@ -4743,7 +4742,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 588545
+    m_Bits: 588544
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -4756,24 +4755,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &1791457747184614329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791457745288788657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3eaa6d09f25b142f3a1e57c87c39e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 10.39146, y: 5, z: -13.73499}
-  updateLight: {fileID: 1791457745339120378}
-  updateDistance: 48.32
-  updateHeight: 5
-  update: 0
 --- !u!123 &1791457747335609266
 LensFlare:
   m_ObjectHideFlags: 0
@@ -4788,7 +4769,7 @@ LensFlare:
   m_FadeSpeed: 3
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 15991
+    m_Bits: 2181037623
   m_Directional: 0
 --- !u!157 &1791457747906034612
 LightmapSettings:

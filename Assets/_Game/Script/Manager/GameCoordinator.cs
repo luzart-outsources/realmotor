@@ -45,6 +45,24 @@ public class GameCoordinator : MonoBehaviour
     private UIGameplay uiGameplay = null;
 
     public MiniMap miniMap;
+#if UNITY_EDITOR
+    public DB_Level db_levelEditor;
+#endif
+    public void StartTestLevel()
+    {
+#if UNITY_EDITOR
+        EnvironmentMap envi = FindAnyObjectByType<EnvironmentMap>();
+        ResetData();
+        db_Level = db_levelEditor;
+        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
+        EnvironmentMap.actionMap = OnLoadMapDone;
+        uiGameplay = UIManager.Instance.ShowUI<UIGameplay>(UIName.Gameplay);
+        uiGameplay.InitData(db_Level);
+        StartInGame();
+        //envi.InvokeRegisterMap();
+#endif
+    }
+
     public void StartGame(DB_Level _dbLevel)
     {
         ResetData();
@@ -105,9 +123,13 @@ public class GameCoordinator : MonoBehaviour
     {
         UpdateDbLeaderBoardInGameUI();
         uiGameplay.InitList(listDBLeaderBoardInGame);
-        miniMap.player1 = myMotorbike.transform;
-        miniMap.opponents = listBot.Select(item => item.transform).ToArray();
-        miniMap.Init();
+        if(miniMap != null)
+        {
+            miniMap.player1 = myMotorbike.transform;
+            miniMap.opponents = listBot.Select(item => item.transform).ToArray();
+            miniMap.Init();
+        }
+
     }
     private void LoadMap()
     {
