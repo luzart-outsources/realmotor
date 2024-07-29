@@ -9,6 +9,8 @@ public class BaseMotorbike : MonoBehaviour
     private BaseMotor baseMotor;
     [SerializeField]
     private BaseCharacter baseCharacter;
+    [SerializeField]
+    private MiniMapPlayer miniMapPlayer;
     private BaseController baseController;
     public InforMotorbike inforMotorbike;
     public int currentIndex = 0;
@@ -54,7 +56,7 @@ public class BaseMotorbike : MonoBehaviour
         this.baseCharacter.Initialize(this);
         this.baseController.Initialized(this);
         this.soundMotorbike.Initialize(this);
-        //this.miniMapPlayer.Initialize(this);
+        this.miniMapPlayer.Initialize(this);
         eState = EStateMotorbike.None;
         GetCurrentCheckPoint();
         //transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
