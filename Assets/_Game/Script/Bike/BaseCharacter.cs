@@ -80,8 +80,9 @@ public class BaseCharacter : MonoBehaviour
         }
         IsCollisionWall= true;
         characterAnimation.gameObject.SetActive(false);
-        _rbRagdoll = Instantiate(this.rbRagdoll, null);
+        _rbRagdoll = Instantiate(this.rbRagdoll, rbRagdoll.transform.parent);
         _rbRagdoll.transform.position = rbRagdoll.transform.position;
+        _rbRagdoll.transform.SetParent(null);
         if(baseMotorbike.eTeam == ETeam.Player)
         {
             CameraManager.Instance.SetFollowCamera(_rbRagdoll.transform.GetChild(0).GetChild(0).gameObject);
