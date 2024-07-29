@@ -132,6 +132,35 @@ public class HelicopterCamera : MonoBehaviour
        
 
     }
+    [SerializeField]
+    private LayerMask _layerGround;
+    private LayerMask layerGround
+    {
+        get
+        {
+            if(_layerGround  == default)
+            {
+                LayerMask layerGround = LayerMask.NameToLayer("Ground");
+                LayerMask layerRoad = LayerMask.NameToLayer("Road");
+                _layerGround |= (1 << layerGround);
+                _layerGround |= (1 << layerRoad);
+            }
+            return _layerGround;
+        }
+    }
+    private float YPosCamera(Vector3 pos  )
+    {
+        RaycastHit hit;
+        bool isRay = Physics.Raycast(pos, Vector3.down, out hit, 100f, layerGround);
+        if(isRay)
+        {
+            if(hit.distance <= 1f)
+            {
+                return hit.point.y + 1f;
+            }
+        }
+        return pos.y;
+    }
     private void CameraNone()
     {
         wantedHeight = PrimaryTarget.transform.position.y + height;
@@ -166,8 +195,10 @@ public class HelicopterCamera : MonoBehaviour
         usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
 
         wantedPosition += Quaternion.Euler(0, currentRotationAngle, 0) * new Vector3(0, 0, -usedDistance);
+        
         lookAtVector = new Vector3(0, lookAtHeight, 0);
 
+        wantedPosition.y = YPosCamera(wantedPosition);
 
         transform.position = wantedPosition;
 

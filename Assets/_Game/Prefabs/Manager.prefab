@@ -102,15 +102,18 @@ MonoBehaviour:
   animator: {fileID: 301806493219080082}
   PrimaryTarget: {fileID: 0}
   SecondaryTarget: {fileID: 0}
-  distance: 6
+  distance: 4.5
   height: 3
-  heightDamping: 2
-  lookAtHeight: 1.6
+  heightDamping: 5
+  lookAtHeight: 1
   baseMotorbike: {fileID: 0}
   rotationSnapTime: 1.5
   distanceSnapTime: 0.4
   distanceMultiplier: 0.3
   counterRotation: 0
+  _layerGround:
+    serializedVersion: 2
+    m_Bits: 0
   "m\xEDnRotationSnaptime": 1
   maxRotationSnaptime: 1.5
 --- !u!81 &3074245163851518761
