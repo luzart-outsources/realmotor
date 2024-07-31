@@ -3,9 +3,26 @@ using UnityEngine;
 
 public class MoveMovementRigid : MotorMovement
 {
-    public Transform motorbikeTransform; // Transform của xe máy
+    public Transform motorbikeTransform
+    {
+        get
+        {
+            return transform;
+        }
+    }
     public InforMotorbike motorbikeInfo; // Thông tin của xe máy
-    public Rigidbody rb;
+    private Rigidbody _rb = null;
+    public Rigidbody rb
+    {
+        get
+        {
+            if(_rb == null)
+            {
+                _rb = GetComponent<Rigidbody>();
+            }
+            return _rb;
+        }
+    }
 
     public float reverseSpeed = 10f;
     public float drag = 20f;
@@ -27,10 +44,10 @@ public class MoveMovementRigid : MotorMovement
     protected override void UpdateMovement()
     {
         base.UpdateMovement();
-        if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
-        {
-            Debug.Log(rb.velocity);
-        }
+        //if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
+        //{
+        //    Debug.Log(rb.velocity);
+        //}
 
     }
     public override void Brake()
@@ -125,8 +142,11 @@ public class MoveMovementRigid : MotorMovement
         CalculatorPosition();
         CheckRaycast();
         OnRotate();
+        if (isOnGround)
+        {
+            OnChangePosition();
+        }
 
-        OnChangePosition();
     }
     public float forceRotate = 10f;
     private void OnRotate()
@@ -143,9 +163,9 @@ public class MoveMovementRigid : MotorMovement
             {
                 turn = -1 * steerInput * motorbikeInfo.handling * Time.fixedDeltaTime;
             }
-            //rb.AddTorque(new Vector3(0, turn* factor, 0));
-            motorbikeTransform.Rotate(0, turn, 0);
-            rb.AddForce(turn * transform.right * forceRotate);
+            Vector3 deltaRotation = new Vector3(0, turn, 0);
+            //rb.rotation = rb.rotation * deltaRotation;
+            transform.Rotate(deltaRotation);
         }
         ActionTiltRotate?.Invoke(steerInput, currentSpeed);
     }
@@ -232,10 +252,10 @@ public class MoveMovementRigid : MotorMovement
     private void CheckWall(RaycastLayer.ResultRaycast result)
     {
         if (IsDead) return;
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody>();
-        }
+        //if (rb == null)
+        //{
+        //    rb = gameObject.AddComponent<Rigidbody>();
+        //}
         rb.velocity = velocity;
         rb.useGravity = true;
         rb.mass = 100;
@@ -244,27 +264,30 @@ public class MoveMovementRigid : MotorMovement
         velocity = Vector3.zero;
         IsDead = true;
     }
-    public float forceGravity = 30f;
+    private bool isOnGround = true;
+    private float forceGravity = 5f;
     private void Gravity(RaycastLayer.ResultRaycast result)
     {
-        if (result.hit.distance > 0.1f)
-        {
-            // Vehicle is too high, We apply gravity force
-            rb.AddForce(Vector3.down * forceGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
-        }
+        if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
+            Debug.Log(result.hit.distance);
+        //if (result.hit.distance <= 1.3f)
+        //{
+        //    // Vehicle is too high, We apply gravity force
+        //    isOnGround = true;
+        //    rb.AddForce(Vector3.down * forceGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+        //}
         //else
         //{
 
         //    // we determine the distance between current vehicle height and wanted height
-        //    float distanceVehicleToHoverPosition = 0.5f - result.hit.distance;
+        //    float distanceVehicleToHoverPosition = 1.3f - result.hit.distance;
 
-        //    float force = distanceVehicleToHoverPosition * 10;
+        //    float force = distanceVehicleToHoverPosition * 1000;
 
         //    // we add the hoverforce to the rigidbody
         //    rb.AddForce(Vector3.up * force * Time.fixedDeltaTime, ForceMode.Acceleration);
+        //    isOnGround = false;
         //}
-        return;
-        // Điều chỉnh vị trí và hướng của xe dựa trên độ nghiêng của mặt đất
         Vector3 groundNormal = result.hit.normal;
         Vector3 forwardDirection = Vector3.Cross(motorbikeTransform.right, groundNormal).normalized;
         motorbikeTransform.rotation = Quaternion.LookRotation(forwardDirection, groundNormal);
@@ -319,6 +342,7 @@ public class MoveMovementRigid : MotorMovement
 
     }
 #if UNITY_EDITOR
+    [Space, Header ("Editor")]
     public BoxCollider boxCol;
     private void OnDrawGizmos()
     {

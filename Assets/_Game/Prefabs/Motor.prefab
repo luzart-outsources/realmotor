@@ -5069,7 +5069,6 @@ GameObject:
   - component: {fileID: 7016999980269543957}
   - component: {fileID: 3970734084713082468}
   - component: {fileID: 5941011238601377135}
-  - component: {fileID: 4829625288994928726}
   - component: {fileID: 7191590784543998876}
   - component: {fileID: 5772577009541304968}
   - component: {fileID: 4454503334201101854}
@@ -5081,6 +5080,7 @@ GameObject:
   - component: {fileID: 6174245528579215815}
   - component: {fileID: 9088345200679624074}
   - component: {fileID: 766551818632683348}
+  - component: {fileID: 6579854256361638139}
   m_Layer: 6
   m_Name: Motor
   m_TagString: Untagged
@@ -5159,35 +5159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualMotor: {fileID: 0}
-  movementMotor: {fileID: 4829625288994928726}
+  movementMotor: {fileID: 6579854256361638139}
   transformVisualMotor: {fileID: 8275714411754204416}
   ELayerCurrent: 0
---- !u!114 &4829625288994928726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8504402386502072268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b84fa1842d3a14c8867f766a34ea8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSpeed: 0
-  velocity: {x: 0, y: 0, z: 0}
-  motorbikeTransform: {fileID: 7016999980269543957}
-  motorbikeInfo:
-    maxSpeed: 100
-    acceleration: 20
-    handling: 100
-    brake: 50
-  rb: {fileID: 9088345200679624074}
-  reverseSpeed: 10
-  drag: 20
-  raycastDowns: []
-  IsBack: 0
-  trueVelocity: {x: 0, y: 0, z: 0}
 --- !u!65 &7191590784543998876
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5207,8 +5181,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.69, y: 1.6823852, z: 3.4832687}
-  m_Center: {x: 0, y: 1.12, z: -0.12090683}
+  m_Size: {x: 0.69, y: 1.9523275, z: 3.4832687}
+  m_Center: {x: 0, y: 0.98502886, z: -0.12090683}
 --- !u!114 &5772577009541304968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5533,7 +5507,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &766551818632683348
 MonoBehaviour:
@@ -5549,6 +5523,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obEnemy: {fileID: 4772093836009440020}
   obPlayer: {fileID: 6027297632107490272}
+--- !u!114 &6579854256361638139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504402386502072268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f534dc653a3b4b949bd297e229183e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSpeed: 0
+  velocity: {x: 0, y: 0, z: 0}
+  motorbikeInfo:
+    maxSpeed: 100
+    acceleration: 20
+    handling: 30
+    brake: 50
+  reverseSpeed: 10
+  drag: 20
+  raycastDowns: []
+  IsBack: 0
+  trueVelocity: {x: 0, y: 0, z: 0}
+  forceRotate: 10
+  factor: 10
+  boxCol: {fileID: 0}
 --- !u!1 &8540055364483977860
 GameObject:
   m_ObjectHideFlags: 0
