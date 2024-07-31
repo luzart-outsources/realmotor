@@ -13,7 +13,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.6
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: afd8170e21f744c4aec46921ddac4108, type: 2}
@@ -6285,6 +6285,48 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!23 &478435901750318647
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135623880804448226}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8ebe46f8ea1123d408f948080df6758b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &508793032476007020
 GameObject:
   m_ObjectHideFlags: 0
@@ -6301,6 +6343,72 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &543450652576409951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148038185957}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 533, y: -47.270752, z: -631.8}
+  m_LocalScale: {x: 103.4, y: 103.4, z: 103.4}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1791457745339120672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &543450652826384819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148820861705}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -593, y: -88, z: -272}
+  m_LocalScale: {x: 59.62, y: 59.62, z: 59.62}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1791457745339120672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &919132148038185957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543450652576409951}
+  - component: {fileID: 3469287838641186554}
+  - component: {fileID: 1711813854647456304}
+  m_Layer: 0
+  m_Name: Stone-02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &919132148820861705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543450652826384819}
+  - component: {fileID: 3469287836742891030}
+  - component: {fileID: 1711813855970345692}
+  m_Layer: 0
+  m_Name: Stone-03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &1381399506341103759
 MonoBehaviour:
@@ -6330,8 +6438,108 @@ MonoBehaviour:
   - {fileID: 6339914618921854870}
   - {fileID: 6339914618921854869}
   parentMotorbike: {fileID: 4607399554266761538}
+  _miniMapEnvironment: {fileID: 0}
   startPointEditor: {fileID: 6339914618921854868}
   IsSetStart: 0
+--- !u!4 &1650730025659460952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135623880804448226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.2174619, z: 0, w: 0.97606885}
+  m_LocalPosition: {x: 213.6, y: -46, z: 51.7}
+  m_LocalScale: {x: 17, y: 17, z: 17}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1791457745339120672}
+  m_LocalEulerAnglesHint: {x: 0, y: -25.12, z: 0}
+--- !u!23 &1711813854647456304
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148038185957}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8ebe46f8ea1123d408f948080df6758b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!23 &1711813855970345692
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148820861705}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8ebe46f8ea1123d408f948080df6758b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1791457745288788653
 GameObject:
   m_ObjectHideFlags: 0
@@ -6377,7 +6585,7 @@ GameObject:
   - component: {fileID: 1791457745339120676}
   - component: {fileID: 1791457745825659994}
   - component: {fileID: 1791457745657887807}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_39
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6395,7 +6603,7 @@ GameObject:
   - component: {fileID: 1791457745339120617}
   - component: {fileID: 1791457745825659991}
   - component: {fileID: 1791457745657887816}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_41
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6429,7 +6637,7 @@ GameObject:
   - component: {fileID: 1791457745339120618}
   - component: {fileID: 1791457745825659993}
   - component: {fileID: 1791457745657887806}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_40
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6447,7 +6655,7 @@ GameObject:
   - component: {fileID: 1791457745339120625}
   - component: {fileID: 1791457745825660006}
   - component: {fileID: 1791457745657887810}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: mountain
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6465,7 +6673,7 @@ GameObject:
   - component: {fileID: 1791457745339120675}
   - component: {fileID: 1791457745825659998}
   - component: {fileID: 1791457745657887796}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: rail_guard
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6483,7 +6691,7 @@ GameObject:
   - component: {fileID: 1791457745339120616}
   - component: {fileID: 1791457745825660000}
   - component: {fileID: 1791457745657887811}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: road hawaii lv2
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6501,7 +6709,7 @@ GameObject:
   - component: {fileID: 1791457745339120679}
   - component: {fileID: 1791457745825659997}
   - component: {fileID: 1791457745657887800}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_7
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6517,7 +6725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1791457745339120621}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Aloha Apex Speedway
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6535,7 +6743,7 @@ GameObject:
   - component: {fileID: 1791457745339120660}
   - component: {fileID: 1791457748593900697}
   - component: {fileID: 1791457748610677974}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (17)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6553,7 +6761,7 @@ GameObject:
   - component: {fileID: 1791457745339120659}
   - component: {fileID: 1791457748593900701}
   - component: {fileID: 1791457748610677972}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (23)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6571,7 +6779,7 @@ GameObject:
   - component: {fileID: 1791457745339120658}
   - component: {fileID: 1791457748593900700}
   - component: {fileID: 1791457748610677971}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (34)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6589,7 +6797,7 @@ GameObject:
   - component: {fileID: 1791457745339120657}
   - component: {fileID: 1791457748593900702}
   - component: {fileID: 1791457748610677973}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (25)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6607,7 +6815,7 @@ GameObject:
   - component: {fileID: 1791457745339120656}
   - component: {fileID: 1791457748593900699}
   - component: {fileID: 1791457748610677970}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (30)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6625,7 +6833,7 @@ GameObject:
   - component: {fileID: 1791457745339120655}
   - component: {fileID: 1791457748593900698}
   - component: {fileID: 1791457748610677969}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (35)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6643,7 +6851,7 @@ GameObject:
   - component: {fileID: 1791457745339120654}
   - component: {fileID: 1791457748593900692}
   - component: {fileID: 1791457748610677968}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (42)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6661,7 +6869,7 @@ GameObject:
   - component: {fileID: 1791457745339120653}
   - component: {fileID: 1791457748593900693}
   - component: {fileID: 1791457748610677967}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (41)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6679,7 +6887,7 @@ GameObject:
   - component: {fileID: 1791457745339120652}
   - component: {fileID: 1791457748593900695}
   - component: {fileID: 1791457748610677965}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (38)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6697,7 +6905,7 @@ GameObject:
   - component: {fileID: 1791457745339120651}
   - component: {fileID: 1791457748593900696}
   - component: {fileID: 1791457748610677966}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (10)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6715,7 +6923,7 @@ GameObject:
   - component: {fileID: 1791457745339120650}
   - component: {fileID: 1791457748593900694}
   - component: {fileID: 1791457748610677964}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (27)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6733,7 +6941,7 @@ GameObject:
   - component: {fileID: 1791457745339120671}
   - component: {fileID: 1791457748593900708}
   - component: {fileID: 1791457748610677963}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (39)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6751,7 +6959,7 @@ GameObject:
   - component: {fileID: 1791457745339120670}
   - component: {fileID: 1791457748593900713}
   - component: {fileID: 1791457748610677962}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (43)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6769,7 +6977,7 @@ GameObject:
   - component: {fileID: 1791457745339120669}
   - component: {fileID: 1791457748593900712}
   - component: {fileID: 1791457748610677961}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (8)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6787,7 +6995,7 @@ GameObject:
   - component: {fileID: 1791457745339120668}
   - component: {fileID: 1791457748593900710}
   - component: {fileID: 1791457748610677959}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (28)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6805,7 +7013,7 @@ GameObject:
   - component: {fileID: 1791457745339120667}
   - component: {fileID: 1791457748593900711}
   - component: {fileID: 1791457748610677960}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (6)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6823,7 +7031,7 @@ GameObject:
   - component: {fileID: 1791457745339120666}
   - component: {fileID: 1791457748593900709}
   - component: {fileID: 1791457748610677958}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (14)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6841,7 +7049,7 @@ GameObject:
   - component: {fileID: 1791457745339120665}
   - component: {fileID: 1791457748593900707}
   - component: {fileID: 1791457748610677957}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (9)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6859,7 +7067,7 @@ GameObject:
   - component: {fileID: 1791457745339120664}
   - component: {fileID: 1791457748593900706}
   - component: {fileID: 1791457748610677956}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (11)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6877,7 +7085,7 @@ GameObject:
   - component: {fileID: 1791457745339120663}
   - component: {fileID: 1791457748593900703}
   - component: {fileID: 1791457748610677953}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (16)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6895,7 +7103,7 @@ GameObject:
   - component: {fileID: 1791457745339120662}
   - component: {fileID: 1791457748593900704}
   - component: {fileID: 1791457748610677955}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (24)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6913,7 +7121,7 @@ GameObject:
   - component: {fileID: 1791457745339120661}
   - component: {fileID: 1791457748593900705}
   - component: {fileID: 1791457748610677954}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (31)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6931,7 +7139,7 @@ GameObject:
   - component: {fileID: 1791457745339120641}
   - component: {fileID: 1791457748593900679}
   - component: {fileID: 1791457748610677952}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (20)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6949,7 +7157,7 @@ GameObject:
   - component: {fileID: 1791457745339120640}
   - component: {fileID: 1791457748593900680}
   - component: {fileID: 1791457748610677951}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (13)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6967,7 +7175,7 @@ GameObject:
   - component: {fileID: 1791457745339120639}
   - component: {fileID: 1791457748593900683}
   - component: {fileID: 1791457748610677950}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (37)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -6985,7 +7193,7 @@ GameObject:
   - component: {fileID: 1791457745339120638}
   - component: {fileID: 1791457748593900682}
   - component: {fileID: 1791457748610677949}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (32)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7003,7 +7211,7 @@ GameObject:
   - component: {fileID: 1791457745339120637}
   - component: {fileID: 1791457748593900681}
   - component: {fileID: 1791457748610677948}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (18)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7021,7 +7229,7 @@ GameObject:
   - component: {fileID: 1791457745339120636}
   - component: {fileID: 1791457748593900673}
   - component: {fileID: 1791457748610677946}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (40)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7039,7 +7247,7 @@ GameObject:
   - component: {fileID: 1791457745339120635}
   - component: {fileID: 1791457748593900674}
   - component: {fileID: 1791457748610677947}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (4)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7057,7 +7265,7 @@ GameObject:
   - component: {fileID: 1791457745339120634}
   - component: {fileID: 1791457748593900671}
   - component: {fileID: 1791457748610677945}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (44)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7075,7 +7283,7 @@ GameObject:
   - component: {fileID: 1791457745339120633}
   - component: {fileID: 1791457748593900672}
   - component: {fileID: 1791457748610677944}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (36)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7093,7 +7301,7 @@ GameObject:
   - component: {fileID: 1791457745339120632}
   - component: {fileID: 1791457748593900670}
   - component: {fileID: 1791457748610677943}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (19)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7111,7 +7319,7 @@ GameObject:
   - component: {fileID: 1791457745339120631}
   - component: {fileID: 1791457748593900669}
   - component: {fileID: 1791457748610677942}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (7)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7129,7 +7337,7 @@ GameObject:
   - component: {fileID: 1791457745339120630}
   - component: {fileID: 1791457748593900677}
   - component: {fileID: 1791457748610677941}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (22)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7147,7 +7355,7 @@ GameObject:
   - component: {fileID: 1791457745339120629}
   - component: {fileID: 1791457748593900678}
   - component: {fileID: 1791457748610677940}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (21)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7165,7 +7373,7 @@ GameObject:
   - component: {fileID: 1791457745339120628}
   - component: {fileID: 1791457748593900675}
   - component: {fileID: 1791457748610677938}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (5)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7183,7 +7391,7 @@ GameObject:
   - component: {fileID: 1791457745339120627}
   - component: {fileID: 1791457748593900676}
   - component: {fileID: 1791457748610677939}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (33)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7201,7 +7409,7 @@ GameObject:
   - component: {fileID: 1791457745339120649}
   - component: {fileID: 1791457748593900688}
   - component: {fileID: 1791457748610677936}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (3)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7219,7 +7427,7 @@ GameObject:
   - component: {fileID: 1791457745339120648}
   - component: {fileID: 1791457748593900689}
   - component: {fileID: 1791457748610677937}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7237,7 +7445,7 @@ GameObject:
   - component: {fileID: 1791457745339120647}
   - component: {fileID: 1791457748593900687}
   - component: {fileID: 1791457748610677935}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (2)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7255,7 +7463,7 @@ GameObject:
   - component: {fileID: 1791457745339120646}
   - component: {fileID: 1791457748593900690}
   - component: {fileID: 1791457748610677933}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (1)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7273,7 +7481,7 @@ GameObject:
   - component: {fileID: 1791457745339120645}
   - component: {fileID: 1791457748593900691}
   - component: {fileID: 1791457748610677934}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (26)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7291,7 +7499,7 @@ GameObject:
   - component: {fileID: 1791457745339120644}
   - component: {fileID: 1791457748593900684}
   - component: {fileID: 1791457748610677932}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (29)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7309,7 +7517,7 @@ GameObject:
   - component: {fileID: 1791457745339120643}
   - component: {fileID: 1791457748593900686}
   - component: {fileID: 1791457748610677931}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (15)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7327,7 +7535,7 @@ GameObject:
   - component: {fileID: 1791457745339120642}
   - component: {fileID: 1791457748593900685}
   - component: {fileID: 1791457748610677930}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Flame_5 (12)
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7345,7 +7553,7 @@ GameObject:
   - component: {fileID: 1791457745339120613}
   - component: {fileID: 1791457745825659990}
   - component: {fileID: 1791457745657887815}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_24
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7363,7 +7571,7 @@ GameObject:
   - component: {fileID: 1791457745339120626}
   - component: {fileID: 1791457745825659987}
   - component: {fileID: 1791457745657887797}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_5
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7399,7 +7607,7 @@ GameObject:
   - component: {fileID: 1791457745339120614}
   - component: {fileID: 1791457745825659996}
   - component: {fileID: 1791457745657887801}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: thac nc
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7417,7 +7625,7 @@ GameObject:
   - component: {fileID: 1791457745339120612}
   - component: {fileID: 1791457745825659984}
   - component: {fileID: 1791457745657887812}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: plant_4
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7433,7 +7641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1791457745339120672}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Aloha Apex Speedway
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7451,7 +7659,7 @@ GameObject:
   - component: {fileID: 1791457745339120681}
   - component: {fileID: 1791457745825660005}
   - component: {fileID: 1791457745657887818}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: plant_2
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7469,7 +7677,7 @@ GameObject:
   - component: {fileID: 1791457745339120673}
   - component: {fileID: 1791457745825659999}
   - component: {fileID: 1791457745657887813}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ocean_hawaii_lv2
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7487,7 +7695,7 @@ GameObject:
   - component: {fileID: 1791457745339120683}
   - component: {fileID: 1791457748593900668}
   - component: {fileID: 1791457748610677975}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Water
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7505,7 +7713,7 @@ GameObject:
   - component: {fileID: 1791457745339120624}
   - component: {fileID: 1791457745825659986}
   - component: {fileID: 1791457745657887802}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_28
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7523,7 +7731,7 @@ GameObject:
   - component: {fileID: 1791457745339120678}
   - component: {fileID: 1791457745825659988}
   - component: {fileID: 1791457745657887814}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: props start_20
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7541,7 +7749,7 @@ GameObject:
   - component: {fileID: 1791457745339120623}
   - component: {fileID: 1791457745825659985}
   - component: {fileID: 1791457745657887805}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: plant
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7559,7 +7767,7 @@ GameObject:
   - component: {fileID: 1791457745339120615}
   - component: {fileID: 1791457745825660002}
   - component: {fileID: 1791457745657887798}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: plant_3
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7596,7 +7804,7 @@ GameObject:
   - component: {fileID: 1791457745339120674}
   - component: {fileID: 1791457745825659995}
   - component: {fileID: 1791457745657887799}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: plant_1
   m_TagString: 
   m_Icon: {fileID: 0}
@@ -7916,13 +8124,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791457745288788775}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -135.5254, y: -22.14329, z: -75.69809}
+  m_LocalRotation: {x: 0, y: -0.9995625, z: 0, w: 0.029579023}
+  m_LocalPosition: {x: 45, y: -22.14329, z: 456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1791457745339120621}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -176.61, z: 0}
 --- !u!4 &1791457745339120626
 Transform:
   m_ObjectHideFlags: 0
@@ -8673,6 +8881,9 @@ Transform:
   - {fileID: 1791457745339120648}
   - {fileID: 1791457745339120614}
   - {fileID: 1791457745339120621}
+  - {fileID: 1650730025659460952}
+  - {fileID: 543450652576409951}
+  - {fileID: 543450652826384819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1791457745339120673
@@ -115713,6 +115924,32 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &2135623880804448226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650730025659460952}
+  - component: {fileID: 2397966291455435517}
+  - component: {fileID: 478435901750318647}
+  m_Layer: 0
+  m_Name: Stone-01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!33 &2397966291455435517
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135623880804448226}
+  m_Mesh: {fileID: 393640797269886092, guid: 1c4960c62f8647d4d8135211f639795f, type: 3}
 --- !u!1 &2689386564316289484
 GameObject:
   m_ObjectHideFlags: 0
@@ -115829,6 +116066,22 @@ Transform:
   - {fileID: 397458494}
   m_Father: {fileID: 8573439487852136436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3469287836742891030
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148820861705}
+  m_Mesh: {fileID: 6742471435286586101, guid: 985d316af416fbb4baca89bd741c22e9, type: 3}
+--- !u!33 &3469287838641186554
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148038185957}
+  m_Mesh: {fileID: 8814717087569617840, guid: d87ece6526a06804891d5400fe13d89c, type: 3}
 --- !u!114 &4149193079229602824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115942,6 +116195,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8573439487852136436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5958236890906022006
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1360752452010710194, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_Name
+      value: Minimap Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401753192059526198, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_Depth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1394.7173
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 575.4461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.9639797
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823329257613555206, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60e4c72070a76554f8a653f3b5b98516, type: 3}
 --- !u!1001 &6339914618921854867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116336,3 +116650,4 @@ SceneRoots:
   - {fileID: 1791457745339120611}
   - {fileID: 1791457745339120672}
   - {fileID: 8573439487852136436}
+  - {fileID: 5958236890906022006}

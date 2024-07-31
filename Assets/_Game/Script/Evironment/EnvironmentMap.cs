@@ -5,15 +5,37 @@ using UnityEngine;
 
 public class EnvironmentMap : MonoBehaviour
 {
-
     public WavingPointGizmos wavingPointGizmos;
     public Transform[] startPoint;
     public Transform parentMotorbike;
+    [SerializeField]
+    private MiniMapEnvironment _miniMapEnvironment;
+    public MiniMapEnvironment miniMapEnvironment
+    {
+        get
+        {
+            if(_miniMapEnvironment == null)
+            {
+                _miniMapEnvironment = FindAnyObjectByType<MiniMapEnvironment>();
+            }
+            return _miniMapEnvironment;
+        }
+    }
 
     public static Action<EnvironmentMap> actionMap;
     public void Start()
     {
-        InvokeRegisterMap();
+#if UNITY_EDITOR
+        if(TestManager.Instance != null)
+        {
+
+        }
+        else
+#endif
+        {
+            InvokeRegisterMap();
+        }
+
     }
     public void InvokeRegisterMap()
     {
