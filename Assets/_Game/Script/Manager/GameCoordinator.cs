@@ -18,6 +18,7 @@ public class GameCoordinator : MonoBehaviour
     public Action<bool> ActionOnEndGame = null;
 
     public WavingPointGizmos wavingPointGizmos;
+    public MiniMapEnvironment miniMapEnvironment;
 
     [SerializeField]
     private BaseMotorbike baseMotorBike;
@@ -44,7 +45,6 @@ public class GameCoordinator : MonoBehaviour
     public float timePlay = 0;
     private UIGameplay uiGameplay = null;
 
-    public MiniMap miniMap;
 #if UNITY_EDITOR
     public DB_Level db_levelEditor;
 #endif
@@ -56,10 +56,12 @@ public class GameCoordinator : MonoBehaviour
         db_Level = db_levelEditor;
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
         EnvironmentMap.actionMap = OnLoadMapDone;
+
         uiGameplay = UIManager.Instance.ShowUI<UIGameplay>(UIName.Gameplay);
         uiGameplay.InitData(db_Level);
         StartInGame();
-        //envi.InvokeRegisterMap();
+        envi.InvokeRegisterMap();
+
 #endif
     }
 
@@ -123,12 +125,6 @@ public class GameCoordinator : MonoBehaviour
     {
         UpdateDbLeaderBoardInGameUI();
         uiGameplay.InitList(listDBLeaderBoardInGame);
-        if(miniMap != null)
-        {
-            miniMap.player1 = myMotorbike.transform;
-            miniMap.opponents = listBot.Select(item => item.transform).ToArray();
-            miniMap.Init();
-        }
 
     }
     private void LoadMap()
@@ -178,6 +174,7 @@ public class GameCoordinator : MonoBehaviour
     private void InitMap()
     {
         wavingPointGizmos = environmentMap.wavingPointGizmos;
+        miniMapEnvironment = environmentMap.miniMapEnvironment;
     }
     private void InitPlayer()
     {

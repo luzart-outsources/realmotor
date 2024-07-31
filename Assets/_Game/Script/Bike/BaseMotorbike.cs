@@ -74,7 +74,7 @@ public class BaseMotorbike : MonoBehaviour
         var prefabs = ResourcesManager.Instance.LoadMotor(dbMotorbike.idMotor);
         baseMotor.visualMotor = Instantiate(prefabs, parentVisualMotor);
         baseMotor.visualMotor.transform.localPosition = Vector3.zero;
-        baseMotor.transform.localScale = Vector3.one*0.75f;
+        baseMotor.transform.localScale = Vector3.one*0.8f;
         baseCharacter.InitSpawn(db_Character);
         baseMotor.InitSpawn();
     }
@@ -203,8 +203,12 @@ public class BaseMotorbike : MonoBehaviour
         else
         {
             round++;
-            currentIndex = 0;
-            listIndex.Clear();
+            if(GameManager.Instance.gameCoordinator.db_Level.level != 0)
+            {
+                currentIndex = 0;
+                listIndex.Clear();
+            }
+
 
             GameManager.Instance.gameCoordinator.OnPassFinishLine(this);
 
