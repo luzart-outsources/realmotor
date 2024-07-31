@@ -203,8 +203,12 @@ public class BaseMotorbike : MonoBehaviour
         else
         {
             round++;
-            currentIndex = 0;
-            listIndex.Clear();
+            if(GameManager.Instance.gameCoordinator.db_Level.level != 0)
+            {
+                currentIndex = 0;
+                listIndex.Clear();
+            }
+
 
             GameManager.Instance.gameCoordinator.OnPassFinishLine(this);
 
