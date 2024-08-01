@@ -16,10 +16,11 @@ public class BaseMotor : MonoBehaviour
     public float Speed => movementMotor.currentSpeed;
 
     public Action<Vector3> ActionCollisionWall = null;
-
+    public Action<ResultOnCollisionLayer> actionOnCollisionLayer;
     public void InitSpawn()
     {
         visualMotor.motorVisual = transformVisualMotor;
+        movementMotor.actionOnCollisionLayer = actionOnCollisionLayer;
     }
     public void Initialize(BaseMotorbike baseMotorbike)
     {

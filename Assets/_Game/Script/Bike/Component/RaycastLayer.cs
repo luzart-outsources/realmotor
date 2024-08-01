@@ -9,10 +9,15 @@ public class RaycastLayer : MonoBehaviour
     protected ResultRaycast resultRaycast = null;
     protected RaycastHit hit;
 
+    public virtual bool IsRaycast()
+    {
+        bool isRayHit = Physics.Raycast(transform.position + Vector3.up*10f, Vector3.down, out hit, Mathf.Infinity, layerMask);
+        return isRayHit;
+    }
 
     public virtual ResultRaycast GetResultRaycast()
     {
-        bool isRayHit =  Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, layerMask);
+        bool isRayHit = IsRaycast();
         IsCheckEditor(isRayHit);
         if (isRayHit)
         {

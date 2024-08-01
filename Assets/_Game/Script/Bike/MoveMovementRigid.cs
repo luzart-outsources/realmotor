@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveMovementRigid : MotorMovement
@@ -28,10 +29,12 @@ public class MoveMovementRigid : MotorMovement
     public float drag = 20f;
 
     public RaycastLayer[] raycastDowns;
+    public OnCollisionLayer[] onCollisionLayers; 
 
     private void Awake()
     {
         raycastDowns = GetComponents<RaycastLayer>();
+        onCollisionLayers = GetComponents<OnCollisionLayer>();
     }
     public override void Initialize(BaseMotor baseMotor)
     {
@@ -39,15 +42,34 @@ public class MoveMovementRigid : MotorMovement
         motorbikeInfo = baseMotor.baseMotorbike.inforMotorbike;
         IsDead = false;
         rb.velocity = Vector3.zero;
+        rb.useGravity = false;
         drag = Mathf.Clamp(drag, 0f, motorbikeInfo.maxSpeed / 10);
+        InitOnCollisionLayer();
+
     }
+    private void InitOnCollisionLayer()
+    {
+        if(onCollisionLayers != null)
+        {
+            int length = onCollisionLayers.Length;
+            for (int i = 0; i < length; i++)
+            {
+                var colLayer = onCollisionLayers[i];
+                if (colLayer != null)
+                {
+                    if(colLayer.actionOnCollisionLayer != null)
+                    {
+                        colLayer.actionOnCollisionLayer = null;
+                    }
+                    colLayer.actionOnCollisionLayer += ActionOnCollisionLayer;
+                }
+            }
+        }
+    }
+
     protected override void UpdateMovement()
     {
         base.UpdateMovement();
-        //if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
-        //{
-        //    Debug.Log(rb.velocity);
-        //}
 
     }
     public override void Brake()
@@ -74,6 +96,7 @@ public class MoveMovementRigid : MotorMovement
         // Xử lý tăng tốc và phanh
         if (moveInput > 0)
         {
+            rb.constraints = RigidbodyConstraints.None;
             float acce = motorbikeInfo.acceleration;
             float targetSpeed = motorbikeInfo.maxSpeed * 0.3f;
             if (currentSpeed < targetSpeed)
@@ -81,9 +104,11 @@ public class MoveMovementRigid : MotorMovement
                 acce = (3 - 2 * Mathf.Lerp(currentSpeed, 0, targetSpeed) / targetSpeed) * acce;
             }
             currentSpeed += acce * deltaTime * moveInput;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
         }
         else if (moveInput < 0)
         {
+            rb.constraints = RigidbodyConstraints.None;
             if (currentSpeed > 0)
             {
                 // Phanh
@@ -92,6 +117,7 @@ public class MoveMovementRigid : MotorMovement
                 if (Mathf.Abs(currentSpeed) <= 0.5f)
                 {
                     currentSpeed = 0;
+
                 }
             }
             else if (IsBack)
@@ -115,6 +141,10 @@ public class MoveMovementRigid : MotorMovement
             {
                 currentSpeed = 0;
             }
+            if (Mathf.Abs(currentSpeed) <= 5)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+            }
         }
 
         // Giới hạn tốc độ của xe
@@ -129,9 +159,11 @@ public class MoveMovementRigid : MotorMovement
     public Vector3 trueVelocity;
     private void OnChangePosition()
     {
-        trueVelocity = transform.InverseTransformDirection(velocity);
-        trueVelocity.y = 0;
-        velocity = transform.TransformDirection(trueVelocity);
+        //trueVelocity = transform.InverseTransformDirection(velocity);
+        //trueVelocity.y = 0;
+        //velocity = transform.TransformDirection(trueVelocity);
+        velocity = transform.forward * currentSpeed;
+        trueVelocity = velocity;
         ActionOnMove?.Invoke(trueVelocity);
         rb.velocity = velocity / 2;
         //Vector3 pos = motorbikeTransform.position + velocity * Time.fixedDeltaTime / 2;
@@ -139,6 +171,10 @@ public class MoveMovementRigid : MotorMovement
     }
     protected override void FixedUpdateMovement()
     {
+        if (IsDead)
+        {
+            return;
+        }
         CalculatorPosition();
         CheckRaycast();
         OnRotate();
@@ -204,16 +240,16 @@ public class MoveMovementRigid : MotorMovement
                     }
                     break;
                 }
-            case ELayerRaycastMotorbike.Wall:
-                {
-                    CheckWall(result);
-                    break;
-                }
-            case ELayerRaycastMotorbike.Bike:
-                {
-                    CheckBike(result);
-                    break;
-                }
+            //case ELayerRaycastMotorbike.Wall:
+            //    {
+            //        CheckWall(result);
+            //        break;
+            //    }
+            //case ELayerRaycastMotorbike.Bike:
+            //    {
+            //        CheckBike(result);
+            //        break;
+            //    }
             case ELayerRaycastMotorbike.FinishLine:
                 {
                     CheckFinishLine(result);
@@ -249,16 +285,48 @@ public class MoveMovementRigid : MotorMovement
     }
 
     private bool IsDead = false;
-    private void CheckWall(RaycastLayer.ResultRaycast result)
+    private void CheckWall(Collision collision)
     {
         if (IsDead) return;
+        if (currentSpeed >= 20)
+        {
+            CollisionDead();
+        }
+        else
+        {
+            var contactPoints = collision.contacts;
+            int length = contactPoints.Length;
+            float angleThreshold = 20f;
+            Vector3 relativeVelocity = transform.forward;
+            for (int i = 0; i < length; i++)
+            {
+                var contact = contactPoints[i];
+                Vector3 contactNormal = contact.normal;
+
+                // Tính góc giữa vận tốc tương đối và pháp tuyến
+                float angle = Vector3.Angle(relativeVelocity, contactNormal);
+
+
+                // Kiểm tra xem góc có gần vuông góc hay không
+                if (Mathf.Abs(angle - (angle / 180)*180) < angleThreshold)
+                {
+                    CollisionDead();
+                }
+            }
+        }
+
+    }
+    private void CollisionDead()
+    {
+
         //if (rb == null)
         //{
         //    rb = gameObject.AddComponent<Rigidbody>();
         //}
+        rb.interpolation = RigidbodyInterpolation.None;
         rb.velocity = velocity;
-        rb.useGravity = true;
         rb.mass = 100;
+        rb.useGravity = true;
         ActionCollisionWall?.Invoke(velocity);
         currentSpeed = 0;
         velocity = Vector3.zero;
@@ -268,8 +336,7 @@ public class MoveMovementRigid : MotorMovement
     private float forceGravity = 5f;
     private void Gravity(RaycastLayer.ResultRaycast result)
     {
-        if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
-            Debug.Log(result.hit.distance);
+
         //if (result.hit.distance <= 1.3f)
         //{
         //    // Vehicle is too high, We apply gravity force
@@ -289,38 +356,41 @@ public class MoveMovementRigid : MotorMovement
         //    isOnGround = false;
         //}
         Vector3 groundNormal = result.hit.normal;
+        //Vector3 groundPhaptuyen = groundNormal + (Vector3.up - groundNormal)* delta;
         Vector3 forwardDirection = Vector3.Cross(motorbikeTransform.right, groundNormal).normalized;
         motorbikeTransform.rotation = Quaternion.LookRotation(forwardDirection, groundNormal);
+        if (result.hit.distance > 1.3f)
+        {
+            float yPos = (result.hit.point + boxCol.size/2 - boxCol.center).y;
+            Vector3 pos = motorbikeTransform.position;
+            motorbikeTransform.position = new Vector3(pos.x, yPos, pos.z);
+        }
         // Nếu không có mặt đất dưới xe, di chuyển xe xuống dưới
-        motorbikeTransform.position = result.hit.point;
+
     }
     private bool isRayBike = false;
-    private void CheckBike(RaycastLayer.ResultRaycast result)
+    public float delta = 0.1f;
+    private void CheckBike(Collision collision)
     {
-        //RaycastLayer.ResultOverlapBool resultFinish = result as RaycastLayer.ResultOverlapBool;
-        //if (resultFinish == null)
-        //{
-        //    return;
-        //}
-        //bool isFinished = resultFinish.isFinishRaycast;
-        //if (isRayBike == isFinished)
-        //{
-        //    return;
-        //}
-        //isRayBike = isFinished;
-        //if (isFinished)
-        //{
-        //    if (rb == null)
-        //    {
-        //        rb = gameObject.AddComponent<Rigidbody>();
-        //    }
-        //}
-        //else
-        //{
-        //    Destroy(rb);
-        //}
+        var motorPartner = collision.gameObject.GetComponent<MoveMovementRigid>();
+        if(motorPartner!= null)
+        {
+            motorPartner.OnCollisionBike(this);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.AddForce(velocity/2);
+            GameUtil.Instance.WaitAndDo(0.5f, UnConstain);
+        }
     }
-
+    public void OnCollisionBike(MoveMovementRigid moveRigid)
+    {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.AddForce(moveRigid.velocity/2);
+        GameUtil.Instance.WaitAndDo(0.5f, UnConstain);
+    }
+    public void UnConstain()
+    {
+        rb.constraints = RigidbodyConstraints.None ;
+    }
     private bool isRayFinish = false;
     private void CheckFinishLine(RaycastLayer.ResultRaycast result)
     {
@@ -341,9 +411,26 @@ public class MoveMovementRigid : MotorMovement
         }
 
     }
-#if UNITY_EDITOR
-    [Space, Header ("Editor")]
+    public void ActionOnCollisionLayer(ResultOnCollisionLayer result)
+    {
+        switch(result.layerCheck)
+        {
+            case LayerCheck.Wall:
+                {
+                    CheckWall(result.collision);
+                    break;
+                }
+            case LayerCheck.Bike:
+                {
+                    CheckBike(result.collision);
+                    break;
+                }
+        }
+    }
     public BoxCollider boxCol;
+#if UNITY_EDITOR
+    //[Space, Header ("Editor")]
+
     private void OnDrawGizmos()
     {
         if (boxCol == null)

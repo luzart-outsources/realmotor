@@ -1,4 +1,5 @@
 using MoreMountains.HighroadEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class BaseMotorbike : MonoBehaviour
             return transform.InverseTransformDirection(transform.forward * Speed);
         }
     }
-
+    public Action<ResultOnCollisionLayer> actionOnCollisionLayer;
     public void Initialize(InforMotorbike inforMotorbike, BaseController baseController, ETeam eTeam)
     {
         this.inforMotorbike = inforMotorbike;

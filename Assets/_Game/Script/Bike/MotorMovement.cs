@@ -15,6 +15,7 @@ public class MotorMovement : MonoBehaviour
     public Action ActionOnGround = null;
     public Action<Vector3> ActionOnBrake = null;
     public Action<Vector3> ActionCollisionWall = null;
+    public Action<ResultOnCollisionLayer> actionOnCollisionLayer =null;
 
     public float currentSpeed = 0f; // Tốc độ hiện tại của xe
 

@@ -61,7 +61,7 @@ MonoBehaviour:
   skidMark1: {fileID: 3871273248780769962}
   skidMark2: {fileID: 7386366821654053975}
   fxDustDriftFront: {fileID: 684222503739743166}
-  fxDustDriftBack: {fileID: 684222503739743166}
+  fxDustDriftBack: {fileID: 6505162976660243779}
   obDustGroundFront: {fileID: 5349622248562484347}
   obDustGroundBack: {fileID: 1033220425052235221}
   fxDustGroundFront: {fileID: 7589923876628954025}
@@ -513,6 +513,17 @@ TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 2982399587951940342, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
   m_PrefabInstance: {fileID: 2079002893937625180}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6505162976660243779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5088189477595254047, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+  m_PrefabInstance: {fileID: 2079002893937625180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc00d3a18bea3bc4bb8eccc6c43efef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7377290682343034093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8843799543413884081, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
