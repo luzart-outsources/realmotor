@@ -323,6 +323,8 @@ public class MoveMovementRigid : MotorMovement
         //{
         //    rb = gameObject.AddComponent<Rigidbody>();
         //}
+        if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
+            AudioManager.Instance.PlaySFXCrashWall();
         rb.interpolation = RigidbodyInterpolation.None;
         rb.velocity = velocity;
         rb.mass = 100;
@@ -375,6 +377,8 @@ public class MoveMovementRigid : MotorMovement
         var motorPartner = collision.gameObject.GetComponent<MoveMovementRigid>();
         if(motorPartner!= null)
         {
+            if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
+            AudioManager.Instance.PlaySFXCrashMotor();
             motorPartner.OnCollisionBike(this);
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.AddForce(velocity/2);

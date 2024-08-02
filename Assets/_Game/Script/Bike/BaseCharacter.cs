@@ -27,7 +27,7 @@ public class BaseCharacter : MonoBehaviour
         {
             Destroy(_rbRagdoll.gameObject);
         }
-
+        characterAnimation.InitCharacter(baseMotorbike);
         characterAnimation.gameObject.SetActive(true);
         IsCollisionWall = false;
     }

@@ -7,7 +7,12 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource audioSFX;
     private AudioSource audioMusic;
 
+    [Space, Header("In Game")]
+    [SerializeField] private AudioClip clipCrashMotor;
+    [SerializeField] private AudioClip clipCrashWall;
+    [Space, Header("UI")]
     [SerializeField] private AudioClip clipClick;
+    [SerializeField] private AudioClip clipUnlockMotor;
     [SerializeField] private AudioClip clipMusicBg;
     [SerializeField] private AudioClip[] clipMusicBgInGame;
 
@@ -72,7 +77,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         get
         {
-            int value = PlayerPrefs.GetInt(MUTE_VIBRA,0);
+            int value = PlayerPrefs.GetInt(MUTE_VIBRA, 0);
             if (value == 0)
             {
                 _isMuteVibra = false;
@@ -132,12 +137,12 @@ public class AudioManager : Singleton<AudioManager>
         audioSFX.mute = isMuteSFX;
         audioMusic.mute = isMuteMusic;
         _isMuteVibra = isMuteVibra;
-        audioSFX.volume = volumnSFX/2;
-        audioMusic.volume= volumnMusic/2;
+        audioSFX.volume = volumnSFX / 2;
+        audioMusic.volume = volumnMusic / 2;
     }
     public void PlaySFXBtn()
     {
-        audioSFX.PlayOneShot(clipClick);
+        PlaySFXOneshot(clipClick);
     }
     public void PlayMusicBgInGame()
     {
@@ -148,7 +153,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlayMusicBg()
     {
-        if(audioMusic.clip == clipMusicBg)
+        if (audioMusic.clip == clipMusicBg)
         {
             return;
         }
@@ -156,6 +161,25 @@ public class AudioManager : Singleton<AudioManager>
         audioMusic.loop = true;
         audioMusic.Play();
     }
+
+    public void PlaySFXCrashMotor()
+    {
+        PlaySFXOneshot(clipCrashMotor);
+    }
+
+    public void PlaySFXCrashWall()
+    {
+        PlaySFXOneshot(clipCrashWall);
+    }
+
+    public void PlaySFXOneshot(AudioClip clip)
+    {
+        if (audioSFX != null || clip != null)
+        {
+            audioSFX.PlayOneShot(clip);
+        }
+    }
+
     public void StopMusic()
     {
         audioMusic.Stop();
@@ -171,4 +195,6 @@ public class AudioManager : Singleton<AudioManager>
     {
         PlayerPrefs.Save();
     }
+
+
 }
