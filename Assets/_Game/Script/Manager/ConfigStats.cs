@@ -5,6 +5,45 @@ using UnityEngine;
 
 public class ConfigStats 
 {
+    public static float[] Gear = new float[]
+    {
+        //0.11f,
+        //0.22f,
+        0f,
+        0.22f,
+        0.66f,
+        1,
+    };
+    public static int GetGear(float currentSpeed, float maxSpeed)
+    {
+        float percent = currentSpeed / maxSpeed;
+        int length = Gear.Length;
+        for (int i = 0; i < length; i++)
+        {
+            if(percent <= Gear[i])
+            {
+                return i;
+            }
+        }
+        return length;
+    }
+    public static float GetRevValue(float currentSpeed, float maxSpeed)
+    {
+        int indexGear = GetGear(currentSpeed, maxSpeed);
+        if(indexGear == 0)
+        {
+            return 0;
+        }
+        int indexpreGear = indexGear - 1;
+        float valueGear = Gear[indexGear];
+        float valuePreGear = Gear[indexpreGear];
+        float valueSpeedGear = valueGear*maxSpeed;
+        float valueSpeedPreGear = valuePreGear*maxSpeed;
+        float total = valueSpeedGear - valueSpeedPreGear;
+        float current = currentSpeed - valueSpeedPreGear;
+        float revValue = current/ total;    
+        return revValue;
+    }
     public static InforMotorbike GetInforMotorbike(int idMotor, int[] levelUpgrade)
     {
         InforMotorbike inforMotorbike = new InforMotorbike();

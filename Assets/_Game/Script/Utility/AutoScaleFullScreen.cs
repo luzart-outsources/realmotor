@@ -18,7 +18,7 @@ public class AutoScaleFullScreen : MonoBehaviour
         float screenAspect = (float)Screen.width / (float)Screen.height;
 
         // Kiểm tra xem màn hình là dọc hay ngang
-        if (screenAspect > 1) // màn hình ngang
+        if (screenAspect < 1) // màn hình ngang
         {
             rectTransform.sizeDelta = new Vector2(Screen.width, Screen.width / screenAspect);
         }

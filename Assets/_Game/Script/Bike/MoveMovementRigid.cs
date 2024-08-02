@@ -98,11 +98,11 @@ public class MoveMovementRigid : MotorMovement
         {
             rb.constraints = RigidbodyConstraints.None;
             float acce = motorbikeInfo.acceleration;
-            float targetSpeed = motorbikeInfo.maxSpeed * 0.3f;
-            if (currentSpeed < targetSpeed)
-            {
-                acce = (3 - 2 * Mathf.Lerp(currentSpeed, 0, targetSpeed) / targetSpeed) * acce;
-            }
+            //float targetSpeed = motorbikeInfo.maxSpeed * 0.3f;
+            //if (currentSpeed < targetSpeed)
+            //{
+            //    acce = (3 - 2 * Mathf.Lerp(currentSpeed, 0, targetSpeed) / targetSpeed) * acce;
+            //}
             currentSpeed += acce * deltaTime * moveInput;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
         }

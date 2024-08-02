@@ -47,6 +47,34 @@ public class BaseMotorbike : MonoBehaviour
             return transform.InverseTransformDirection(transform.forward * Speed);
         }
     }
+    [Sirenix.OdinInspector.ShowInInspector]
+    public int currentGear
+    {
+        get
+        {
+            if(inforMotorbike != null)
+            {
+                float maxSpeed = inforMotorbike.maxSpeed;
+                float currentSpeed = Speed;
+                return ConfigStats.GetGear(currentSpeed, maxSpeed);
+            }
+            return 0;
+        }
+    }
+    [Sirenix.OdinInspector.ShowInInspector]
+    public float revValue
+    {
+        get
+        {
+            if (inforMotorbike != null)
+            {
+                float maxSpeed = inforMotorbike.maxSpeed;
+                float currentSpeed = Speed;
+                return ConfigStats.GetRevValue(currentSpeed, maxSpeed);
+            }
+            return 0;
+        }
+    }
     public Action<ResultOnCollisionLayer> actionOnCollisionLayer;
     public void Initialize(InforMotorbike inforMotorbike, BaseController baseController, ETeam eTeam)
     {
@@ -283,6 +311,8 @@ public class BaseMotorbike : MonoBehaviour
     private bool IsStartRace = false;
 
     #region Controller
+    public int valueVerticle = 0;
+    public int valueHorizontal = 0;
     private void FixedUpdateController()
     {
         if (baseController != null)
@@ -301,31 +331,37 @@ public class BaseMotorbike : MonoBehaviour
     {
         baseMotor.MoveLeft();
         baseCharacter.MoveLeft();
+        valueHorizontal = -1;
     }
     public void MoveRight()
     {
         baseMotor.MoveRight();
         baseCharacter.MoveRight();
+        valueHorizontal = 1;
     }
     public void MoveUp()
     {
         baseMotor.MoveUp();
         baseCharacter.MoveUp();
+        valueVerticle = 1;
     }
     public void Brake()
     {
         baseMotor.Brake();
         baseCharacter.Brake();
+        valueVerticle = -1;
     }
     public void UnHorizontal()
     {
         baseMotor.UnHorizontal();
         baseCharacter.UnHorizontal();
+        valueHorizontal = 0;
     }
     public void UnVerticle()
     {
         baseMotor.UnVerticle();
         baseCharacter.UnVerticle();
+        valueVerticle = 0;
     }
     public void MoveVisual(Vector3 velocity)
     {

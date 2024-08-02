@@ -5,30 +5,31 @@ using UnityEngine;
 
 public class SoundMotorbike : MonoBehaviour
 {
-    [SerializeField]
-    private AudioSource audioMotor;
-    [SerializeField]
-    private AudioSource audioDrift;
-    [SerializeField]
-    private AudioSource otherAudio;
+    //[SerializeField]
+    //private AudioSource audioMotor;
 
-    private BaseMotorbike baseMotorbike;
+    [SerializeField]
+    protected AudioSource audioDrift;
+    [SerializeField]
+    public float soundEngine = 0.3f;
 
+    protected BaseMotorbike baseMotorbike;
+    public float volumnSFX;
     private bool IsInit = false;
-    public void Initialize(BaseMotorbike baseMotorbike)
+    public virtual void Initialize(BaseMotorbike baseMotorbike)
     {
         this.baseMotorbike = baseMotorbike;
         IsInit = true;
         if (baseMotorbike.eTeam != ETeam.Player)
         {
             audioDrift.enabled = false;
-            audioMotor.enabled = false;
+            //audioMotor.enabled = false;
 
             return;
         }
-        float volumSFX = AudioManager.Instance.volumnSFX;
-        audioMotor.volume = audioMotor.volume * volumSFX;
-        audioDrift.volume = audioDrift.volume * volumSFX;
+        volumnSFX = AudioManager.Instance.volumnSFX * soundEngine;
+        //audioMotor.volume = audioMotor.volume * volumSFX;
+        //audioDrift.volume = volumnSFX;
 
     }
     private void Update()
@@ -47,23 +48,27 @@ public class SoundMotorbike : MonoBehaviour
         }
         if (baseMotorbike != null)
         {
-            float minPitch = 0.5f; // Pitch tối thiểu
-            float maxPitch = 2.5f;   // Pitch tối đa
-            float step = 0.1f;     // Khoảng pitch
-
-            // Tính RPM giả định dựa trên tốc độ của xe máy
-            float minRPM = 1000f; // RPM tối thiểu
-            float maxRPM = 8000f; // RPM tối đa
-
-            // Tính RPM hiện tại dựa trên tốc độ của xe máy
-            float currentRPM = Mathf.Lerp(minRPM, maxRPM, Mathf.Abs(baseMotorbike.Speed) / baseMotorbike.inforMotorbike.maxSpeed);
-
-            // Tính pitch dựa trên RPM
-            float targetPitch = Mathf.Lerp(minPitch, maxPitch, (currentRPM - minRPM) / (maxRPM - minRPM));
-
-            // Làm tròn pitch đến giá trị gần nhất với khoảng step
-            audioMotor.pitch = Mathf.Round(targetPitch / step) * step;
+            UpdateAudio();
         }
+    }
+    public virtual void UpdateAudio()
+    {
+        float minPitch = 0.5f; // Pitch tối thiểu
+        float maxPitch = 2.5f;   // Pitch tối đa
+        float step = 0.1f;     // Khoảng pitch
+
+        // Tính RPM giả định dựa trên tốc độ của xe máy
+        float minRPM = 1000f; // RPM tối thiểu
+        float maxRPM = 8000f; // RPM tối đa
+
+        // Tính RPM hiện tại dựa trên tốc độ của xe máy
+        float currentRPM = Mathf.Lerp(minRPM, maxRPM, Mathf.Abs(baseMotorbike.Speed) / baseMotorbike.inforMotorbike.maxSpeed);
+
+        // Tính pitch dựa trên RPM
+        float targetPitch = Mathf.Lerp(minPitch, maxPitch, (currentRPM - minRPM) / (maxRPM - minRPM));
+
+        // Làm tròn pitch đến giá trị gần nhất với khoảng step
+        //audioMotor.pitch = Mathf.Round(targetPitch / step) * step;
     }
     public void SoundDrifEnable(bool isEnable)
     {
