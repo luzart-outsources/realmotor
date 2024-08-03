@@ -1350,28 +1350,28 @@ MonoBehaviour:
     txtUpgrade: {fileID: 3544349273684901604}
     rtCurLine: {fileID: 7984406027156349071}
     rtUpgrade: {fileID: 2548621596075851863}
-    maxRange: 250
+    maxRange: 300
   - txtTitle: {fileID: 5202226452371958605}
     txtCurValue: {fileID: 2596825385557591762}
     obUp: {fileID: 6645335181102697910}
     txtUpgrade: {fileID: 2906625088489547740}
     rtCurLine: {fileID: 8622185496869271991}
     rtUpgrade: {fileID: 4195352823156906351}
-    maxRange: 100
+    maxRange: 150
   - txtTitle: {fileID: 6057623517870838500}
     txtCurValue: {fileID: 4047262676518944635}
     obUp: {fileID: 4619563162267776031}
     txtUpgrade: {fileID: 3780047333942845045}
     rtCurLine: {fileID: 7749337186584084510}
     rtUpgrade: {fileID: 2746041499443011782}
-    maxRange: 200
+    maxRange: 300
   - txtTitle: {fileID: 365338862597334809}
     txtCurValue: {fileID: 7577924617099512454}
     obUp: {fileID: 1232593784979538402}
     txtUpgrade: {fileID: 7310921892375784328}
     rtCurLine: {fileID: 4218708060571301347}
     rtUpgrade: {fileID: 8582479413448545595}
-    maxRange: 100
+    maxRange: 150
   rectTransformLineRef: {fileID: 6447579038261354724}
 --- !u!114 &1482123284481031388
 MonoBehaviour:
@@ -3677,7 +3677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.6201086
+  m_EffectFactor: 0
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -6999,7 +6999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_EffectFactor
-      value: 0.6201086
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

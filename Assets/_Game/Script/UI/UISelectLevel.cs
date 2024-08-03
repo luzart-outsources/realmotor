@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +22,19 @@ public class UISelectLevel : UIBase
     public Transform parentSpawnLevel;
     public ItemSelectLevelUI itemSelectLevelPrefabs;
     private List<ItemSelectLevelUI> listItemSelectLevel = new List<ItemSelectLevelUI>();
+    private RectTransform _rtContent = null;
+    public RectTransform rtContent
+    {
+        get
+        {
+            if(_rtContent == null)
+            {
+                _rtContent = parentSpawnLevel.GetComponent<RectTransform>();
+            }
+            return _rtContent;
+        }
+
+    }
 
     private ButtonSelect btnSelectCache;
 
@@ -50,7 +63,12 @@ public class UISelectLevel : UIBase
             string title = ((ThemeLevel)index).ToString();
             item.SetTextTitle(title);
         });
-        OnClickTitle(listItemTitleSelectLevel[0]);
+        int level = DataManager.Instance.CurrentLevel;
+        int themeLevel = DataManager.Instance.levelSO.GetIndexThemeLevel(level);
+        OnClickTitle(listItemTitleSelectLevel[themeLevel]);
+        //RectTransform posSelect = GetPosItemSelect(level);
+        //float x = PosXNew(posSelect);
+        //rtContent.anchoredPosition = new Vector2(-x, rtContent.anchoredPosition.y);
     }
     private void OnClickTitle(ButtonSelect btnSelect)
     {
@@ -101,6 +119,44 @@ public class UISelectLevel : UIBase
 
         }
         sequenceSpawn.SetId(this);
+    }
+
+    private RectTransform GetPosItemSelect(int level)
+    {
+        RectTransform rtPos = listItemSelectLevel[0].GetComponent<RectTransform>();
+        DB_Level db_level = DataManager.Instance.levelSO.GetDB_Level(level);
+        if(db_level == null)
+        {
+            return rtPos ;
+        }
+        int length = listItemSelectLevel.Count;
+        for (int i = 0; i < length; i++)
+        {
+            var item = listItemSelectLevel[i];
+            if(db_level.level == item.db_Level.level)
+            {
+                rtPos = item.GetComponent<RectTransform>();
+            }
+        }
+        return rtPos ;
+    }
+    private float PosXNew(RectTransform rt)
+    {
+        float initialAnchoredPositionX = rt.anchoredPosition.x;
+        Vector2 initialAnchorMin = new Vector2(0.5f, 0.5f);
+        Vector2 initialAnchorMax = new Vector2(0.5f, 0.5f);
+        float parentWidth = rt.parent.GetComponent<RectTransform>().sizeDelta.x;
+
+        // Tính toán vị trí hiện tại trong không gian parent
+        float currentParentX = initialAnchorMin.x * parentWidth + initialAnchoredPositionX;
+
+        // Giá trị neo mới
+        Vector2 newAnchorMin = new Vector2(0f, 0f);
+        Vector2 newAnchorMax = new Vector2(0f, 1f);
+
+        // Tính toán anchoredPosition.x mới
+        float newAnchoredPositionX = currentParentX - newAnchorMin.x * parentWidth;
+        return newAnchoredPositionX;
     }
     private Sequence sequenceSpawn;
     private void ClickLevel(ItemSelectLevelUI item)

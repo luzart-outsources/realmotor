@@ -95,6 +95,33 @@ public class LevelSO : ScriptableObject
         }
         db_Levels = list.ToArray();
     }
+    public DB_Level GetDBLevelThemeLevel(int level)
+    {
+        InitDBLevel();
+        if (!dictLevel.ContainsKey(level))
+        {
+            return null;
+        }
+        DB_Level dB_Level = dictLevel[level];
+        return dB_Level;
+    }
+    public int GetIndexThemeLevel(int level)
+    {
+        DB_Level db = GetDBLevelThemeLevel(level);
+        if (db == null)
+        {
+            int[] arrrayTheme = GameUtil.GetArrayThemeLevel();
+            return arrrayTheme.Length - 1;
+        }
+        else
+        {
+            return (int)db.themeLevel;
+        }
+
+
+        
+    }
+
 #if UNITY_EDITOR
     [Sirenix.OdinInspector.Button]
     public void SetAllNameIcon()

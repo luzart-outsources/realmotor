@@ -85,24 +85,26 @@ public class MotorSO : ScriptableObject
     public void ChangeDataMotor()
     {
         int length = dB_Motors.Length;
-        dB_Motors[0].inforMotorbike.maxSpeed = 80;
+        //dB_Motors[0].inforMotorbike.maxSpeed = 80;
         for (int i = 0; i < length; i++)
         {
             InforMotorbike infor = new InforMotorbike();
             if(i-1 >= 0)
             {
                 infor.maxSpeed = dB_Motors[i - 1].inforMotorbike.maxSpeed + Random.Range(5,10);
+                infor.acceleration = dB_Motors[i - 1].inforMotorbike.acceleration + 5;
+                infor.handling = dB_Motors[i - 1].inforMotorbike.handling + 5;
+                infor.brake = dB_Motors[i - 1].inforMotorbike.brake + 5 ;
+                dB_Motors[i].inforMotorbike = infor;
             }
 
-            infor.acceleration = 10 + 5 * i;
-            infor.handling = 30 + 5 * i;
-            infor.brake = 10 + 5 * i;
+           
             InforMotorbike inforUpgrade = new InforMotorbike();
             inforUpgrade.maxSpeed = 1;
             inforUpgrade.acceleration = 1;
             inforUpgrade.handling = 1;
             inforUpgrade.brake = 1;
-            dB_Motors[i].inforMotorbike = infor;
+
             dB_Motors[i].inforUpgrade = inforUpgrade;
 
         }

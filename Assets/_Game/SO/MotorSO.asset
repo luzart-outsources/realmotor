@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorModelInfor:
   - id: 0
-    path: Motor_0
-  - id: 1
-    path: Motor_1
-  - id: 2
-    path: Motor_2
-  - id: 3
-    path: Motor_3
-  - id: 4
     path: Motor_4
-  - id: 5
+  - id: 1
+    path: Motor_0
+  - id: 2
     path: Motor_5
+  - id: 3
+    path: Motor_1
+  - id: 4
+    path: Motor_2
+  - id: 5
+    path: Motor_3
   - id: 6
     path: Motor_6
   - id: 7
@@ -42,66 +42,10 @@ MonoBehaviour:
   - id: 13
     path: Motor_13
   dB_Motors:
-  - nameMotor: BMV
-    nameModelMotor: S1001RR
-    rank: 0
-    idMotor: 0
-    inforMotorbike:
-      maxSpeed: 100
-      acceleration: 10
-      handling: 30
-      brake: 10
-    inforUpgrade:
-      maxSpeed: 1
-      acceleration: 1
-      handling: 1
-      brake: 1
-  - nameMotor: Dicatu
-    nameModelMotor: Lovene
-    rank: 0
-    idMotor: 1
-    inforMotorbike:
-      maxSpeed: 107
-      acceleration: 15
-      handling: 35
-      brake: 15
-    inforUpgrade:
-      maxSpeed: 1
-      acceleration: 1
-      handling: 1
-      brake: 1
-  - nameMotor: Kameha
-    nameModelMotor: Shadow Hawk DP18
-    rank: 1
-    idMotor: 2
-    inforMotorbike:
-      maxSpeed: 115
-      acceleration: 20
-      handling: 40
-      brake: 20
-    inforUpgrade:
-      maxSpeed: 1
-      acceleration: 1
-      handling: 1
-      brake: 1
-  - nameMotor: DICATU
-    nameModelMotor: Desmodromic RR
-    rank: 1
-    idMotor: 3
-    inforMotorbike:
-      maxSpeed: 121
-      acceleration: 25
-      handling: 45
-      brake: 25
-    inforUpgrade:
-      maxSpeed: 1
-      acceleration: 1
-      handling: 1
-      brake: 1
   - nameMotor: Applita
     nameModelMotor: RX Double-C 2018
     rank: 1
-    idMotor: 4
+    idMotor: 0
     inforMotorbike:
       maxSpeed: 129
       acceleration: 30
@@ -112,10 +56,10 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: DemiMaster
-    nameModelMotor: DD 2017
-    rank: 2
-    idMotor: 5
+  - nameMotor: BMV
+    nameModelMotor: S1001RR
+    rank: 0
+    idMotor: 1
     inforMotorbike:
       maxSpeed: 136
       acceleration: 35
@@ -126,15 +70,71 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
+  - nameMotor: DemiMaster
+    nameModelMotor: DD 2017
+    rank: 2
+    idMotor: 2
+    inforMotorbike:
+      maxSpeed: 144
+      acceleration: 45
+      handling: 65
+      brake: 45
+    inforUpgrade:
+      maxSpeed: 1
+      acceleration: 1
+      handling: 1
+      brake: 1
+  - nameMotor: Dicatu
+    nameModelMotor: Lovene
+    rank: 0
+    idMotor: 3
+    inforMotorbike:
+      maxSpeed: 150
+      acceleration: 60
+      handling: 80
+      brake: 60
+    inforUpgrade:
+      maxSpeed: 1
+      acceleration: 1
+      handling: 1
+      brake: 1
+  - nameMotor: Kameha
+    nameModelMotor: Shadow Hawk DP18
+    rank: 1
+    idMotor: 4
+    inforMotorbike:
+      maxSpeed: 157
+      acceleration: 80
+      handling: 100
+      brake: 80
+    inforUpgrade:
+      maxSpeed: 1
+      acceleration: 1
+      handling: 1
+      brake: 1
+  - nameMotor: DICATU
+    nameModelMotor: Desmodromic RR
+    rank: 1
+    idMotor: 5
+    inforMotorbike:
+      maxSpeed: 163
+      acceleration: 105
+      handling: 125
+      brake: 105
+    inforUpgrade:
+      maxSpeed: 1
+      acceleration: 1
+      handling: 1
+      brake: 1
   - nameMotor: BigBull ATM
     nameModelMotor: RX15
     rank: 2
     idMotor: 6
     inforMotorbike:
-      maxSpeed: 144
-      acceleration: 40
-      handling: 60
-      brake: 40
+      maxSpeed: 172
+      acceleration: 135
+      handling: 155
+      brake: 135
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -145,10 +145,10 @@ MonoBehaviour:
     rank: 2
     idMotor: 7
     inforMotorbike:
-      maxSpeed: 149
-      acceleration: 45
-      handling: 65
-      brake: 45
+      maxSpeed: 178
+      acceleration: 170
+      handling: 190
+      brake: 170
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -159,10 +159,10 @@ MonoBehaviour:
     rank: 2
     idMotor: 8
     inforMotorbike:
-      maxSpeed: 158
-      acceleration: 50
-      handling: 70
-      brake: 50
+      maxSpeed: 187
+      acceleration: 210
+      handling: 230
+      brake: 210
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -173,10 +173,10 @@ MonoBehaviour:
     rank: 3
     idMotor: 9
     inforMotorbike:
-      maxSpeed: 165
-      acceleration: 55
-      handling: 75
-      brake: 55
+      maxSpeed: 192
+      acceleration: 255
+      handling: 275
+      brake: 255
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -187,10 +187,10 @@ MonoBehaviour:
     rank: 3
     idMotor: 10
     inforMotorbike:
-      maxSpeed: 174
-      acceleration: 60
-      handling: 80
-      brake: 60
+      maxSpeed: 198
+      acceleration: 305
+      handling: 325
+      brake: 305
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -201,10 +201,10 @@ MonoBehaviour:
     rank: 3
     idMotor: 11
     inforMotorbike:
-      maxSpeed: 181
-      acceleration: 65
-      handling: 85
-      brake: 65
+      maxSpeed: 207
+      acceleration: 360
+      handling: 380
+      brake: 360
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -215,10 +215,10 @@ MonoBehaviour:
     rank: 4
     idMotor: 12
     inforMotorbike:
-      maxSpeed: 190
-      acceleration: 70
-      handling: 90
-      brake: 70
+      maxSpeed: 212
+      acceleration: 420
+      handling: 440
+      brake: 420
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
@@ -229,10 +229,10 @@ MonoBehaviour:
     rank: 4
     idMotor: 13
     inforMotorbike:
-      maxSpeed: 197
-      acceleration: 75
-      handling: 95
-      brake: 75
+      maxSpeed: 219
+      acceleration: 485
+      handling: 505
+      brake: 485
     inforUpgrade:
       maxSpeed: 1
       acceleration: 1
