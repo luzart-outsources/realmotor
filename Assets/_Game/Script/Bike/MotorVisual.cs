@@ -30,8 +30,7 @@ public class MotorVisual : MonoBehaviour
     private Transform visualFrontWheel;
     [SerializeField]
     private Transform visualBackWheel;
-    [SerializeField]
-    private float tyreRotations = 200f;
+    private float tyreRotations = 0.1f;
 
     [Space, Header("Drift")]
     [SerializeField]
@@ -99,11 +98,11 @@ public class MotorVisual : MonoBehaviour
     }
     public void RotateFrontWheel(float velocity)
     {
-        visualFrontWheel.Rotate(Vector3.right, velocity * tyreRotations * Time.fixedTime);
+        visualFrontWheel.Rotate(Vector3.right, -velocity * tyreRotations * Time.fixedTime);
     }
     public void RotateBackWheel(float velocity)
     {
-        visualBackWheel.Rotate(Vector3.right, velocity * tyreRotations * Time.fixedTime);
+        visualBackWheel.Rotate(Vector3.right, -velocity * tyreRotations * Time.fixedTime);
     }
     public void RotateWheel(float velocity)
     {
