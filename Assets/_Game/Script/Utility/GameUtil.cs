@@ -104,13 +104,13 @@ public class GameUtil : Singleton<GameUtil>
     private const string ColorBlueDark = "#000FFF";
     private const string ColorYellow = "#FFFF00";
 
-    public static void Log(string debug)
+    public static void Log(object debug)
     {
 #if DEBUG_DA
         Debug.Log($"<color={ColorBlueLight}>DEBUG_DA: {debug}</color>");
 #endif
     }
-    public static void LogError(string debug)
+    public static void LogError(object debug)
     {
 #if DEBUG_DA
         Debug.LogError($"<color={ColorBlueLight}>DEBUG_DA: {debug}</color>");

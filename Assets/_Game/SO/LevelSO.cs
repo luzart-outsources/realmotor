@@ -70,7 +70,7 @@ public class LevelSO : ScriptableObject
             level.lapRequire = i / 10 + 1;
             int randomLevel = Random.Range(6, 8);
             level.themeLevel = (ThemeLevel)(i / randomLevel);
-            int num = Random.Range(3, 7);
+            int num = Random.Range(8, 10);
             level.idBot = new int[num];
             int maxMotor = motorbikeSO.db_Bots.Length;
             for (int j = 0; j < num; j++)

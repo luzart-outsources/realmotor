@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ItemWinDashboardUI : MonoBehaviour
+public class ItemWinDashboardUI : ItemLeaderboard
 {
     public TMP_Text txtIndex;
     public TMP_Text txtName;

@@ -365,6 +365,7 @@ public class MoveMovementRigid : MotorMovement
         {
             float yPos = (result.hit.point + boxCol.size/2 - boxCol.center).y;
             Vector3 pos = motorbikeTransform.position;
+            yPos = Mathf.Lerp(pos.y, yPos, Time.fixedDeltaTime * 10);
             motorbikeTransform.position = new Vector3(pos.x, yPos, pos.z);
         }
         // Nếu không có mặt đất dưới xe, di chuyển xe xuống dưới

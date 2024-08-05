@@ -12,11 +12,11 @@ public class UIWinClassic : UIBase
 {
     [Space, Header("PopupDashboard")]
     public TweenAnimation twDashboard;
-    public GameObject obLeaderboard;
+    public Leaderboard leaderboard;
     public Transform parentDashboard;
     public TMP_Text txtIndex;
     public ItemWinDashboardUI itemDashboardPf;
-    public List<ItemWinDashboardUI> listItemWinDashboard = new List<ItemWinDashboardUI>();
+
     public Button btnHome;
     public Button btnReplay;
     public Button btnNext;
@@ -60,7 +60,7 @@ public class UIWinClassic : UIBase
     private Tween twMissOut;
     public void ClickNext()
     {
-        obLeaderboard.SetActive(false);
+        leaderboard.gameObject.SetActive(false);
         obSuccess.SetActive(true);
         rewardSliderXValue.Initialize(dataWin.Total, 1, ClickClaimReward);
         twDashboard.Show();
@@ -71,19 +71,43 @@ public class UIWinClassic : UIBase
             btnMissOut.gameObject.SetActive(true);
         });
     }
+    public List<ItemLeaderboard> listItemWinDashboard = new List<ItemLeaderboard>();
     private List<DataItemWinLeaderboardUI> listDataItemWinLeaderboardUI = new List<DataItemWinLeaderboardUI>();
+    private int indexMe;
     public void InitDataDashboard(List<DataItemWinLeaderboardUI> listData)
     {
         this.listDataItemWinLeaderboardUI = listData;
-        int indexMe = GameManager.Instance.gameCoordinator.countLeaderBoard;
+        indexMe = GameManager.Instance.gameCoordinator.countLeaderBoard;
         txtIndex.text = GameUtil.ToOrdinal(indexMe+1);
         var list = listDataItemWinLeaderboardUI;
+        var newItem = list[indexMe];
         int length = list.Count;
-        MasterHelper.InitListObj(length, itemDashboardPf, listItemWinDashboard, parentDashboard, (item, index) =>
+        listDataItemWinLeaderboardUI.Remove(newItem);
+        newItem.index = (length).ToString();
+        listDataItemWinLeaderboardUI.Add(newItem);
+        leaderboard.gameObject.SetActive(true);
+        leaderboard.InitSpawn(length, listItemWinDashboard, (itemLeaderboard, index) =>
         {
+            var item = (ItemWinDashboardUI)itemLeaderboard;
             item.gameObject.SetActive(true);
-            bool isMe = indexMe == index;
-            item.InitData(isMe, list[index]);
+            bool isMe = indexMe == length-1;
+            var data = list[index];
+            item.InitData(isMe, data);
+        });
+
+        obSuccess.SetActive(false);
+        int indexCurrent = listDataItemWinLeaderboardUI.Count - 1;
+
+        leaderboard.MoveItem(indexCurrent, indexMe, null, (item) =>
+        {
+            ClickNext();
+        },
+        (item, index) =>
+        {
+            var itemLeaderboard = (ItemWinDashboardUI)item;
+            var data = listDataItemWinLeaderboardUI[indexCurrent];
+            data.index = (index+1).ToString();
+            itemLeaderboard.InitData(true, data);
         });
     }
     public void InitDataRes(bool isWin, DataValueWin db)
@@ -106,8 +130,7 @@ public class UIWinClassic : UIBase
     }
     public void OnShowPopUp()
     {
-        obLeaderboard.SetActive(true);
-        obSuccess.SetActive(false);
+
     }
     private bool IsShowCoinInWin = false;
     public void OnClickClaimReward(float x)
