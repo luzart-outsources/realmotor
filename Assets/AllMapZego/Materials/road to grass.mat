@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: road to grass
-  m_Shader: {fileID: 4800000, guid: 6803aa2236ffca54cb5fa1dc317a22cb, type: 3}
+  m_Shader: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - DiffuseReflectOn
   - Rendered_Texture
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,7 +39,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: d86381ae373398b4893cc151d61b60f1, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 5, y: 3}
         m_Offset: {x: 0, y: 0}
     - _RenderedTexture:
         m_Texture: {fileID: 0}
@@ -53,7 +53,7 @@ Material:
     - _DecalTransparency: 1
     - _DecalUVScale: 1
     - _DetailNormalMapScale: 1
-    - _DiffuseUVScale: 10
+    - _DiffuseUVScale: 15.9
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
