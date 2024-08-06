@@ -12,7 +12,7 @@ public class ItemLeaderBoardUI : MonoBehaviour
     public TMP_Text txtDistance;
     public TMP_Text txtRound,txtPoint,txtDisIndex;
 
-    private DB_LeaderBoardInGame data;
+    public DB_LeaderBoardInGame data {  get; private set; }
     private const string WhiteColor = "#FFFFFF";
     private const string BlackColor = "#000000";
 

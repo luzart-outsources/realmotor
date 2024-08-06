@@ -33,7 +33,7 @@ namespace MoreMountains.HighroadEngine
 		// Constants used by the AI engine
 		// Feel free to edit these values. Just be sure to test thoroughly the new AI vehicle driving behaviour
 		public float _largeAngleDistance = 90f; // When angle between front of the vehicle and target waypoint are distant 
-        public  float _smallAngleDistance = 5f;  // When angle between front of the vehicle and target waypoint are near
+        public  float _smallAngleDistance = 30f;  // When angle between front of the vehicle and target waypoint are near
         public float _minimalSpeedForBrakes = 0.5f; // When vehicle is at least at this speed, AI can use brakes
         public float _maximalDistanceStuck = 0.5f; // Distance to consider vehicle stuck
 
@@ -91,7 +91,7 @@ namespace MoreMountains.HighroadEngine
                     }
                 case EStateMotorbike.Finish:
                     {
-                        OnAIMoveFinish();
+                        OnAIMoveNormal();
                         break;
                     }
             }
@@ -311,7 +311,7 @@ namespace MoreMountains.HighroadEngine
 				// we steer to the proper direction
 				_direction = -_newDirection;
 				// if we have enough speed, we brake to rotate faster
-				if (baseMotorBike.Speed > _minimalSpeedForBrakes)
+				if (baseMotorBike.Speed > baseMotorBike.inforMotorbike.maxSpeed* _minimalSpeedForBrakes)
 				{
 					_acceleration = -FullThrottle;
 				}

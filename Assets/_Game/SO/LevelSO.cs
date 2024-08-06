@@ -66,7 +66,7 @@ public class LevelSO : ScriptableObject
         {
             DB_Level level = new DB_Level();
             level.level = i;
-            level.idEnvironment = i % environmentSO.allEnvironment.Length;
+            level.idEnvironment = i % (environmentSO.allEnvironment.Length-1);
             level.lapRequire = i / 10 + 1;
             int randomLevel = Random.Range(6, 8);
             level.themeLevel = (ThemeLevel)(i / randomLevel);
@@ -94,6 +94,7 @@ public class LevelSO : ScriptableObject
             list.Add(level);
         }
         db_Levels = list.ToArray();
+        SetAllNameIcon();
     }
     public DB_Level GetDBLevelThemeLevel(int level)
     {

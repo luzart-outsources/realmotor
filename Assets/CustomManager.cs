@@ -25,7 +25,12 @@ public class CustomManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        RemoteConfig.OnFetchComplete += Event_OnFetchComplete;
+        RemoteConfig.OnFetchComplete -= Event_OnFetchComplete;
+    }
+
+    private void Start()
+    {
+        RemoteConfigCustom = JsonTool.DeserializeObject<CustomConfig>(NetConfigsSO.Ins.CustomConfigsDefault);
     }
 
     private void Event_OnFetchComplete()

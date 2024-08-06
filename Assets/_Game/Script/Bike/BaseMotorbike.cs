@@ -274,7 +274,7 @@ public class BaseMotorbike : MonoBehaviour
     }
     private void StopWinGame()
     {
-        Brake();
+        //Brake();
     }
 
     private void OnVisualCharacterCollisionWall (Vector3 velocity)
