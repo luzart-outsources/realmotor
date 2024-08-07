@@ -5625,7 +5625,6 @@ GameObject:
   - component: {fileID: 5772577009541304968}
   - component: {fileID: 4454503334201101854}
   - component: {fileID: 231161997980726783}
-  - component: {fileID: 272631989375823043}
   - component: {fileID: 9088345200679624074}
   - component: {fileID: 766551818632683348}
   - component: {fileID: 6579854256361638139}
@@ -5789,26 +5788,6 @@ MonoBehaviour:
   isRaycast: 0
   boxCollider: {fileID: 7191590784543998876}
   valueX: 1
---- !u!114 &272631989375823043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8504402386502072268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d89677e339b5d0f4e9c3624c7e7b5d9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  eLayer: 4
-  isRaycast: 0
-  boxCollider: {fileID: 7191590784543998876}
-  valueX: 1
-  baseMotorbike: {fileID: 3970734084713082468}
 --- !u!54 &9088345200679624074
 Rigidbody:
   m_ObjectHideFlags: 0

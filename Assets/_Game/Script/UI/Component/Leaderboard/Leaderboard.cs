@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class Leaderboard : MonoBehaviour
     public Transform parentItem;
     private List<ItemLeaderboard> items = new List<ItemLeaderboard>();
     private List<Transform> listRect = new List<Transform>();
-    public void InitSpawn(int num, List<ItemLeaderboard> list, Action<ItemLeaderboard, int> actionInit)
+    public ScrollRect scrollRect;
+    public void InitSpawn(int num, ref List<ItemLeaderboard> list, Action<ItemLeaderboard, int> actionInit)
     {
         MasterHelper.InitListObj(num, itemPrefab, items, parentItem, (item, index) =>
         {
@@ -33,7 +35,7 @@ public class Leaderboard : MonoBehaviour
     [Sirenix.OdinInspector.Button]
     public void Initialize()
     {
-        InitSpawn(10, items, (item, index) =>
+        InitSpawn(10, ref items, (item, index) =>
         {
             item.gameObject.SetActive(true);
         });

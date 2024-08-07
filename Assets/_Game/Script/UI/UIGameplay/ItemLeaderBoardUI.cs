@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class ItemLeaderBoardUI : MonoBehaviour
 {
+    private RectTransform _rectTransform = null;
+    public RectTransform rectTransform
+    {
+        get
+        {
+            if(_rectTransform == null)
+            {
+                _rectTransform = GetComponent<RectTransform>();
+            }
+            return _rectTransform;
+        }
+    }
     public TMP_Text txtIndex;
     public TMP_Text txtName;
     public GameObject obPlayer;

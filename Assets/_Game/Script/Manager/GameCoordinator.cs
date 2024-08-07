@@ -251,7 +251,7 @@ public class GameCoordinator : MonoBehaviour
             var item = listResult[i];
             DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
             data.index = (countIndex + 1).ToString();
-            data.time = GameUtil.FloatTimeSecondToUnixTime(item.timePlay);
+            data.time = GameUtil.FloatTimeSecondToUnixTime(item.timePlay,true);
             DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(item.dbMotorbike.idMotor);
             data.nameModel = motor.nameMotor;
 
@@ -274,7 +274,7 @@ public class GameCoordinator : MonoBehaviour
             DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
             data.index = (countIndex + 1).ToString();
             float timeEach = timePlay + DisFromTarget(item) / (item.inforMotorbike.maxSpeed + UnityEngine.Random.Range(-5,5));
-            data.time = GameUtil.FloatTimeSecondToUnixTime(timeEach);
+            data.time = GameUtil.FloatTimeSecondToUnixTime(timeEach,true);
             DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(item.dbMotorbike.idMotor);
             data.nameModel = motor.nameMotor;
 

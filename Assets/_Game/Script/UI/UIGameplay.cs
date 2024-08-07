@@ -60,7 +60,7 @@ public class UIGameplay : UIBase
        float factor = (float)speed / (float)maxSpeed;
        float valueClock = (maxClockwise - minClockwise) * factor;
        imClockFilled.fillAmount = minClockwise + valueClock; 
-       txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, false, "", "", "", "");
+       txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, true, "", "", "", "");
 
     }
     public void StartCountDown()

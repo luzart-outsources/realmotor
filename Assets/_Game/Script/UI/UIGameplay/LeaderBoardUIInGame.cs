@@ -62,7 +62,7 @@ public class LeaderBoardUIInGame : MonoBehaviour
         }
         if (itemMe != null)
         {
-            KeepItemVisible(itemMe.GetComponent<RectTransform>());
+            scrollRect.FocusOnRectTransform(itemMe.rectTransform);
         }
 
     }
@@ -100,62 +100,27 @@ public class LeaderBoardUIInGame : MonoBehaviour
         // Cập nhật vị trí của nội dung
         contentRect.anchoredPosition = new Vector2(contentPosition.x, newY);
     }
-    void KeepItemVisible(RectTransform itemToKeepInView)
-    {
-        Canvas.ForceUpdateCanvases();
-        Vector3[] itemCorners = new Vector3[4];
-        itemToKeepInView.GetWorldCorners(itemCorners);
-        for (int i = 0; i < itemCorners.Length; i++)
-        {
-            GameUtil.Log($"ItemMe {itemMe.data.index} ItemCorners {i} and value {itemCorners[i]}");
-        }
-        Vector3[] viewCorners = new Vector3[4];
-        scrollRect.viewport.GetComponent<RectTransform>().GetWorldCorners(viewCorners);
-        //float height = scrollRect.content.sizeDelta.y;
-        //float cur = itemToKeepInView.anchoredPosition.y;
-        //scrollRect.verticalNormalizedPosition = cur/height;
-        //if (itemCorners[0].y < viewCorners[0].y)
-        //{
-        //    float difference = itemCorners[1].y - viewCorners[1].y;
-        //    float normalizedDifference = difference / (scrollRect.content.sizeDelta.y);
-        //    scrollRect.verticalNormalizedPosition -= normalizedDifference;
-        //}
-        //else if (itemCorners[1].y > viewCorners[1].y)
-        //{
-        //    float difference = itemCorners[1].y - viewCorners[1].y;
-        //    float normalizedDifference = difference / (scrollRect.content.sizeDelta.y);
-        //    scrollRect.verticalNormalizedPosition -= normalizedDifference;
-        //}
-        float difference = 0;
-        if (itemCorners[1].y > viewCorners[1].y)
-        {
-            difference = itemCorners[1].y - viewCorners[1].y;
-        }
-        else if(itemCorners[0].y < viewCorners[0].y)
-        {
-            difference = itemCorners[0].y - viewCorners[0].y;
-        }
-        float height = viewCorners[1].y - viewCorners[0].y;
-        float normalizedDifference = difference / height;
-        //float valueCurrent = scrollRect.verticalNormalizedPosition;
-        //valueCurrent = valueCurrent - normalizedDifference;
-        Vector2 posCurrent = scrollRect.content.anchoredPosition;
-        Vector2 size = scrollRect.content.sizeDelta;
-        scrollRect.content.anchoredPosition = new Vector2(posCurrent.x,posCurrent.y - normalizedDifference* size.y);
-    }
-    //private IEnumerator ScrollToPosition(Vector2 targetPosition, float duration)
+    //void KeepItemVisible(RectTransform itemToKeepInView)
     //{
-    //    Vector2 startPosition = content.anchoredPosition;
-    //    float time = 0;
-
-    //    while (time < duration)
+    //    Canvas.ForceUpdateCanvases();
+    //    Vector3[] itemCorners = new Vector3[4];
+    //    itemToKeepInView.GetWorldCorners(itemCorners);
+    //    Vector3[] viewCorners = new Vector3[4];
+    //    scrollRect.viewport.GetComponent<RectTransform>().GetWorldCorners(viewCorners);
+    //    float difference = 0;
+    //    if (itemCorners[1].y > viewCorners[1].y)
     //    {
-    //        time += Time.deltaTime;
-    //        content.anchoredPosition = Vector2.Lerp(startPosition, targetPosition, time / duration);
-    //        yield return null;
+    //        difference = itemCorners[1].y - viewCorners[1].y;
     //    }
-
-
+    //    else if(itemCorners[0].y < viewCorners[0].y)
+    //    {
+    //        difference = itemCorners[0].y - viewCorners[0].y;
+    //    }
+    //    float height = viewCorners[1].y - viewCorners[0].y;
+    //    float normalizedDifference = difference / height;
+    //    Vector2 posCurrent = scrollRect.content.anchoredPosition;
+    //    Vector2 size = scrollRect.content.sizeDelta;
+    //    scrollRect.content.anchoredPosition = new Vector2(posCurrent.x,posCurrent.y - normalizedDifference* size.y);
     //}
 
 }

@@ -71,7 +71,7 @@ public class UIWinClassic : UIBase
             btnMissOut.gameObject.SetActive(true);
         });
     }
-    public List<ItemLeaderboard> listItemWinDashboard = new List<ItemLeaderboard>();
+    public List<ItemLeaderboard> listItemWinLeaderboard = new List<ItemLeaderboard>();
     private List<DataItemWinLeaderboardUI> listDataItemWinLeaderboardUI = new List<DataItemWinLeaderboardUI>();
     private int indexMe;
     public void InitDataDashboard(List<DataItemWinLeaderboardUI> listData)
@@ -86,18 +86,18 @@ public class UIWinClassic : UIBase
         newItem.index = (length).ToString();
         listDataItemWinLeaderboardUI.Add(newItem);
         leaderboard.gameObject.SetActive(true);
-        leaderboard.InitSpawn(length, listItemWinDashboard, (itemLeaderboard, index) =>
+        leaderboard.InitSpawn(length,ref listItemWinLeaderboard, (itemLeaderboard, index) =>
         {
             var item = (ItemWinDashboardUI)itemLeaderboard;
             item.gameObject.SetActive(true);
-            bool isMe = indexMe == length-1;
+            bool isMe = (length-1) == index;
             var data = list[index];
             item.InitData(isMe, data);
         });
 
         obSuccess.SetActive(false);
-        int indexCurrent = listDataItemWinLeaderboardUI.Count - 1;
-
+        int indexCurrent = listItemWinLeaderboard.Count - 1;
+        leaderboard.scrollRect.FocusOnRectTransform(listItemWinLeaderboard[indexCurrent].GetComponent<RectTransform>());
         leaderboard.MoveItem(indexCurrent, indexMe, null, (item) =>
         {
             ClickNext();
@@ -108,7 +108,9 @@ public class UIWinClassic : UIBase
             var data = listDataItemWinLeaderboardUI[indexCurrent];
             data.index = (index+1).ToString();
             itemLeaderboard.InitData(true, data);
+            leaderboard.scrollRect.FocusOnRectTransform(listItemWinLeaderboard[indexCurrent].GetComponent<RectTransform>());
         });
+        
     }
     public void InitDataRes(bool isWin, DataValueWin db)
     {
