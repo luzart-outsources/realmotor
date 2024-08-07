@@ -13,10 +13,8 @@ public class MotorVisual : MonoBehaviour
     private float maxRotationHandle = 20f;
 
     [Space, Header("Tilt")]
-    [SerializeField]
-    private float maxTiltAngle = 50f;
-    [SerializeField]
-    private float deltaTilt = 60f;
+    private float maxTiltAngle = 60f;
+    private float deltaTilt = 50f;
 
 
     [Space, Header("Tail")]
