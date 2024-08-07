@@ -58,44 +58,7 @@ public class LevelSO : ScriptableObject
     }
     public EnvironmentSO environmentSO;
     public MotorbikeSO motorbikeSO;
-    [Sirenix.OdinInspector.Button]
-    private void ResetLevel()
-    {
-        List<DB_Level> list = new List<DB_Level>();
-        for (int i = 0; i < 45; i++)
-        {
-            DB_Level level = new DB_Level();
-            level.level = i;
-            level.idEnvironment = i % (environmentSO.allEnvironment.Length-1);
-            level.lapRequire = i / 10 + 1;
-            int randomLevel = Random.Range(6, 8);
-            level.themeLevel = (ThemeLevel)(i / randomLevel);
-            int num = Random.Range(8, 10);
-            level.idBot = new int[num];
-            int maxMotor = motorbikeSO.db_Bots.Length;
-            for (int j = 0; j < num; j++)
-            {
-                int Min = Mathf.Clamp(i*2-4, 0, maxMotor);
-                int Max = Mathf.Clamp(i*2+4, 0, maxMotor);
-                level.idBot[j] = Random.Range(Min, Max);
-            }
-            level.indexStart = Random.Range(0, num+2);
-            level.indexStartBot = new int[num];
-            int iSB = 0;
-            for(int j = 0;j < num; j++)
-            {
-                if(j == level.indexStart)
-                {
-                    iSB++;
-                }
-                level.indexStartBot[j] = iSB;
-                iSB++;
-            }
-            list.Add(level);
-        }
-        db_Levels = list.ToArray();
-        SetAllNameIcon();
-    }
+    
     public DB_Level GetDBLevelThemeLevel(int level)
     {
         InitDBLevel();
@@ -124,6 +87,44 @@ public class LevelSO : ScriptableObject
     }
 
 #if UNITY_EDITOR
+    [Sirenix.OdinInspector.Button]
+    private void ResetLevel()
+    {
+        List<DB_Level> list = new List<DB_Level>();
+        for (int i = 0; i < 45; i++)
+        {
+            DB_Level level = new DB_Level();
+            level.level = i;
+            level.idEnvironment = i % (environmentSO.allEnvironment.Length - 1);
+            level.lapRequire = i / 10 + 1;
+            int randomLevel = Random.Range(6, 8);
+            level.themeLevel = (ThemeLevel)(i / randomLevel);
+            int num = Random.Range(8, 10);
+            level.idBot = new int[num];
+            int maxMotor = motorbikeSO.db_Bots.Length;
+            for (int j = 0; j < num; j++)
+            {
+                int Min = Mathf.Clamp(i * 2 - 4, 0, maxMotor);
+                int Max = Mathf.Clamp(i * 2 + 4, 0, maxMotor);
+                level.idBot[j] = Random.Range(Min, Max);
+            }
+            level.indexStart = Random.Range(0, num + 2);
+            level.indexStartBot = new int[num];
+            int iSB = 0;
+            for (int j = 0; j < num; j++)
+            {
+                if (j == level.indexStart)
+                {
+                    iSB++;
+                }
+                level.indexStartBot[j] = iSB;
+                iSB++;
+            }
+            list.Add(level);
+        }
+        db_Levels = list.ToArray();
+        SetAllNameIcon();
+    }
     [Sirenix.OdinInspector.Button]
     public void SetAllNameIcon()
     {

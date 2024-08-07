@@ -23,6 +23,10 @@ public class EnvironmentMap : MonoBehaviour
     }
 
     public static Action<EnvironmentMap> actionMap;
+    [Space, Header("Lighting Motorbike")]
+    public bool isOverrideMotorLighting = false;
+    public Color colorMotorLighting;
+    public float intensityMotorLighting = 0.4f;
     public void Start()
     {
 #if UNITY_EDITOR

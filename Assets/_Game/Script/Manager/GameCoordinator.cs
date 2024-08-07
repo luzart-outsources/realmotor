@@ -85,6 +85,9 @@ public class GameCoordinator : MonoBehaviour
         environmentMap = map;
         environmentMap.transform.localPosition = Vector3.zero;
         environmentMap.transform.rotation = Quaternion.identity;
+
+        SetUpLighting(map);
+
         LoadPlayer();
         LoadBot();
 
@@ -93,6 +96,18 @@ public class GameCoordinator : MonoBehaviour
         InitBot();
         InitLeaderBoard();
         InitAllOtherData();
+    }
+    private void SetUpLighting(EnvironmentMap map)
+    {
+        Color color = Color.white;
+        float intensity = 0.4f;
+        if (map.isOverrideMotorLighting)
+        {
+            color = map.colorMotorLighting;
+            intensity = map.intensityMotorLighting;
+        }
+        CameraManager.Instance.lightMotor.color = color;
+        CameraManager.Instance.lightMotor.intensity = intensity;
     }
     public void ShowHideUIController(bool status)
     {

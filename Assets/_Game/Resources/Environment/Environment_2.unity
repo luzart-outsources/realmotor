@@ -10,7 +10,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.8064, g: 0.89856, b: 0.96, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.6
@@ -2193,6 +2193,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: colorMotorLighting.b
+      value: 0.43137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: colorMotorLighting.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: colorMotorLighting.r
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: intensityMotorLighting
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: isOverrideMotorLighting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3656176702285676085, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       propertyPath: allWavePoint.Array.size
       value: 65
