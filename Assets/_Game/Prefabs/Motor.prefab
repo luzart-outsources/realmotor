@@ -4683,7 +4683,7 @@ Transform:
   m_GameObject: {fileID: 6961024893528073461}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.000015789701, y: 2.17, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4717,10 +4717,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6961024893528073461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e16a6ef82b4ea428e6ff7cb8fc991c, type: 3}
+  m_Script: {fileID: 11500000, guid: 83957c5ce7476e7469275765f207bdc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posPerpendicular: {x: 0, y: 0, z: 0}
 --- !u!1 &7065816738193436794
 GameObject:
   m_ObjectHideFlags: 0
@@ -5686,32 +5685,18 @@ MonoBehaviour:
   baseCharacter: {fileID: 321462573337670537}
   miniMapPlayer: {fileID: 766551818632683348}
   inforMotorbike:
-    maxSpeed: 80
+    maxSpeed: 100
     acceleration: 20
     handling: 30
     brake: 50
-  currentIndex: 0
   radiusCheckPoint: 30
   layerCheckPoint:
     serializedVersion: 2
     m_Bits: 2048
-  strMyName: 
-  eTeam: 0
   parentVisualMotor: {fileID: 8275714411754204416}
-  dbMotorbike:
-    idMotor: 0
-    levelUpgrades: 00000000000000000000000000000000
-    levelUpgrade: 0
-    isHas: 0
   soundMotorbike: {fileID: 1706009557263487193}
-  listIndex: 
-  eState: 0
   parentCam: {fileID: 7764731331384706181}
-  round: 0
-  isFall: 0
-  timePlay: 0
-  valueVerticle: 0
-  valueHorizontal: 0
+  autoRotation: {fileID: 1267806185943832661}
 --- !u!114 &5941011238601377135
 MonoBehaviour:
   m_ObjectHideFlags: 0

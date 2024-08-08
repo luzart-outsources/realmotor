@@ -14,31 +14,30 @@ public class BaseMotorbike : MonoBehaviour
     private MiniMapPlayer miniMapPlayer;
     private BaseController baseController;
     public InforMotorbike inforMotorbike;
-    public int currentIndex = 0;
+    public int currentIndex { get; set; } = 0;
     [SerializeField]
     private float radiusCheckPoint = 10f;
     [SerializeField]
     private LayerMask layerCheckPoint;
-    //[SerializeField]
-    //private MiniMapPlayer miniMapPlayer;
-    public string strMyName;
-    public ETeam eTeam;
+    public string strMyName { get; set; }
+    public ETeam eTeam { get; set; }
     [SerializeField]
     private Transform parentVisualMotor;
-    public DB_Motorbike dbMotorbike;
+    public DB_Motorbike dbMotorbike { get; set; }   
     private DB_Character dbCharacter;
 
     public SoundMotorbike soundMotorbike;
-    public List<int> listIndex = new List<int>();
-    public EStateMotorbike eState;
+    private List<int> listIndex = new List<int>();
+    public EStateMotorbike eState{ get; set; }
 
     public Transform parentCam;
+    public AutoRotationDownProjector autoRotation;
 
-    public int round = 0;
+    public int round { get; set; } = 0;
     public float Speed => baseMotor.Speed;
-    public bool isFall = false;
+    public bool isFall { get; set; } = false;
 
-    public float timePlay;
+    public float timePlay { get; set; }
 
     public Vector3 velocity
     {
@@ -95,6 +94,9 @@ public class BaseMotorbike : MonoBehaviour
         }
         InitAction();
         isFall = false;
+        autoRotation.transform.localPosition = new Vector3(0, 3, 0);
+        autoRotation.transform.localEulerAngles = new Vector3(90, 0, 0);
+        //autoRotation.enabled = false;
     }
     public void InitSpawn(DB_Character db_Character, DB_Motorbike dbMotorBike)
     {
@@ -286,7 +288,8 @@ public class BaseMotorbike : MonoBehaviour
         baseCharacter.OnCollisionWall(velocity);
         UnVerticle();
         UnHorizontal();
-        isFall = true; 
+        isFall = true;
+        autoRotation.enabled = true;
         GameUtil.Instance.WaitAndDo(2f, ReInitialize);
     }
     public void StartRace()
@@ -311,8 +314,8 @@ public class BaseMotorbike : MonoBehaviour
     private bool IsStartRace = false;
 
     #region Controller
-    public int valueVerticle = 0;
-    public int valueHorizontal = 0;
+    public int valueVerticle { get; set; } = 0;
+    public int valueHorizontal { get; set; } = 0;
     private void FixedUpdateController()
     {
         if (baseController != null)
