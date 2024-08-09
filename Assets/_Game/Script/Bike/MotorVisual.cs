@@ -58,27 +58,66 @@ public class MotorVisual : MonoBehaviour
 
     public InforMotorbike motorbikeInfo; // Thông tin của xe máy
     public BaseMotor baseMotor; // Thông tin của xe máy
+
+    private MeshRenderer _meshDirtFront;
+    private MeshRenderer meshDirtFront
+    {
+        get
+        {
+            if(_meshDirtFront == null)
+            {
+                _meshDirtFront = obDustGroundFront.GetComponent<MeshRenderer>();
+            }
+            return _meshDirtFront;
+        }
+    }
+    private MeshRenderer _meshDirtBack;
+    private MeshRenderer meshDirtBack
+    {
+        get
+        {
+            if (_meshDirtBack == null)
+            {
+                _meshDirtBack = obDustGroundBack.GetComponent<MeshRenderer>();
+            }
+            return _meshDirtBack;
+        }
+    }
+
+    private Color colorDirt;
+    private float elapsedTime = 0f;
     public void Initialize(BaseMotor baseMotor)
     {
         this.baseMotor = baseMotor;
         motorbikeInfo = baseMotor.baseMotorbike.inforMotorbike;
         skidMark1.startWidth = skidWidth;
         skidMark2.startWidth = skidWidth;
+        colorDirt = meshDirtFront.material.GetColor("_Color");
     }
     public void OnShowDustGround(float velocity)
     {
-        obDustGroundFront.SetActive(true);
-        obDustGroundBack.SetActive(true);
+        OnShowDust();
         fxDustGroundFront.gameObject.SetActive(true);
         fxDustGroundBack.gameObject.SetActive(true);
         fxDustGroundFront.EmissionOnVelocity(velocity);
         fxDustGroundBack.EmissionOnVelocity(velocity);
-
+    }
+    private void OnShowDust()
+    {
+        obDustGroundFront.SetActive(true);
+        obDustGroundBack.SetActive(true);
+        elapsedTime += Time.deltaTime/5;
+        Debug.Log(colorDirt);
+        elapsedTime = Mathf.Clamp01(elapsedTime);
+        colorDirt.a = elapsedTime;
+        meshDirtBack.material.color = colorDirt;
+        meshDirtFront.material.color = colorDirt;
     }
     public void UnEnableFXDustGround()
     {
         obDustGroundFront.SetActive(false);
         obDustGroundBack.SetActive(false);
+        elapsedTime = 0;
         fxDustGroundFront.gameObject.SetActive(false);
         fxDustGroundBack.gameObject.SetActive(false);
     }

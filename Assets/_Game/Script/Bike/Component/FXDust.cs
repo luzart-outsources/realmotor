@@ -10,7 +10,8 @@ public class FXDust : MonoBehaviour
         if (Fx != null)
         {
             var emission = Fx.emission;
-            emission.rateOverTime = ((int)velocity*2) ;
+            int vel = (int)velocity;
+            emission.rateOverTime = (vel * 8) ;
         }
     }
 }

@@ -227,13 +227,10 @@ MonoBehaviour:
   motorVisual: {fileID: 0}
   Handle: {fileID: 5656964562313246735}
   maxRotationHandle: 20
-  maxTiltAngle: 50
-  deltaTilt: 60
   maxTailAngle: 10
   deltaTail: 10
   visualFrontWheel: {fileID: 8160570377834596821}
   visualBackWheel: {fileID: 2503042313842460864}
-  tyreRotations: 200
   skidWidth: 0.05
   skidMark1: {fileID: 5335012332529878238}
   skidMark2: {fileID: 1815485615247104547}
@@ -356,6 +353,18 @@ PrefabInstance:
     - target: {fileID: 5186754858667023575, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186754865965125910, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.48235297
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186754865965125910, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186754865965125910, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.87843144
       objectReference: {fileID: 0}
     - target: {fileID: 6308858425928060689, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
       propertyPath: m_Layer

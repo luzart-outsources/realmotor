@@ -12,6 +12,7 @@ public class GarageManager : MonoBehaviour
     [Space, Header("Motor")]
     public GameObject obMotor;
     public Transform parentSpawn;
+    public Transform parentSpawnMotor;
     public MotorVisual _motorCache;
     public DrawTargetObject softShadowProjector;
 
@@ -49,7 +50,7 @@ public class GarageManager : MonoBehaviour
     {
         RemoveMotorCache();
         var motorVisual = ResourcesManager.Instance.LoadMotor(idMotor);
-        _motorCache = Instantiate(motorVisual, parentSpawn);
+        _motorCache = Instantiate(motorVisual, parentSpawnMotor);
         _motorCache.transform.localPosition = Vector3.zero;
         softShadowProjector.SetCommandBufferDirty();
     }
