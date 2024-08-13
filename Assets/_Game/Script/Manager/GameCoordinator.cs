@@ -45,6 +45,8 @@ public class GameCoordinator : MonoBehaviour
     public float timePlay = 0;
     private UIGameplay uiGameplay = null;
 
+    private EGameState gameState;
+
 #if UNITY_EDITOR
     public DB_Level db_levelEditor;
 #endif
@@ -54,13 +56,12 @@ public class GameCoordinator : MonoBehaviour
         EnvironmentMap envi = FindAnyObjectByType<EnvironmentMap>();
         ResetData();
         db_Level = db_levelEditor;
-        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
         EnvironmentMap.actionMap = OnLoadMapDone;
 
         uiGameplay = UIManager.Instance.ShowUI<UIGameplay>(UIName.Gameplay);
         uiGameplay.InitData(db_Level);
-        StartInGame();
         envi.InvokeRegisterMap();
+        StartInGame();
 
 #endif
     }
@@ -70,8 +71,6 @@ public class GameCoordinator : MonoBehaviour
         ResetData();
         db_Level = _dbLevel;
 
-
-        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
         EnvironmentMap.actionMap = OnLoadMapDone;
 
         LoadMap();
@@ -82,9 +81,11 @@ public class GameCoordinator : MonoBehaviour
     }
     private void OnLoadMapDone(EnvironmentMap map)
     {
+        gameState = EGameState.None;
         environmentMap = map;
         environmentMap.transform.localPosition = Vector3.zero;
         environmentMap.transform.rotation = Quaternion.identity;
+
 
         SetUpLighting(map);
 
@@ -96,6 +97,23 @@ public class GameCoordinator : MonoBehaviour
         InitBot();
         InitLeaderBoard();
         InitAllOtherData();
+        //CameraManager.Instance.helicopterCamera.transform.position = (myMotorbike.parentCam).position;
+        //CameraManager.Instance.helicopterCamera.transform.rotation = (myMotorbike.parentCam).rotation;
+        //baseMotorBike.eState = EStateMotorbike.Start;
+        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
+        CameraManager.Instance.helicopterCamera.cameraMain.enabled = false;
+        CameraManager.Instance.SetFollowCamera(myMotorbike.transform);
+        Vector3 pos = CameraManager.Instance.helicopterCamera.GetTargetPosition(myMotorbike.transform);
+        Quaternion rot = CameraManager.Instance.helicopterCamera.GetRotation(myMotorbike.transform);
+        CameraManager.Instance.helicopterCamera.transform.position = pos;
+        CameraManager.Instance.helicopterCamera.transform.rotation = rot;
+        map.cameraStartGame.groupPathCinemachine[0].target = myMotorbike.targetCameraStartGame;
+        map.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.position= pos;
+        //map.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.rotation= rot;
+        
+
+        map.cameraStartGame.ActionOnDoneCamera = StartGame;
+        map.cameraEndGame.ActionOnDoneCamera = CameraEndGame;
     }
     private void SetUpLighting(EnvironmentMap map)
     {
@@ -111,13 +129,37 @@ public class GameCoordinator : MonoBehaviour
     }
     public void ShowHideUIController(bool status)
     {
+        if (gameState == EGameState.Finish)
+        {
+            return;
+        }
         uiGameplay.SetStatusUIController(status);
     }
     public void StartInGame()
     {
         AudioManager.Instance.PlayMusicBgInGame();
-        uiGameplay.StartCountDown();
-        DOVirtual.DelayedCall(3, StartRace);
+        environmentMap.StartCamereGame();
+    }
+    public void StartGame()
+    {
+        //uiGameplay.FadeOutCanvasGroupStartGame(1f, () =>
+        //{
+
+
+        //});
+        CameraManager.Instance.helicopterCamera.transform.position = environmentMap.cameraStartGame.cameraMain.transform.position;
+        CameraManager.Instance.helicopterCamera.transform.rotation = environmentMap.cameraStartGame.cameraMain.transform.rotation;
+        environmentMap.cameraStartGame.gameObject.SetActive(false);
+        CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
+        uiGameplay.obScreen.SetActive(true);
+        uiGameplay.StartCountDown(() =>
+        {
+            StartRace();
+
+        });
+
+        
+
     }
     public void StartRace()
     {
@@ -231,7 +273,14 @@ public class GameCoordinator : MonoBehaviour
                 UpdateLeaderBoard();
                 countLeaderBoard = listResult.Count - 1; 
                 bool isWin = listResult.Count <= 3;
-                GameUtil.Instance.WaitAndDo(3f, () => ActionOnEndGame?.Invoke(isWin));
+                CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
+                environmentMap.cameraEndGame.transform.SetParent(myMotorbike.transform);
+                environmentMap.cameraEndGame.SetAllTarget(myMotorbike.parentCam);
+                environmentMap.cameraEndGame.transform.localScale = Vector3.one;
+                environmentMap.cameraEndGame.transform.localPosition = Vector3.zero;
+                environmentMap.cameraEndGame.transform.localEulerAngles = Vector3.zero;
+                environmentMap.StartCameraEndGame();
+                GameUtil.Instance.WaitAndDo(5f, () => ActionOnEndGame?.Invoke(isWin));
 
             }
         }
@@ -239,20 +288,26 @@ public class GameCoordinator : MonoBehaviour
     }
     public void EndGame(bool isWin)
     {
-        CameraManager.Instance.helicopterCamera.animator.enabled = false;
-        CameraManager.Instance.helicopterCamera.transform.SetParent(CameraManager.Instance.transform);
+        //CameraManager.Instance.helicopterCamera.animator.enabled = false;
+        //CameraManager.Instance.helicopterCamera.transform.SetParent(CameraManager.Instance.transform);
         OnCompleteDataLeaderboard();
         StopUpdateLeaderBoard();
+        gameState = EGameState.Finish;
         DestroyAllBike();
-        void DestroyAllBike()
+
+    }
+    public void DestroyAllBike()
+    {
+        Destroy(myMotorbike.gameObject);
+        for (int i = 0; i < listBot.Count; i++)
         {
-            Destroy(myMotorbike.gameObject);
-            for (int i = 0; i < listBot.Count; i++)
-            {
-                Destroy(listBot[i].gameObject);
-                listBot.RemoveAt(0);
-            }
+            Destroy(listBot[i].gameObject);
+            listBot.RemoveAt(0);
         }
+    }
+    public void CameraEndGame()
+    {
+        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
     }
     public List<DataItemWinLeaderboardUI> listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
     private void OnCompleteDataLeaderboard()

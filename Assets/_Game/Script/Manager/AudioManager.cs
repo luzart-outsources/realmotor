@@ -120,7 +120,7 @@ public class AudioManager : Singleton<AudioManager>
         }
         set
         {
-            audioMusic.volume = value / 2;
+            audioMusic.volume = value / 3;
             PlayerPrefs.SetFloat(VOLUMN_MUSIC, value);
             PlayerPrefs.Save();
         }

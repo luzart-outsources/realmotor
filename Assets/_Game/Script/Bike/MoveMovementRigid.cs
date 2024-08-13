@@ -96,7 +96,7 @@ public class MoveMovementRigid : MotorMovement
         // Xử lý tăng tốc và phanh
         if (moveInput > 0)
         {
-            rb.constraints = RigidbodyConstraints.None;
+            ContrainRigidbody(RigidbodyConstraints.None);
             float acce = motorbikeInfo.acceleration;
             //float targetSpeed = motorbikeInfo.maxSpeed * 0.3f;
             //if (currentSpeed < targetSpeed)
@@ -108,7 +108,7 @@ public class MoveMovementRigid : MotorMovement
         }
         else if (moveInput < 0)
         {
-            rb.constraints = RigidbodyConstraints.None;
+            ContrainRigidbody(RigidbodyConstraints.None);
             if (currentSpeed > 0)
             {
                 // Phanh
@@ -143,7 +143,7 @@ public class MoveMovementRigid : MotorMovement
             }
             if (Mathf.Abs(currentSpeed) <= 5)
             {
-                rb.constraints = RigidbodyConstraints.FreezeAll;
+                ContrainRigidbody(RigidbodyConstraints.FreezeAll);
             }
         }
 
@@ -155,6 +155,22 @@ public class MoveMovementRigid : MotorMovement
         velocity = motorbikeTransform.forward * currentSpeed;
 
 
+    }
+    public void ContrainRigidbody(RigidbodyConstraints constraints)
+    {
+        if (isCollisionBike)
+        {
+            return;
+        }
+        rb.constraints = constraints;
+        //if (freeze)
+        //{
+        //    rb.constraints = RigidbodyConstraints.FreezeAll;
+        //}
+        //else
+        //{
+        //    rb.constraints = RigidbodyConstraints.None;
+        //}
     }
     public Vector3 trueVelocity;
     private void OnChangePosition()
@@ -375,26 +391,32 @@ public class MoveMovementRigid : MotorMovement
     public float delta = 0.1f;
     private void CheckBike(Collision collision)
     {
+        if (isCollisionBike)
+        {
+            return;
+        }
         var motorPartner = collision.gameObject.GetComponent<MoveMovementRigid>();
         if(motorPartner!= null)
         {
             if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
             AudioManager.Instance.PlaySFXCrashMotor();
             motorPartner.OnCollisionBike(this);
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.AddForce(velocity/2);
-            GameUtil.Instance.WaitAndDo(0.5f, UnConstain);
+            OnCollisionBike(this);
         }
     }
     public void OnCollisionBike(MoveMovementRigid moveRigid)
     {
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-        rb.AddForce(moveRigid.velocity/2);
-        GameUtil.Instance.WaitAndDo(0.5f, UnConstain);
+
+        ContrainRigidbody(RigidbodyConstraints.FreezeRotation);
+        isCollisionBike = true;
+        //rb.AddForce(moveRigid.velocity/2);
+        GameUtil.Instance.WaitAndDo(this, 1f, UnConstain);
     }
+    public bool isCollisionBike = false;
     public void UnConstain()
     {
-        rb.constraints = RigidbodyConstraints.None ;
+        isCollisionBike = false;
+        ContrainRigidbody(RigidbodyConstraints.None);
     }
     private bool isRayFinish = false;
     private void CheckFinishLine(RaycastLayer.ResultRaycast result)
@@ -433,6 +455,10 @@ public class MoveMovementRigid : MotorMovement
         }
     }
     public BoxCollider boxCol;
+    private void OnDestroy()
+    {
+        GameUtil.Instance.StopAllCoroutinesForBehaviour(this);
+    }
 #if UNITY_EDITOR
     //[Space, Header ("Editor")]
 

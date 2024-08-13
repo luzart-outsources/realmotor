@@ -18,6 +18,6 @@ public class UISplash : UIBase
     }
     private void InitStartGame()
     {
-        UIManager.Instance.ShowGarage();
+        UIManager.Instance.ShowGarage(UIName.Home);
     }
 }

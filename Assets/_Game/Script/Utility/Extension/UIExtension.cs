@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -24,26 +24,48 @@ public static class UIExtension
     }
     public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform)
     {
-
         Canvas.ForceUpdateCanvases();
         Vector3[] itemCorners = new Vector3[4];
         itemRectTransform.GetWorldCorners(itemCorners);
         Vector3[] viewCorners = new Vector3[4];
         scrollRect.viewport.GetWorldCorners(viewCorners);
+
         float difference = 0;
-        if (itemCorners[1].y > viewCorners[1].y)
+
+        if (scrollRect.horizontal)
         {
-            difference = itemCorners[1].y - viewCorners[1].y;
+            // Tập trung theo chiều ngang
+            if (itemCorners[2].x > viewCorners[2].x)
+            {
+                difference = itemCorners[2].x - viewCorners[2].x;
+            }
+            else if (itemCorners[0].x < viewCorners[0].x)
+            {
+                difference = itemCorners[0].x - viewCorners[0].x;
+            }
+            float width = viewCorners[2].x - viewCorners[0].x;
+            float normalizedDifference = difference / width;
+            Vector2 posCurrent = scrollRect.content.anchoredPosition;
+            Vector2 size = scrollRect.content.sizeDelta;
+            scrollRect.content.anchoredPosition = new Vector2(posCurrent.x - normalizedDifference * size.x, posCurrent.y);
         }
-        else if (itemCorners[0].y < viewCorners[0].y)
+        else
         {
-            difference = itemCorners[0].y - viewCorners[0].y;
+            // Tập trung theo chiều dọc
+            if (itemCorners[1].y > viewCorners[1].y)
+            {
+                difference = itemCorners[1].y - viewCorners[1].y;
+            }
+            else if (itemCorners[0].y < viewCorners[0].y)
+            {
+                difference = itemCorners[0].y - viewCorners[0].y;
+            }
+            float height = viewCorners[1].y - viewCorners[0].y;
+            float normalizedDifference = difference / height;
+            Vector2 posCurrent = scrollRect.content.anchoredPosition;
+            Vector2 size = scrollRect.content.sizeDelta;
+            scrollRect.content.anchoredPosition = new Vector2(posCurrent.x, posCurrent.y - normalizedDifference * size.y);
         }
-        float height = viewCorners[1].y - viewCorners[0].y;
-        float normalizedDifference = difference / height;
-        Vector2 posCurrent = scrollRect.content.anchoredPosition;
-        Vector2 size = scrollRect.content.sizeDelta;
-        scrollRect.content.anchoredPosition = new Vector2(posCurrent.x, posCurrent.y - normalizedDifference * size.y);
     }
     public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform, float elasticity)
     {

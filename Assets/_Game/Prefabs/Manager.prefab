@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 383663076254976222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b53e84b0467d84198275f38b07fd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraMain: {fileID: 8236274350858089229}
   animator: {fileID: 301806493219080082}
   PrimaryTarget: {fileID: 0}
   SecondaryTarget: {fileID: 0}
@@ -384,6 +385,14 @@ MonoBehaviour:
     getBuyAds: []
     listHelmet: 
     listBody: 
+    dailyReward:
+      firstTimeLogin: 0
+      lastTimeLogin: 0
+      isFirstTimeLogin: 0
+      isClaim: 00000000000000
+      count: 0
+      process:
+        isClaim: 00000000
   levelSO: {fileID: 11400000, guid: 54198e4ceef7c2749b3420a833aa0676, type: 2}
   motorbikeSO: {fileID: 11400000, guid: 2f0437512e4236041abf2b4a5d505b0e, type: 2}
   motorSO: {fileID: 11400000, guid: 929e76814661ceb4e9faeb13116c78eb, type: 2}
@@ -438,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActionPerSecond: 0
+  isOnNewDay: 0
 --- !u!114 &2302425661408775333
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,13 +50,10 @@ MonoBehaviour:
   motorVisual: {fileID: 0}
   Handle: {fileID: 1429984320617304194}
   maxRotationHandle: 20
-  maxTiltAngle: 50
-  deltaTilt: 60
   maxTailAngle: 10
   deltaTail: 10
   visualFrontWheel: {fileID: 1076475161212966817}
   visualBackWheel: {fileID: 6704967351094433460}
-  tyreRotations: 200
   skidWidth: 0.05
   skidMark1: {fileID: 3871273248780769962}
   skidMark2: {fileID: 7386366821654053975}
@@ -94,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6730677139436181828, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.446
+      value: 0.515
       objectReference: {fileID: 0}
     - target: {fileID: 6730677139436181828, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -388,23 +385,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339120391, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99762
+      value: 0.9995854
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339120391, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.06895249
+      value: -0.028793924
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339120391, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339120391, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339120391, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.908
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745657887523, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
       propertyPath: m_LightProbeUsage

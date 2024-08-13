@@ -107,7 +107,6 @@ public class MotorVisual : MonoBehaviour
         obDustGroundFront.SetActive(true);
         obDustGroundBack.SetActive(true);
         elapsedTime += Time.deltaTime/5;
-        Debug.Log(colorDirt);
         elapsedTime = Mathf.Clamp01(elapsedTime);
         colorDirt.a = elapsedTime;
         meshDirtBack.material.color = colorDirt;
@@ -135,11 +134,11 @@ public class MotorVisual : MonoBehaviour
     }
     public void RotateFrontWheel(float velocity)
     {
-        visualFrontWheel.Rotate(Vector3.right, -velocity * tyreRotations * Time.fixedTime);
+        visualFrontWheel.Rotate(Vector3.right, velocity * tyreRotations * Time.fixedTime);
     }
     public void RotateBackWheel(float velocity)
     {
-        visualBackWheel.Rotate(Vector3.right, -velocity * tyreRotations * Time.fixedTime);
+        visualBackWheel.Rotate(Vector3.right, velocity * tyreRotations * Time.fixedTime);
     }
     public void RotateWheel(float velocity)
     {

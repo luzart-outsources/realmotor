@@ -2244,6 +2244,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4773413557235074498}
   - {fileID: 4736463930852253341}
   - {fileID: 3656598331819976954}
   m_Father: {fileID: 7016999980269543957}
@@ -3653,13 +3654,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4636583735989231871}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -0.01, y: 5.16, z: -6.75}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 5.16, z: 4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7016999980269543957}
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4772093836009440020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,6 +4417,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6043090364141543998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4773413557235074498}
+  m_Layer: 6
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4773413557235074498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043090364141543998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.043619405, y: -0, z: -0, w: 0.9990483}
+  m_LocalPosition: {x: 0, y: 2.94, z: 0.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8275714411754204416}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6416271840323025015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5696,7 +5728,9 @@ MonoBehaviour:
   parentVisualMotor: {fileID: 8275714411754204416}
   soundMotorbike: {fileID: 1706009557263487193}
   parentCam: {fileID: 7764731331384706181}
+  targetCameraStartGame: {fileID: 4773413557235074498}
   autoRotation: {fileID: 1267806185943832661}
+  isDrawRadius: 0
 --- !u!114 &5941011238601377135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5856,6 +5890,7 @@ MonoBehaviour:
   forceRotate: 10
   factor: 10
   delta: 0.1
+  isCollisionBike: 0
   boxCol: {fileID: 7191590784543998876}
 --- !u!114 &3742141276914546268
 MonoBehaviour:

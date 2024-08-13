@@ -41,6 +41,7 @@ public class UIManager : Singleton<UIManager>
             {UIName.SelectMode,"0,0,UISelectMode" },
             {UIName.SelectLevel,"0,0,UISelectLevel" },
             {UIName.CoinSpawn,"3,0,UICoinSpawn" },
+            {UIName.Home,"0,0,UIHome" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -86,6 +87,7 @@ public class UIManager : Singleton<UIManager>
     private void ShowScreen(UIName uiName, GarageManager garage, UIName uiIgnore = UIName.LoadScene)
     {
         HideAllUIIgnore(uiIgnore);
+        CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
         switch (uiName)
         {
             case UIName.Garage:
@@ -112,6 +114,20 @@ public class UIManager : Singleton<UIManager>
                 {
                     UIRacer uiRacer = ShowUI<UIRacer>(UIName.Upgrade);
                     garage.SetActiveMotorCharacter(false);
+                    break;
+                }
+            case UIName.Home:
+                {
+                    UIHome uiHome = ShowUI<UIHome>(UIName.Home);
+                    uiHome.garageManager = garage;
+                    garage.SetActiveMotorCharacter(true);
+                    garage.OnInScreenUIGarage();
+                    uiHome.RefreshUI();
+                    break;
+                }
+            default:
+                {
+                    ShowUI(uiName);
                     break;
                 }
         }
@@ -337,6 +353,7 @@ public enum UIName
     SelectMode = 14,
     SelectLevel = 15,
     CoinSpawn = 16,
+    Home = 17,
 }
 public class DataUIBase
 {

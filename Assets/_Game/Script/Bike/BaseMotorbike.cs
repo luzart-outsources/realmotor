@@ -31,6 +31,7 @@ public class BaseMotorbike : MonoBehaviour
     public EStateMotorbike eState{ get; set; }
 
     public Transform parentCam;
+    public Transform targetCameraStartGame;
     public AutoRotationDownProjector autoRotation;
 
     public int round { get; set; } = 0;
@@ -90,7 +91,7 @@ public class BaseMotorbike : MonoBehaviour
         //transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
         if(eTeam == ETeam.Player)
         {
-            CameraManager.Instance.SetFollowCamera(this.gameObject);
+            CameraManager.Instance.SetFollowCamera(this.transform);
         }
         InitAction();
         isFall = false;
@@ -264,7 +265,7 @@ public class BaseMotorbike : MonoBehaviour
     private void OnFinishRaceAI()
     {
         Destroy(baseController);
-        GameUtil.Instance.WaitAndDo(1, StopWinGame);
+        GameUtil.Instance.WaitAndDo(this,1, StopWinGame);
     }
     private void OnFinishRacePlayer()
     {
@@ -272,7 +273,7 @@ public class BaseMotorbike : MonoBehaviour
         baseController = gameObject.AddComponent<VehicleAI>();
         baseController.Initialized(this);
 
-        GameUtil.Instance.WaitAndDo(1, StopWinGame);
+        GameUtil.Instance.WaitAndDo(this,1, StopWinGame);
     }
     private void StopWinGame()
     {
@@ -290,7 +291,7 @@ public class BaseMotorbike : MonoBehaviour
         UnHorizontal();
         isFall = true;
         autoRotation.enabled = true;
-        GameUtil.Instance.WaitAndDo(2f, ReInitialize);
+        GameUtil.Instance.WaitAndDo(this,2f, ReInitialize);
     }
     public void StartRace()
     {
@@ -377,11 +378,23 @@ public class BaseMotorbike : MonoBehaviour
     }
     #endregion
 
+    private void OnDestroy()
+    {
+        GameUtil.Instance.StopAllCoroutinesForBehaviour(this);
+    }
+
+#if UNITY_EDITOR
+    public bool isDrawRadius = false;
     private void OnDrawGizmos()
     {
+        if (!isDrawRadius)
+        {
+            return;
+        }
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position,radiusCheckPoint);
     }
+#endif
 }
 
 public enum ETeam

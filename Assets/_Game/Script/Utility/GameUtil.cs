@@ -118,11 +118,17 @@ public class GameUtil : Singleton<GameUtil>
     }
     [SerializeField]
     private bool isActionPerSecond = false;
+    [SerializeField]
+    private bool isOnNewDay = false;
     private void Start()
     {
-        if(isActionPerSecond)
+        if (isActionPerSecond)
         {
             StartCount();
+        }
+        if (isOnNewDay)
+        {
+            StartCoroutine(IEWaitEndFrameNewDay());
         }
     }
     private void StartCount()
@@ -139,31 +145,64 @@ public class GameUtil : Singleton<GameUtil>
             yield return wait;
         }
     }
+    private Dictionary<MonoBehaviour, List<Coroutine>> coroutineDictionary = new Dictionary<MonoBehaviour, List<Coroutine>>();
+
     public void WaitAndDo(float time, Action action)
     {
         StartCoroutine(ieWaitAndDo(time, action));
     }
+
+    public void WaitAndDo(MonoBehaviour behaviour, float time, Action action)
+    {
+        if (!coroutineDictionary.TryGetValue(behaviour, out var coroutines))
+        {
+            coroutines = new List<Coroutine>();
+            coroutineDictionary[behaviour] = coroutines;
+        }
+
+        // Dừng tất cả các coroutine hiện tại của MonoBehaviour (nếu cần thiết)
+        StopAllCoroutinesForBehaviour(behaviour);
+
+        Coroutine coroutine = behaviour.StartCoroutine(ieWaitAndDo(time, action));
+        coroutines.Add(coroutine);
+    }
+
     private IEnumerator ieWaitAndDo(float time, Action action)
     {
         yield return new WaitForSeconds(time);
         action?.Invoke();
     }
-    private Dictionary<MonoBehaviour, Coroutine> coroutineDictionary = new Dictionary<MonoBehaviour, Coroutine>();
 
-    public void StartLerpValue(MonoBehaviour behaviour, float preValue, float value , float timeLerp = 1f, Action<float> action = null,  Action onComplete = null)
+    public void StopAllCoroutinesForBehaviour(MonoBehaviour behaviour)
     {
-        Coroutine coroutine;
-        if (coroutineDictionary.TryGetValue(behaviour, out coroutine))
+        if (coroutineDictionary.TryGetValue(behaviour, out var coroutines))
         {
-            action?.Invoke(value);
-            behaviour.StopCoroutine(coroutine);
-            coroutineDictionary.Remove(behaviour); 
+            foreach (var coroutine in coroutines)
+            {
+                behaviour.StopCoroutine(coroutine);
+            }
+            coroutines.Clear();
         }
-        coroutine = behaviour.StartCoroutine(IEFloatLerp(behaviour, preValue, value, action, timeLerp, onComplete));
-        coroutineDictionary.Add(behaviour, coroutine);
     }
 
-    private IEnumerator IEFloatLerp(MonoBehaviour behaviour, float preValue, float value, Action<float> action = null, float timeLerp = 1f, Action onComplete = null)
+    public void StartLerpValue(MonoBehaviour behaviour, float preValue, float value, float timeLerp = 1f, Action<float> action = null, Action onComplete = null)
+    {
+        if (!coroutineDictionary.TryGetValue(behaviour, out var coroutines))
+        {
+            coroutines = new List<Coroutine>();
+            coroutineDictionary[behaviour] = coroutines;
+        }
+        else
+        {
+            // Dừng tất cả các coroutine hiện tại của MonoBehaviour
+            StopAllCoroutinesForBehaviour(behaviour);
+        }
+
+        Coroutine coroutine = behaviour.StartCoroutine(IEFloatLerp(behaviour, preValue, value, timeLerp, action, onComplete));
+        coroutines.Add(coroutine);
+    }
+
+    private IEnumerator IEFloatLerp(MonoBehaviour behaviour, float preValue, float value, float timeLerp = 1f, Action<float> action = null, Action onComplete = null)
     {
         float sub = timeLerp / Time.deltaTime;
         float delta = (preValue - value) / sub;
@@ -180,14 +219,6 @@ public class GameUtil : Singleton<GameUtil>
             }
             action?.Invoke(preValue);
             yield return null;
-        }
-    }
-    public void OnDisableLerpValue(MonoBehaviour behaviour)
-    {
-        Coroutine coroutine;
-        if (coroutineDictionary.TryGetValue(behaviour, out coroutine))
-        {
-            behaviour.StopCoroutine(coroutine);
         }
     }
     public static float[] Vector2ToFloatArray(Vector2 value)
@@ -226,6 +257,51 @@ public class GameUtil : Singleton<GameUtil>
 
         return objectsWithName;
     }
+
+    #region ONNewDay
+    private const string LastCheckedDateKey = "LastCheckedDateSeconds";
+    private IEnumerator IEWaitEndFrameNewDay()
+    {
+        yield return null;
+        OnNewDay();
+    }
+    public void OnNewDay()
+    {
+        // Lấy thời gian hiện tại dưới dạng giây
+        long currentSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+        // Lấy số giây lưu trữ trong PlayerPrefs
+        long lastCheckedSeconds = PlayerPrefs.GetInt(LastCheckedDateKey, 0);
+
+        if (lastCheckedSeconds == 0)
+        {
+            // Nếu không có thời gian lưu trữ trước đó, đây là lần đầu tiên chạy
+            PerformNewDayActions(currentSeconds);
+        }
+        else
+        {
+            DateTimeOffset lastCheckedDate = DateTimeOffset.FromUnixTimeSeconds(lastCheckedSeconds);
+            DateTimeOffset currentDate = DateTimeOffset.FromUnixTimeSeconds(currentSeconds);
+
+            if (currentDate.Date > lastCheckedDate.Date)
+            {
+                // Nếu ngày hiện tại khác ngày lưu trữ, thực hiện hành động cho ngày mới
+                PerformNewDayActions(currentSeconds);
+            }
+        }
+    }
+
+    void PerformNewDayActions(long currentSeconds)
+    {
+        // Cập nhật ngày mới vào PlayerPrefs
+        PlayerPrefs.SetInt(LastCheckedDateKey, (int)currentSeconds);
+        PlayerPrefs.Save();
+
+        Observer.Instance.Notify(ObserverKey.OnNewDay);
+
+    }
+    #endregion
+
     public static int GetIndexStats(StatsMotorbike myStats)
     {
         int indexStats = 0;

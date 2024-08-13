@@ -85,7 +85,7 @@ public class BaseCharacter : MonoBehaviour
         _rbRagdoll.transform.SetParent(null);
         if(baseMotorbike.eTeam == ETeam.Player)
         {
-            CameraManager.Instance.SetFollowCamera(_rbRagdoll.transform.GetChild(0).GetChild(0).gameObject);
+            CameraManager.Instance.SetFollowCamera(_rbRagdoll.transform.GetChild(0).GetChild(0));
         }
 
         _rbRagdoll.gameObject.SetActive(true);

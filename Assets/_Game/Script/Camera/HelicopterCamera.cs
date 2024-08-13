@@ -3,6 +3,8 @@ using System.Collections;
 
 public class HelicopterCamera : MonoBehaviour
 {
+    public Camera cameraMain;
+
     public Animator animator;
     public Transform PrimaryTarget;
     public GameObject SecondaryTarget;
@@ -116,16 +118,16 @@ public class HelicopterCamera : MonoBehaviour
                 }
             case EStateMotorbike.Finish:
                 {
-                    if (IsFirstTimeFinish)
-                    {
-                        return;
-                    }
-                    this.transform.SetParent(baseMotorbike.parentCam);
-                    transform.localPosition = Vector3.zero;
-                    transform.localEulerAngles = Vector3.zero;
-                    IsFirstTimeFinish = true;
-                    animator.enabled = true;
-                    animator.SetTrigger("StartCamFinish");
+                    //if (IsFirstTimeFinish)
+                    //{
+                    //    return;
+                    //}
+                    //this.transform.SetParent(baseMotorbike.parentCam);
+                    //transform.localPosition = Vector3.zero;
+                    //transform.localEulerAngles = Vector3.zero;
+                    //IsFirstTimeFinish = true;
+                    //animator.enabled = true;
+                    //animator.SetTrigger("StartCamFinish");
                     break;
                 }
         }
@@ -160,6 +162,28 @@ public class HelicopterCamera : MonoBehaviour
             }
         }
         return pos.y;
+    }
+    public Vector3 GetTargetPosition(Transform target)
+    {
+        float wantedHeight = target.transform.position.y + height;
+        float wantedRotationAngle = target.transform.eulerAngles.y;
+
+        Vector3 wantedPosition = target.transform.position;
+        wantedPosition.y = wantedHeight;
+
+        float adjustedDistance = distance;
+
+        wantedPosition += Quaternion.Euler(0, wantedRotationAngle, 0) * new Vector3(0, 0, -adjustedDistance);
+
+        wantedPosition.y = YPosCamera(wantedPosition);
+
+        return wantedPosition;
+    }
+    public Quaternion GetRotation(Transform target)
+    {
+        Vector3 lookAtVector = new Vector3(0, lookAtHeight, 0);
+        Vector3 lookAtPosition = target.transform.position + lookAtVector;
+        return Quaternion.LookRotation(lookAtPosition - wantedPosition);
     }
     private void CameraNone()
     {

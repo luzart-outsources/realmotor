@@ -141,6 +141,7 @@ public enum EGameState
 {
     None = 0,
     Playing = 1,
+    Finish = 2,
 }
 
 

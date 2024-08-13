@@ -19,6 +19,7 @@ public class UISelectLevel : UIBase
     public ItemTitleSelectLevel itemTitleSelectLevelPrefab;
     private List<ItemTitleSelectLevel> listItemTitleSelectLevel = new List<ItemTitleSelectLevel>();
 
+    public ScrollRect scrollRect;
     public Transform parentSpawnLevel;
     public ItemSelectLevelUI itemSelectLevelPrefabs;
     private List<ItemSelectLevelUI> listItemSelectLevel = new List<ItemSelectLevelUI>();
@@ -66,7 +67,11 @@ public class UISelectLevel : UIBase
         int level = DataManager.Instance.CurrentLevel;
         int themeLevel = DataManager.Instance.levelSO.GetIndexThemeLevel(level);
         OnClickTitle(listItemTitleSelectLevel[themeLevel]);
-        //RectTransform posSelect = GetPosItemSelect(level);
+        RectTransform posSelect = GetPosItemSelect(level);
+        GameUtil.Instance.WaitAndDo(0, () =>
+        {
+            scrollRect.FocusOnRectTransform(posSelect);
+        });
         //float x = PosXNew(posSelect);
         //rtContent.anchoredPosition = new Vector2(-x, rtContent.anchoredPosition.y);
     }
@@ -105,6 +110,7 @@ public class UISelectLevel : UIBase
             item.InitItem(list[index], ClickLevel);
             item.OnHideCanvasG();
         });
+        scrollRect.content.anchoredPosition = new Vector2(0, 0);
         int lengthLevel = listItemSelectLevel.Count;
         sequenceSpawn?.Kill(false);
         sequenceSpawn = DOTween.Sequence();
@@ -123,11 +129,12 @@ public class UISelectLevel : UIBase
 
     private RectTransform GetPosItemSelect(int level)
     {
+        int count = listItemSelectLevel.Count;
         RectTransform rtPos = listItemSelectLevel[0].GetComponent<RectTransform>();
         DB_Level db_level = DataManager.Instance.levelSO.GetDB_Level(level);
         if(db_level == null)
         {
-            return rtPos ;
+            return listItemSelectLevel[count -1].GetComponent<RectTransform>(); ;
         }
         int length = listItemSelectLevel.Count;
         for (int i = 0; i < length; i++)

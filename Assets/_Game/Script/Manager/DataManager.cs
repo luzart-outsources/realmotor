@@ -319,6 +319,7 @@ public class GameData
     public List<DataGetByAds> getBuyAds = new List<DataGetByAds>();
     public List<int> listHelmet = new List<int>();
     public List<int> listBody = new List<int>();
+    public DataDailyReward dailyReward = new DataDailyReward();
 
 }
 [System.Serializable]

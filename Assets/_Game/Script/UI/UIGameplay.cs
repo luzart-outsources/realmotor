@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Device;
 
 public class UIGameplay : UIBase
 {
@@ -19,6 +20,9 @@ public class UIGameplay : UIBase
     private float maxClockwise = 0.72f;
     public Image imClockFilled;
     public ParticleSystem fxLine;
+    public CanvasGroup canvasGroupStartGame;
+    public GameObject obScreen;
+
     protected override void Setup()
     {
         base.Setup();
@@ -33,7 +37,31 @@ public class UIGameplay : UIBase
     {
         base.Show(onHideDone);
         SetStatusUIController(false);
+        obScreen.SetActive(false);
     }
+    private Sequence sequenceCanvasGroup;
+    public void FadeOutCanvasGroupStartGame(float time, Action onComplete = null)
+    {
+        sequenceCanvasGroup?.Kill();
+        sequenceCanvasGroup = DOTween.Sequence();
+        canvasGroupStartGame.alpha = 1;
+        float timePlay = time;
+        sequenceCanvasGroup.Append(
+            DOVirtual.Float(1, 0, timePlay, (x) =>
+        {
+            canvasGroupStartGame.alpha = x;
+        }));
+        sequenceCanvasGroup.AppendCallback(
+        () =>
+            {
+                obScreen.gameObject.SetActive(true);
+                canvasGroupStartGame.gameObject.SetActive(false);
+                StartGame();
+                onComplete?.Invoke();
+            }
+            );
+    }
+
     public void SetStatusUIController(bool status)
     {
         UIController.gameObject.SetActive(status);
@@ -63,9 +91,13 @@ public class UIGameplay : UIBase
        txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, true, "", "", "", "");
 
     }
-    public void StartCountDown()
+    public void StartCountDown(Action action)
     {
-        countdown.InitCountDown(3, 0, ()=> StartGame()) ;
+        countdown.InitCountDown(3, 0, ()=>
+        {
+            StartGame();
+            action?.Invoke();
+        }) ;
     }
     public void StartGame()
     {

@@ -21,12 +21,26 @@ public class EnvironmentMap : MonoBehaviour
             return _miniMapEnvironment;
         }
     }
-
+    private void Awake()
+    {
+        cameraStartGame.gameObject.SetActive(false);
+    }
     public static Action<EnvironmentMap> actionMap;
     [Space, Header("Lighting Motorbike")]
     public bool isOverrideMotorLighting = false;
     public Color colorMotorLighting;
     public float intensityMotorLighting = 0.4f;
+
+    public SequenceCameraCinemachineTrackedDolly cameraStartGame;
+    public SequenceCameraCinemachineTrackedDolly cameraEndGame; 
+    public void StartCamereGame()
+    {
+        cameraStartGame.gameObject.SetActive(true);
+    }
+    public void StartCameraEndGame()
+    {
+        cameraEndGame.gameObject.SetActive(true);
+    }
     public void Start()
     {
 #if UNITY_EDITOR

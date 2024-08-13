@@ -50,13 +50,10 @@ MonoBehaviour:
   motorVisual: {fileID: 0}
   Handle: {fileID: 5844606449434713298}
   maxRotationHandle: 20
-  maxTiltAngle: 50
-  deltaTilt: 60
   maxTailAngle: 10
   deltaTail: 10
   visualFrontWheel: {fileID: 1076475161212966817}
   visualBackWheel: {fileID: 6704967351094433460}
-  tyreRotations: 200
   skidWidth: 0.05
   skidMark1: {fileID: 3871273248780769962}
   skidMark2: {fileID: 7386366821654053975}
@@ -94,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6730677139436181828, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.448
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 6730677139436181828, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -472,23 +469,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339122373, guid: acd6c81eb7f24a4492750452207eaf45, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99857026
+      value: 0.99963886
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339122373, guid: acd6c81eb7f24a4492750452207eaf45, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.05345487
+      value: -0.026874756
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339122373, guid: acd6c81eb7f24a4492750452207eaf45, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339122373, guid: acd6c81eb7f24a4492750452207eaf45, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339122373, guid: acd6c81eb7f24a4492750452207eaf45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -6.128
+      value: -3.08
       objectReference: {fileID: 0}
     - target: {fileID: 1791457745339122473, guid: acd6c81eb7f24a4492750452207eaf45, type: 3}
       propertyPath: m_LocalScale.x
