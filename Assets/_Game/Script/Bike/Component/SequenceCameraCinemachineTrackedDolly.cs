@@ -56,13 +56,13 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
             DOVirtual.Float(group.firstFOV, group.targetFOV, group.timeMove, (x) =>
             {
                 group.virtualCamera.m_Lens.FieldOfView = x;
-            }).SetEase(group.ease);
+            }).SetEase(group.ease).SetId(this);
         }
 
         return DOVirtual.Float(0, 1, group.timeMove, (x) =>
         {
             trackedDolly.m_PathPosition = x;
-        }).SetEase(group.ease); ;
+        }).SetEase(group.ease).SetId(this);
     }
     public float PlayCinemachineDollyAndFade(int index)
     {
@@ -154,6 +154,7 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
             sequence.AppendInterval(time[index] + 0.3f);
         }
         sequence.AppendCallback(() => OnCompletePathGame());
+        sequence.SetId(this);
     }
     public Action ActionOnDoneCamera;
     public void OnCompletePathGame()
@@ -169,6 +170,10 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
             group.virtualCamera.m_LookAt = target;
             group.virtualCamera.m_Follow = target;
         }
+    }
+    private void OnDisable()
+    {
+        this.DOKill();
     }
 }
 [System.Serializable]

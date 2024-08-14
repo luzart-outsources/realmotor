@@ -3978,7 +3978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8932587009390414320}
-  factor: 1
+  factor: 3
 --- !u!1 &5313136830842098677
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,8 +5886,14 @@ MonoBehaviour:
   raycastDowns: []
   onCollisionLayers: []
   IsBack: 0
+  factorGear:
+  - 1
+  - 0.7
+  - 0.3
   trueVelocity: {x: 0, y: 0, z: 0}
   forceRotate: 10
+  sensor: 0.2
+  percentSpeed: 0.7
   factor: 10
   delta: 0.1
   isCollisionBike: 0

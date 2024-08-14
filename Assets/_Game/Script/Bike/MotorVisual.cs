@@ -13,8 +13,9 @@ public class MotorVisual : MonoBehaviour
     private float maxRotationHandle = 20f;
 
     [Space, Header("Tilt")]
-    private float maxTiltAngle = 60f;
-    private float deltaTilt = 50f;
+    private float maxTiltAngle = 65f;
+    [SerializeField]
+    private float deltaTiltMotor = 50f;
 
 
     [Space, Header("Tail")]
@@ -178,7 +179,7 @@ public class MotorVisual : MonoBehaviour
         }
         Handle.localRotation = Quaternion.Slerp(Handle.localRotation, Quaternion.Euler(Handle.localRotation.eulerAngles.x,
                                maxRotationHandle * steerInput, Handle.localRotation.eulerAngles.z), Time.deltaTime);
-        tiltAmount = Mathf.MoveTowards(tiltAmount, _maxTiltAngle, factorTitl* deltaTilt * Time.deltaTime);
+        tiltAmount = Mathf.MoveTowards(tiltAmount, _maxTiltAngle, factorTitl* deltaTiltMotor * Time.deltaTime);
         float _maxTailAngle = maxTailAngle * steerInput * valueAngle;
         tailAmount = Mathf.MoveTowards(tailAmount, _maxTailAngle, factorTitl* deltaTail * Time.deltaTime);
         //tiltAmount = Mathf.Lerp(tiltAmount, maxTiltAngle, deltaTilt * Time.deltaTime); // Sử dụng Lerp để làm mượt hành động nghiêng

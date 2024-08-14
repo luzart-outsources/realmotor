@@ -59,7 +59,7 @@ namespace MoreMountains.HighroadEngine
             for (int i = 0; i < length; i++)
             {
                 var item = ais[i];
-                ais[i] = new Vector3(item.x + Random.Range(-5, 5), item.y, item.z + Random.Range(-5, 5));
+                ais[i] = new Vector3(item.x + Random.Range(-3, 3), item.y, item.z + Random.Range(-3, 3));
             }
             _AIWaypoints = ais;
             baseMotorBike.GetCurrentCheckPoint();

@@ -90,6 +90,7 @@ public class MoveMovementRigid : MotorMovement
         base.UnVerticle();
 
     }
+    public float[] factorGear = new float []{ 1f , 0.7f, 0.3f };
     private void CalculatorPosition()
     {
         float deltaTime = Time.fixedDeltaTime;
@@ -98,6 +99,18 @@ public class MoveMovementRigid : MotorMovement
         {
             ContrainRigidbody(RigidbodyConstraints.None);
             float acce = motorbikeInfo.acceleration;
+            if(baseMotor.baseMotorbike.currentGear <= 1)
+            {
+                acce = acce * factorGear[0];
+            }
+            else if(baseMotor.baseMotorbike.currentGear == 2)
+            {
+                acce = acce * factorGear[1];
+            }
+            else
+            {
+                acce = acce * factorGear[2];
+            }
             //float targetSpeed = motorbikeInfo.maxSpeed * 0.3f;
             //if (currentSpeed < targetSpeed)
             //{
@@ -201,23 +214,35 @@ public class MoveMovementRigid : MotorMovement
 
     }
     public float forceRotate = 10f;
+    public float sensor = 0.1f;
+    public float percentSpeed = 0.8f;
     private void OnRotate()
     {
         // Xử lý quay xe
         if (Math.Abs(currentSpeed) >= 3f)
         {
+            float handling = motorbikeInfo.handling;
+            if (currentSpeed / motorbikeInfo.maxSpeed >= percentSpeed)
+            {
+                handling = handling - sensor * (currentSpeed - percentSpeed * motorbikeInfo.maxSpeed);
+            }
             float turn = 0;
             if (currentSpeed >= 0)
             {
-                turn = steerInput * motorbikeInfo.handling * Time.fixedDeltaTime;
+                turn = steerInput * handling * Time.fixedDeltaTime;
             }
             else
             {
-                turn = -1 * steerInput * motorbikeInfo.handling * Time.fixedDeltaTime;
+                turn = -1 * steerInput * handling * Time.fixedDeltaTime;
             }
             Vector3 deltaRotation = new Vector3(0, turn, 0);
+
             //rb.rotation = rb.rotation * deltaRotation;
             transform.Rotate(deltaRotation);
+
+
+
+
         }
         ActionTiltRotate?.Invoke(steerInput, currentSpeed);
     }
