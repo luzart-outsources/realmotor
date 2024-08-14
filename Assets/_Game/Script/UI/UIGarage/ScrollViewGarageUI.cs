@@ -15,8 +15,8 @@ public class ScrollViewGarageUI : ListBank
     {
         listMotorbike = list;
         circular.Initialize();
-        circular.ListSetting.AddOnFocusingBoxChangedCallback(uiGarage.ClickItem);
-        circular.ListSetting.AddOnBoxSelectedCallback(uiGarage.ClickItem);
+        //circular.ListSetting.AddOnFocusingBoxChangedCallback(uiGarage.ClickItem);
+        //circular.ListSetting.AddOnBoxSelectedCallback(uiGarage.ClickItem);
     }
     public override IListContent GetListContent(int index)
     {

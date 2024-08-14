@@ -45,11 +45,12 @@ public class UIUpgrade : UIBase
         {
             levelUpgrade[i]++;
         }
+        InforMotorbike inforCur = ConfigStats.GetInforMotorbike(idCurMotor, levelUpgradeCur);
         InforMotorbike infor = ConfigStats.GetInforMotorbike(idCurMotor, levelUpgrade);
-        itemUpgradePopups[0].Initialize(StatsMotorbike.MaxSpeed, infor.maxSpeed, levelUpgrade[0], ClickItem);
-        itemUpgradePopups[1].Initialize(StatsMotorbike.Acceleration, infor.acceleration, levelUpgrade[1], ClickItem);
-        itemUpgradePopups[2].Initialize(StatsMotorbike.Handling, infor.handling, levelUpgrade[2], ClickItem);
-        itemUpgradePopups[3].Initialize(StatsMotorbike.Brake, infor.brake, levelUpgrade[3], ClickItem);
+        itemUpgradePopups[0].Initialize(StatsMotorbike.MaxSpeed,inforCur.maxSpeed, infor.maxSpeed, levelUpgrade[0], ClickItem);
+        itemUpgradePopups[1].Initialize(StatsMotorbike.Acceleration, inforCur.acceleration, infor.acceleration, levelUpgrade[1], ClickItem);
+        itemUpgradePopups[2].Initialize(StatsMotorbike.Handling, inforCur.handling, infor.handling, levelUpgrade[2], ClickItem);
+        itemUpgradePopups[3].Initialize(StatsMotorbike.Brake, inforCur.brake, infor.brake, levelUpgrade[3], ClickItem);
         if(itemCache != null)
         {
             ClickItemUpgradePopUp(itemCache);
@@ -131,7 +132,7 @@ public class UIUpgrade : UIBase
         }
         else
         {
-            pr = pr - infor[indexStats] + (int)itemCache.valueStats;
+            pr = pr - infor[indexStats] + (int)itemCache.valueStatsUpgrade;
             txtUpgrade.text = pr.ToString();
         }
 

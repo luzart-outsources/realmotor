@@ -13,12 +13,16 @@ using UnityEngine.UI;
 
 public class UIGarage : UIBase
 {
+    public Button btnBack;
+
     public Button btnSettings;
     public Button btnUpgrade;
     public Button btnRacer;
     public PopUpUpgradeGarage popupUpgrade;
     public GarageManager garageManager;
-    public ScrollViewGarageUI scrollView;
+    public ScrollRect scrollView;
+    public ItemSelectMotorbikeUI itemSelectMotorbikeUIPf;
+    public List<ItemSelectMotorbikeUI> listItemSelect = new List<ItemSelectMotorbikeUI>();
 
     [Space, Header("Buy")]
     public Button btnRacing;
@@ -46,14 +50,14 @@ public class UIGarage : UIBase
     private DataTypeResource dataTypeResourceCurrent;
     private int GetIdMotorInAllMotor(int id)
     {
-        //int length = listItemSelect.Count;
-        //for (int i = 0; i < length; i++)
-        //{
-        //    if (id == listItemSelect[i].db_Motorbike.idMotor)
-        //    {
-        //        return listItemSelect[i].currentIndex;
-        //    }
-        //}
+        int length = listItemSelect.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (id == listItemSelect[i].db_Motorbike.idMotor)
+            {
+                return listItemSelect[i].currentIndex;
+            }
+        }
         return 0;
     }
     protected override void Setup()
@@ -64,6 +68,12 @@ public class UIGarage : UIBase
         GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnGarageUpgarde);
         GameUtil.ButtonOnClick(btnRacer, ClickRacer, true, KeyAds.BtnGarageRacer);
         GameUtil.ButtonOnClick(btnBuy, ClickBuy, true);
+        GameUtil.ButtonOnClick(btnBuy, ClickBuy, true);
+        GameUtil.ButtonOnClick(btnBack, ClickBack, true);
+    }
+    public void ClickBack()
+    {
+        UIManager.Instance.ShowGarage(UIName.Home);
     }
     public void ClickSettings()
     {
@@ -90,13 +100,9 @@ public class UIGarage : UIBase
         base.Show(onHideDone);
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
         currentItemClick = DataManager.Instance.GameData.idCurMotor;
-        scrollView.circular.ListSetting.SetInitFocusingContentID(currentItemClick);
-
+        currentItemClick = GetIdMotorInAllMotor(currentItemClick);
         SpawnList();
-
-
-
-        itemCache = (ItemSelectMotorbikeUI)scrollView.circular.GetFocusingBox();
+        itemCache = listItemSelect[currentItemClick];
         itemCache.SelectMotorBike(true);
     }
     private void SpawnList()
@@ -114,22 +120,15 @@ public class UIGarage : UIBase
             db.levelUpgrades = levelUpgrades;
             listDB.Add(db);
         }
-        scrollView.InitListDB(listDB);
-    }
-    public void ClickItem(ListBox listBox, ListBox listBoxNew)
-    {
-        ItemSelectMotorbikeUI itemSelectMotorOld = (ItemSelectMotorbikeUI)listBox;
-        ItemSelectMotorbikeUI itemSelectMotor = (ItemSelectMotorbikeUI)listBoxNew;
-        if (itemSelectMotorOld != null)
+        MasterHelper.InitListObj(length, itemSelectMotorbikeUIPf, listItemSelect, scrollView.content, (item, index) =>
         {
-            itemSelectMotorOld.SelectMotorBike(false);
-        }
-        itemCache = itemSelectMotor;
-        CurrentItemClick();
+            item.gameObject.SetActive(true);
+            var data = listDB[index];
+            item.InitDB(data, ClickItem);
+        });
     }
-    public void ClickItem(ListBox listBoxNew)
+    public void ClickItem(ItemSelectMotorbikeUI itemSelectMotor)
     {
-        ItemSelectMotorbikeUI itemSelectMotor = (ItemSelectMotorbikeUI)listBoxNew;
         if (itemCache != null)
         {
             itemCache.SelectMotorBike(false);
@@ -162,14 +161,14 @@ public class UIGarage : UIBase
         {
             DataManager.Instance.GameData.idCurMotor = dbGet.idMotor;
         }
-        itemCache.SetLock(!isHasData);
+        itemCache.SetUnLock(isHasData);
         SetStatusButtonRace();
         if (garageManager != null)
         {
             garageManager.SpawnMotorVisual(itemCache.db_Motorbike.idMotor);
             garageManager.SetMyCharacter();
         }
-
+        scrollView.FocusOnRectTransform(itemCache.rectTransform);
     }
 
     private void SetStatusButtonRace()

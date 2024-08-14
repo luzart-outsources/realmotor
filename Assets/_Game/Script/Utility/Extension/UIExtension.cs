@@ -25,6 +25,7 @@ public static class UIExtension
     public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform)
     {
         Canvas.ForceUpdateCanvases();
+
         Vector3[] itemCorners = new Vector3[4];
         itemRectTransform.GetWorldCorners(itemCorners);
         Vector3[] viewCorners = new Vector3[4];
@@ -34,7 +35,6 @@ public static class UIExtension
 
         if (scrollRect.horizontal)
         {
-            // Tập trung theo chiều ngang
             if (itemCorners[2].x > viewCorners[2].x)
             {
                 difference = itemCorners[2].x - viewCorners[2].x;
@@ -43,15 +43,21 @@ public static class UIExtension
             {
                 difference = itemCorners[0].x - viewCorners[0].x;
             }
+
             float width = viewCorners[2].x - viewCorners[0].x;
             float normalizedDifference = difference / width;
+
             Vector2 posCurrent = scrollRect.content.anchoredPosition;
             Vector2 size = scrollRect.content.sizeDelta;
-            scrollRect.content.anchoredPosition = new Vector2(posCurrent.x - normalizedDifference * size.x, posCurrent.y);
+
+            float newX = posCurrent.x - normalizedDifference * size.x;
+            float minX = 0;
+            float maxX = scrollRect.content.sizeDelta.x - scrollRect.viewport.rect.width;
+
+            scrollRect.content.anchoredPosition = new Vector2(Mathf.Clamp(newX, minX, maxX), posCurrent.y);
         }
         else
         {
-            // Tập trung theo chiều dọc
             if (itemCorners[1].y > viewCorners[1].y)
             {
                 difference = itemCorners[1].y - viewCorners[1].y;
@@ -60,13 +66,21 @@ public static class UIExtension
             {
                 difference = itemCorners[0].y - viewCorners[0].y;
             }
+
             float height = viewCorners[1].y - viewCorners[0].y;
             float normalizedDifference = difference / height;
+
             Vector2 posCurrent = scrollRect.content.anchoredPosition;
             Vector2 size = scrollRect.content.sizeDelta;
-            scrollRect.content.anchoredPosition = new Vector2(posCurrent.x, posCurrent.y - normalizedDifference * size.y);
+
+            float newY = posCurrent.y - normalizedDifference * size.y;
+            float minY = 0;
+            float maxY = scrollRect.content.sizeDelta.y - scrollRect.viewport.rect.height;
+
+            scrollRect.content.anchoredPosition = new Vector2(posCurrent.x, Mathf.Clamp(newY, minY, maxY));
         }
     }
+
     public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform, float elasticity)
     {
         scrollRect.elasticity = 0.5f;

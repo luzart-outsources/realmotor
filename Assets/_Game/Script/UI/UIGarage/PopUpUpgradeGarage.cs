@@ -8,6 +8,7 @@ public class PopUpUpgradeGarage : MonoBehaviour
     public TMP_Text txtName;
     public TMP_Text txtNameModel;
     public TMP_Text txtRank;
+    public TMP_Text txtPR;
     public ItemUpgradeGarageRef[] itemUpgradeGarageRefs;
     public RectTransform rectTransformLineRef;
     private DB_Motor DB_Motor;
@@ -21,8 +22,9 @@ public class PopUpUpgradeGarage : MonoBehaviour
         DB_Motor = db;
         txtName.text = db.nameMotor;
         txtNameModel.text = db.nameModelMotor;
-        txtRank.text = $"Rank-{db.rank}";
+        txtRank.text = $"Rank {db.rank}";
         InforMotorbike inforMax = db.GetInforMotorbikeMax();
+        txtPR.text = $"PR {db.inforMotorbike.PR}/{inforMax.PR}";
         ShowData(itemUpgradeGarageRefs[0], "Top Speed", db.inforMotorbike.maxSpeed,db.inforUpgrade.maxSpeed, inforMax.maxSpeed, isMaxData[0]);
         ShowData(itemUpgradeGarageRefs[1], "Acceleration", db.inforMotorbike.acceleration,  db.inforUpgrade.acceleration,inforMax.acceleration, isMaxData[1]);
         ShowData(itemUpgradeGarageRefs[2], "Handling", db.inforMotorbike.handling, db.inforUpgrade.handling,inforMax.handling, isMaxData[2]);
@@ -44,7 +46,7 @@ public class PopUpUpgradeGarage : MonoBehaviour
             itemUpgrade.txtUpgrade.text = maxData.ToString();
             SetLine(itemUpgrade.rtUpgrade, upGradeData, itemUpgrade.maxRange);
         }
-        itemUpgrade.obUp.SetActive(!isMaxData);
+        //itemUpgrade.obUp.SetActive(!isMaxData);
     }
     private void SetLine(RectTransform line, float curValue, float maxValue)
     {

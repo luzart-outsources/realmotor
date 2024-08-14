@@ -1,9 +1,7 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,29 +24,32 @@ public class ItemUpgradePopUp : MonoBehaviour
     public TMP_Text txtValueUpgrade;
     public LineUpgradeSlider lineUpgradeSlider;
     public Button btn;
-    public Image imButton;
-    public Image imIcon;
+    //public Image imButton;
+    //public Image imIcon;
     public Action<ItemUpgradePopUp> ActionClick;
-    public Sprite spClick, spUnclick;
-    public Sprite spClickIcon, spUnclickIcon;
+    //public Sprite spClick, spUnclick;
+    //public Sprite spClickIcon, spUnclickIcon;
+    public GroupBaseSelect baseSelect; 
     public StatsMotorbike stats;
     private string strTitle;
     private Vector2 size;
     public GameObject obUpdateDetail;
     private int levelUpgrade;
-    public float valueStats;
+    public float valueStatsUpgrade;
+    public float valueStatCurrent;
     private void Start()
     {
         GameUtil.ButtonOnClick(btn, Click, true);
         size = rtMe.sizeDelta;
 
     }
-    public void Initialize(StatsMotorbike stats ,float value, int levelUpgrade ,Action<ItemUpgradePopUp> action )
+    public void Initialize(StatsMotorbike stats , float valueCurrent ,float valueUpgrade, int levelUpgrade ,Action<ItemUpgradePopUp> action )
     {
         this.ActionClick = action;
         this.stats = stats;
-        this.valueStats = value;
-        this.txtValueUpgrade.text = value.ToString();
+        this.valueStatsUpgrade = valueUpgrade;
+        this.valueStatCurrent = valueCurrent;
+        this.txtValueUpgrade.text = valueCurrent.ToString();
         this.levelUpgrade = levelUpgrade;
         this.lineUpgradeSlider.SetLevelUpgrade(levelUpgrade - 1);
         SetText();
@@ -92,18 +93,16 @@ public class ItemUpgradePopUp : MonoBehaviour
     public void SelectButton(bool isActive)
     {
         Vector3 scale = Vector3.one;
+        baseSelect.Select(isActive);
+        txtTitle.text = strTitle;
         if(isActive)
         {
-            imButton.sprite = spClick;
-            txtTitle.text = $"<color={colorWhite}>{strTitle}</color>";
-            imIcon.sprite = spClickIcon;
-            scale = Vector3.one*1.1f;
+            txtValueUpgrade.text = valueStatsUpgrade.ToString();
+            scale = Vector3.one * 1.03f;
         }
         else
         {
-            imButton.sprite= spUnclick;
-            txtTitle.text = $"<color={colorBlack}>{strTitle}</color>";
-            imIcon.sprite = spUnclickIcon;
+            txtValueUpgrade.text = valueStatCurrent.ToString();
             scale = Vector3.one;
         }
         twScale?.Kill(true);
@@ -114,5 +113,9 @@ public class ItemUpgradePopUp : MonoBehaviour
             obUpdateDetail.SetActive(false);
         }
 
+    }
+    private void SelectBaseSelect(bool isSelect)
+    {
+        
     }
 }
