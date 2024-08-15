@@ -100,8 +100,8 @@ public class UIGarage : UIBase
         base.Show(onHideDone);
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
         currentItemClick = DataManager.Instance.GameData.idCurMotor;
-        currentItemClick = GetIdMotorInAllMotor(currentItemClick);
         SpawnList();
+        currentItemClick = GetIdMotorInAllMotor(currentItemClick);
         itemCache = listItemSelect[currentItemClick];
         itemCache.SelectMotorBike(true);
     }
@@ -125,6 +125,7 @@ public class UIGarage : UIBase
             item.gameObject.SetActive(true);
             var data = listDB[index];
             item.InitDB(data, ClickItem);
+            item.currentIndex = index;
         });
     }
     public void ClickItem(ItemSelectMotorbikeUI itemSelectMotor)

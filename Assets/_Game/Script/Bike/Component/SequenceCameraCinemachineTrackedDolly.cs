@@ -51,6 +51,13 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
     {
         var group = groupPathCinemachine[index];
         var trackedDolly = group.virtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+        if(trackedDolly == null)
+        {
+            return DOVirtual.Float(1,0,group.timeMove, (x) =>
+            {
+
+            });
+        }
         if (group.isChangeFOV)
         {
             DOVirtual.Float(group.firstFOV, group.targetFOV, group.timeMove, (x) =>
@@ -195,6 +202,9 @@ public class GroupPathCinemachineSmoothCamera
     public bool isChangeFOV = false;
     public float firstFOV = 60f;
     public float targetFOV = 30f;
+
+    public Vector3 firstPosition;
+    public Vector3 targetPosition;
     
     public CinemachineTrackedDolly.CameraUpMode cameraUpMode;
     public Transform target;

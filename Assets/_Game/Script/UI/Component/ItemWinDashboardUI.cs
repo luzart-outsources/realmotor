@@ -8,18 +8,18 @@ public class ItemWinDashboardUI : ItemLeaderboard
     public TMP_Text txtIndex;
     public TMP_Text txtName;
     public TMP_Text txtTime;
-    public TMP_Text txtTimeAll;
+    public TMP_Text txtPR;
     public TMP_Text txtNameModel;
-    public GameObject obRed;
+    public GroupBaseSelect GroupBaseSelect;
 
     public void InitData(bool isMe, DataItemWinLeaderboardUI data)
     {
         SetText(txtIndex, data.index);
         SetText(txtName, data.name);
         SetText(txtTime, data.time);
-        SetText(txtTimeAll, data.timeAll);
+        SetText(txtPR, $"PR {data.PR}");
         SetText(txtNameModel, data.nameModel);
-        obRed.SetActive(isMe);
+        GroupBaseSelect.Select(isMe);
     }
     private void SetText(TMP_Text txt, string str)
     {
@@ -36,6 +36,6 @@ public class DataItemWinLeaderboardUI
     public string index;
     public string name;
     public string time;
-    public string timeAll;
+    public string PR;
     public string nameModel;
 }

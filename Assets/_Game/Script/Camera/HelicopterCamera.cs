@@ -53,7 +53,11 @@ public class HelicopterCamera : MonoBehaviour
     public void SetTargetFollow(Transform target)
     {
         PrimaryTarget = target;
-        baseMotorbike = PrimaryTarget.GetComponent<BaseMotorbike>();
+        if(PrimaryTarget != null)
+        {
+            baseMotorbike = PrimaryTarget.GetComponent<BaseMotorbike>();
+        }
+
         IsFirstTimeFinish = false;
         IsFirstTimeNone = false;
         IsFirstTimeStart = false;

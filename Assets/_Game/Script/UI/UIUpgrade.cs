@@ -38,7 +38,7 @@ public class UIUpgrade : UIBase
     {
         base.RefreshUI();
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
-        int[] levelUpgradeCur =  ConfigStats.GetLevelsUpgrade(idCurMotor, DataManager.Instance.GameData.motorbikeDatas);
+        int[] levelUpgradeCur =  ConfigStats.GetLevelsUpgrade(idCurMotor);
         int[] levelUpgrade = levelUpgradeCur.ToArray();
 
         for (int i = 0; i < levelUpgrade.Length; i++)
@@ -106,7 +106,7 @@ public class UIUpgrade : UIBase
     private void SwitchStats()
     {
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
-        int[] levelUpgrades = ConfigStats.GetLevelsUpgrade(idCurMotor, DataManager.Instance.GameData.motorbikeDatas);
+        int[] levelUpgrades = ConfigStats.GetLevelsUpgrade(idCurMotor);
         int[] infor = ConfigStats.GetInforMotorbike(idCurMotor, levelUpgrades).ToArray();
         int indexStats = GameUtil.GetIndexStats(myStats);
         imIcon.sprite = allSprite[indexStats];

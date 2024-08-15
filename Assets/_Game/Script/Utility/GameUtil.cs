@@ -336,26 +336,30 @@ public class GameUtil : Singleton<GameUtil>
     }
     public static string ToOrdinal(int number)
     {
-        if (number <= 0) return number.ToString();
+        return $"{number}{GetOrdinalSuffix(number)}";
+    }
+    public static string GetOrdinalSuffix(int number)
+    {
+        if (number <= 0) return "";
 
         int lastTwoDigits = number % 100;
         int lastDigit = number % 10;
 
         if (lastTwoDigits >= 11 && lastTwoDigits <= 13)
         {
-            return number + "th";
+            return "th";
         }
 
         switch (lastDigit)
         {
             case 1:
-                return number + "st";
+                return "st";
             case 2:
-                return number + "nd";
+                return "nd";
             case 3:
-                return number + "rd";
+                return "rd";
             default:
-                return number + "th";
+                return "th";
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class UIHome : UIBase
 {
     public GarageManager garageManager { get;set; }
     public Button btnRacing, btnGarage, btnUpgrade,btnShop, btnSetting, btnDailyReward;
+    public TMP_Text txtPR, txtName, txtRank;
     protected override void Setup()
     {
         base.Setup();
@@ -45,7 +47,14 @@ public class UIHome : UIBase
     }
     public override void RefreshUI()
     {
-        base.RefreshUI(); 
-        garageManager.SpawnMotorVisual(DataManager.Instance.GameData.idCurMotor);
+        base.RefreshUI();
+        int idMotor = DataManager.Instance.GameData.idCurMotor;
+        garageManager.SpawnMotorVisual(idMotor);
+        DB_Motor db_Motor = DataManager.Instance.motorSO.GetDBMotor(idMotor);
+        int[] levelsUpgrade = ConfigStats.GetLevelsUpgrade(idMotor);
+        InforMotorbike infor = ConfigStats.GetInforMotorbike(idMotor, levelsUpgrade);
+        txtName.text = db_Motor.nameModelMotor;
+        txtRank.text = $"Rank {db_Motor.rank}";
+        txtPR.text = $"{infor.PR}";
     }
 }

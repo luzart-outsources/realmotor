@@ -45,11 +45,12 @@ public class ClassicMode : BaseMode
         int length = GameManager.Instance.gameCoordinator.listLeaderBoard.Count;
         int valueCountLeaderBoard = length - count;
         int level = db_Level.level;
+        int goldPassLevel = DataManager.Instance.dB_ResourceSO.GetDataResourcePosition(count, level).amount;
         dataValueWin = new DataValueWin();
-        dataValueWin.valuePos = DataManager.Instance.dB_ResourceSO.GetDataResourcePosition(valueCountLeaderBoard, level).amount;
-        dataValueWin.valueLevel = DataManager.Instance.dB_ResourceSO.GetDataResourceBaseLevel(level).amount;
-        dataValueWin.valueJoin = DataManager.Instance.dB_ResourceSO.dataResJoin.amount;
-        dataValueWin.valueResult = DataManager.Instance.dB_ResourceSO.GetDataResResult().amount;
+        dataValueWin.valuePos = Mathf.RoundToInt(goldPassLevel * 0.1f);
+        dataValueWin.valueLevel = Mathf.RoundToInt(goldPassLevel * 0.1f);
+        dataValueWin.valueJoin = Mathf.RoundToInt(goldPassLevel * 0.3f);
+        dataValueWin.valueResult = Mathf.RoundToInt(goldPassLevel * 0.5f);
     }
     private void OnReceiveRes()
     {

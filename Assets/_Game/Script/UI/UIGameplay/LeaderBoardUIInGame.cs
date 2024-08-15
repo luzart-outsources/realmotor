@@ -49,7 +49,7 @@ public class LeaderBoardUIInGame : MonoBehaviour
                 indexMe = i;
             }
         }
-        if (itemMe != null && indexMe != preIndex)
+        if (itemMe != null)
         {
             scrollRect.FocusOnRectTransform(itemMe.rectTransform,0f);
             preIndex = indexMe;

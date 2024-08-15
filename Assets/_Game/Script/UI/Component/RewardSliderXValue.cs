@@ -25,7 +25,7 @@ public class RewardSliderXValue : MonoBehaviour
     private float widthEach;
     public int curCoins;
     public float anchorPos;
-    public GameObject obPreShadow = null;
+    private GameObject obPreShadow = null;
     public TMP_Text coinRewardTxt;
 
     public void Start()
@@ -36,33 +36,38 @@ public class RewardSliderXValue : MonoBehaviour
     {
         this.action = actionClick;
         curCoins = coinCur;
+
         for (int i = 0; i < tx.Length; i++)
         {
             valueX[i] = valueX[i] * xValue;
             tx[i].text = $"x{valueX[i]}";
         }
+
         SetSlider();
     }
+
     private void SetSlider()
     {
         widthLine = rtLine.rect.width;
-        widthEach = widthLine/valueX.Length;
+        widthEach = widthLine / valueX.Length;
         widthPointer = rtPointer.rect.width;
         posLineX = rtLine.anchoredPosition.x;
         anchorPos = posLineX - widthLine / 2;
-        startValueX = posLineX - widthLine/2 ;
-        endValueX = posLineX + widthLine / 2 ;
+        startValueX = posLineX - widthLine / 2;
+        endValueX = posLineX + widthLine / 2;
         LoopMove();
     }
+
     private void LoopMove()
     {
         twLoop = DOTween.Sequence();
-
+        Vector2 pos = rtPointer.anchoredPosition;
+        twLoop.AppendCallback(()=> rtPointer.anchoredPosition = new Vector2(startValueX + 30f, pos.y));
         twLoop.Append(rtPointer.DOAnchorPosX(endValueX - 30f, timeMove, false).SetEase(Ease.InOutQuad));
         twLoop.Append(rtPointer.DOAnchorPosX(startValueX + 30f, timeMove, false).SetEase(Ease.InOutQuad));
 
         twLoop.SetEase(Ease.Linear);
-        
+
         twLoop.OnUpdate(UpdateInMove);
         twLoop.SetLoops(-1);
     }
@@ -72,36 +77,20 @@ public class RewardSliderXValue : MonoBehaviour
         twLoop.Kill();
     }
 
-    private bool isSet = false;
     private void UpdateInMove()
     {
         float pointerPos = rtPointer.anchoredPosition.x;
-        if (pointerPos <= anchorPos + widthEach)
+        for (int i = 0; i < valueX.Length; i++)
         {
-            SetActiveObLighting(obShadow[0]);
-            coinRewardTxt.text = $"{Caculate(valueX[0])}";
-        }
-        else if (anchorPos + widthEach < pointerPos && pointerPos <= anchorPos + widthEach * 2)
-        {
-            SetActiveObLighting(obShadow[1]);
-            coinRewardTxt.text = $"{Caculate(valueX[1]) }";
-        }
-        else if (anchorPos + widthEach * 2 < pointerPos && pointerPos <= anchorPos + widthEach * 3)
-        {
-            SetActiveObLighting(obShadow[2]);
-            coinRewardTxt.text = $"{Caculate(valueX[2])}";
-        }
-        else if (anchorPos + widthEach * 3 < pointerPos && pointerPos <= anchorPos + widthEach * 4)
-        {
-            SetActiveObLighting(obShadow[3]);
-            coinRewardTxt.text = $"{Caculate(valueX[3])}";
-        }
-        else
-        {
-            SetActiveObLighting(obShadow[4]);
-            coinRewardTxt.text = $"{Caculate(valueX[4])}";
+            if (pointerPos <= anchorPos + widthEach * (i + 1))
+            {
+                SetActiveObLighting(obShadow[i]);
+                coinRewardTxt.text = $"{Calculate(valueX[i])}";
+                break;
+            }
         }
     }
+
     private void SetActiveObLighting(GameObject go)
     {
         if (!go.activeInHierarchy)
@@ -115,42 +104,33 @@ public class RewardSliderXValue : MonoBehaviour
         obPreShadow = go;
         obPreShadow.SetActive(false);
     }
+
     private void OnClickButton()
     {
         twLoop?.Pause();
         float value = OnClickStopPointer();
         action?.Invoke(value);
     }
+
     public float OnClickStopPointer()
     {
         float pointerPos = rtPointer.anchoredPosition.x;
-        if (pointerPos <= anchorPos + widthEach)
+        for (int i = 0; i < valueX.Length; i++)
         {
-            return valueX[0];
+            if (pointerPos <= anchorPos + widthEach * (i + 1))
+            {
+                return valueX[i];
+            }
         }
-        else if(anchorPos + widthEach < pointerPos && pointerPos <= anchorPos + widthEach * 2)
-        {
-            return valueX[1];
-        }
-        else if (anchorPos + widthEach * 2 < pointerPos && pointerPos <= anchorPos + widthEach * 3)
-        {
-            return valueX[2];
-        }
-        else if (anchorPos + widthEach * 3 < pointerPos && pointerPos <= anchorPos + widthEach * 4)
-        {
-            return valueX[3];
-        }
-        else 
-        {
-            return valueX[4];
-        }
+        return valueX[valueX.Length - 1];
     }
 
     public int GetCoins()
     {
         return curCoins;
     }
-    private int Caculate(float a)
+
+    private int Calculate(float a)
     {
         return (int)(curCoins * a);
     }

@@ -10,11 +10,16 @@ using UnityEngine.UI;
 
 public class UIWinClassic : UIBase
 {
+    public TMP_Text txtIndex;
+    public TMP_Text txtOrdinal;
+    public TMP_Text txt_Title;
+    public BaseSelect baseSelect;
+
     [Space, Header("PopupDashboard")]
     public TweenAnimation twDashboard;
     public Leaderboard leaderboard;
     public Transform parentDashboard;
-    public TMP_Text txtIndex;
+
     public ItemWinDashboardUI itemDashboardPf;
 
     public Button btnHome;
@@ -25,7 +30,7 @@ public class UIWinClassic : UIBase
     public TweenAnimation twSuccess;
     public GameObject obSuccess;
 
-    public TMP_Text txt_Title;
+
 
     public RefInforWinEndLevel[] refText;
 
@@ -78,7 +83,8 @@ public class UIWinClassic : UIBase
     {
         this.listDataItemWinLeaderboardUI = listData;
         indexMe = GameManager.Instance.gameCoordinator.countLeaderBoard;
-        txtIndex.text = GameUtil.ToOrdinal(indexMe+1);
+        txtIndex.text = (indexMe + 1).ToString();
+        txtOrdinal.text = GameUtil.GetOrdinalSuffix(indexMe+1);
         var list = listDataItemWinLeaderboardUI;
         var newItem = list[indexMe];
         int length = list.Count;
@@ -117,16 +123,17 @@ public class UIWinClassic : UIBase
         this.dataWin = db;
         if (isWin )
         {
-            txt_Title.text = "Success";
+            txt_Title.text = "Finish";
         }
         else
         {
-            txt_Title.text = "Failed";
+            txt_Title.text = "Defeat";
         }
-        refText[0].InitData("Position", $"{dataWin.valuePos}");
-        refText[1].InitData("Result", $"{dataWin.valueResult}");
-        refText[2].InitData("Level", $"{dataWin.valueLevel}");
-        refText[3].InitData("Join", $"{dataWin.valueJoin}");
+        baseSelect.Select(isWin);
+        refText[0].InitData("Launch", $"{dataWin.valuePos}");
+        refText[1].InitData("Crash", $"{dataWin.valueResult}");
+        refText[2].InitData("Result", $"{dataWin.valueLevel}");
+        refText[3].InitData("Position", $"{dataWin.valueJoin}");
         refText[4].InitData("Total earning", $"{dataWin.Total}");
       
     }

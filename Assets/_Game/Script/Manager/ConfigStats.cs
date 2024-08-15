@@ -78,6 +78,11 @@ public class ConfigStats
         }
         return new int[4];
     }
+    public static int[] GetLevelsUpgrade(int curMotor)
+    {
+        var list = DataManager.Instance.GameData.motorbikeDatas;
+        return GetLevelsUpgrade(curMotor, list);
+    }
 }
 public enum StatsMotorbike
 {

@@ -147,9 +147,11 @@ public class GameCoordinator : MonoBehaviour
 
 
         //});
+        CameraManager.Instance.helicopterCamera.enabled = false ;
         CameraManager.Instance.helicopterCamera.transform.position = environmentMap.cameraStartGame.cameraMain.transform.position;
         CameraManager.Instance.helicopterCamera.transform.rotation = environmentMap.cameraStartGame.cameraMain.transform.rotation;
         environmentMap.cameraStartGame.gameObject.SetActive(false);
+        CameraManager.Instance.helicopterCamera.enabled = true;
         CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
         uiGameplay.obScreen.SetActive(true);
         uiGameplay.StartCountDown(() =>
@@ -192,7 +194,7 @@ public class GameCoordinator : MonoBehaviour
     {
         DB_Character dbChar = DataManager.Instance.GameData.curCharacter;
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
-        int[] levelUpgrades = ConfigStats.GetLevelsUpgrade(idCurMotor, DataManager.Instance.GameData.motorbikeDatas);
+        int[] levelUpgrades = ConfigStats.GetLevelsUpgrade(idCurMotor);
 
         myDBMotorbike = new DB_Motorbike();
         myDBMotorbike.idMotor = idCurMotor;
@@ -314,52 +316,65 @@ public class GameCoordinator : MonoBehaviour
     {
         listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
         List<BaseMotorbike> listRemain = listLeaderBoard.Except(listResult).ToList();
-        int length = listResult.Count;
         int countIndex = 0;
-        for (int i = 0; i < length; i++)
-        {
-            var item = listResult[i];
-            DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
-            data.index = (countIndex + 1).ToString();
-            data.time = GameUtil.FloatTimeSecondToUnixTime(item.timePlay,true);
-            DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(item.dbMotorbike.idMotor);
-            data.nameModel = motor.nameMotor;
 
-            data.timeAll = ((int)item.inforMotorbike.PR).ToString();
-            if (item.eTeam == ETeam.Player)
-            {
-                data.name = DataManager.Instance.GameData.name;
-            }
-            else
-            {
-                data.name = item.strMyName;
-            }
-            listDataItemWinLeaderBoard.Add(data);
-            countIndex++;
-        }
-        int lengthExp = listRemain.Count;
-        for (int i = 0; i < lengthExp;i++)
-        {
-            var item = listRemain[i];
-            DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI();
-            data.index = (countIndex + 1).ToString();
-            float timeEach = timePlay + DisFromTarget(item) / (item.inforMotorbike.maxSpeed + UnityEngine.Random.Range(-5,5));
-            data.time = GameUtil.FloatTimeSecondToUnixTime(timeEach,true);
-            DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(item.dbMotorbike.idMotor);
-            data.nameModel = motor.nameMotor;
+        AddResultItemsToLeaderboard(listResult, ref countIndex);
+        AddRemainingItemsToLeaderboard(listRemain, ref countIndex);
+    }
 
-            data.timeAll = ((int)item.inforMotorbike.PR).ToString();
-            if (item.eTeam == ETeam.Player)
-            {
-                data.name = DataManager.Instance.GameData.name;
-            }
-            else
-            {
-                data.name = item.strMyName;
-            }
+    private void AddResultItemsToLeaderboard(List<BaseMotorbike> listResult, ref int countIndex)
+    {
+        foreach (var item in listResult)
+        {
+            DataItemWinLeaderboardUI data = CreateLeaderboardData(item, ref countIndex);
             listDataItemWinLeaderBoard.Add(data);
-            countIndex++;
         }
+    }
+
+    private void AddRemainingItemsToLeaderboard(List<BaseMotorbike> listRemain, ref int countIndex)
+    {
+        foreach (var item in listRemain)
+        {
+            DataItemWinLeaderboardUI data = CreateLeaderboardData(item, ref countIndex, true);
+            listDataItemWinLeaderBoard.Add(data);
+        }
+    }
+
+    private DataItemWinLeaderboardUI CreateLeaderboardData(BaseMotorbike item, ref int countIndex, bool isRemaining = false)
+    {
+        DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI
+        {
+            index = (countIndex + 1).ToString(),
+            time = GetTimeForItem(item, isRemaining),
+            nameModel = GetMotorName(item.dbMotorbike.idMotor),
+            PR = ((int)item.inforMotorbike.PR).ToString(),
+            name = GetName(item.eTeam, item.strMyName)
+        };
+
+        countIndex++;
+        return data;
+    }
+
+    private string GetTimeForItem(BaseMotorbike item, bool isRemaining)
+    {
+        float timeEach = item.timePlay;
+        if (isRemaining)
+        {
+            timeEach = timePlay + DisFromTarget(item) / (item.inforMotorbike.maxSpeed + UnityEngine.Random.Range(-5, 5));
+        }
+
+        return GameUtil.FloatTimeSecondToUnixTime(timeEach, true,"","","","");
+    }
+
+    private string GetMotorName(int idMotor)
+    {
+        DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(idMotor);
+        return motor.nameMotor;
+    }
+
+    private string GetName(ETeam eTeam, string strMyName)
+    {
+        return eTeam == ETeam.Player ? DataManager.Instance.GameData.name : strMyName;
     }
     private void InitLeaderBoard()
     {

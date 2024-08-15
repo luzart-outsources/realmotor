@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 8909954832082904435}
   - component: {fileID: 6523097649499443535}
   - component: {fileID: 1645271809698511466}
+  - component: {fileID: 42184521039301909}
   m_Layer: 5
   m_Name: btnDailyReward
   m_TagString: Untagged
@@ -170,7 +171,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 290, y: 292}
-  m_SizeDelta: {x: 364, y: 120}
+  m_SizeDelta: {x: 412, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8909954832082904435
 CanvasRenderer:
@@ -254,6 +255,39 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &42184521039301909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312144065903254458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 300
+  m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
+  m_EffectFactor: 0.07151446
+  m_Width: 0.11
+  m_Rotation: 135
+  m_Softness: 0.01
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 1
+    initialPlayDelay: 2.54
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
+  m_Play: 0
+  m_Loop: 0
+  m_Duration: 1
+  m_LoopDelay: 1
+  m_UpdateMode: 0
 --- !u!1 &595474549374958472
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +421,9 @@ MonoBehaviour:
   btnShop: {fileID: 4186201889066001129}
   btnSetting: {fileID: 4868167882621036365}
   btnDailyReward: {fileID: 1645271809698511466}
+  txtPR: {fileID: 6885349616881956227}
+  txtName: {fileID: 8318110739945415905}
+  txtRank: {fileID: 7911707853803054503}
 --- !u!1 &755992046719812920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,7 +1835,7 @@ GameObject:
   - component: {fileID: 7651131318828664532}
   - component: {fileID: 8318110739945415905}
   m_Layer: 5
-  m_Name: txtnumPR
+  m_Name: txtname
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2334,6 +2371,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9106493164431215539}
     m_Modifications:
+    - target: {fileID: 1716815218660946513, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4997990921099485044, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Material
       value: 
@@ -2421,6 +2462,10 @@ PrefabInstance:
     - target: {fileID: 6917039941362119763, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Name
       value: btnAds
+      objectReference: {fileID: 0}
+    - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_EffectFactor
+      value: 0.57212627
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
