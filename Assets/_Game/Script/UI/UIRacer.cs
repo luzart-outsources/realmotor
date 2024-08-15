@@ -1,5 +1,6 @@
 using AirFishLab.ScrollingList;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -10,13 +11,12 @@ public class UIRacer : UIBase
     public GarageManager garageManager;
     public ButtonSelect btnRacer;
     public ButtonSelect btnClothes;
-    public ButtonSelect btnCache;
+    private ButtonSelect btnCache;
     public Button btnBack;
 
-    public GameObject obScrollHelmet;
-    public ScrollViewRacerUI scrollViewHelmet;
-    public GameObject obScrollBody;
-    public ScrollViewRacerUI scrollViewBody;
+    public ItemScrollViewRacer itemScrollViewRacerPf;
+    public ScrollRect scrollView;
+    private List<ItemScrollViewRacer> listItemScrollViewRacer = new List<ItemScrollViewRacer>();
     private ItemScrollViewRacer itemCache;
     public Button btnEquip;
     public Button btnBuy;
@@ -58,8 +58,6 @@ public class UIRacer : UIBase
         isOnRacer = true;
         btnRacer.Select(true);
         btnClothes.Select(false);
-        obScrollBody.gameObject.SetActive(false);
-        obScrollHelmet.gameObject.SetActive(true);
         var data = DataManager.Instance.resourceBuySO.dbResBuyHelmet
             .ToList();
         int length = data.Count;
@@ -68,10 +66,9 @@ public class UIRacer : UIBase
             var item = data[i];
             item.isHas = DataManager.Instance.IsHasHelmet(item.dataRes.type.id);
         }
-        int index = DataManager.Instance.GameData.curCharacter.idHelmet;
-        scrollViewHelmet.circular.ListSetting.SetInitFocusingContentID(index);
-        scrollViewHelmet.InitListDB(data);
-        itemCache = (ItemScrollViewRacer)scrollViewHelmet.circular.GetFocusingBox();
+        int id = DataManager.Instance.GameData.curCharacter.idHelmet;
+        SpawnItem(data);
+        itemCache = GetCurrentItemScrollView(id);
         RefreshUI();
         garageManager.ChangeCameraHeader();
     }
@@ -85,8 +82,6 @@ public class UIRacer : UIBase
         isOnRacer = false;
         btnRacer.Select(false);
         btnClothes.Select(true);
-        obScrollHelmet.gameObject.SetActive(false);
-        obScrollBody.gameObject.SetActive(true);
         var data = DataManager.Instance.resourceBuySO.dbResBuyBody
             .ToList();
         int length = data.Count;
@@ -95,31 +90,43 @@ public class UIRacer : UIBase
             var item = data[i];
             item.isHas = DataManager.Instance.IsHasBody(item.dataRes.type.id);
         }
-        int index = DataManager.Instance.GameData.curCharacter.idClothes;
-        scrollViewBody.circular.ListSetting.SetInitFocusingContentID(index);
-        scrollViewBody.InitListDB(data);
-        itemCache = (ItemScrollViewRacer)scrollViewBody.circular.GetFocusingBox();
+        int id = DataManager.Instance.GameData.curCharacter.idClothes;
+        SpawnItem(data);
+        itemCache = GetCurrentItemScrollView(id);
         itemCache.SelectMotorBike(true);
         RefreshUI();
         garageManager.ChangeCameraBody();
     }
-    public void ClickItem(ListBox listBoxOld, ListBox listBoxNew)
+
+    private void SpawnItem(List<DB_ResourcesBuy> list)
     {
-        ItemScrollViewRacer itemOld = (ItemScrollViewRacer)listBoxOld;
-        if (itemOld != null)
+        int length = list.Count;
+        MasterHelper.InitListObj(length, itemScrollViewRacerPf, listItemScrollViewRacer, scrollView.content, (item, index) =>
         {
-            itemOld.SelectMotorBike(false);
-        }
-        itemCache = (ItemScrollViewRacer)listBoxNew;
-        SelectCurrent();
+            item.gameObject.SetActive(true);
+            item.InitDB(list[index], ClickItem);
+        });
     }
-    public void ClickItem(ListBox listBoxNew)
+    private ItemScrollViewRacer GetCurrentItemScrollView(int id)
+    {
+        int length = listItemScrollViewRacer.Count;
+        for (int i = 0; i < length; i++)
+        {
+            var item = listItemScrollViewRacer[i];
+            if(item.resourcesBuy.dataRes.type.id == id)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public void ClickItem(ItemScrollViewRacer itemSelectMotor)
     {
         if (itemCache != null)
         {
             itemCache.SelectMotorBike(false);
         }
-        ItemScrollViewRacer itemSelectMotor = (ItemScrollViewRacer)listBoxNew;
         itemCache = itemSelectMotor;
         SelectCurrent();
     }
@@ -365,7 +372,7 @@ public class UIRacer : UIBase
     private void OnBuyGoldDone()
     {
         DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
-        itemCache.SetLock(false);
+        itemCache.SetUnLock(true);
         RefreshUI();
     }
     private void BuyAds()
@@ -395,7 +402,7 @@ public class UIRacer : UIBase
         if (curIndex >= maxIndex)
         {
             DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
-            itemCache.SetLock(false);
+            itemCache.SetUnLock(true);
         }
         RefreshUI();
     }
