@@ -43,7 +43,7 @@ public class UIHome : UIBase
     }
     private void ClickDailyReward()
     {
-
+        UIManager.Instance.ShowUI(UIName.DailyReward);
     }
     public override void RefreshUI()
     {
