@@ -86,7 +86,6 @@ public class BaseMotorbike : MonoBehaviour
         this.baseController.Initialized(this);
         this.soundMotorbike.Initialize(this);
         this.miniMapPlayer.Initialize(this);
-        eState = EStateMotorbike.None;
         GetCurrentCheckPoint();
         //transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
         if(eTeam == ETeam.Player)
@@ -109,6 +108,7 @@ public class BaseMotorbike : MonoBehaviour
         baseMotor.transform.localScale = Vector3.one*0.53f;
         baseCharacter.InitSpawn(db_Character);
         baseMotor.InitSpawn();
+        eState = EStateMotorbike.Start;
     }
     public void InitStartRace()
     {
@@ -118,18 +118,19 @@ public class BaseMotorbike : MonoBehaviour
     }
     public void ReInitialize()
     {
-        if(eState == EStateMotorbike.Finish)
+        if(eState != EStateMotorbike.Finish)
         {
-            return;
+            eState = EStateMotorbike.None;
+            if (eTeam == ETeam.Player)
+            {
+                GameManager.Instance.gameCoordinator.ShowHideUIController(true);
+            }
         }
         Initialize(inforMotorbike, baseController, eTeam);
         Transform transPoint =  GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex);
         transform.position = transPoint.position;
         transform.rotation = transPoint.rotation;
-        if (eTeam == ETeam.Player)
-        {
-            GameManager.Instance.gameCoordinator.ShowHideUIController(true);
-        }
+
     }
     private void InitAction()
     {
@@ -282,10 +283,14 @@ public class BaseMotorbike : MonoBehaviour
 
     private void OnVisualCharacterCollisionWall (Vector3 velocity)
     {
-        if(eTeam == ETeam.Player)
+        if(eState != EStateMotorbike.Finish)
         {
-            GameManager.Instance.gameCoordinator.ShowHideUIController(false);
+            if (eTeam == ETeam.Player)
+            {
+                GameManager.Instance.gameCoordinator.ShowHideUIController(false);
+            }
         }
+
         baseCharacter.OnCollisionWall(velocity);
         UnVerticle();
         UnHorizontal();
@@ -295,6 +300,7 @@ public class BaseMotorbike : MonoBehaviour
     }
     public void StartRace()
     {
+        eState = EStateMotorbike.None;
         IsStartRace = true;
     }
     private void Update()

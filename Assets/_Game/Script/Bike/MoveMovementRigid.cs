@@ -482,7 +482,11 @@ public class MoveMovementRigid : MotorMovement
     public BoxCollider boxCol;
     private void OnDestroy()
     {
-        GameUtil.Instance.StopAllCoroutinesForBehaviour(this);
+        if(GameUtil.Instance != null)
+        {
+            GameUtil.Instance.StopAllCoroutinesForBehaviour(this);
+        }
+
     }
 #if UNITY_EDITOR
     //[Space, Header ("Editor")]

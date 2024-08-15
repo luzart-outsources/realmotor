@@ -52,6 +52,7 @@ public class UIWinClassic : UIBase
     {
         base.Show(onHideDone);
         IsShowCoinInWin = false;
+        AudioManager.Instance.PlaySFXWin();
     }
     private void ClickHome()
     {
@@ -171,6 +172,7 @@ public class UIWinClassic : UIBase
     {
         UIManager.Instance.LoadScene(() =>
         {
+            GameManager.Instance.gameCoordinator.DestroyAllBike();
             UIManager.Instance.HideAllUIIgnore();
             UIManager.Instance.ShowGarage();
         }, null,1,1);

@@ -19,7 +19,7 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         {
             color.a = x;
             spBlack.color = color;
-        });
+        }).SetId(this);
     }
     public Tweener FadeOut(float duration)
     {
@@ -28,13 +28,13 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         {
             color.a = x;
             spBlack.color = color;
-        });
+        }).SetId(this);
     }
     private GroupPathCinemachineSmoothCamera preGroupPath = null;
     public void SetCinemachineCamera(int index)
     {
         var group = groupPathCinemachine[index];
-        var trackedDolly = group.virtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+
 
         if (preGroupPath != null)
         {
@@ -43,9 +43,14 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         preGroupPath = group;
         group.virtualCamera.gameObject.SetActive(true);
         group.virtualCamera.m_LookAt = group.target;
-        trackedDolly.m_CameraUp = group.cameraUpMode;
-        trackedDolly.m_PathPosition = 0f;
-        trackedDolly.m_Path = group.cinemachineSmoothPath;
+        var trackedDolly = group.virtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+        if (trackedDolly != null)
+        {
+            trackedDolly.m_CameraUp = group.cameraUpMode;
+            trackedDolly.m_PathPosition = 0f;
+            trackedDolly.m_Path = group.cinemachineSmoothPath;
+        }
+
     }
     public Tweener PlayCinemachineDolly(int index)
     {
@@ -53,14 +58,7 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         var trackedDolly = group.virtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
         if(trackedDolly == null)
         {
-            return DOVirtual.Float(1,0,group.timeMove, (x) =>
-            {
-
-            });
-        }
-        if (group.isChangeFOV)
-        {
-            DOVirtual.Float(group.firstFOV, group.targetFOV, group.timeMove, (x) =>
+            return DOVirtual.Float(group.firstFOV, group.targetFOV, group.timeMove, (x) =>
             {
                 group.virtualCamera.m_Lens.FieldOfView = x;
             }).SetEase(group.ease).SetId(this);
@@ -176,6 +174,25 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
             var group =  groupPathCinemachine[i];
             group.virtualCamera.m_LookAt = target;
             group.virtualCamera.m_Follow = target;
+            group.target = target;
+        }
+    }
+    public void SetFollow(Transform target)
+    {
+        int length = groupPathCinemachine.Length;
+        for (int i = 0; i < length; i++)
+        {
+            var group = groupPathCinemachine[i];
+            group.virtualCamera.m_Follow = target;
+        }
+    }
+    public void SetLookAt(Transform target)
+    {
+        int length = groupPathCinemachine.Length;
+        for (int i = 0; i < length; i++)
+        {
+            var group = groupPathCinemachine[i];
+            group.virtualCamera.m_LookAt = target;
         }
     }
     private void OnDisable()

@@ -13,6 +13,9 @@ public class AudioManager : Singleton<AudioManager>
     [Space, Header("UI")]
     [SerializeField] private AudioClip clipClick;
     [SerializeField] private AudioClip clipUnlockMotor;
+    [SerializeField] private AudioClip clipGoldFly;
+    [SerializeField] private AudioClip clipUpgrade;
+    [SerializeField] private AudioClip clipWin;
     [SerializeField] private AudioClip clipMusicBg;
     [SerializeField] private AudioClip[] clipMusicBgInGame;
 
@@ -170,6 +173,22 @@ public class AudioManager : Singleton<AudioManager>
     public void PlaySFXCrashWall()
     {
         PlaySFXOneshot(clipCrashWall);
+    }
+    public void PlaySFXCoin()
+    {
+        PlaySFXOneshot(clipGoldFly);
+    }
+    public void PlaySFXWin()
+    {
+        PlaySFXOneshot(clipWin);
+    }
+    public void PlaySFXUnlockMotor()
+    {
+        PlaySFXOneshot(clipUnlockMotor);
+    }
+    public void PlaySFXUpgradeMotor()
+    {
+        PlaySFXOneshot(clipUpgrade);
     }
 
     public void PlaySFXOneshot(AudioClip clip)

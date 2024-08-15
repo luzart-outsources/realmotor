@@ -1,5 +1,4 @@
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 
 public class HelicopterCamera : MonoBehaviour
 {
@@ -40,7 +39,7 @@ public class HelicopterCamera : MonoBehaviour
     float LateRot;
     public bool counterRotation;
     //MotorbikeController motorbikeController;
-    bool changed,prevFallen;
+    bool changed, prevFallen;
 
 
     void Start()
@@ -53,7 +52,7 @@ public class HelicopterCamera : MonoBehaviour
     public void SetTargetFollow(Transform target)
     {
         PrimaryTarget = target;
-        if(PrimaryTarget != null)
+        if (PrimaryTarget != null)
         {
             baseMotorbike = PrimaryTarget.GetComponent<BaseMotorbike>();
         }
@@ -68,7 +67,7 @@ public class HelicopterCamera : MonoBehaviour
         //if(motorbikeController.fallen!=prevFallen)
         //changed = false;
         //prevFallen = motorbikeController.fallen;
-        
+
         //if (motorbikeController.fallen && changed == false)
         //{
         //    if(SecondaryTarget == null)
@@ -84,58 +83,35 @@ public class HelicopterCamera : MonoBehaviour
         //    changed = true;
         //}
 
-        if(PrimaryTarget == null)
+        if (PrimaryTarget == null)
         {
             return;
         }
-        CameraNone();
+
         if (baseMotorbike == null)
         {
+            CameraNone();
             return;
         }
         switch (baseMotorbike.eState)
         {
             case EStateMotorbike.None:
                 {
-                    if (!IsFirstTimeNone)
-                    {
-                        this.transform.SetParent(CameraManager.Instance.transform);
-                        IsFirstTimeNone = true;
-                    }
-
-                    IsFirstTimeNone = true;
                     CameraNone();
-
                     break;
                 }
             case EStateMotorbike.Start:
                 {
-                    if (IsFirstTimeStart)
-                    {
-                        return;
-                    }
-                    this.transform.SetParent(baseMotorbike.parentCam);
-                    transform.localPosition = Vector3.zero;
-                    transform.localEulerAngles = Vector3.zero;
-                    IsFirstTimeStart = true;
+                    CameraStart();
                     break;
                 }
             case EStateMotorbike.Finish:
                 {
-                    //if (IsFirstTimeFinish)
-                    //{
-                    //    return;
-                    //}
-                    //this.transform.SetParent(baseMotorbike.parentCam);
-                    //transform.localPosition = Vector3.zero;
-                    //transform.localEulerAngles = Vector3.zero;
-                    //IsFirstTimeFinish = true;
-                    //animator.enabled = true;
-                    //animator.SetTrigger("StartCamFinish");
+                    CameraNone();
                     break;
                 }
         }
-       
+
 
     }
     [SerializeField]
@@ -144,7 +120,7 @@ public class HelicopterCamera : MonoBehaviour
     {
         get
         {
-            if(_layerGround  == default)
+            if (_layerGround == default)
             {
                 LayerMask layerGround = LayerMask.NameToLayer("Ground");
                 LayerMask layerRoad = LayerMask.NameToLayer("Road");
@@ -154,13 +130,13 @@ public class HelicopterCamera : MonoBehaviour
             return _layerGround;
         }
     }
-    private float YPosCamera(Vector3 pos  )
+    private float YPosCamera(Vector3 pos)
     {
         RaycastHit hit;
         bool isRay = Physics.Raycast(pos, Vector3.down, out hit, 100f, layerGround);
-        if(isRay)
+        if (isRay)
         {
-            if(hit.distance <= 1f)
+            if (hit.distance <= 1f)
             {
                 return hit.point.y + 1f;
             }
@@ -191,6 +167,16 @@ public class HelicopterCamera : MonoBehaviour
     }
     private void CameraNone()
     {
+        LerpCamera();
+        LookAtFlash();
+    }
+    private void CameraStart()
+    {
+        LerpCamera();
+        LookAtSmooth();
+    }
+    private void LerpCamera()
+    {
         wantedHeight = PrimaryTarget.transform.position.y + height;
         currentHeight = transform.position.y;
 
@@ -216,25 +202,40 @@ public class HelicopterCamera : MonoBehaviour
         {
             speed = baseMotorbike.Speed / baseMotorbike.inforMotorbike.maxSpeed;
         }
-        rotationSnapTime = maxRotationSnaptime - speed * (maxRotationSnaptime - m�nRotationSnaptime);
+        rotationSnapTime = maxRotationSnaptime - speed * (maxRotationSnaptime - mínRotationSnaptime);
         speed = Mathf.Clamp(speed, 0, 1) * 10;
 
 
         usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
 
         wantedPosition += Quaternion.Euler(0, currentRotationAngle, 0) * new Vector3(0, 0, -usedDistance);
-        
-        lookAtVector = new Vector3(0, lookAtHeight, 0);
 
         wantedPosition.y = YPosCamera(wantedPosition);
 
         transform.position = wantedPosition;
+    }
+    private void LookAtFlash()
+    {
+        lookAtVector = new Vector3(0, lookAtHeight, 0);
 
         transform.LookAt(PrimaryTarget.transform.position + lookAtVector);
     }
+    private void LookAtSmooth()
+    {
+        // Tính toán vị trí nhìn của camera
+        lookAtVector = new Vector3(0, lookAtHeight, 0);
+        Vector3 lookAtPosition = PrimaryTarget.transform.position + lookAtVector;
+
+        // Sử dụng Quaternion.Slerp để làm mượt góc quay của camera
+        Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSnapTime);
+    }
+
+
+
     private bool IsFirstTimeNone = false;
     private bool IsFirstTimeStart = false;
     private bool IsFirstTimeFinish = false;
-    public float m�nRotationSnaptime = 0.5f;
+    public float mínRotationSnaptime = 0.5f;
     public float maxRotationSnaptime = 2f;
 }

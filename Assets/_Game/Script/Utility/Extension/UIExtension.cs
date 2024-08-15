@@ -17,6 +17,7 @@ public static class UIExtension
         {
             effect = btn.gameObject.AddComponent<EffectButton>();
         }
+        btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() =>
         {
             action?.Invoke();

@@ -296,6 +296,7 @@ public class UIGarage : UIBase
     private void OnBuyGoldDone()
     {
         DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
+        AudioManager.Instance.PlaySFXUnlockMotor();
         currentItemClick = itemCache.currentIndex;
         RefreshUI();
     }
@@ -311,6 +312,7 @@ public class UIGarage : UIBase
         int maxIndex = resourcesBuy.valueBuy;
         if(curIndex >= maxIndex)
         {
+            AudioManager.Instance.PlaySFXUnlockMotor();
             DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
         }
         RefreshUI();

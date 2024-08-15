@@ -147,21 +147,20 @@ public class GameCoordinator : MonoBehaviour
 
 
         //});
+        environmentMap.cameraStartGame.groupPathCinemachine[0].virtualCamera.LookAt = myMotorbike.transform;
         CameraManager.Instance.helicopterCamera.enabled = false ;
         CameraManager.Instance.helicopterCamera.transform.position = environmentMap.cameraStartGame.cameraMain.transform.position;
-        CameraManager.Instance.helicopterCamera.transform.rotation = environmentMap.cameraStartGame.cameraMain.transform.rotation;
-        environmentMap.cameraStartGame.gameObject.SetActive(false);
+        CameraManager.Instance.helicopterCamera.cameraMain.transform.eulerAngles = environmentMap.cameraStartGame.cameraMain.transform.eulerAngles;
+
         CameraManager.Instance.helicopterCamera.enabled = true;
         CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
+        environmentMap.cameraStartGame.gameObject.SetActive(false);
         uiGameplay.obScreen.SetActive(true);
         uiGameplay.StartCountDown(() =>
         {
             StartRace();
 
         });
-
-        
-
     }
     public void StartRace()
     {
@@ -275,12 +274,10 @@ public class GameCoordinator : MonoBehaviour
                 UpdateLeaderBoard();
                 countLeaderBoard = listResult.Count - 1; 
                 bool isWin = listResult.Count <= 3;
-                CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
-                environmentMap.cameraEndGame.transform.SetParent(myMotorbike.transform);
-                environmentMap.cameraEndGame.SetAllTarget(myMotorbike.parentCam);
-                environmentMap.cameraEndGame.transform.localScale = Vector3.one;
-                environmentMap.cameraEndGame.transform.localPosition = Vector3.zero;
-                environmentMap.cameraEndGame.transform.localEulerAngles = Vector3.zero;
+                CameraManager.Instance.helicopterCamera.cameraMain.enabled = (false);
+                environmentMap.cameraEndGame.SetAllTarget(myMotorbike.transform);    
+                environmentMap.cameraEndGame.SetFollow(myMotorbike.parentCam);
+                environmentMap.cameraEndGame.SetLookAt(myMotorbike.transform);
                 environmentMap.StartCameraEndGame();
                 GameUtil.Instance.WaitAndDo(5f, () => ActionOnEndGame?.Invoke(isWin));
 
@@ -290,17 +287,18 @@ public class GameCoordinator : MonoBehaviour
     }
     public void EndGame(bool isWin)
     {
-        //CameraManager.Instance.helicopterCamera.animator.enabled = false;
-        //CameraManager.Instance.helicopterCamera.transform.SetParent(CameraManager.Instance.transform);
         OnCompleteDataLeaderboard();
         StopUpdateLeaderBoard();
         gameState = EGameState.Finish;
-        DestroyAllBike();
 
     }
     public void DestroyAllBike()
     {
-        Destroy(myMotorbike.gameObject);
+        if(myMotorbike != null && myMotorbike.gameObject!=null)
+        {
+            Destroy(myMotorbike.gameObject);
+        }
+
         for (int i = 0; i < listBot.Count; i++)
         {
             Destroy(listBot[i].gameObject);
@@ -309,7 +307,8 @@ public class GameCoordinator : MonoBehaviour
     }
     public void CameraEndGame()
     {
-        CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
+        environmentMap.cameraEndGame.gameObject.SetActive(false);
+        CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
     }
     public List<DataItemWinLeaderboardUI> listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
     private void OnCompleteDataLeaderboard()
@@ -522,7 +521,6 @@ public class GameCoordinator : MonoBehaviour
             return roundComparison;
         });
     }
-
 
 
 

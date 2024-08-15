@@ -11,6 +11,7 @@ public class UIUpgrade : UIBase
 {
     public Button btnBack;
     public Button btnUpgrade;
+    public Button btnSettings;
     //public Button btnSettings;
     public TMP_Text txtValue;
     public ItemUpgradePopUp[] itemUpgradePopups;
@@ -26,7 +27,7 @@ public class UIUpgrade : UIBase
         base.Setup();
         GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnUpgradeUpgrade);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true,KeyAds.BtnUpgradeBack);
-        //GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
+        GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
     }
     public override void Show(Action onHideDone)
     {
@@ -101,6 +102,7 @@ public class UIUpgrade : UIBase
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
         DataManager.Instance.UpgradeMotor(idCurMotor, indexStats);
         uiShiny.Play(false);
+        AudioManager.Instance.PlaySFXUpgradeMotor();
         RefreshUI();
     }
     private void SwitchStats()

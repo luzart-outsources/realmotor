@@ -600,10 +600,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa667d6320e76146a667891b7ad2d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraMain: {fileID: 0}
   isOneVirtual: 0
   groupPathCinemachine:
-  - isStartFadeInBoth: 1
+  - isFadeIn: 1
+    isStartFadeInBoth: 1
     timeFadeIn: 0.5
+    isFadeOut: 1
     isEndFadeOutBoth: 1
     timeFadeOut: 0.5
     timeInterval: 0
@@ -612,12 +615,16 @@ MonoBehaviour:
     isChangeFOV: 0
     firstFOV: 60
     targetFOV: 30
+    firstPosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
     cameraUpMode: 0
     target: {fileID: 1372190211050275853}
     cinemachineSmoothPath: {fileID: 49241518573946448}
     virtualCamera: {fileID: 7845486652512985541}
-  - isStartFadeInBoth: 0
+  - isFadeIn: 1
+    isStartFadeInBoth: 0
     timeFadeIn: 0.3
+    isFadeOut: 1
     isEndFadeOutBoth: 1
     timeFadeOut: 0.15
     timeInterval: 0
@@ -626,12 +633,16 @@ MonoBehaviour:
     isChangeFOV: 0
     firstFOV: 60
     targetFOV: 30
+    firstPosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
     cameraUpMode: 1
     target: {fileID: 3354196624627903303}
     cinemachineSmoothPath: {fileID: 9167600087461233482}
     virtualCamera: {fileID: 7845486652512985541}
-  - isStartFadeInBoth: 0
+  - isFadeIn: 1
+    isStartFadeInBoth: 0
     timeFadeIn: 0.3
+    isFadeOut: 1
     isEndFadeOutBoth: 1
     timeFadeOut: 0.15
     timeInterval: 0
@@ -640,6 +651,8 @@ MonoBehaviour:
     isChangeFOV: 0
     firstFOV: 60
     targetFOV: 30
+    firstPosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
     cameraUpMode: 1
     target: {fileID: 479738651524966913}
     cinemachineSmoothPath: {fileID: 795374459479090530}
@@ -1078,14 +1091,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8381987381918190506}
   - component: {fileID: 3355545438200805867}
-  - component: {fileID: 45475077470590409}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8381987381918190506
 Transform:
   m_ObjectHideFlags: 0
@@ -1153,40 +1165,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &45475077470590409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7389967251222686247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7907651778837245368
 GameObject:
   m_ObjectHideFlags: 0

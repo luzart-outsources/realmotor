@@ -44,7 +44,7 @@ public class CoinsSpawn : MonoBehaviour
                     onFirstTimeMoveTo?.Invoke();
                     isShowPtc = true;
                 }
-                //AudioManager.Instance.PlaySFXCoin();
+                AudioManager.Instance.PlaySFXCoin();
                 Destroy(coin.gameObject);
             }));
             sequence.Insert(0, coin.DOAnchorPos(new Vector2(UnityEngine.Random.Range(-110, 110), UnityEngine.Random.Range(-110, 110)), UnityEngine.Random.Range(.1f, .3f)));

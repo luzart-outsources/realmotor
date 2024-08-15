@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BG_Library.NET;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class GameUtil : Singleton<GameUtil>
         }
         else
         {
+            bt.onClick.RemoveAllListeners();
             bt.onClick.AddListener(_action);
         }
     }
