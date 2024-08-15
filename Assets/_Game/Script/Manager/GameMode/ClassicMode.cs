@@ -1,3 +1,4 @@
+using DynamicShadowProjector.Sample;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,11 +34,23 @@ public class ClassicMode : BaseMode
     }
     public override void OnEndGame(bool isWin)
     {
+        if (GameManager.Instance.EGameStatus == EGameState.None)
+        {
+            return;
+        }
+        base.OnEndGame(isWin);
         GameManager.Instance.gameCoordinator.EndGame(isWin);
+        if(GameManager.Instance.gameCoordinator.myMotorbike.eState == EStateMotorbike.Finish)
+        {
+            ReceiveRewardWin(isWin);
+        }
+
+    }
+    private void ReceiveRewardWin(bool isWin)
+    {
         OnDataWin();
         OnReceiveRes();
         ShowPopUp(isWin);
-        base.OnEndGame(isWin);
     }
     private void OnDataWin()
     {
@@ -80,5 +93,10 @@ public class ClassicMode : BaseMode
             ui.InitDataDashboard(GameManager.Instance.gameCoordinator.listDataItemWinLeaderBoard);
             ui.OnShowPopUp();
         }
+    }
+    private void OnDisable()
+    {
+        if(gameCoordinator!= null)
+        gameCoordinator.DestroyAllBike();
     }
 }
