@@ -56,5 +56,15 @@ public class LeaderBoardUIInGame : MonoBehaviour
         }
 
     }
+    public void UpdateDistance(List<DB_LeaderBoardInGame> list)
+    {
+        int length = list.Count;   
+        for (int i = 0; i < length; i++)
+        {
+            var item = listItemLeaderBoardUI[i];
+            var db = _listDBInGame[i];
+            item.UpdateDistance(db.distance);
+        }
+    }
 
 }

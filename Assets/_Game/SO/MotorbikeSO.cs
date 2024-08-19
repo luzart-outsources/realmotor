@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Text;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/MotorbikeSO", fileName = "MotorbikeSO")]
@@ -11,6 +12,117 @@ public class MotorbikeSO : ScriptableObject
     public MotorSO motorSO;
     public CharacterSO characterSO;
     public DB_MotorbikeBot[] db_Bots;
+
+    string[] nameFake = new string[]
+{
+    "SonTungM-TP",
+    "Isaac",
+    "OnlyC",
+    "Jack",
+    "K-ICM",
+    "Suboi",
+    "Touliver",
+    "Rhymastic",
+    "Binz",
+    "Soobin",
+    "MrSiro",
+    "Erik",
+    "Karik",
+    "LouHoang",
+    "BigDaddy",
+    "Emily",
+    "JustaTee",
+    "TocTien",
+    "Min",
+    "SuniHaLinh",
+    "KayTran",
+    "HIEUTHUHAI",
+    "GDucky",
+    "TienTien",
+    "MrA",
+    "AndreeRightHand",
+    "Jaykii",
+    "Kimmese",
+    "Tronie",
+    "MiA",
+    "TiaHaiChau",
+    "PhuongLy",
+    "VuCatTuong",
+    "HangBingBoong",
+    "Lime",
+    "Orange",
+    "SlimV",
+    "Yanbi",
+    "MrT",
+    "BigDaddy",
+    "Touliver",
+    "Rhymastic",
+    "Binz",
+    "Karik",
+    "JustaTee",
+    "AndreeRightHand",
+    "LilKnight(LK)",
+    "Kimmese",
+    "Wowy",
+    "DenVau",
+    "TienCookie",
+    "TrucNhan",
+    "AliHoangDuong",
+    "JukySan",
+    "DaLAB",
+    "LonXonBand",
+    "FannyTran",
+    "LynkLee",
+    "Ngot",
+    "Chillies",
+    "Kien",
+    "Trang",
+    "CaHoiHoang",
+    "7UPPERCUTS",
+    "KhacHung",
+    "14Casper",
+    "MewAmazing",
+    "HuaKimTuyen",
+    "Onionn",
+    "16Typh",
+    "RPTMCK",
+    "RPTGroovie",
+    "LowG",
+    "LilWuyn",
+    "BRay",
+    "DatG",
+    "Masew",
+    "YoungUno",
+    "HuongLy",
+    "LynkLee",
+    "BichPhuong",
+    "VickyNhung",
+    "SiThanh",
+    "Monstar",
+    "Tlinh",
+    "Hoaprox",
+    "SimV",
+    "SOM",
+    "Gemie",
+    "TeeD",
+    "Quin",
+    "Changg",
+    "Bozitt",
+    "RoyP",
+    "Pjpo",
+    "Nicky",
+    "Benny",
+    "Bray",
+    "Mona",
+    "JukySan",
+    "Jack",
+    "J97",
+    "DomDom",
+    "Jack5Trieu",
+    "JackBoCon",
+    "JackMessy"
+};
+
 
     [Button]
     private void ResetDB()
@@ -39,8 +151,17 @@ public class MotorbikeSO : ScriptableObject
     {
         return db_Bots[id];
     }
+    [Button]
+    private void ResetNameDB()
+    {
+        int length = db_Bots.Length;
+        for (int i = 0; i < length; i++)
+        {
+            var bot = db_Bots[i];
+            bot.name = nameFake[Random.Range(0, nameFake.Length)];
+        }
+    }
 }
-
 [System.Serializable]
 public class DB_MotorbikeBot
 {

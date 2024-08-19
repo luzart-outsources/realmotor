@@ -38,6 +38,10 @@ public class ItemLeaderBoardUI : MonoBehaviour
         txtDistance.gameObject.SetActive(isPlayer);
         txtIndex.text = $"<color={color}>{db.index+1}</color>";
         txtName.text = $"<color={color}>{db.name}</color>";
+        if(db.distance == 0)
+        {
+            txtDistance.text = "";
+        }
         txtDistance.text = $"{System.Math.Round(db.distance, 2)}";
 #if ENABLE_TEST_LEADERBOARD
         txtRound.gameObject.SetActive(true); 
@@ -47,6 +51,14 @@ public class ItemLeaderBoardUI : MonoBehaviour
         txtPoint.text = db.curIndex.ToString();
         txtDisIndex.text = $"{System.Math.Round(db.disFromIndex, 2)}";
 #endif
+    }
+    public void UpdateDistance(float distance)
+    {
+        if (distance == 0)
+        {
+            txtDistance.text = "";
+        }
+        txtDistance.text = $"{System.Math.Round(distance, 2)}";
     }
 }
 [System.Serializable]

@@ -78,6 +78,10 @@ public class UIGameplay : UIBase
     {
         leaderBoard.UpdateList(list);
     }
+    public void UpdateDistanceLeaderBoard(List<DB_LeaderBoardInGame> list)
+    {
+        leaderBoard.UpdateDistance(list);
+    }
     public void UpdateUI()
     {
        int round =  GameManager.Instance.gameCoordinator.myMotorbike.round;

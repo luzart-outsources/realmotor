@@ -19,10 +19,25 @@ public class BaseMotorbike : MonoBehaviour
     private float radiusCheckPoint = 10f;
     [SerializeField]
     private LayerMask layerCheckPoint;
-    public string strMyName { get; set; }
+    private string _strMyName;
+    public string strMyName 
+    {
+        get
+        {
+            return _strMyName;
+        }
+        set
+        {
+            inforRacing.InitName(value);
+            _strMyName = value;
+        } 
+    }
     public ETeam eTeam { get; set; }
     [SerializeField]
     private Transform parentVisualMotor;
+    [SerializeField]
+    private InforRacing inforRacing;
+    
     public DB_Motorbike dbMotorbike { get; set; }   
     private DB_Character dbCharacter;
 
@@ -76,6 +91,10 @@ public class BaseMotorbike : MonoBehaviour
         }
     }
     public Action<ResultOnCollisionLayer> actionOnCollisionLayer;
+    public void UpdateIndex(int index)
+    {
+        inforRacing.UpdateIndex(index);
+    }
     public void Initialize(InforMotorbike inforMotorbike, BaseController baseController, ETeam eTeam)
     {
         this.inforMotorbike = inforMotorbike;
@@ -142,10 +161,10 @@ public class BaseMotorbike : MonoBehaviour
         {
             return;
         }
-        if(eState == EStateMotorbike.Finish)
-        {
-            return;
-        }
+        //if(eState == EStateMotorbike.Finish)
+        //{
+        //    return;
+        //}
         List<Collider> listCol = GetListCol(1);
         if(listCol !=null && listCol.Count > 0)
         {
@@ -386,7 +405,10 @@ public class BaseMotorbike : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameUtil.Instance.StopAllCoroutinesForBehaviour(this);
+        if(GameUtil.Instance != null)
+        {
+            GameUtil.Instance.StopAllCoroutinesForBehaviour(this);
+        }
     }
 
 #if UNITY_EDITOR

@@ -435,7 +435,7 @@ public class MoveMovementRigid : MotorMovement
         ContrainRigidbody(RigidbodyConstraints.FreezeRotation);
         isCollisionBike = true;
         //rb.AddForce(moveRigid.velocity/2);
-        GameUtil.Instance.WaitAndDo(this, 1f, UnConstain);
+        GameUtil.Instance.WaitAndDo(this, 0.3f, UnConstain);
     }
     public bool isCollisionBike = false;
     public void UnConstain()

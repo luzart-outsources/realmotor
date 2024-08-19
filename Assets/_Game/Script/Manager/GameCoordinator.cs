@@ -414,8 +414,6 @@ public class GameCoordinator : MonoBehaviour
             return;
         }
         uiGameplay.UpdateUI();
-        UpdateDbLeaderBoardInGameUI();
-        uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
         uiGameplay.SetFXLineSpeed(myMotorbike.Speed, myMotorbike.inforMotorbike.maxSpeed);
     }
     private void UpdateDbLeaderBoardInGameUI()
@@ -520,6 +518,27 @@ public class GameCoordinator : MonoBehaviour
             }
             return roundComparison;
         });
+
+        UpdateDbLeaderBoardInGameUI();
+        uiGameplay.UpdateDistanceLeaderBoard(listDBLeaderBoardInGame);
+        curTime += Time.deltaTime;
+        if(curTime > 1f)
+        {
+            UpdateVisualLeaderboard();
+            curTime = 0;
+        }
+
+    }
+    private float curTime = 0;
+    private void UpdateVisualLeaderboard()
+    {
+        int length = listLeaderBoard.Count;
+        for (int i = 0; i < length; i++)
+        {
+            var item = listLeaderBoard[i];
+            item.UpdateIndex(i + 1);
+        }
+        uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
     }
 
 
