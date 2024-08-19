@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
-    public float timeMove = 3f;
+    public float timeMoveEachs = 0.3f;
     private Sequence sq;
     public ItemLeaderboard itemPrefab;
     public Transform parentItem;
@@ -50,7 +50,7 @@ public class Leaderboard : MonoBehaviour
         }
         sq = DOTween.Sequence();
         var itemToMove = items[fromIndex];
-        float timeEach = timeMove / (fromIndex - toIndex);
+        float timeMove = timeMoveEachs * (fromIndex - toIndex);
         sq.AppendCallback(()=> actionStart?.Invoke(itemToMove));
         sq.AppendInterval(0.5f);
         for (int i = fromIndex; i > toIndex; i--)
@@ -58,7 +58,7 @@ public class Leaderboard : MonoBehaviour
             int firstIndex = i;
             int factor = 1;
             int indexToMove = firstIndex - factor;
-            sq.Append(items[indexToMove].transform.DOLocalMoveY(listRect[firstIndex].transform.localPosition.y, timeEach).SetEase(Ease.Linear).OnUpdate(() =>
+            sq.Append(items[indexToMove].transform.DOLocalMoveY(listRect[firstIndex].transform.localPosition.y, timeMoveEachs).SetEase(Ease.Linear).OnUpdate(() =>
             {
                 actionUpdate?.Invoke(itemToMove, indexToMove);
             }));

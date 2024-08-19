@@ -894,6 +894,7 @@ MonoBehaviour:
   isCache: 0
   btnBack: {fileID: 1465477498363489258}
   btnUpgrade: {fileID: 8359049911395620576}
+  btnSettings: {fileID: 0}
   txtValue: {fileID: 2994357359673533176}
   itemUpgradePopups:
   - {fileID: 1193797982813773839}
@@ -2969,6 +2970,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3691334719131321768, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
+      propertyPath: spSelect.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: b424bec006dc30c43b003b19acbf158b, type: 3}
+    - target: {fileID: 3691334719131321768, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
+      propertyPath: spUnSelect.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: decb4e66006d94d4a812cbe9d4067999, type: 3}
     - target: {fileID: 3824964676856885657, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3288,6 +3297,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3691334719131321768, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
+      propertyPath: spSelect.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: bb8bd177f9981c34badcbd3f33ae4be0, type: 3}
+    - target: {fileID: 3691334719131321768, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
+      propertyPath: spUnSelect.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 99d3f3fe8260f334e966615526b8f2e0, type: 3}
     - target: {fileID: 3824964676856885657, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3710,6 +3727,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3691334719131321768, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
+      propertyPath: spSelect.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 65f88b6b9fc861c49af0e9f3af91e00e, type: 3}
+    - target: {fileID: 3691334719131321768, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
+      propertyPath: spUnSelect.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d40700c5351cf4c46af54fcf84b1dce0, type: 3}
     - target: {fileID: 3824964676856885657, guid: 1dd323d1ee0550e4cb1ff245500cf6e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

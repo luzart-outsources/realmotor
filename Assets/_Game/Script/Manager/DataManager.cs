@@ -23,10 +23,14 @@ public class DataManager : Singleton<DataManager>
     [Space, Header("SO Other")]
     public SpriteResourcesSO spriteResourceSO;
 
+    [Space, Header("DailyRewardManager")]
+    public DailyRewardManager dailyRewardManager;
+
     private const string KEY_GAME_DATA = "key_gamedata";
     public void Initialize()
     {
         LoadGameData();
+        dailyRewardManager.InitData();  
     }
     private void LoadGameData()
     {

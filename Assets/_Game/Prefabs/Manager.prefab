@@ -362,7 +362,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7125162523012088844}
   m_Father: {fileID: 1748368523962841705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2101675337098104119
@@ -404,6 +405,7 @@ MonoBehaviour:
   dB_ResourceSO: {fileID: 11400000, guid: 2c16b0b39530b994cb1b6562c17b246b, type: 2}
   resourceBuySO: {fileID: 11400000, guid: 7fc72d5463e5b684ebbcf26128a6c03e, type: 2}
   spriteResourceSO: {fileID: 11400000, guid: f0af84f34623a26439738d851f0ff601, type: 2}
+  dailyRewardManager: {fileID: 5546234178109984985}
 --- !u!1 &2945237618997133233
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActionPerSecond: 0
-  isOnNewDay: 0
+  isOnNewDay: 1
 --- !u!114 &2302425661408775333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +543,155 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1748368523962841705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5407431109075828839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7125162523012088844}
+  - component: {fileID: 5546234178109984985}
+  m_Layer: 0
+  m_Name: DailyRewardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7125162523012088844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407431109075828839}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5264319549767924214}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5546234178109984985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407431109075828839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b863845a4186dd94eb0972d7e934151c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataResourceDaily:
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 1000
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 1500
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    - type:
+        type: 3
+        id: 4
+      amount: 1
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 2000
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    - type:
+        type: 4
+        id: 3
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 3000
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 2500
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    - type:
+        type: 4
+        id: 7
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 3500
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    - type:
+        type: 3
+        id: 2
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  - groupDataResources:
+    - type:
+        type: 1
+        id: 0
+      amount: 5000
+      idIcon: 1
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+    - type:
+        type: 2
+        id: 6
+      amount: 1
+      idIcon: 0
+      idBg: 0
+      spIcon: {fileID: 0}
+      spBg: {fileID: 0}
+  Today: 0
 --- !u!1 &5417669546263893647
 GameObject:
   m_ObjectHideFlags: 0
