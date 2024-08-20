@@ -85,13 +85,14 @@ public class ClassicMode : BaseMode
     private DataValueWin dataValueWin;
     private void ShowPopUp(bool isWin)
     {
-        var ui = UIManager.Instance.ShowUI<UIWinClassic>(UIName.WinClassic);
         UIManager.Instance.HideUiActive(UIName.Gameplay);
+        var ui = UIManager.Instance.ShowUI<UIWinClassic>(UIName.WinClassic);
+
         if(ui != null)
         {
             ui.InitDataRes(isWin, dataValueWin);
             ui.InitDataDashboard(GameManager.Instance.gameCoordinator.listDataItemWinLeaderBoard);
-            ui.OnShowPopUp();
+            ui.OnSequenceVisual();
         }
     }
     private void OnDisable()

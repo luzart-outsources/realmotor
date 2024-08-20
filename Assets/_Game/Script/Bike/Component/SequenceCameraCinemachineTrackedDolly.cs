@@ -42,7 +42,8 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         }
         preGroupPath = group;
         group.virtualCamera.gameObject.SetActive(true);
-        group.virtualCamera.m_LookAt = group.target;
+        group.virtualCamera.m_LookAt = group.lookAt;
+        group.virtualCamera.m_Follow = group.follow;
         var trackedDolly = group.virtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
         if (trackedDolly != null)
         {
@@ -58,12 +59,16 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         var trackedDolly = group.virtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
         if(trackedDolly == null)
         {
+            if(group.followOffset != new Vector3(-1, -1, -1))
+            {
+                var transposer = group.virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+                transposer.m_FollowOffset = group.followOffset;
+            }
             return DOVirtual.Float(group.firstFOV, group.targetFOV, group.timeMove, (x) =>
             {
                 group.virtualCamera.m_Lens.FieldOfView = x;
             }).SetEase(group.ease).SetId(this);
         }
-
         return DOVirtual.Float(0, 1, group.timeMove, (x) =>
         {
             trackedDolly.m_PathPosition = x;
@@ -166,22 +171,13 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
     {
         ActionOnDoneCamera?.Invoke();
     }
-    public void SetAllTarget(Transform target)
-    {
-        int length = groupPathCinemachine.Length;
-        for (int i = 0; i < length; i++)
-        {
-            var group =  groupPathCinemachine[i];
-            group.target = target;
-        }
-    }
     public void SetFollow(Transform target)
     {
         int length = groupPathCinemachine.Length;
         for (int i = 0; i < length; i++)
         {
             var group = groupPathCinemachine[i];
-            group.virtualCamera.m_Follow = target;
+            group.follow = target;
         }
     }
     public void SetLookAt(Transform target)
@@ -190,7 +186,7 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         for (int i = 0; i < length; i++)
         {
             var group = groupPathCinemachine[i];
-            group.virtualCamera.m_LookAt = target;
+            group.lookAt = target;
         }
     }
     private void OnDisable()
@@ -218,11 +214,14 @@ public class GroupPathCinemachineSmoothCamera
     public float firstFOV = 60f;
     public float targetFOV = 30f;
 
+    public Vector3 followOffset = new Vector3(-1,-1,-1);
+
     public Vector3 firstPosition;
     public Vector3 targetPosition;
     
     public CinemachineTrackedDolly.CameraUpMode cameraUpMode;
-    public Transform target;
+    public Transform follow;
+    public Transform lookAt;
     public CinemachineSmoothPath cinemachineSmoothPath;
     public CinemachineVirtualCamera virtualCamera;
 }

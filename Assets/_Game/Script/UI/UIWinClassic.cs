@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,10 @@ public class UIWinClassic : UIBase
     public TMP_Text txtOrdinal;
     public TMP_Text txt_Title;
     public BaseSelect baseSelect;
+
+    public Animation animationFlag;
+    public CanvasGroup canvasFade;
+    public GameObject obScreen;
 
     [Space, Header("PopupDashboard")]
     public TweenAnimation twDashboard;
@@ -68,9 +71,11 @@ public class UIWinClassic : UIBase
     {
         leaderboard.gameObject.SetActive(false);
         obSuccess.SetActive(true);
+
         rewardSliderXValue.Initialize(dataWin.Total, 1, ClickClaimReward);
         twDashboard.Show();
         twSuccess.Show();
+
         twMissOut?.Kill();
         twMissOut = DOVirtual.DelayedCall(3f, () =>
         {
@@ -80,6 +85,39 @@ public class UIWinClassic : UIBase
     public List<ItemLeaderboard> listItemWinLeaderboard = new List<ItemLeaderboard>();
     private List<DataItemWinLeaderboardUI> listDataItemWinLeaderboardUI = new List<DataItemWinLeaderboardUI>();
     private int indexMe;
+
+    public void SetAnimationFlag()
+    {
+        float length = animationFlag.clip.length;
+        animationFlag.gameObject.SetActive(true);
+        //DOVirtual.DelayedCall(length, () =>
+        //{
+        //    animationFlag.gameObject.SetActive(false);
+        //}).SetId(this);
+    }
+    public Tween SetCanvasGroupFade()
+    {
+        return DOVirtual.Float(0, 1, 0.5f, (x) =>
+        {
+            canvasFade.alpha = x;
+        }).SetId(this);
+    }
+    public Transform targetFlag;
+    private Sequence sqVisual;
+    public void OnSequenceVisual()
+    {
+        sqVisual = DOTween.Sequence();
+        sqVisual.Append(SetCanvasGroupFade());
+        sqVisual.InsertCallback(0.3f,SetAnimationFlag);
+        sqVisual.InsertCallback(0.8f, ()=> animationFlag.transform.DOMove(targetFlag.position,0.3f));
+        sqVisual.AppendInterval(0.5f);
+        sqVisual.AppendCallback(() =>
+        {
+            obScreen.SetActive(true);
+            OnMoveItem();
+        });
+    }
+
     public void InitDataDashboard(List<DataItemWinLeaderboardUI> listData)
     {
         this.listDataItemWinLeaderboardUI = listData;
@@ -102,7 +140,10 @@ public class UIWinClassic : UIBase
             item.InitData(isMe, data);
         });
 
-        obSuccess.SetActive(false);
+        obSuccess.SetActive(false);        
+    }
+    public void OnMoveItem()
+    {
         int indexCurrent = listItemWinLeaderboard.Count - 1;
         leaderboard.scrollRect.FocusOnRectTransform(listItemWinLeaderboard[indexCurrent].GetComponent<RectTransform>());
         leaderboard.MoveItem(indexCurrent, indexMe, null, (item) =>
@@ -113,14 +154,15 @@ public class UIWinClassic : UIBase
         {
             var itemLeaderboard = (ItemWinDashboardUI)item;
             var data = listDataItemWinLeaderboardUI[indexCurrent];
-            data.index = (index+1).ToString();
+            data.index = (index + 1).ToString();
             itemLeaderboard.InitData(true, data);
             leaderboard.scrollRect.FocusOnRectTransform(listItemWinLeaderboard[indexCurrent].GetComponent<RectTransform>());
         });
-        
     }
+    private bool isWin;
     public void InitDataRes(bool isWin, DataValueWin db)
     {
+        this.isWin = isWin;
         this.dataWin = db;
         if (isWin )
         {

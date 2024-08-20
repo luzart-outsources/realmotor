@@ -1,15 +1,11 @@
+using Cinemachine;
 using DG.Tweening;
 using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class GameCoordinator : MonoBehaviour
 {
@@ -107,7 +103,8 @@ public class GameCoordinator : MonoBehaviour
         Quaternion rot = CameraManager.Instance.helicopterCamera.GetRotation(myMotorbike.posCamera);
         CameraManager.Instance.helicopterCamera.transform.position = pos;
         CameraManager.Instance.helicopterCamera.transform.rotation = rot;
-        map.cameraStartGame.groupPathCinemachine[0].target = myMotorbike.targetCameraStartGame;
+        map.cameraStartGame.groupPathCinemachine[0].follow = myMotorbike.targetCameraStartGame;
+        map.cameraStartGame.groupPathCinemachine[0].lookAt = myMotorbike.targetCameraStartGame;
         map.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.position= pos;
         //map.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.rotation= rot;
         
@@ -156,13 +153,20 @@ public class GameCoordinator : MonoBehaviour
         CameraManager.Instance.helicopterCamera.enabled = true;
         CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
         environmentMap.cameraStartGame.gameObject.SetActive(false);
-        uiGameplay.obScreen.SetActive(true);
-        uiGameplay.StartCountDown(() =>
+        sqStartGame = DOTween.Sequence();
+        sqStartGame.Append(uiGameplay.SetShowScreen(true));
+        sqStartGame.AppendInterval(0.1f);
+        sqStartGame.AppendCallback(() =>
         {
-            StartRace();
-
+            uiGameplay.StartCountDown(() =>
+            {
+                StartRace();
+            });
         });
+        sqStartGame.SetId(this);
+
     }
+    private Sequence sqStartGame;
     public void StartRace()
     {
         foreach (var item in listLeaderBoard)
@@ -255,7 +259,7 @@ public class GameCoordinator : MonoBehaviour
             var db = listDBBot[i];
             var bot = listBot[i];
             InforMotorbike infor = ConfigStats.GetInforMotorbikeBot(db.db_Motorbike.idMotor, db.db_Motorbike.levelUpgrade);
-            VehicleAI controller = bot.AddComponent<VehicleAI>();
+            VehicleAI controller = bot.gameObject.AddComponent<VehicleAI>();
             bot.Initialize(infor,controller, ETeam.AI);
             bot.InitStartRace();
             bot.strMyName = db.name;
@@ -275,15 +279,26 @@ public class GameCoordinator : MonoBehaviour
                 UpdateLeaderBoard();
                 countLeaderBoard = listResult.Count - 1; 
                 bool isWin = listResult.Count <= 3;
-                CameraManager.Instance.helicopterCamera.cameraMain.enabled = (false);
-                environmentMap.cameraEndGame.SetAllTarget(myMotorbike.transform);    
-                environmentMap.cameraEndGame.groupPathCinemachine[1].virtualCamera.Follow = (myMotorbike.parentCam);
-                environmentMap.cameraEndGame.SetLookAt(myMotorbike.transform);
-                environmentMap.StartCameraEndGame();
                 GameUtil.Instance.WaitAndDo(5f, () => ActionOnEndGame?.Invoke(isWin));
-
+                OnVisualEndGame();
             }
         }
+
+    }
+    private Sequence sqEndGame;
+    private void OnVisualEndGame()
+    {
+        sqEndGame = DOTween.Sequence();
+        sqEndGame.Append(uiGameplay.SetShowScreen(false));
+        sqEndGame.Append(uiGameplay.SetBlackScreen(true));
+        sqEndGame.AppendCallback(() =>
+        {
+            CameraManager.Instance.helicopterCamera.cameraMain.enabled = (false);
+            environmentMap.cameraEndGame.SetLookAt(myMotorbike.transform);
+            environmentMap.cameraEndGame.groupPathCinemachine[1].follow = (myMotorbike.parentCam);
+            environmentMap.cameraEndGame.groupPathCinemachine[1].lookAt = (myMotorbike.transform);
+            environmentMap.StartCameraEndGame();
+        });
 
     }
     public void EndGame(bool isWin)
@@ -299,10 +314,13 @@ public class GameCoordinator : MonoBehaviour
         {
             Destroy(myMotorbike.gameObject);
         }
-
-        for (int i = 0; i < listBot.Count; i++)
+        int length = listBot.Count;
+        for (int i = 0; i < length; i++)
         {
-            Destroy(listBot[i].gameObject);
+            if(listBot[0] != null && listBot[0].gameObject != null)
+            {
+                Destroy(listBot[0].gameObject);
+            }
             listBot.RemoveAt(0);
         }
     }

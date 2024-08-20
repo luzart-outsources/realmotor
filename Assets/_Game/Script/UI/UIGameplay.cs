@@ -21,6 +21,7 @@ public class UIGameplay : UIBase
     public Image imClockFilled;
     public ParticleSystem fxLine;
     public CanvasGroup canvasGroupStartGame;
+    public CanvasGroup canvasGroupScreen;
     public GameObject obScreen;
 
     protected override void Setup()
@@ -37,7 +38,8 @@ public class UIGameplay : UIBase
     {
         base.Show(onHideDone);
         SetStatusUIController(false);
-        obScreen.SetActive(false);
+        canvasGroupScreen.gameObject.SetActive(false);
+        canvasGroupStartGame.gameObject.SetActive(false);
     }
     private Sequence sequenceCanvasGroup;
     public void FadeOutCanvasGroupStartGame(float time, Action onComplete = null)
@@ -54,12 +56,35 @@ public class UIGameplay : UIBase
         sequenceCanvasGroup.AppendCallback(
         () =>
             {
-                obScreen.gameObject.SetActive(true);
+                SetShowScreen(true);
                 canvasGroupStartGame.gameObject.SetActive(false);
                 StartGame();
                 onComplete?.Invoke();
             }
             );
+    }
+    private Tweener twBlackScreen;
+    public Tweener SetBlackScreen(bool status)
+    {
+        if (status)
+        {
+            twBlackScreen = DOVirtual.Float(0, 1, 0.5f, (x) =>
+            {
+                canvasGroupStartGame.alpha = x;
+            });
+        }
+        else
+        {
+            twBlackScreen = DOVirtual.Float(1, 0, 0.5f, (x) =>
+            {
+                canvasGroupStartGame.alpha = x;
+            });
+            twBlackScreen.OnComplete(() =>
+            {
+                canvasGroupStartGame.gameObject.SetActive(false);
+            });
+        }
+        return twBlackScreen;
     }
 
     public void SetStatusUIController(bool status)
@@ -107,6 +132,34 @@ public class UIGameplay : UIBase
     {
         countdown.gameObject.SetActive(false);
         SetStatusUIController(true);
+    }
+    public void EndGame()
+    {
+
+    }
+    private Tweener twShowScreen;
+    public Tweener SetShowScreen(bool status)
+    {
+        canvasGroupScreen.gameObject.SetActive(true);
+        if (status)
+        {
+           twShowScreen = DOVirtual.Float(0, 1, 0.5f, (x) =>
+           {
+                canvasGroupScreen.alpha = x;
+           });
+        }
+        else
+        {
+            twShowScreen = DOVirtual.Float(1, 0, 0.5f, (x) =>
+            {
+                canvasGroupScreen.alpha = x;
+            });
+            twShowScreen.OnComplete(() =>
+            {
+                canvasGroupScreen.gameObject.SetActive(false);
+            });
+        }
+        return twShowScreen;
     }
     public float emissionMax = 400;
     public float emissionMin = 100;

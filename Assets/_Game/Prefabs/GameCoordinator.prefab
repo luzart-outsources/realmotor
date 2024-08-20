@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavingPointGizmos: {fileID: 0}
+  miniMapEnvironment: {fileID: 0}
   baseMotorBike: {fileID: 3970734084713082468, guid: a56d1a9ae2d231d4a945f40822186f6a, type: 3}
   parentEnvironment: {fileID: 0}
   parentMotor: {fileID: 8966335688165500643}
@@ -95,11 +96,10 @@ MonoBehaviour:
     indexStart: 5
     indexStartBot: 
   timePlay: 0
-  miniMap: {fileID: 0}
   db_levelEditor:
     level: 0
     idEnvironment: 0
-    lapRequire: 99
+    lapRequire: 1
     themeLevel: 0
     spIcon: {fileID: 0}
     name: 

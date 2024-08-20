@@ -159,16 +159,23 @@ public class MoveMovementRigid : MotorMovement
                 ContrainRigidbody(RigidbodyConstraints.FreezeAll);
             }
         }
-        float maxSpeedRandom = UnityEngine.Random.Range(motorbikeInfo.maxSpeed - 2, motorbikeInfo.maxSpeed + 1);
+        if(curTimeSpeed >= 1)
+        {
+            maxSpeedRandom = UnityEngine.Random.Range((int)motorbikeInfo.maxSpeed - 2, (int)motorbikeInfo.maxSpeed + 1);
+            curTimeSpeed = 0;
+        }
+
         // Giới hạn tốc độ của xe
         currentSpeed = Mathf.Clamp(currentSpeed, -reverseSpeed, maxSpeedRandom);
 
 
         // Di chuyển xe theo hướng phía trước
         velocity = motorbikeTransform.forward * currentSpeed;
-
+        curTimeSpeed += Time.deltaTime;
 
     }
+    private float maxSpeedRandom = 100;
+    private float curTimeSpeed = 0;
     public void ContrainRigidbody(RigidbodyConstraints constraints)
     {
         if (isCollisionBike)
@@ -222,9 +229,12 @@ public class MoveMovementRigid : MotorMovement
         if (Math.Abs(currentSpeed) >= 3f)
         {
             float handling = motorbikeInfo.handling;
-            if (currentSpeed / motorbikeInfo.maxSpeed >= percentSpeed)
+            if(baseMotor.baseMotorbike.eTeam == ETeam.Player && baseMotor.baseMotorbike.eState == EStateMotorbike.None)
             {
-                handling = handling - sensor * (currentSpeed - percentSpeed * motorbikeInfo.maxSpeed);
+                if (currentSpeed / motorbikeInfo.maxSpeed >= percentSpeed)
+                {
+                    handling = handling - sensor * (currentSpeed - percentSpeed * motorbikeInfo.maxSpeed);
+                }
             }
             float turn = 0;
             if (currentSpeed >= 0)
@@ -426,6 +436,8 @@ public class MoveMovementRigid : MotorMovement
             if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
             AudioManager.Instance.PlaySFXCrashMotor();
             motorPartner.OnCollisionBike(this);
+            Vector3 direction = motorPartner.transform.position - transform.position;
+            motorPartner._rb.AddForce(direction.normalized*100f);
             OnCollisionBike(this);
         }
     }
@@ -435,7 +447,7 @@ public class MoveMovementRigid : MotorMovement
         ContrainRigidbody(RigidbodyConstraints.FreezeRotation);
         isCollisionBike = true;
         //rb.AddForce(moveRigid.velocity/2);
-        GameUtil.Instance.WaitAndDo(this, 0.3f, UnConstain);
+        GameUtil.Instance.WaitAndDo(this, 0.5f, UnConstain);
     }
     public bool isCollisionBike = false;
     public void UnConstain()

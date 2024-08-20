@@ -406,6 +406,7 @@ MonoBehaviour:
   imClockFilled: {fileID: 967597214223782455}
   fxLine: {fileID: 2757378396422659915}
   canvasGroupStartGame: {fileID: 289103321727647828}
+  canvasGroupScreen: {fileID: 7200892990673899804}
   obScreen: {fileID: 793674742751633106}
   emissionMax: 50
   emissionMin: 10
@@ -418,6 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 897345319232802416}
+  - component: {fileID: 7200892990673899804}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -452,6 +454,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &7200892990673899804
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793674742751633106}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &804614466363993091
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,9 +3202,9 @@ RectTransform:
   - {fileID: 215290134834759983}
   m_Father: {fileID: 8305546106027316491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 188.455, y: -20.1418}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 377, y: 40.2836}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8755668093419200013
