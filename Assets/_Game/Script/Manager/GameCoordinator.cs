@@ -102,9 +102,9 @@ public class GameCoordinator : MonoBehaviour
         //baseMotorBike.eState = EStateMotorbike.Start;
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
         CameraManager.Instance.helicopterCamera.cameraMain.enabled = false;
-        CameraManager.Instance.SetFollowCamera(myMotorbike.transform);
-        Vector3 pos = CameraManager.Instance.helicopterCamera.GetTargetPosition(myMotorbike.transform);
-        Quaternion rot = CameraManager.Instance.helicopterCamera.GetRotation(myMotorbike.transform);
+        CameraManager.Instance.SetFollowCamera(myMotorbike.posCamera, myMotorbike);
+        Vector3 pos = CameraManager.Instance.helicopterCamera.GetTargetPosition(myMotorbike.posCamera);
+        Quaternion rot = CameraManager.Instance.helicopterCamera.GetRotation(myMotorbike.posCamera);
         CameraManager.Instance.helicopterCamera.transform.position = pos;
         CameraManager.Instance.helicopterCamera.transform.rotation = rot;
         map.cameraStartGame.groupPathCinemachine[0].target = myMotorbike.targetCameraStartGame;
@@ -147,10 +147,11 @@ public class GameCoordinator : MonoBehaviour
 
 
         //});
-        environmentMap.cameraStartGame.groupPathCinemachine[0].virtualCamera.LookAt = myMotorbike.transform;
-        CameraManager.Instance.helicopterCamera.enabled = false ;
         CameraManager.Instance.helicopterCamera.transform.position = environmentMap.cameraStartGame.cameraMain.transform.position;
         CameraManager.Instance.helicopterCamera.cameraMain.transform.eulerAngles = environmentMap.cameraStartGame.cameraMain.transform.eulerAngles;
+        environmentMap.cameraStartGame.groupPathCinemachine[0].virtualCamera.LookAt = myMotorbike.transform;
+        CameraManager.Instance.helicopterCamera.enabled = false ;
+
 
         CameraManager.Instance.helicopterCamera.enabled = true;
         CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
@@ -276,7 +277,7 @@ public class GameCoordinator : MonoBehaviour
                 bool isWin = listResult.Count <= 3;
                 CameraManager.Instance.helicopterCamera.cameraMain.enabled = (false);
                 environmentMap.cameraEndGame.SetAllTarget(myMotorbike.transform);    
-                environmentMap.cameraEndGame.SetFollow(myMotorbike.parentCam);
+                environmentMap.cameraEndGame.groupPathCinemachine[1].virtualCamera.Follow = (myMotorbike.parentCam);
                 environmentMap.cameraEndGame.SetLookAt(myMotorbike.transform);
                 environmentMap.StartCameraEndGame();
                 GameUtil.Instance.WaitAndDo(5f, () => ActionOnEndGame?.Invoke(isWin));

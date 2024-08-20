@@ -103,18 +103,84 @@ MonoBehaviour:
   animator: {fileID: 301806493219080082}
   PrimaryTarget: {fileID: 0}
   SecondaryTarget: {fileID: 0}
-  distance: 2.98
-  height: 1.5
+  distance: 3.65
+  height: 1.55
   heightDamping: 5
-  lookAtHeight: 1
+  lookAtHeight: 0.6
   baseMotorbike: {fileID: 0}
   rotationSnapTime: 1.5
   distanceSnapTime: 0.4
-  distanceMultiplier: 0.15
+  distanceMultiplier: 0.2
   counterRotation: 0
   _layerGround:
     serializedVersion: 2
     m_Bits: 768
+  curveMinFOV:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.00415498
+      value: 59.496044
+      inSlope: -18.211683
+      outSlope: -18.211683
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5097122
+      value: 50.137657
+      inSlope: -0.7808408
+      outSlope: -0.7808408
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.665073
+      outWeight: 1
+    - serializedVersion: 3
+      time: 2.9383469
+      value: 59.961155
+      inSlope: 4.044864
+      outSlope: 4.044864
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curveMaxFOV:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0005712211
+      value: 59.999374
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.50039655
+      value: 69.932434
+      inSlope: 1.0048424
+      outSlope: 1.0048424
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.7395613
+      outWeight: 0.28720808
+    - serializedVersion: 3
+      time: 3.0491407
+      value: 59.91883
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   "m\xEDnRotationSnaptime": 1
   maxRotationSnaptime: 1.5
 --- !u!81 &3074245163851518761

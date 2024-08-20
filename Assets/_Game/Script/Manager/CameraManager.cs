@@ -11,13 +11,9 @@ public class CameraManager : Singleton<CameraManager>
     {
         helicopterCamera.SetTargetFollow(target);
     }
-    //public void FadeOut(float time = 0.1f)
-    //{
-    //    Color color = spBlack.color;
-    //    DOVirtual.Float(1, 0, time, (x) =>
-    //    {
-    //        color.a = x;
-    //        spBlack.color = color;
-    //    });
-    //}
+    public void SetFollowCamera(Transform target, BaseMotorbike baseMotorbike)
+    {
+        helicopterCamera.SetTargetFollow(target);
+        helicopterCamera.baseMotorbike = baseMotorbike;
+    }
 }

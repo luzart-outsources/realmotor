@@ -12,7 +12,7 @@ public class ConfigStats
         0f,
         0.22f,
         0.66f,
-        1,
+        1.1f,
     };
     public static int GetGear(float currentSpeed, float maxSpeed)
     {

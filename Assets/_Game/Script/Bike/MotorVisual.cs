@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,7 @@ public class MotorVisual : MonoBehaviour
 
     [Space, Header("Tilt")]
     private float maxTiltAngle = 65f;
-    [SerializeField]
-    private float deltaTiltMotor = 50f;
+    private float deltaTiltMotor = 70;
 
 
     [Space, Header("Tail")]
@@ -53,6 +53,10 @@ public class MotorVisual : MonoBehaviour
     [SerializeField]
     private FXDust fxDustGroundBack;
 
+    [Space, Header("Shake")]
+    [SerializeField]
+    private Transform motorShake;
+
     private float tiltAmount = 0f; // Góc nghiêng hiện tại của xe
     private float tailAmount = 0f; // Góc nghiêng hiện tại của xe
     private float maxVelocityRotate = 45f;
@@ -87,6 +91,7 @@ public class MotorVisual : MonoBehaviour
 
     private Color colorDirt;
     private float elapsedTime = 0f;
+    private float valueRotationX = 0f;
     public void Initialize(BaseMotor baseMotor)
     {
         this.baseMotor = baseMotor;
@@ -94,6 +99,7 @@ public class MotorVisual : MonoBehaviour
         skidMark1.startWidth = skidWidth;
         skidMark2.startWidth = skidWidth;
         colorDirt = meshDirtFront.material.GetColor("_Color");
+        ShakeX();
     }
     public void OnShowDustGround(float velocity)
     {
@@ -185,5 +191,19 @@ public class MotorVisual : MonoBehaviour
         //tiltAmount = Mathf.Lerp(tiltAmount, maxTiltAngle, deltaTilt * Time.deltaTime); // Sử dụng Lerp để làm mượt hành động nghiêng
         Quaternion targetTilt = Quaternion.Euler(0, tailAmount, tiltAmount);
         motorVisual.localRotation = targetTilt;
+    }
+    public void ShakeX()
+    {
+        Vector3 euler = motorShake.transform.localEulerAngles;
+        Sequence sq = DOTween.Sequence();
+        sq.AppendCallback(() => motorShake.transform.localEulerAngles = new Vector3(euler.x - 0.5f, euler.y, euler.z));
+        sq.Append(motorShake.transform.DOLocalRotate(new Vector3(euler.x+ Random.Range(0.3f,0.8f), euler.y, euler.z), Random.Range(0.03f, 0.1f)));
+        sq.Append(motorShake.transform.DOLocalRotate(new Vector3(euler.x - 0.5f, euler.y, euler.z), Random.Range(0.03f, 0.1f)));
+        sq.SetLoops(-1);
+        sq.SetId(this);
+    }
+    private void OnDisable()
+    {
+        this.DOKill();
     }
 }

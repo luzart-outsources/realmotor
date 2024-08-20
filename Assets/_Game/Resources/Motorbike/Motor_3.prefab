@@ -318,6 +318,7 @@ MonoBehaviour:
   motorVisual: {fileID: 0}
   Handle: {fileID: 8439210177611476870}
   maxRotationHandle: 20
+  deltaTiltMotor: 50
   maxTailAngle: 10
   deltaTail: 10
   visualFrontWheel: {fileID: 1076475161212966817}
@@ -331,6 +332,7 @@ MonoBehaviour:
   obDustGroundBack: {fileID: 1033220425052235221}
   fxDustGroundFront: {fileID: 7589923876628954025}
   fxDustGroundBack: {fileID: 8728623472406980719}
+  motorShake: {fileID: 6100951479123175640}
   motorbikeInfo:
     maxSpeed: 100
     acceleration: 20

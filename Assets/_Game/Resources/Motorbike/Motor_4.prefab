@@ -50,6 +50,7 @@ MonoBehaviour:
   motorVisual: {fileID: 0}
   Handle: {fileID: 1429984320617304194}
   maxRotationHandle: 20
+  deltaTiltMotor: 50
   maxTailAngle: 10
   deltaTail: 10
   visualFrontWheel: {fileID: 1076475161212966817}
@@ -63,6 +64,7 @@ MonoBehaviour:
   obDustGroundBack: {fileID: 1033220425052235221}
   fxDustGroundFront: {fileID: 7589923876628954025}
   fxDustGroundBack: {fileID: 8728623472406980719}
+  motorShake: {fileID: 1429984320617304206}
   motorbikeInfo:
     maxSpeed: 100
     acceleration: 20
@@ -435,6 +437,11 @@ Transform:
 --- !u!4 &1429984320617304200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1791457745339120387, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
+  m_PrefabInstance: {fileID: 793999652478954379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1429984320617304206 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791457745339120389, guid: ee673ce0350c4117a76f2cbd9ecef77c, type: 3}
   m_PrefabInstance: {fileID: 793999652478954379}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2079002893937625180

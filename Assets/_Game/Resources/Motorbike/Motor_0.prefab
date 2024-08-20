@@ -227,6 +227,7 @@ MonoBehaviour:
   motorVisual: {fileID: 0}
   Handle: {fileID: 5656964562313246735}
   maxRotationHandle: 20
+  deltaTiltMotor: 50
   maxTailAngle: 10
   deltaTail: 10
   visualFrontWheel: {fileID: 8160570377834596821}
@@ -240,6 +241,7 @@ MonoBehaviour:
   obDustGroundBack: {fileID: 8207528234261412769}
   fxDustGroundFront: {fileID: 1649602227728295389}
   fxDustGroundBack: {fileID: 473457662344640027}
+  motorShake: {fileID: 8013421846831841105}
   motorbikeInfo:
     maxSpeed: 100
     acceleration: 20
@@ -272,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7830528297571000494}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

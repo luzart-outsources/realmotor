@@ -159,9 +159,9 @@ public class MoveMovementRigid : MotorMovement
                 ContrainRigidbody(RigidbodyConstraints.FreezeAll);
             }
         }
-
+        float maxSpeedRandom = UnityEngine.Random.Range(motorbikeInfo.maxSpeed - 2, motorbikeInfo.maxSpeed + 1);
         // Giới hạn tốc độ của xe
-        currentSpeed = Mathf.Clamp(currentSpeed, -reverseSpeed, motorbikeInfo.maxSpeed);
+        currentSpeed = Mathf.Clamp(currentSpeed, -reverseSpeed, maxSpeedRandom);
 
 
         // Di chuyển xe theo hướng phía trước
@@ -431,7 +431,7 @@ public class MoveMovementRigid : MotorMovement
     }
     public void OnCollisionBike(MoveMovementRigid moveRigid)
     {
-
+        currentSpeed = currentSpeed * 4 / 5;
         ContrainRigidbody(RigidbodyConstraints.FreezeRotation);
         isCollisionBike = true;
         //rb.AddForce(moveRigid.velocity/2);

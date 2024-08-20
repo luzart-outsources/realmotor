@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FXDust : MonoBehaviour
 {
+    private float dustGround = 0.5f;
     public ParticleSystem Fx;
     public void EmissionOnVelocity(float velocity)
     {
@@ -11,7 +12,7 @@ public class FXDust : MonoBehaviour
         {
             var emission = Fx.emission;
             int vel = (int)velocity;
-            emission.rateOverTime = (vel * 8) ;
+            emission.rateOverTime = (vel * vel * dustGround) ;
         }
     }
 }

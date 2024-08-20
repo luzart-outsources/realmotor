@@ -207,13 +207,59 @@ public class HelicopterCamera : MonoBehaviour
 
 
         usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
+        if (baseMotorbike != null)
+        {
+            if(baseMotorbike.valueVerticle < 0)
+            {
+                if(typeVertical!= TypeVertical.Down)
+                {
+                    curTime = 0;
+                    Keyframe firstKey = curveMinFOV.keys[0];
+                    firstKey.value = cameraFOV;
+                    curveMinFOV.MoveKey(0, firstKey);
+                }
+                typeVertical = TypeVertical.Down;
+                curTime += Time.deltaTime;
+                cameraFOV = curveMinFOV.Evaluate(curTime);
+            }
+            else if(baseMotorbike.valueVerticle > 0)
+            {
+                if (typeVertical != TypeVertical.Up)
+                {
+                    curTime = 0;
+                    Keyframe firstKey = curveMaxFOV.keys[0];
+                    firstKey.value = cameraFOV;
+                    curveMaxFOV.MoveKey(0, firstKey);
+                }
+                typeVertical = TypeVertical.Up;
+                curTime += Time.deltaTime;
+                cameraFOV = curveMaxFOV.Evaluate(curTime);
+            }
+            else
+            {
+                cameraFOV = Mathf.Lerp(cameraFOV, 60, Time.deltaTime / 2);
+                typeVertical = TypeVertical.None;
+            }
 
+        }
+        cameraMain.fieldOfView = cameraFOV;
         wantedPosition += Quaternion.Euler(0, currentRotationAngle, 0) * new Vector3(0, 0, -usedDistance);
 
         wantedPosition.y = YPosCamera(wantedPosition);
 
         transform.position = wantedPosition;
     }
+    private enum TypeVertical
+    {
+        None = 0,
+        Up = 1,
+        Down =2 ,
+    }
+    private TypeVertical typeVertical;
+    private float curTime = 0;
+    private float cameraFOV = 60f;
+    public AnimationCurve curveMinFOV;
+    public AnimationCurve curveMaxFOV;
     private void LookAtFlash()
     {
         lookAtVector = new Vector3(0, lookAtHeight, 0);

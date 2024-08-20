@@ -2418,6 +2418,7 @@ Transform:
   - {fileID: 4773413557235074498}
   - {fileID: 4736463930852253341}
   - {fileID: 3656598331819976954}
+  - {fileID: 2973074352828986535}
   m_Father: {fileID: 7016999980269543957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3139638475581192046
@@ -5856,6 +5857,37 @@ Transform:
   - {fileID: 95816913274251843}
   m_Father: {fileID: 3367965826232796374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7810141097916912716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2973074352828986535}
+  m_Layer: 6
+  m_Name: PointCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2973074352828986535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7810141097916912716}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8275714411754204416}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7959665275024989951
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,6 +6252,7 @@ MonoBehaviour:
   parentCam: {fileID: 7764731331384706181}
   targetCameraStartGame: {fileID: 4773413557235074498}
   autoRotation: {fileID: 1267806185943832661}
+  posCamera: {fileID: 2973074352828986535}
   isDrawRadius: 0
 --- !u!114 &5941011238601377135
 MonoBehaviour:

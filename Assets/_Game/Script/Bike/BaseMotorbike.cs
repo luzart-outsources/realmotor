@@ -49,6 +49,8 @@ public class BaseMotorbike : MonoBehaviour
     public Transform targetCameraStartGame;
     public AutoRotationDownProjector autoRotation;
 
+    public Transform posCamera;
+
     public int round { get; set; } = 0;
     public float Speed => baseMotor.Speed;
     public bool isFall { get; set; } = false;
@@ -105,11 +107,12 @@ public class BaseMotorbike : MonoBehaviour
         this.baseController.Initialized(this);
         this.soundMotorbike.Initialize(this);
         this.miniMapPlayer.Initialize(this);
+        this.inforRacing.Initialize(this);
         GetCurrentCheckPoint();
         //transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
         if(eTeam == ETeam.Player)
         {
-            CameraManager.Instance.SetFollowCamera(this.transform);
+            CameraManager.Instance.SetFollowCamera(posCamera,this);
         }
         InitAction();
         isFall = false;
@@ -284,8 +287,8 @@ public class BaseMotorbike : MonoBehaviour
 
     private void OnFinishRaceAI()
     {
-        Destroy(baseController);
-        GameUtil.Instance.WaitAndDo(this,1, StopWinGame);
+        //Destroy(baseController);
+        //GameUtil.Instance.WaitAndDo(this,1, StopWinGame);
     }
     private void OnFinishRacePlayer()
     {

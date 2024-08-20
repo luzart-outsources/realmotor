@@ -172,8 +172,6 @@ public class SequenceCameraCinemachineTrackedDolly : MonoBehaviour
         for (int i = 0; i < length; i++)
         {
             var group =  groupPathCinemachine[i];
-            group.virtualCamera.m_LookAt = target;
-            group.virtualCamera.m_Follow = target;
             group.target = target;
         }
     }

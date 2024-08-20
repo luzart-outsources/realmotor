@@ -123,7 +123,7 @@ public class AudioManager : Singleton<AudioManager>
         }
         set
         {
-            audioMusic.volume = value / 3;
+            audioMusic.volume = value / 4;
             PlayerPrefs.SetFloat(VOLUMN_MUSIC, value);
             PlayerPrefs.Save();
         }
@@ -141,7 +141,7 @@ public class AudioManager : Singleton<AudioManager>
         audioMusic.mute = isMuteMusic;
         _isMuteVibra = isMuteVibra;
         audioSFX.volume = volumnSFX / 2;
-        audioMusic.volume = volumnMusic / 2;
+        audioMusic.volume = volumnMusic / 4;
     }
     public void PlaySFXBtn()
     {
