@@ -667,7 +667,7 @@ MonoBehaviour:
     isEndFadeOutBoth: 1
     timeFadeOut: 0.2
     timeInterval: 0
-    timeMove: 2
+    timeMove: 3
     ease: 0
     isChangeFOV: 0
     firstFOV: 60
@@ -679,26 +679,6 @@ MonoBehaviour:
     follow: {fileID: 1625631816710782758}
     lookAt: {fileID: 0}
     cinemachineSmoothPath: {fileID: 8153224228880488278}
-    virtualCamera: {fileID: 9104490699322545017}
-  - isFadeIn: 1
-    isStartFadeInBoth: 1
-    timeFadeIn: 0.3
-    isFadeOut: 1
-    isEndFadeOutBoth: 1
-    timeFadeOut: 0.3
-    timeInterval: 0
-    timeMove: 2
-    ease: 0
-    isChangeFOV: 0
-    firstFOV: 60
-    targetFOV: 60
-    followOffset: {x: 5, y: 0, z: -4}
-    firstPosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    cameraUpMode: 0
-    follow: {fileID: 0}
-    lookAt: {fileID: 0}
-    cinemachineSmoothPath: {fileID: 6050994300636059401}
     virtualCamera: {fileID: 9104490699322545017}
   spBlack: {fileID: 5266658771830711356}
 --- !u!114 &3269441479481108851

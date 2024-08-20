@@ -295,8 +295,8 @@ public class GameCoordinator : MonoBehaviour
         {
             CameraManager.Instance.helicopterCamera.cameraMain.enabled = (false);
             environmentMap.cameraEndGame.SetLookAt(myMotorbike.transform);
-            environmentMap.cameraEndGame.groupPathCinemachine[1].follow = (myMotorbike.parentCam);
-            environmentMap.cameraEndGame.groupPathCinemachine[1].lookAt = (myMotorbike.transform);
+            //environmentMap.cameraEndGame.groupPathCinemachine[1].follow = (myMotorbike.parentCam);
+            //environmentMap.cameraEndGame.groupPathCinemachine[1].lookAt = (myMotorbike.transform);
             environmentMap.StartCameraEndGame();
         });
 

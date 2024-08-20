@@ -1435,6 +1435,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 7836803409191871200, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836803409191871200, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7992817467447736092, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1835,10 +1843,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3980665757633361261, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 728335387}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 110356122226979707, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 524237239}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
 --- !u!4 &93996945 stripped
 Transform:
@@ -3383,52 +3388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8703ea6dbd71fb4d865ffdaa657d7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &524237234 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 110356122226979707, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
-  m_PrefabInstance: {fileID: 93996944}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &524237238 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8567250565366971209, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
-  m_PrefabInstance: {fileID: 93996944}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524237234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661989dc9fe9a5943b3b28b8e194542f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &524237239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524237234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb58d5a8684ac2843bf092634d87f772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listAction:
-  - nameAction: 
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 524237238}
-          m_TargetAssemblyTypeName: CameraStartGame, Assembly-CSharp
-          m_MethodName: StartAnimCamera
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    delay: 0
 --- !u!1001 &555861967
 PrefabInstance:
   m_ObjectHideFlags: 0

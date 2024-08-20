@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using System;
@@ -49,6 +50,7 @@ public class CountdownUI : MonoBehaviour
         {
             yield return wait;
             currentCount--;
+            txt.transform.DOPunchScale(Vector3.one, 0.1f, 1, 0.1f);
             txt.text = currentCount.ToString();
             if(currentCount == targetCount)
             {
