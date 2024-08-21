@@ -615,10 +615,12 @@ MonoBehaviour:
     isChangeFOV: 0
     firstFOV: 60
     targetFOV: 30
+    followOffset: {x: -1, y: -1, z: -1}
     firstPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     cameraUpMode: 0
-    target: {fileID: 1372190211050275853}
+    follow: {fileID: 0}
+    lookAt: {fileID: 0}
     cinemachineSmoothPath: {fileID: 49241518573946448}
     virtualCamera: {fileID: 7845486652512985541}
   spBlack: {fileID: 9137559353279222664}
@@ -967,9 +969,9 @@ MonoBehaviour:
     width: 0.78
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 7.76, y: -0.78, z: 0}
+  - position: {x: 6.836389, y: -1.7597775, z: 0.002901671}
     roll: 0
-  - position: {x: 3.14, y: 0, z: -2.6}
+  - position: {x: 3.9321856, y: -0.5248523, z: -1.5899909}
     roll: 0
   - position: {x: 0, y: 0, z: 0}
     roll: 0
@@ -1071,8 +1073,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7389967251222686247}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10427461, y: -0.77407575, z: 0.13226154, w: 0.61027896}
-  m_LocalPosition: {x: 7.76, y: -0.78, z: 0}
+  m_LocalRotation: {x: 0.08333883, y: -0.78500926, z: 0.10827321, w: 0.60422844}
+  m_LocalPosition: {x: 6.836389, y: -1.7597775, z: 0.002901671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1310,8 +1312,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8783370105458029545}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10427461, y: -0.77407575, z: 0.13226154, w: 0.61027896}
-  m_LocalPosition: {x: 7.76, y: -0.78, z: 0}
+  m_LocalRotation: {x: 0.08333883, y: -0.78500926, z: 0.10827321, w: 0.60422844}
+  m_LocalPosition: {x: 6.836389, y: -1.7597775, z: 0.002901671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

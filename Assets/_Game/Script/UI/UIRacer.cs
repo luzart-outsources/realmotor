@@ -8,11 +8,12 @@ using UnityEngine.UI;
 
 public class UIRacer : UIBase
 {
+    public Button btnBack;
     public GarageManager garageManager;
     public ButtonSelect btnRacer;
     public ButtonSelect btnClothes;
     private ButtonSelect btnCache;
-    public Button btnBack;
+
 
     public ItemScrollViewRacer itemScrollViewRacerPf;
     public ScrollRect scrollView;
@@ -20,7 +21,7 @@ public class UIRacer : UIBase
     private ItemScrollViewRacer itemCache;
     public Button btnEquip;
     public Button btnBuy;
-    public GameObject obEquipped;
+    public Button btnRacing;
     public GameObject obBuyAds, obBuyGold, obBuyIAP, obBuyOther;
     public TMP_Text txtValueGold, txtValueAds,txtValueIAP, txtValueOther;
     protected override void Setup()
@@ -31,6 +32,11 @@ public class UIRacer : UIBase
         GameUtil.ButtonOnClick(btnBack,Hide,true ,KeyAds.BtnRacerBack);
         GameUtil.ButtonOnClick(btnEquip, ClickSelect, true, KeyAds.BtnRacerEquip);
         GameUtil.ButtonOnClick(btnBuy,ClickBuy, true);
+        GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
+    }
+    private void ClickRacing()
+    {
+        UIManager.Instance.ShowUI(UIName.SelectMode);
     }
     public override void Hide()
     {
@@ -159,7 +165,7 @@ public class UIRacer : UIBase
     {
         btnBuy.gameObject.SetActive(false);
         btnEquip.gameObject.SetActive(false);
-        obEquipped.gameObject.SetActive(false);
+        btnRacing.gameObject.SetActive(false);
     }
     private void RefreshButton()
     {
@@ -223,7 +229,7 @@ public class UIRacer : UIBase
                 }
             case EStateClaim.None:
                 {
-                    obEquipped.gameObject.SetActive(true);
+                    btnRacing.gameObject.SetActive(true);
                     break;
                 }
             case EStateClaim.CanEquip:

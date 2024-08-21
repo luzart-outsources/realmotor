@@ -88,8 +88,8 @@ public class GarageManager : MonoBehaviour
         twMovePos?.Kill();
         cameraMain.transform.rotation = transformFirstCameraGarage.transform.rotation;
         cameraMain.transform.position = transformFirstCameraGarage.transform.position;
-        twMovePos = cameraMain.transform.DOMove(transformCameraGarage.position, 0.5f);
-        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraGarage.rotation, 0.5f);
+        twMovePos = cameraMain.transform.DOMove(transformCameraGarage.position, 0.3f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraGarage.rotation, 0.3f);
     }
     public void ChangeCameraHeader()
     {
@@ -98,16 +98,16 @@ public class GarageManager : MonoBehaviour
         animator.Play("OrcIdle");
         cameraMain.transform.rotation = transformFirstCameraHeader.transform.rotation;
         cameraMain.transform.position = transformFirstCameraHeader.transform.position;
-        twMovePos = cameraMain.transform.DOMove(transformCameraHeader.position, 0.5f);
-        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraHeader.rotation, 0.5f);
+        twMovePos = cameraMain.transform.DOMove(transformCameraHeader.position, 0.3f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraHeader.rotation, 0.3f);
     }
     public void ChangeCameraBody()
     {
         twMoveRos?.Kill();
         twMovePos?.Kill();
         animator.Play("Standard Idle");
-        twMovePos = cameraMain.transform.DOMove(transformCameraBody.position, 0.5f);
-        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraBody.rotation, 0.5f);
+        twMovePos = cameraMain.transform.DOMove(transformCameraBody.position, 0.3f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraBody.rotation, 0.3f);
     }
     public void SetActiveMotor(bool status)
     {

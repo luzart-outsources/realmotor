@@ -159,9 +159,9 @@ public class MoveMovementRigid : MotorMovement
                 ContrainRigidbody(RigidbodyConstraints.FreezeAll);
             }
         }
-        if(curTimeSpeed >= 1)
+        if(curTimeSpeed >= 0.5f)
         {
-            maxSpeedRandom = UnityEngine.Random.Range((int)motorbikeInfo.maxSpeed - 2, (int)motorbikeInfo.maxSpeed + 1);
+            maxSpeedRandom = UnityEngine.Random.Range((int)motorbikeInfo.maxSpeed - 1, (int)motorbikeInfo.maxSpeed + 1);
             curTimeSpeed = 0;
         }
 
@@ -171,7 +171,7 @@ public class MoveMovementRigid : MotorMovement
 
         // Di chuyển xe theo hướng phía trước
         velocity = motorbikeTransform.forward * currentSpeed;
-        curTimeSpeed += Time.deltaTime;
+        curTimeSpeed += Time.fixedDeltaTime;
 
     }
     private float maxSpeedRandom = 100;

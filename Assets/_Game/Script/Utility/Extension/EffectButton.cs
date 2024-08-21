@@ -9,7 +9,7 @@ public class EffectButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     private Button btn;
 
     private Vector3 m_localScale = Vector3.one;
-    private float valueScale = 0.9f;
+    public float valueScale = 0.9f;
     private float timeScale = 0.1f;
     private void Awake()
     {

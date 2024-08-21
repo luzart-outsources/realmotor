@@ -12,6 +12,7 @@ public class UIUpgrade : UIBase
     public Button btnBack;
     public Button btnUpgrade;
     public Button btnSettings;
+    public Button btnRacing;
     //public Button btnSettings;
     public TMP_Text txtValue;
     public ItemUpgradePopUp[] itemUpgradePopups;
@@ -28,6 +29,7 @@ public class UIUpgrade : UIBase
         GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnUpgradeUpgrade);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true,KeyAds.BtnUpgradeBack);
         GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
+        GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
     }
     public override void Show(Action onHideDone)
     {
@@ -91,6 +93,10 @@ public class UIUpgrade : UIBase
         data.type = new DataTypeResource(RES_type.Gold);
         data.amount = -db_Resbuy.valueBuy;
         DataManager.Instance.AddRes(data, UpgradeComplete);
+    }
+    private void ClickRacing()
+    {
+        UIManager.Instance.ShowUI(UIName.SelectMode);
     }
     private void ClickSettings()
     {
