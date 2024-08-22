@@ -13,6 +13,7 @@ public class UIRacer : UIBase
     public ButtonSelect btnRacer;
     public ButtonSelect btnClothes;
     private ButtonSelect btnCache;
+    public Button btnShop;
 
 
     public ItemScrollViewRacer itemScrollViewRacerPf;
@@ -33,6 +34,11 @@ public class UIRacer : UIBase
         GameUtil.ButtonOnClick(btnEquip, ClickSelect, true, KeyAds.BtnRacerEquip);
         GameUtil.ButtonOnClick(btnBuy,ClickBuy, true);
         GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
+        GameUtil.ButtonOnClick(btnShop, ClickShop, true);
+    }
+    public void ClickShop()
+    {
+        UIManager.Instance.ShowUI(UIName.AddCoin);
     }
     private void ClickRacing()
     {
@@ -324,7 +330,7 @@ public class UIRacer : UIBase
     {
         btnBuy.gameObject.SetActive(true);
         obBuyOther.gameObject.SetActive(true);
-        txtValueOther.text = "Comming Soon";
+        txtValueOther.text = resourcesBuy.strOther;
     }
     private void ClickBuy()
     {

@@ -43,6 +43,10 @@ public class UIDailyReward : UIBase
             }
         }
         DataManager.Instance.ReceiveRes(dataGold);
+        dailyRewardManager.ClaimReward(dailyRewardManager.Today);
+        var ui = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
+        ui.Initialize(RefreshUI, dataGold);
+
     }
     public override void Show(Action onHideDone)
     {

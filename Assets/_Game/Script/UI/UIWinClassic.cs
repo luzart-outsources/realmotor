@@ -77,6 +77,7 @@ public class UIWinClassic : UIBase
         twSuccess.Show();
 
         twMissOut?.Kill();
+        btnMissOut.gameObject.SetActive(false);
         twMissOut = DOVirtual.DelayedCall(3f, () =>
         {
             btnMissOut.gameObject.SetActive(true);
@@ -219,7 +220,10 @@ public class UIWinClassic : UIBase
             GameManager.Instance.gameCoordinator.DestroyAllBike();
             UIManager.Instance.HideAllUIIgnore();
             UIManager.Instance.ShowGarage();
-        }, null,1,1);
+        }, () =>
+        {
+            UIManager.Instance.ShowUI(UIName.Upgrade);
+        },1,1);
     }
 }
 [System.Serializable]

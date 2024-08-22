@@ -19,5 +19,13 @@ public class UISplash : UIBase
     private void InitStartGame()
     {
         UIManager.Instance.ShowGarage(UIName.Home);
+        DOVirtual.DelayedCall(0.5f, () =>
+        {
+            if (!DataManager.Instance.dailyRewardManager.IsClaimDay(DataManager.Instance.dailyRewardManager.Today))
+            {
+                UIManager.Instance.ShowUI(UIName.DailyReward);
+            }
+
+        });
     }
 }

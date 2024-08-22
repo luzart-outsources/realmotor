@@ -23,7 +23,11 @@ public class DailyRewardManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Observer.Instance.RemoveObserver(ObserverKey.OnNewDay, OnNewDay);
+        if(Observer.Instance != null)
+        {
+            Observer.Instance.RemoveObserver(ObserverKey.OnNewDay, OnNewDay);
+        }
+
     }
     public DataDailyReward dataDailyReward
     {

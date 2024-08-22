@@ -193,9 +193,9 @@ public class ResourcesSO : ScriptableObject
         for (int i = 0; i < length; i++)
         {
             var item = dbResBuyHelmet[i];
-            item.valueBuy = 3000;
+            item.valueBuy = 2000;
             var itemBody = dbResBuyBody[i];
-            itemBody.valueBuy = 3000;
+            itemBody.valueBuy = 2000;
         }
     }
 #endif

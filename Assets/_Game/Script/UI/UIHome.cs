@@ -33,9 +33,9 @@ public class UIHome : UIBase
     {
         UIManager.Instance.ShowGarage(UIName.Upgrade);
     }
-    private void ClickShop()
+    public void ClickShop()
     {
-
+        UIManager.Instance.ShowUI(UIName.AddCoin);
     }
     private void ClickSettings()
     {

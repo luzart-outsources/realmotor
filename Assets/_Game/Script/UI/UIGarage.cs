@@ -18,6 +18,7 @@ public class UIGarage : UIBase
     public Button btnSettings;
     public Button btnUpgrade;
     public Button btnRacer;
+    public Button btnShop;
     public PopUpUpgradeGarage popupUpgrade;
     public GarageManager garageManager;
     public ScrollRect scrollView;
@@ -68,8 +69,12 @@ public class UIGarage : UIBase
         GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnGarageUpgarde);
         GameUtil.ButtonOnClick(btnRacer, ClickRacer, true, KeyAds.BtnGarageRacer);
         GameUtil.ButtonOnClick(btnBuy, ClickBuy, true);
-        GameUtil.ButtonOnClick(btnBuy, ClickBuy, true);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true);
+        GameUtil.ButtonOnClick(btnShop, ClickShop, true);
+    }
+    public void ClickShop()
+    {
+        UIManager.Instance.ShowUI(UIName.AddCoin);
     }
     public void ClickBack()
     {
@@ -255,7 +260,7 @@ public class UIGarage : UIBase
     {
         btnBuy.gameObject.SetActive(true);
         obBuyOther.gameObject.SetActive(true);
-        txtValueOther.text = "Comming Soon";
+        txtValueOther.text = resourcesBuy.strOther;
     }
     private void ClickBuy()
     {
