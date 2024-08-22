@@ -9,6 +9,7 @@ public class ButtonWatchAdsUI : MonoBehaviour
     public DataResource _dataRes;
     public ResUI resUI;
     public bool isAnim;
+    public TypeWhereButtonAds typeWhere;
     public void Awake()
     {
         GameUtil.ButtonOnClick(btn, ClickButton, isAnim);
@@ -21,6 +22,7 @@ public class ButtonWatchAdsUI : MonoBehaviour
     public void ClickButton()
     {
         AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonWatchAds, OnShowDone, OnShowFailed);
+        FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.ClickGoldFree, new ParameterFirebaseCustom(KeyTypeFirebase.Where, typeWhere.ToString()));
     }
     private void OnShowDone()
     {
@@ -32,5 +34,14 @@ public class ButtonWatchAdsUI : MonoBehaviour
     private void OnShowFailed()
     {
         UIManager.Instance.ShowToast(KeyToast.NoInternetLoadAds);
+    }
+    public enum TypeWhereButtonAds
+    {
+        None = 0,   
+        home = 1,
+        garage = 2,
+        upgrade =3,
+        racer = 4,
+        popup_addcoin = 5
     }
 }

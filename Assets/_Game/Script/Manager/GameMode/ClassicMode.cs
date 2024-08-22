@@ -1,3 +1,4 @@
+using BG_Library.NET;
 using DynamicShadowProjector.Sample;
 using Newtonsoft.Json;
 using System.Collections;
@@ -24,7 +25,6 @@ public class ClassicMode : BaseMode
         {
             gameCoordinator.StartInGame();
         });
-
         gameCoordinator.ActionOnEndGame = OnEndGame;
     }
     private void InitData(int level)
@@ -92,14 +92,16 @@ public class ClassicMode : BaseMode
 
         if(ui != null)
         {
+            ui.InitLevel(currentLevel);
             ui.InitDataRes(isWin, dataValueWin);
             ui.InitDataDashboard(GameManager.Instance.gameCoordinator.listDataItemWinLeaderBoard);
             ui.OnSequenceVisual();
+            ui.OnShowCompleteAnim = CheckShowPopUpRate;
         }
     }
     private void CheckShowPopUpRate()
     {
-        if(isWin && IsShowRate(DataManager.Instance.CurrentLevel) && IsShowRate(currentLevel))
+        if(isWin && IsShowRate(DataManager.Instance.CurrentLevel-1) && IsShowRate(currentLevel))
         {
             UIManager.Instance.ShowUI(UIName.Rate);
         }
@@ -109,10 +111,10 @@ public class ClassicMode : BaseMode
         bool IsShowRate(int data)
         {
             return
-                data == 5 ||
-                data == 11 ||
-                data == 15 ||
-                data == 20;
+                data == 4 ||
+                data == 10 ||
+                data == 14 ||
+                data == 19;
         }
     }
     private void OnDisable()

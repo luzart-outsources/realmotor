@@ -367,6 +367,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2796959335327496990}
+  - {fileID: 3030807291257637873}
   m_Father: {fileID: 8236191084375562002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.39152086, y: 0}
@@ -556,7 +557,6 @@ RectTransform:
   - {fileID: 3198591688632691706}
   - {fileID: 1122825121114083524}
   - {fileID: 4683400652243588042}
-  - {fileID: 3030807291257637873}
   m_Father: {fileID: 2262676026220531941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1378,11 +1378,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5741695330892044954}
-  m_Father: {fileID: 8236191084375562002}
+  m_Father: {fileID: 1122825121114083524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -288.30188, y: 260}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 879.978, y: -280}
   m_SizeDelta: {x: 370.73022, y: 120.44769}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2823264571161238665
@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.6284912
+  m_EffectFactor: 0.066212416
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -1527,7 +1527,7 @@ MonoBehaviour:
     LoopType: 0
     DelayPerOneTimeLoop: 0
   _vector3Options:
-    From: {x: 500, y: 260, z: 0}
+    From: {x: 1000, y: -280, z: 0}
     EndTo: {x: -1, y: -1, z: -1}
   _canvasGroupOptions:
     From: 0
@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0.6284912
+  m_EffectFactor: 0.066212416
   m_Width: 0.11
   m_Rotation: 135
   m_Softness: 0.01
@@ -2403,6 +2403,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6466571175821881801, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: typeWhere
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6917039941362119763, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Name
       value: btnAds
@@ -2425,7 +2429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_EffectFactor
-      value: 0.6284912
+      value: 0.066212416
       objectReference: {fileID: 0}
     - target: {fileID: 7581881112191386006, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_AnchoredPosition.x

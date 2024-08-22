@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
@@ -92,8 +90,20 @@ public class DataManager : Singleton<DataManager>
                 BuyBody(resource.type.id);
             }
             AddRes(resource);
+
+            LogFirebase(resource);
+
         }
+
         SaveGameData();
+
+        void LogFirebase(DataResource resource)
+        {
+            var dataRes = new ParameterFirebaseCustom(KeyTypeFirebase.Res, $"{resource.type.ToKeyString}");
+            var dataAmount = new ParameterFirebaseCustom(KeyTypeFirebase.Amount, $"{resource.amount}");
+            ParameterFirebaseCustom [] para = new ParameterFirebaseCustom[] {dataRes, dataAmount};
+            FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.ReceiveResource, para);
+        }
     }
     public int Gold
     {

@@ -120,6 +120,11 @@ public class UIWinClassic : UIBase
             OnShowCompleteAnim?.Invoke();
         });
     }
+    private int level;
+    public void InitLevel(int level)
+    {
+        this.level = level;
+    }
 
     public void InitDataDashboard(List<DataItemWinLeaderboardUI> listData)
     {
@@ -195,6 +200,7 @@ public class UIWinClassic : UIBase
     }
     private void ClickClaimReward(float x)
     {
+        FirebaseNotificationLog.LogLevel(KeyFirebase.ClickClaimAdsWin, level);
         AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonXRewardOnWin, () =>
         {
             IsShowCoinInWin = true;

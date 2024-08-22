@@ -169,6 +169,7 @@ public class GameCoordinator : MonoBehaviour
     private Sequence sqStartGame;
     public void StartRace()
     {
+        FirebaseNotificationLog.LogLevel(KeyFirebase.StartLevel,db_Level.level);
         foreach (var item in listLeaderBoard)
         {
             item.StartRace();
@@ -279,6 +280,11 @@ public class GameCoordinator : MonoBehaviour
                 UpdateLeaderBoard();
                 countLeaderBoard = listResult.Count - 1; 
                 bool isWin = listResult.Count <= 3;
+                FirebaseNotificationLog.LogLevel(KeyFirebase.EndLevel, db_Level.level);
+                if (!isWin)
+                {
+                    FirebaseNotificationLog.LogLevel(KeyFirebase.LevelFail, db_Level.level);
+                }
                 GameUtil.Instance.WaitAndDo(5f, () => ActionOnEndGame?.Invoke(isWin));
                 OnVisualEndGame();
             }

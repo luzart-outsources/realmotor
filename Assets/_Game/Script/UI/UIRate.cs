@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using UnityEngine;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class UIRate : UIBase
 {
@@ -30,6 +31,12 @@ public class UIRate : UIBase
         {
             Hide();
         }
+        else if (IsShowedRateLevel)
+        {
+            Hide();
+            return;
+        }
+        IsShowedRateLevel = true;
     }
     private void ClickButton(ButtonSelect btn)
     {
@@ -55,7 +62,7 @@ public class UIRate : UIBase
         }
         Hide();
     }
-    private string KEY_SHOW_RATE = "Show_Rate";
+    private string KEY_SHOW_RATE = "show_rate";
     private bool IsShowedRate
     {
         get
@@ -67,6 +74,26 @@ public class UIRate : UIBase
         {
             int boolean = value ? 1 : 0;
             PlayerPrefs.SetInt(KEY_SHOW_RATE, boolean);
+            PlayerPrefs.Save();
+        }
+    }
+    private string KEY_SHOW_RATE_LEVEL(int value)
+    {
+        return $"show_rate_level {value}";
+    }
+    private bool IsShowedRateLevel
+    {
+        get
+        {
+            int level = DataManager.Instance.CurrentLevel;
+            int boolean = PlayerPrefs.GetInt(KEY_SHOW_RATE_LEVEL(level), 0);
+            return boolean != 0;
+        }
+        set
+        {
+            int level = DataManager.Instance.CurrentLevel;
+            int boolean = value ? 1 : 0;
+            PlayerPrefs.SetInt(KEY_SHOW_RATE_LEVEL(level), boolean);
             PlayerPrefs.Save();
         }
     }

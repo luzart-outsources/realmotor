@@ -12,7 +12,7 @@ public class UICoinSpawn : UIBase
             var coinObserver = FindObjectOfType<CoinObserver>();
             if(coinObserver != null)
             {
-                target = coinObserver.transform;
+                target = coinObserver.imCoin.transform;
             }
             if(target != null)
             {

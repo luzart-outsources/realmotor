@@ -25,12 +25,12 @@ public class AdsWrapperManager : Singleton<AdsWrapperManager>
     }
     public void ShowInter(string where, Action onDone)
     {
-        //if (DataManager.Instance.CurrentLevel >= CustomManager.Ins.RemoteConfigCustom.levelShowAds)
-        //{
-        //    GameUtil.Log(where);
-        //    AdsManager.ShowInterstitial(where, onDone);
-        //}
-        //else
+        if (DataManager.Instance.CurrentLevel >= CustomManager.Ins.RemoteConfigCustom.levelShowAds)
+        {
+            GameUtil.Log(where);
+            AdsManager.ShowInterstitial(where, onDone);
+        }
+        else
         {
             onDone?.Invoke();
         }

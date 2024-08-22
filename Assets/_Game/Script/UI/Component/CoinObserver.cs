@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class CoinObserver : MonoBehaviour
 {
+    public Image imCoin;
     public TMP_Text txtGold;
     public Button btnAddCoin;
     private Action actionAddCoin;
@@ -40,6 +41,7 @@ public class CoinObserver : MonoBehaviour
     private void ClickAddCoin()
     {
         //actionAddCoin?.Invoke();
+        FirebaseNotificationLog.LogEvent(KeyFirebase.ClickBtnAddCoin);
         UIManager.Instance.ShowUI(UIName.AddCoin);
     }
     private void AutoSetText(object data)

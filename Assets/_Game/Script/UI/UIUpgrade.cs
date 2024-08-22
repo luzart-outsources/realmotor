@@ -107,6 +107,11 @@ public class UIUpgrade : UIBase
         int indexStats = GameUtil.GetIndexStats(myStats);
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
         DataManager.Instance.UpgradeMotor(idCurMotor, indexStats);
+
+
+        ParameterFirebaseCustom parameter = new ParameterFirebaseCustom(KeyTypeFirebase.Res, new DataTypeResource(RES_type.Bike, idCurMotor).ToKeyString);
+        FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.UpgradeMotor(indexStats), parameter);
+
         uiShiny.Play(false);
         AudioManager.Instance.PlaySFXUpgradeMotor();
         RefreshUI();

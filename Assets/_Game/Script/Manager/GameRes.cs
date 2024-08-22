@@ -179,6 +179,17 @@ public struct DataTypeResource
         }
         return false;
     }
+    public string GetKeyString(RES_type resType, int id)
+    {
+        return $"{resType}_{id}";
+    }
+    public string ToKeyString
+    {
+        get
+        {
+            return $"{type}_{id}";
+        }
+    }
 }
 public enum RES_type
 {
