@@ -124,8 +124,12 @@ public class UIGameplay : UIBase
     {
         countdown.InitCountDown(3, 0, ()=>
         {
-            StartGame();
-            action?.Invoke();
+            countdown.txt.text = "GO!";
+            DOVirtual.DelayedCall(1f, () =>
+            {
+                StartGame();
+                action?.Invoke();
+            }).SetId(this);
         }) ;
     }
     public void StartGame()
@@ -175,5 +179,9 @@ public class UIGameplay : UIBase
         {
             emission.rateOverTime = 0;
         }
+    }
+    private void OnDisable()
+    {
+        this.DOKill();
     }
 }

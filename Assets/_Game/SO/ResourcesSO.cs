@@ -111,43 +111,92 @@ public class ResourcesSO : ScriptableObject
         }
         dbResUpgradeMotor = list.ToArray();
     }
+    //[Sirenix.OdinInspector.Button]
+    //private void SetDBResBuyHelmet()
+    //{
+    //    List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
+    //    int length = characterSO.helmetPaths.Length;
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        DB_ResourcesBuy newA = new DB_ResourcesBuy();
+    //        var data = new DataResource();
+    //        data.amount = 1;
+    //        data.type = new DataTypeResource(RES_type.Helmet, i);
+    //        newA.dataRes = data;
+    //        newA.placeBuy = PlaceBuy.Racer;
+    //        newA.valueBuy = 1000;
+    //        newA.typeBuy = TypeBuy.Gold;
+    //        list.Add(newA);
+    //    }
+    //    dbResBuyHelmet = list.ToArray();
+    //}
+    //[Sirenix.OdinInspector.Button]
+    //private void SetDBResBuyBody()
+    //{
+    //    List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
+    //    int length = characterSO.clothesPaths.Length;
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        DB_ResourcesBuy newA = new DB_ResourcesBuy();
+    //        var data = new DataResource();
+    //        data.amount = 1;
+    //        data.type = new DataTypeResource(RES_type.Body, i);
+    //        newA.dataRes = data;
+    //        newA.placeBuy = PlaceBuy.Racer;
+    //        newA.valueBuy = 1000;
+    //        newA.typeBuy = TypeBuy.Gold;
+    //        list.Add(newA);
+    //    }
+    //    dbResBuyBody = list.ToArray();
+    //}
+    int[,] data = new int[,]
+{
+    { 50, 75, 100, 125, 150 },
+    { 175, 200, 225, 250, 275 },
+    { 300, 325, 350, 375, 400 },
+    { 550, 575, 600, 625, 650 },
+    { 800, 825, 850, 875, 900 },
+    { 925, 950, 975, 1000, 1025 },
+    { 1050, 1075, 1100, 1125, 1150 },
+    { 1175, 1200, 1225, 1250, 1275 },
+    { 1300, 1325, 1350, 1375, 1400 },
+    { 1425, 1450, 1475, 1500, 1525 },
+    { 1550, 1575, 1600, 1625, 1650 },
+    { 1675, 1700, 1725, 1750, 1775 }
+};
+
     [Sirenix.OdinInspector.Button]
-    private void SetDBResBuyHelmet()
+    public void ConvertToCost()
     {
-        List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
-        int length = characterSO.helmetPaths.Length;
+        int length = dbResUpgradeMotor.Length;
         for (int i = 0; i < length; i++)
         {
-            DB_ResourcesBuy newA = new DB_ResourcesBuy();
-            var data = new DataResource();
-            data.amount = 1;
-            data.type = new DataTypeResource(RES_type.Helmet, i);
-            newA.dataRes = data;
-            newA.placeBuy = PlaceBuy.Racer;
-            newA.valueBuy = 1000;
-            newA.typeBuy = TypeBuy.Gold;
-            list.Add(newA);
+            var item = dbResUpgradeMotor[i];
+            int lengthUp = item.dB_ResourcesUpgradeMotorLevel.Length;
+            for (int j = 0; j < lengthUp; j++)
+            {
+                var itemUpgrade = item.dB_ResourcesUpgradeMotorLevel[j];
+                int lengthRes = itemUpgrade.dB_ResourcesBuys.Length;
+                for (int z = 0; z < lengthRes; z++)
+                {
+                    var cost = itemUpgrade.dB_ResourcesBuys[z];
+                    cost.valueBuy = data[i, z];
+                }
+            }
+
         }
-        dbResBuyHelmet = list.ToArray();
     }
     [Sirenix.OdinInspector.Button]
-    private void SetDBResBuyBody()
+    public void SetAllCostHelmetAndBody()
     {
-        List<DB_ResourcesBuy> list = new List<DB_ResourcesBuy>();
-        int length = characterSO.clothesPaths.Length;
+        int length = dbResBuyHelmet.Length;
         for (int i = 0; i < length; i++)
         {
-            DB_ResourcesBuy newA = new DB_ResourcesBuy();
-            var data = new DataResource();
-            data.amount = 1;
-            data.type = new DataTypeResource(RES_type.Body, i);
-            newA.dataRes = data;
-            newA.placeBuy = PlaceBuy.Racer;
-            newA.valueBuy = 1000;
-            newA.typeBuy = TypeBuy.Gold;
-            list.Add(newA);
+            var item = dbResBuyHelmet[i];
+            item.valueBuy = 3000;
+            var itemBody = dbResBuyBody[i];
+            itemBody.valueBuy = 3000;
         }
-        dbResBuyBody = list.ToArray();
     }
 #endif
 }
@@ -159,6 +208,7 @@ public class DB_ResourcesBuy
     public PlaceBuy placeBuy;
     public TypeBuy typeBuy;
     public int valueBuy;
+    public string strOther;
     [JsonIgnore]
     [HideInInspector]
     public bool isHas;

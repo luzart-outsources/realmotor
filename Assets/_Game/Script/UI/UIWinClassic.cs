@@ -104,6 +104,7 @@ public class UIWinClassic : UIBase
     }
     public Transform targetFlag;
     private Sequence sqVisual;
+    public Action OnShowCompleteAnim;
     public void OnSequenceVisual()
     {
         sqVisual = DOTween.Sequence();
@@ -115,6 +116,7 @@ public class UIWinClassic : UIBase
         {
             obScreen.SetActive(true);
             OnMoveItem();
+            OnShowCompleteAnim?.Invoke();
         });
     }
 

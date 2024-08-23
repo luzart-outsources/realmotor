@@ -44,6 +44,7 @@ public class UIManager : Singleton<UIManager>
             {UIName.Home,"0,0,UIHome" },
             {UIName.DailyReward,"1,0,UIDailyReward" },
             {UIName.ReceiveRes,"2,0,UIReceiveRes" },
+            {UIName.Rate,"2,0,UIRate" },
     };
 
     private Dictionary<UIName, DataUIBase> dic2;
@@ -358,6 +359,7 @@ public enum UIName
     Home = 17,
     DailyReward = 18,
     ReceiveRes = 19,
+    Rate = 20,
 }
 public class DataUIBase
 {

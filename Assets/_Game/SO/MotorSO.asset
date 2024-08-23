@@ -42,10 +42,11 @@ MonoBehaviour:
   - id: 13
     path: Motor_13
   dB_Motors:
-  - nameMotor: Applita
-    nameModelMotor: RX Double-C 2018
+  - idMotor: 0
+    nameMotor: Applita
+    nameModelMotor: RX Double
     rank: 1
-    idMotor: 0
+    idVisualMotor: 2
     inforMotorbike:
       maxSpeed: 80
       acceleration: 20
@@ -56,10 +57,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: BMV
+  - idMotor: 1
+    nameMotor: BMV
     nameModelMotor: S1001RR
     rank: 0
-    idMotor: 1
+    idVisualMotor: 1
     inforMotorbike:
       maxSpeed: 86
       acceleration: 22
@@ -70,10 +72,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: DemiMa
+  - idMotor: 2
+    nameMotor: DemiMa
     nameModelMotor: DD 2017
     rank: 2
-    idMotor: 2
+    idVisualMotor: 0
     inforMotorbike:
       maxSpeed: 92
       acceleration: 24
@@ -84,24 +87,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Dicatu
-    nameModelMotor: Lovene
-    rank: 0
-    idMotor: 3
-    inforMotorbike:
-      maxSpeed: 98
-      acceleration: 26
-      handling: 43
-      brake: 45
-    inforUpgrade:
-      maxSpeed: 1
-      acceleration: 1
-      handling: 1
-      brake: 1
-  - nameMotor: Kameha
+  - idMotor: 3
+    nameMotor: Kameha
     nameModelMotor: Shadow Hawk DP18
     rank: 1
-    idMotor: 4
+    idVisualMotor: 4
     inforMotorbike:
       maxSpeed: 98
       acceleration: 26
@@ -112,24 +102,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: DICATU
-    nameModelMotor: Desmodromic RR
-    rank: 1
-    idMotor: 5
-    inforMotorbike:
-      maxSpeed: 133
-      acceleration: 55
-      handling: 75
-      brake: 55
-    inforUpgrade:
-      maxSpeed: 1
-      acceleration: 1
-      handling: 1
-      brake: 1
-  - nameMotor: BigBull
+  - idMotor: 4
+    nameMotor: BigBull
     nameModelMotor: RX15
     rank: 2
-    idMotor: 6
+    idVisualMotor: 6
     inforMotorbike:
       maxSpeed: 104
       acceleration: 28
@@ -140,10 +117,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: SakeRace
+  - idMotor: 5
+    nameMotor: SakeRace
     nameModelMotor: VR01 Plus
     rank: 2
-    idMotor: 7
+    idVisualMotor: 7
     inforMotorbike:
       maxSpeed: 110
       acceleration: 30
@@ -154,10 +132,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Daksol
+  - idMotor: 6
+    nameMotor: Daksol
     nameModelMotor: RV 2024
     rank: 2
-    idMotor: 8
+    idVisualMotor: 8
     inforMotorbike:
       maxSpeed: 116
       acceleration: 32
@@ -168,10 +147,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Sukuzu
+  - idMotor: 7
+    nameMotor: Sukuzu
     nameModelMotor: GTS-XX 2018
     rank: 3
-    idMotor: 9
+    idVisualMotor: 9
     inforMotorbike:
       maxSpeed: 122
       acceleration: 34
@@ -182,10 +162,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Kameha
+  - idMotor: 8
+    nameMotor: Kameha
     nameModelMotor: YZL-N2
     rank: 3
-    idMotor: 10
+    idVisualMotor: 10
     inforMotorbike:
       maxSpeed: 128
       acceleration: 36
@@ -196,10 +177,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Dicatu
+  - idMotor: 9
+    nameMotor: Dicatu
     nameModelMotor: DI 11
     rank: 3
-    idMotor: 11
+    idVisualMotor: 11
     inforMotorbike:
       maxSpeed: 134
       acceleration: 38
@@ -210,10 +192,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Dicatu
+  - idMotor: 10
+    nameMotor: Dicatu
     nameModelMotor: Evil 2018
     rank: 4
-    idMotor: 12
+    idVisualMotor: 12
     inforMotorbike:
       maxSpeed: 140
       acceleration: 40
@@ -224,10 +207,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Dicatu
+  - idMotor: 11
+    nameMotor: Dicatu
     nameModelMotor: Ghoul Rider FS 2023
     rank: 4
-    idMotor: 13
+    idVisualMotor: 13
     inforMotorbike:
       maxSpeed: 146
       acceleration: 42
@@ -239,10 +223,11 @@ MonoBehaviour:
       handling: 1
       brake: 1
   db_MotorBots:
-  - nameMotor: Xe Rom Nhat 0
+  - idMotor: 0
+    nameMotor: Xe Rom Nhat 0
     nameModelMotor: Khum bit dou
     rank: 0
-    idMotor: 0
+    idVisualMotor: 0
     inforMotorbike:
       maxSpeed: 70
       acceleration: 15
@@ -253,10 +238,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Rom Nhat 1
+  - idMotor: 1
+    nameMotor: Xe Rom Nhat 1
     nameModelMotor: Khum bit dou
     rank: 0
-    idMotor: 1
+    idVisualMotor: 1
     inforMotorbike:
       maxSpeed: 80
       acceleration: 17
@@ -267,10 +253,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Rom Vua 2
+  - idMotor: 2
+    nameMotor: Xe Rom Vua 2
     nameModelMotor: Khum bit dou
     rank: 1
-    idMotor: 2
+    idVisualMotor: 2
     inforMotorbike:
       maxSpeed: 90
       acceleration: 19
@@ -281,10 +268,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Rom Vua 3
+  - idMotor: 3
+    nameMotor: Xe Rom Vua 3
     nameModelMotor: Khum bit dou
     rank: 1
-    idMotor: 3
+    idVisualMotor: 3
     inforMotorbike:
       maxSpeed: 95
       acceleration: 21
@@ -295,10 +283,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Rom 4
+  - idMotor: 4
+    nameMotor: Xe Rom 4
     nameModelMotor: Khum bit dou
     rank: 1
-    idMotor: 4
+    idVisualMotor: 4
     inforMotorbike:
       maxSpeed: 100
       acceleration: 23
@@ -309,10 +298,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Rom 5
+  - idMotor: 5
+    nameMotor: Xe Rom 5
     nameModelMotor: Khum bit dou
     rank: 2
-    idMotor: 5
+    idVisualMotor: 5
     inforMotorbike:
       maxSpeed: 105
       acceleration: 25
@@ -323,10 +313,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe binh thuong 6
+  - idMotor: 6
+    nameMotor: Xe binh thuong 6
     nameModelMotor: Khum bit dou
     rank: 2
-    idMotor: 6
+    idVisualMotor: 6
     inforMotorbike:
       maxSpeed: 110
       acceleration: 27
@@ -337,10 +328,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe binh thuong 7
+  - idMotor: 7
+    nameMotor: Xe binh thuong 7
     nameModelMotor: Khum bit dou
     rank: 2
-    idMotor: 7
+    idVisualMotor: 7
     inforMotorbike:
       maxSpeed: 115
       acceleration: 29
@@ -351,10 +343,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Xin 8
+  - idMotor: 8
+    nameMotor: Xe Xin 8
     nameModelMotor: Khum bit dou
     rank: 2
-    idMotor: 8
+    idVisualMotor: 8
     inforMotorbike:
       maxSpeed: 120
       acceleration: 31
@@ -365,10 +358,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Xin 9
+  - idMotor: 9
+    nameMotor: Xe Xin 9
     nameModelMotor: Khum bit dou
     rank: 3
-    idMotor: 9
+    idVisualMotor: 9
     inforMotorbike:
       maxSpeed: 125
       acceleration: 33
@@ -379,10 +373,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Xin Hon 10
+  - idMotor: 10
+    nameMotor: Xe Xin Hon 10
     nameModelMotor: Khum bit dou
     rank: 3
-    idMotor: 10
+    idVisualMotor: 10
     inforMotorbike:
       maxSpeed: 130
       acceleration: 35
@@ -393,10 +388,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Xin Hon 11
+  - idMotor: 11
+    nameMotor: Xe Xin Hon 11
     nameModelMotor: Khum bit dou
     rank: 3
-    idMotor: 11
+    idVisualMotor: 11
     inforMotorbike:
       maxSpeed: 135
       acceleration: 37
@@ -407,10 +403,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Xin Nhat 12
+  - idMotor: 12
+    nameMotor: Xe Xin Nhat 12
     nameModelMotor: Khum bit dou
     rank: 4
-    idMotor: 12
+    idVisualMotor: 12
     inforMotorbike:
       maxSpeed: 140
       acceleration: 39
@@ -421,10 +418,11 @@ MonoBehaviour:
       acceleration: 1
       handling: 1
       brake: 1
-  - nameMotor: Xe Xin Nhat 13
+  - idMotor: 13
+    nameMotor: Xe Xin Nhat 13
     nameModelMotor: Khum bit dou
     rank: 4
-    idMotor: 13
+    idVisualMotor: 13
     inforMotorbike:
       maxSpeed: 145
       acceleration: 41

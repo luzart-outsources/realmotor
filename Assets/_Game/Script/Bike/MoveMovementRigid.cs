@@ -436,8 +436,6 @@ public class MoveMovementRigid : MotorMovement
             if (baseMotor.baseMotorbike.eTeam == ETeam.Player)
             AudioManager.Instance.PlaySFXCrashMotor();
             motorPartner.OnCollisionBike(this);
-            Vector3 direction = motorPartner.transform.position - transform.position;
-            motorPartner._rb.AddForce(direction.normalized*100f);
             OnCollisionBike(this);
         }
     }

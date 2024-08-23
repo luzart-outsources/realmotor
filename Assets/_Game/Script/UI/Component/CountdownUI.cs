@@ -30,7 +30,7 @@ public class CountdownUI : MonoBehaviour
         this.targetCount = targetCount;
         currentCount = firstCount;
         this.onDone = onDone;
-        txt.text = currentCount.ToString();
+        SetText(currentCount.ToString());
         StartCountDown();
 
     }
@@ -50,13 +50,19 @@ public class CountdownUI : MonoBehaviour
         {
             yield return wait;
             currentCount--;
-            txt.transform.DOPunchScale(Vector3.one, 0.1f, 1, 0.1f);
-            txt.text = currentCount.ToString();
-            if(currentCount == targetCount)
+            SetText(currentCount.ToString());
+            if (currentCount == targetCount)
             {
                 onDone?.Invoke();
             }
         }
+    }
+    private Tween tw;
+    private void SetText(string str)
+    {
+        txt.text = str;
+        tw?.Kill();
+        tw = txt.transform.DOPunchScale(Vector3.one * 1.1f - Vector3.one, 0.5f, 1, 1);
     }
     private void OnDisable()
     {

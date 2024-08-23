@@ -221,6 +221,7 @@ public class HelicopterCamera : MonoBehaviour
                 typeVertical = TypeVertical.Down;
                 curTime += Time.deltaTime;
                 cameraFOV = curveMinFOV.Evaluate(curTime);
+                isUpper = true;
             }
             else if(baseMotorbike.valueVerticle > 0)
             {
@@ -237,8 +238,18 @@ public class HelicopterCamera : MonoBehaviour
             }
             else
             {
+                if(isUpper)
+                {
+                    curTimeUnVerticle = 0;
+                }
+                curTimeUnVerticle += Time.deltaTime;
+                if(curTimeUnVerticle >= 1)
+                {
+                    usedDistance = Mathf.SmoothDampAngle(usedDistance, distance, ref zVelocity, distanceSnapTime);
+                }
                 cameraFOV = Mathf.Lerp(cameraFOV, 60, Time.deltaTime / 2);
                 typeVertical = TypeVertical.None;
+                isUpper = false;
             }
 
         }
@@ -249,6 +260,8 @@ public class HelicopterCamera : MonoBehaviour
 
         transform.position = wantedPosition;
     }
+    private bool isUpper = false;
+    private float curTimeUnVerticle = 0;
     private enum TypeVertical
     {
         None = 0,

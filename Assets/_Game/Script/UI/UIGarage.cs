@@ -99,6 +99,10 @@ public class UIGarage : UIBase
     {
         base.Show(onHideDone);
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
+        RefreshOnShow();
+    }
+    private void RefreshOnShow()
+    {
         currentItemClick = DataManager.Instance.GameData.idCurMotor;
         SpawnList();
         currentItemClick = GetIdMotorInAllMotor(currentItemClick);
@@ -298,6 +302,8 @@ public class UIGarage : UIBase
         DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
         AudioManager.Instance.PlaySFXUnlockMotor();
         currentItemClick = itemCache.currentIndex;
+        DataManager.Instance.GameData.idCurMotor = resourcesBuy.dataRes.type.id;
+        RefreshOnShow();
         RefreshUI();
     }
     private void BuyAds()
@@ -315,6 +321,8 @@ public class UIGarage : UIBase
             AudioManager.Instance.PlaySFXUnlockMotor();
             DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
         }
+        DataManager.Instance.GameData.idCurMotor = resourcesBuy.dataRes.type.id;
+        RefreshOnShow();
         RefreshUI();
     }
     private void OnFailedShowAds()

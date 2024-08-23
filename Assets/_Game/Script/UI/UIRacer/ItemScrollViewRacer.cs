@@ -21,7 +21,7 @@ public class ItemScrollViewRacer : MonoBehaviour
             return _rectTransform;
         }
     }
-    public Image imMotorBike;
+    public ResUI resUI;
     public TMP_Text txtName;
     public Button btn;
     public GameObject obSelect;
@@ -41,7 +41,7 @@ public class ItemScrollViewRacer : MonoBehaviour
         resourcesBuy = dbResource;
         SetUnLock(dbResource.isHas);
         //txtName.text = dbResource.nameMotor;
-        imMotorBike.sprite = resourcesBuy.dataRes.spIcon;
+        resUI.InitData(resourcesBuy.dataRes);
         SelectMotorBike(false);
     }
     private void ClickMotor()

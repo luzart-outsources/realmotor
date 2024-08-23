@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174ba00ec747a494a9ffc308625e7f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imMotorBike: {fileID: 3967686026552576470}
+  resUI: {fileID: 8404088923214001346}
   txtName: {fileID: 550918223131602547}
   btn: {fileID: 5536332252114784364}
   obSelect: {fileID: 1588106846536564424}
@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 5914757523108867540}
   - component: {fileID: 1636743194877355195}
   - component: {fileID: 3967686026552576470}
+  - component: {fileID: 8404088923214001346}
   m_Layer: 5
   m_Name: imIcon
   m_TagString: Untagged
@@ -395,6 +396,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8404088923214001346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226780488522721673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6421e1b1918a1444914781df1f2dc0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imIcon: {fileID: 3967686026552576470}
+  imBg: {fileID: 0}
+  txt: {fileID: 0}
+  preStr: 
+  endStr: 
 --- !u!1 &5659360230474155929
 GameObject:
   m_ObjectHideFlags: 0

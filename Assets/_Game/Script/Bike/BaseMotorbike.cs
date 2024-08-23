@@ -124,7 +124,8 @@ public class BaseMotorbike : MonoBehaviour
     {
         this.dbMotorbike = dbMotorBike;
         this.dbCharacter = db_Character;
-        var prefabs = ResourcesManager.Instance.LoadMotor(dbMotorbike.idMotor);
+        var db_Motor = DataManager.Instance.motorSO.GetDBMotor(dbMotorBike.idMotor);
+        var prefabs = ResourcesManager.Instance.LoadMotor(db_Motor.idVisualMotor);
         baseMotor.visualMotor = Instantiate(prefabs, parentVisualMotor);
         baseMotor.visualMotor.transform.localPosition = Vector3.zero;
         baseMotor.transform.localScale = Vector3.one*0.53f;

@@ -49,7 +49,8 @@ public class GarageManager : MonoBehaviour
     public void SpawnMotorVisual(int idMotor)
     {
         RemoveMotorCache();
-        var motorVisual = ResourcesManager.Instance.LoadMotor(idMotor);
+        var db_Motor = DataManager.Instance.motorSO.GetDBMotor(idMotor);
+        var motorVisual = ResourcesManager.Instance.LoadMotor(db_Motor.idVisualMotor);
         _motorCache = Instantiate(motorVisual, parentSpawnMotor);
         _motorCache.transform.localPosition = Vector3.zero;
         softShadowProjector.SetCommandBufferDirty();

@@ -32,6 +32,7 @@ public class ClassicMode : BaseMode
         currentLevel = level;
         db_Level = DataManager.Instance.levelSO.GetDB_Level(currentLevel);
     }
+    private bool isWin;
     public override void OnEndGame(bool isWin)
     {
         if (GameManager.Instance.EGameStatus == EGameState.None)
@@ -39,6 +40,7 @@ public class ClassicMode : BaseMode
             return;
         }
         base.OnEndGame(isWin);
+        this.isWin = isWin;
         GameManager.Instance.gameCoordinator.EndGame(isWin);
         if(GameManager.Instance.gameCoordinator.myMotorbike.eState == EStateMotorbike.Finish)
         {
@@ -93,6 +95,24 @@ public class ClassicMode : BaseMode
             ui.InitDataRes(isWin, dataValueWin);
             ui.InitDataDashboard(GameManager.Instance.gameCoordinator.listDataItemWinLeaderBoard);
             ui.OnSequenceVisual();
+        }
+    }
+    private void CheckShowPopUpRate()
+    {
+        if(isWin && IsShowRate(DataManager.Instance.CurrentLevel) && IsShowRate(currentLevel))
+        {
+            UIManager.Instance.ShowUI(UIName.Rate);
+        }
+
+
+
+        bool IsShowRate(int data)
+        {
+            return
+                data == 5 ||
+                data == 11 ||
+                data == 15 ||
+                data == 20;
         }
     }
     private void OnDisable()

@@ -18,7 +18,7 @@ public class ItemSelectMotorbikeUI : MonoBehaviour
             return _rectTransform;
         }
     }
-    public Image imMotorBike;
+    public ResUI resUI;
     public TMP_Text txtName;
     public Button btn;
     public GameObject obSelect;
@@ -42,7 +42,7 @@ public class ItemSelectMotorbikeUI : MonoBehaviour
         DB_Motor db_motor = DataManager.Instance.motorSO.GetDBMotor(dbMotorbike.idMotor);
         txtName.text = db_motor.nameMotor;
         resourcesBuy = DataManager.Instance.resourceBuySO.GetResourcesBuy(new DataTypeResource(RES_type.Bike,dbMotorbike.idMotor), PlaceBuy.Garage);
-        imMotorBike.sprite = resourcesBuy.dataRes.spIcon;
+        resUI.InitData(resourcesBuy.dataRes);
         SelectMotorBike(false);
     }
     private void ClickMotor()

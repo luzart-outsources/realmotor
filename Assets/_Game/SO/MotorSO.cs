@@ -180,10 +180,11 @@ public struct MotorInforPath
 [System.Serializable]
 public class DB_Motor
 {
+    public int idMotor;
     public string nameMotor;
     public string nameModelMotor;
     public ClassRankMotor rank;
-    public int idMotor;
+    public int idVisualMotor;
     public InforMotorbike inforMotorbike;
     public InforMotorbike inforUpgrade;
     public InforMotorbike GetInforMotorbike(int levelUpgrade)
