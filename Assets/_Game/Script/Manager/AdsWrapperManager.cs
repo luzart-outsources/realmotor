@@ -44,6 +44,8 @@ public static class KeyAds
     public const string ClickButtonWatchAdsGetHelmet = "click_btn_watch_ads_get_helmet";
     public const string ClickButtonWatchAdsGetBody = "click_btn_watch_ads_get_body";
     public const string ClickButtonXRewardOnWin = "click_btn_x_reward_on_win";
+    public const string ClickItemDailyReward = "click_btn_item_daily_reward";
+    public const string ClickItemX2DailyReward = "click_btn_item_x2_daily_reward";
 
     // Button Inter
     public const string BtnGarageRacing = "btn_garage_racing";
