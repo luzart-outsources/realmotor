@@ -15,6 +15,11 @@ public class AdsWrapperManager : Singleton<AdsWrapperManager>
             onDone?.Invoke();
             return;
         }
+        if (TestManager.Instance != null)
+        {
+            onDone?.Invoke();
+            return;
+        }
 #endif
         if (!AdsManager.IsRewardedReady())
         {
@@ -25,6 +30,11 @@ public class AdsWrapperManager : Singleton<AdsWrapperManager>
     }
     public void ShowInter(string where, Action onDone)
     {
+        if (TestManager.Instance != null)
+        {
+            onDone?.Invoke();
+            return;
+        }
         if (DataManager.Instance.CurrentLevel >= CustomManager.Ins.RemoteConfigCustom.levelShowAds)
         {
             GameUtil.Log(where);
