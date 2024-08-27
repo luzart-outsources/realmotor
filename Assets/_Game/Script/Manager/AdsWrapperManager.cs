@@ -25,6 +25,13 @@ public class AdsWrapperManager : Singleton<AdsWrapperManager>
     }
     public void ShowInter(string where, Action onDone)
     {
+#if UNITY_EDITOR
+        if (TestManager.Instance != null)
+        {
+            onDone?.Invoke();
+            return;
+        }
+#endif
         if (DataManager.Instance.CurrentLevel >= CustomManager.Ins.RemoteConfigCustom.levelShowAds)
         {
             GameUtil.Log(where);

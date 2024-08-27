@@ -109,16 +109,21 @@ public class UIGameplay : UIBase
     }
     public void UpdateUI()
     {
-       int round =  GameManager.Instance.gameCoordinator.myMotorbike.round;
-       txtLap.text = $"{round}/{db_Level.lapRequire}";
-       int speed = (int)GameManager.Instance.gameCoordinator.myMotorbike.Speed;
-       int maxSpeed = (int)GameManager.Instance.gameCoordinator.myMotorbike.inforMotorbike.maxSpeed;
-       txtVelocity.text = $"{speed}";
-       float factor = (float)speed / (float)maxSpeed;
-       float valueClock = (maxClockwise - minClockwise) * factor;
-       imClockFilled.fillAmount = minClockwise + valueClock; 
-       txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, true, "", "", "", "");
+        var myMotorbike = GameManager.Instance.gameCoordinator.myMotorbike;
+        int round = myMotorbike.round;
+        txtLap.text = $"{round}/{db_Level.lapRequire}";
+        txtTime.text = GameUtil.FloatTimeSecondToUnixTime(GameManager.Instance.gameCoordinator.timePlay, true, "", "", "", "");
 
+        int speed = (int)myMotorbike.Speed;
+        int maxSpeed = (int)myMotorbike.inforMotorbike.maxSpeed;
+
+        txtVelocity.text = $"{speed}";
+
+        float factor = (float)speed / (float)maxSpeed;
+        float valueClock = (maxClockwise - minClockwise) * factor;
+        imClockFilled.fillAmount = minClockwise + valueClock;
+
+        SetFXLineSpeed(speed, maxSpeed);
     }
     public void StartCountDown(Action action)
     {

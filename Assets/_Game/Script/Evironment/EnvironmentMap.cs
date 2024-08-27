@@ -33,7 +33,7 @@ public class EnvironmentMap : MonoBehaviour
 
     public SequenceCameraCinemachineTrackedDolly cameraStartGame;
     public SequenceCameraCinemachineTrackedDolly cameraEndGame; 
-    public void StartCamereGame()
+    public void StartCameraGame()
     {
         cameraStartGame.gameObject.SetActive(true);
     }

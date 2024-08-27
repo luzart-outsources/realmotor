@@ -278,7 +278,7 @@ public class BaseMotorbike : MonoBehaviour
             }
 
 
-            GameManager.Instance.gameCoordinator.OnPassFinishLine(this);
+            GameManager.Instance.gameCoordinator.OnMemberPassFinishLine(this);
 
         }
 
