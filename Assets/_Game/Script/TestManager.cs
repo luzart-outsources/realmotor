@@ -9,4 +9,17 @@ public class TestManager : MonoBehaviour
     {
         Instance = this;
     }
+
+#if UNITY_EDITOR
+
+    [Sirenix.OdinInspector.Button]
+    public void CrossProduct(Vector3 vt1, Vector3 vt2)
+    {
+        Debug.Log(Vector3.Cross(vt1, vt2)); 
+    }
+
+
+
+
+#endif
 }

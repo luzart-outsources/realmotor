@@ -34,7 +34,7 @@ namespace MoreMountains.HighroadEngine
 		// Feel free to edit these values. Just be sure to test thoroughly the new AI vehicle driving behaviour
 		public float _largeAngleDistance = 90f; // When angle between front of the vehicle and target waypoint are distant 
         public  float _smallAngleDistance = 30f;  // When angle between front of the vehicle and target waypoint are near
-        public float _minimalSpeedForBrakes = 0.5f; // When vehicle is at least at this speed, AI can use brakes
+        public float _minimalSpeedForBrakes = 0.1f; // When vehicle is at least at this speed, AI can use brakes
         public float _maximalDistanceStuck = 0.5f; // Distance to consider vehicle stuck
 
 		public List<Vector3> _AIWaypoints;
@@ -113,6 +113,13 @@ namespace MoreMountains.HighroadEngine
 
             CalculateValues();
 
+            if(baseMotorBike!= null && baseMotorBike.eTeam == ETeam.Player)
+            {
+                Debug.Log($"Acce {_acceleration} + Direction {_direction}");
+            }
+
+
+
             // we update controller inputs
             if (_acceleration > 0)
             {
@@ -139,38 +146,43 @@ namespace MoreMountains.HighroadEngine
                 UnHorizontal();
             }
         }
-        private void OnAIMoveFinish()
-        {
-            if (IsStuck())
-            {
-                //_controller.Respawn();
-                return;
-            }
 
-            EvaluateNextWaypoint();
 
-            EvaluateDirection();
 
-            CalculateValues();
+        //private void OnAIMoveFinish()
+        //{
+        //    if (IsStuck())
+        //    {
+        //        //_controller.Respawn();
+        //        return;
+        //    }
 
-            if (IsDontControll)
-            {
-                return;
-            }
+        //    EvaluateNextWaypoint();
 
-            if (_direction > 0f)
-            {
-                MoveRight();
-            }
-            else if (_direction < 0f)
-            {
-                MoveLeft();
-            }
-            else
-            {
-                UnHorizontal();
-            }
-        }
+        //    EvaluateDirection();
+
+        //    CalculateValues();
+
+        //    if (IsDontControll)
+        //    {
+        //        return;
+        //    }
+
+        //    if (_direction > 0f)
+        //    {
+        //        MoveRight();
+        //    }
+        //    else if (_direction < 0f)
+        //    {
+        //        MoveLeft();
+        //    }
+        //    else
+        //    {
+        //        UnHorizontal();
+        //    }
+        //}
+
+
         /// <summary>
         /// Reset next AI waypoint to closest
         /// </summary>
@@ -269,6 +281,7 @@ namespace MoreMountains.HighroadEngine
 			// we compute the target vector between the vehicle and the next waypoint on a plane (without Y axis)
 			targetVector = _targetWaypoint - transform.position;
 			targetVector.y = 0;
+            targetVector = targetVector.normalized;
 			Vector3 transformForwardPlane = transform.forward;
 			transformForwardPlane.y = 0;
 			// then we measure the angle from vehicle forward to target Vector
@@ -279,11 +292,14 @@ namespace MoreMountains.HighroadEngine
 			// this value indicates if the vehicle has to move towards the left or right
             int newDir = cross.y >= 0 ? 1 : -1;
             float turn = baseMotorBike.inforMotorbike.handling * Time.deltaTime;
+
+
             _newDirection = 0;
 
             if (turn > _targetAngleAbsolute)
             {
-                transform.LookAt(_targetWaypoint);
+                transform.forward = targetVector.normalized;
+                //transform.Rotate(0, _targetAngleAbsolute * newDir, 0);
                 IsDontControll = true;
                 return;
             }
@@ -359,10 +375,19 @@ namespace MoreMountains.HighroadEngine
 			// we draw a line between the vehicle & target waypoint
 			if (_AIWaypoints != null && (_AIWaypoints.Count >= (_currentWaypoint + 1)))
 			{
-				Gizmos.color = Color.yellow;
+				Gizmos.color = Color.green;
 				Gizmos.DrawLine(transform.position, _AIWaypoints[_currentWaypoint]);
 			}
-
+            if(baseMotorBike!=null && baseMotorBike.eTeam == ETeam.Player)
+            {
+                int length = _AIWaypoints.Count;
+                for (int i = 0; i < length; i++)
+                {
+                    int next = (i + 1) % length;
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawLine(_AIWaypoints[i], _AIWaypoints[next]);
+                }
+            }
 			#endif
 		}
 

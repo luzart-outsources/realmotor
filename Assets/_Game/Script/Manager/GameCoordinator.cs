@@ -1,6 +1,4 @@
-using Cinemachine;
 using DG.Tweening;
-using DynamicShadowProjector.Sample;
 using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
@@ -14,17 +12,16 @@ public class GameCoordinator : MonoBehaviour
     public Action<BaseMotorbike> ActionOnFinishLine = null;
     public Action<bool> ActionOnEndGame = null;
 
+    private EnvironmentMap environmentMap;
     public WavingPointGizmos wavingPointGizmos;
     public MiniMapEnvironment miniMapEnvironment;
 
     [SerializeField]
     private BaseMotorbike baseMotorBike;
     [SerializeField]
-    private Transform parentEnvironment;
-    [SerializeField]
     private Transform parentMotor;
 
-    private EnvironmentMap environmentMap;
+
     private List<BaseMotorbike> listBot = new List<BaseMotorbike>();
     private List<DB_MotorbikeBot> listDBBot = new List<DB_MotorbikeBot>();
     public BaseMotorbike myMotorbike;
@@ -38,12 +35,13 @@ public class GameCoordinator : MonoBehaviour
     public int countLeaderBoard = 0;
     public DB_Level db_Level;
 
-
     public float timePlay = 0;
     private UIGameplay uiGameplay = null;
 
     private EGameState gameState;
 
+
+    #region TEST
 #if UNITY_EDITOR
     public DB_Level db_levelEditor;
 #endif
@@ -51,21 +49,23 @@ public class GameCoordinator : MonoBehaviour
     {
 #if UNITY_EDITOR
         EnvironmentMap envi = FindAnyObjectByType<EnvironmentMap>();
-        ResetData();
+        ResetDataRacing();
         db_Level = db_levelEditor;
         EnvironmentMap.actionMap = OnLoadMapDone;
 
         uiGameplay = UIManager.Instance.ShowUI<UIGameplay>(UIName.Gameplay);
         uiGameplay.InitData(db_Level);
         envi.InvokeRegisterMap();
-        StartInGame();
+        OnStartVisualInGame();
 
 #endif
     }
+    #endregion
 
-    public void StartGame(DB_Level _dbLevel)
+    #region StartGame
+    public void InitStartGame(DB_Level _dbLevel)
     {
-        ResetData();
+        ResetDataRacing();
         db_Level = _dbLevel;
 
         EnvironmentMap.actionMap = OnLoadMapDone;
@@ -73,124 +73,66 @@ public class GameCoordinator : MonoBehaviour
         LoadMap();
         uiGameplay = UIManager.Instance.ShowUI<UIGameplay>(UIName.Gameplay);
         uiGameplay.InitData(db_Level);
-
-
     }
     private void OnLoadMapDone(EnvironmentMap map)
     {
+        this.environmentMap = map;
+        environmentMap.cameraStartGame.ActionOnDoneCamera = OnEndActionCameraStartGame;
+        environmentMap.cameraEndGame.ActionOnDoneCamera = OnEndCameraEndGame;
+
+        // Set Gamestate 
         gameState = EGameState.None;
-        environmentMap = map;
-        environmentMap.transform.localPosition = Vector3.zero;
-        environmentMap.transform.rotation = Quaternion.identity;
-
-
-        SetUpLighting(map);
+        InitMap();
 
         LoadPlayer();
         LoadBot();
 
-        InitMap();
         InitPlayer();
         InitBot();
+
+        // Leaderboard, blabla ...
         InitLeaderBoard();
         InitAllOtherData();
-        //CameraManager.Instance.helicopterCamera.transform.position = (myMotorbike.parentCam).position;
-        //CameraManager.Instance.helicopterCamera.transform.rotation = (myMotorbike.parentCam).rotation;
-        //baseMotorBike.eState = EStateMotorbike.Start;
+
+        // StartGame
+        CameraManager.Instance.SetFollowCamera(myMotorbike.posCamera, myMotorbike);
+        StartAnimationCameraGame();
+    }
+    private void StartAnimationCameraGame()
+    {
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(true);
         CameraManager.Instance.helicopterCamera.cameraMain.enabled = false;
-        CameraManager.Instance.SetFollowCamera(myMotorbike.posCamera, myMotorbike);
+
+
         Vector3 pos = CameraManager.Instance.helicopterCamera.GetTargetPosition(myMotorbike.posCamera);
         Quaternion rot = CameraManager.Instance.helicopterCamera.GetRotation(myMotorbike.posCamera);
-        CameraManager.Instance.helicopterCamera.transform.position = pos;
-        CameraManager.Instance.helicopterCamera.transform.rotation = rot;
-        map.cameraStartGame.groupPathCinemachine[0].follow = myMotorbike.targetCameraStartGame;
-        map.cameraStartGame.groupPathCinemachine[0].lookAt = myMotorbike.targetCameraStartGame;
-        map.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.position= pos;
-        //map.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.rotation= rot;
-        
 
-        map.cameraStartGame.ActionOnDoneCamera = StartGame;
-        map.cameraEndGame.ActionOnDoneCamera = CameraEndGame;
+        environmentMap.cameraStartGame.groupPathCinemachine[0].follow = myMotorbike.targetCameraStartGame;
+        environmentMap.cameraStartGame.groupPathCinemachine[0].lookAt = myMotorbike.targetCameraStartGame;
+
+        environmentMap.cameraStartGame.groupPathCinemachine[0].cinemachineSmoothPath.transform.position = pos;
     }
-    private void SetUpLighting(EnvironmentMap map)
-    {
-        Color color = Color.white;
-        float intensity = 0.4f;
-        if (map.isOverrideMotorLighting)
-        {
-            color = map.colorMotorLighting;
-            intensity = map.intensityMotorLighting;
-        }
-        CameraManager.Instance.lightMotor.color = color;
-        CameraManager.Instance.lightMotor.intensity = intensity;
-    }
-    public void ShowHideUIController(bool status)
-    {
-        if (gameState == EGameState.Finish)
-        {
-            return;
-        }
-        uiGameplay.SetStatusUIController(status);
-    }
-    public void StartInGame()
+    public void OnStartVisualInGame()
     {
         AudioManager.Instance.PlayMusicBgInGame();
-        environmentMap.StartCamereGame();
+        environmentMap.StartCameraGame();
     }
-    public void StartGame()
+    public void StartRacing()
     {
-        //uiGameplay.FadeOutCanvasGroupStartGame(1f, () =>
-        //{
-
-
-        //});
-        CameraManager.Instance.helicopterCamera.transform.position = environmentMap.cameraStartGame.cameraMain.transform.position;
-        CameraManager.Instance.helicopterCamera.cameraMain.transform.eulerAngles = environmentMap.cameraStartGame.cameraMain.transform.eulerAngles;
-        environmentMap.cameraStartGame.groupPathCinemachine[0].virtualCamera.LookAt = myMotorbike.transform;
-        CameraManager.Instance.helicopterCamera.enabled = false ;
-
-
-        CameraManager.Instance.helicopterCamera.enabled = true;
-        CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
-        environmentMap.cameraStartGame.gameObject.SetActive(false);
-        sqStartGame = DOTween.Sequence();
-        sqStartGame.Append(uiGameplay.SetShowScreen(true));
-        sqStartGame.AppendInterval(0.1f);
-        sqStartGame.AppendCallback(() =>
-        {
-            uiGameplay.StartCountDown(() =>
-            {
-                StartRace();
-            });
-        });
-        sqStartGame.SetId(this);
-
-    }
-    private Sequence sqStartGame;
-    public void StartRace()
-    {
-        FirebaseNotificationLog.LogLevel(KeyFirebase.StartLevel,db_Level.level);
         foreach (var item in listLeaderBoard)
         {
             item.StartRace();
         }
         StartUpdateLeaderBoard();
-    }
-    private void ResetData()
-    {
-        timePlay = 0;
-        listBot.Clear();
-        listDBBot.Clear();
-        myMotorbike = null;
-        myDBMotorbike = null;
-        listResult = new List<BaseMotorbike>();
-    }
-    private void InitAllOtherData()
-    {
-        UpdateDbLeaderBoardInGameUI();
-        uiGameplay.InitList(listDBLeaderBoardInGame);
 
+        PushFirebase();
+
+
+
+        void PushFirebase()
+        {
+            FirebaseNotificationLog.LogLevel(KeyFirebase.StartLevel, db_Level.level);
+        }
     }
     private void LoadMap()
     {
@@ -235,17 +177,34 @@ public class GameCoordinator : MonoBehaviour
             listDBBot.Add(db);
         }
     }
-
     private void InitMap()
     {
+        environmentMap.transform.localPosition = Vector3.zero;
+        environmentMap.transform.rotation = Quaternion.identity;
+
         wavingPointGizmos = environmentMap.wavingPointGizmos;
         miniMapEnvironment = environmentMap.miniMapEnvironment;
+
+        SetUpLighting();
+
+        void SetUpLighting()
+        {
+            Color color = Color.white;
+            float intensity = 0.4f;
+            if (environmentMap.isOverrideMotorLighting)
+            {
+                color = environmentMap.colorMotorLighting;
+                intensity = environmentMap.intensityMotorLighting;
+            }
+            CameraManager.Instance.lightMotor.color = color;
+            CameraManager.Instance.lightMotor.intensity = intensity;
+        }
     }
     private void InitPlayer()
     {
         InforMotorbike infor = ConfigStats.GetInforMotorbike(myDBMotorbike.idMotor, myDBMotorbike.levelUpgrades);
-        //BaseController controller = myMotorbike.AddComponent<VehicleAI>();
         BaseController controller = uiGameplay.UIController;
+        //controller = myMotorbike.gameObject.AddComponent<VehicleAI>();
         myMotorbike.Initialize(infor, controller, ETeam.Player);
         myMotorbike.InitStartRace();
         myMotorbike.strMyName = DataManager.Instance.GameData.name;
@@ -254,7 +213,7 @@ public class GameCoordinator : MonoBehaviour
     private void InitBot()
     {
         var ids = db_Level.idBot;
-        int length = listBot.Count; 
+        int length = listBot.Count;
 
         for (int i = 0; i < length; i++)
         {
@@ -262,85 +221,134 @@ public class GameCoordinator : MonoBehaviour
             var bot = listBot[i];
             InforMotorbike infor = ConfigStats.GetInforMotorbikeBot(db.db_Motorbike.idMotor, db.db_Motorbike.levelUpgrade);
             VehicleAI controller = bot.gameObject.AddComponent<VehicleAI>();
-            bot.Initialize(infor,controller, ETeam.AI);
+            bot.Initialize(infor, controller, ETeam.AI);
             bot.InitStartRace();
             bot.strMyName = db.name;
         }
     }
-    public List<BaseMotorbike> listResult = new List<BaseMotorbike>();
-    public void OnPassFinishLine(BaseMotorbike motorFinish)
+    private void InitAllOtherData()
     {
-        if(motorFinish.round >= db_Level.lapRequire)
+        UpdateDbLeaderBoardInGameUI();
+        uiGameplay.InitList(listDBLeaderBoardInGame);
+
+    }
+    private void ResetDataRacing()
+    {
+        timePlay = 0;
+        listBot.Clear();
+        listDBBot.Clear();
+        myMotorbike = null;
+        myDBMotorbike = null;
+        listResult = new List<BaseMotorbike>();
+    }
+    #endregion
+
+    #region EndGame
+    public List<BaseMotorbike> listResult = new List<BaseMotorbike>();
+    public void OnMemberPassFinishLine(BaseMotorbike motorFinish)
+    {
+        if (motorFinish.round >= db_Level.lapRequire)
         {
             listResult.Add(motorFinish);
             motorFinish.OnFinishRace();
             if (motorFinish.eTeam == ETeam.Player)
             {
-                StopUpdateLeaderBoard();
-                UpdateCoordinator();
-                UpdateLeaderBoard();
-                countLeaderBoard = listResult.Count - 1; 
-                bool isWin = listResult.Count <= 3;
-                FirebaseNotificationLog.LogLevel(KeyFirebase.EndLevel, db_Level.level);
-                if (!isWin)
-                {
-                    FirebaseNotificationLog.LogLevel(KeyFirebase.LevelFail, db_Level.level);
-                }
-                GameUtil.Instance.WaitAndDo(5f, () => OnEndGameShowAds(isWin));
-                OnVisualEndGame();
+                OnPlayerEndRace();
+            }
+        }
+    }
+    private void OnPlayerEndRace()
+    {
+        StopIEUpdateLeaderBoard();
+        UpdateCoordinator();
+        UpdateLeaderBoard();
+
+        countLeaderBoard = listResult.Count - 1;
+        bool isWin = listResult.Count <= 3;
+
+        GameUtil.Instance.WaitAndDo(5f, () => OnEndGameShowAds(isWin));
+        OnVisualEndGame();
+
+
+        PushFirebaseEndGame(isWin);
+        void PushFirebaseEndGame(bool isWin)
+        {
+            FirebaseNotificationLog.LogLevel(KeyFirebase.EndLevel, db_Level.level);
+            if (!isWin)
+            {
+                FirebaseNotificationLog.LogLevel(KeyFirebase.LevelFail, db_Level.level);
             }
         }
 
+        void OnEndGameShowAds(bool isWin)
+        {
+            AdsWrapperManager.Instance.ShowInter(KeyAds.OnEndRace, () => ActionOnEndGame?.Invoke(isWin));
+        }
     }
-    private void OnEndGameShowAds(bool isWin)
+    public void OnEndActionCameraStartGame()
     {
-        AdsWrapperManager.Instance.ShowInter(KeyAds.OnEndRace, () => ActionOnEndGame?.Invoke(isWin));
-        
+        CameraManager.Instance.helicopterCamera.transform.position = environmentMap.cameraStartGame.cameraMain.transform.position;
+        CameraManager.Instance.helicopterCamera.cameraMain.transform.eulerAngles = environmentMap.cameraStartGame.cameraMain.transform.eulerAngles;
+
+        CameraManager.Instance.helicopterCamera.enabled = true;
+        CameraManager.Instance.helicopterCamera.cameraMain.enabled = true;
+        environmentMap.cameraStartGame.gameObject.SetActive(false);
+
+        Sequence sqVisualStartGame = DOTween.Sequence();
+        sqVisualStartGame.Append(uiGameplay.SetShowScreen(true));
+        sqVisualStartGame.AppendInterval(0.1f);
+        sqVisualStartGame.AppendCallback(() =>
+        {
+            uiGameplay.StartCountDown(() =>
+            {
+                StartRacing();
+            });
+        });
+        sqVisualStartGame.SetId(this);
+
     }
-    private Sequence sqEndGame;
+    public void OnEndCameraEndGame()
+    {
+        environmentMap.cameraEndGame.gameObject.SetActive(false);
+        CameraManager.Instance.helicopterCamera.cameraMain.enabled = true;
+    }
     private void OnVisualEndGame()
     {
-        sqEndGame = DOTween.Sequence();
+        Sequence sqEndGame = DOTween.Sequence();
         sqEndGame.Append(uiGameplay.SetShowScreen(false));
         sqEndGame.Append(uiGameplay.SetBlackScreen(true));
         sqEndGame.AppendCallback(() =>
         {
             CameraManager.Instance.helicopterCamera.cameraMain.enabled = (false);
             environmentMap.cameraEndGame.SetLookAt(myMotorbike.transform);
-            //environmentMap.cameraEndGame.groupPathCinemachine[1].follow = (myMotorbike.parentCam);
-            //environmentMap.cameraEndGame.groupPathCinemachine[1].lookAt = (myMotorbike.transform);
             environmentMap.StartCameraEndGame();
         });
 
     }
-    public void EndGame(bool isWin)
+    public void EndGameData(bool isWin)
     {
         OnCompleteDataLeaderboard();
-        StopUpdateLeaderBoard();
+        StopIEUpdateLeaderBoard();
         gameState = EGameState.Finish;
 
     }
     public void DestroyAllBike()
     {
-        if(myMotorbike != null && myMotorbike.gameObject!=null)
+        if (myMotorbike != null && myMotorbike.gameObject != null)
         {
             Destroy(myMotorbike.gameObject);
         }
         int length = listBot.Count;
         for (int i = 0; i < length; i++)
         {
-            if(listBot[0] != null && listBot[0].gameObject != null)
+            if (listBot[0] != null && listBot[0].gameObject != null)
             {
                 Destroy(listBot[0].gameObject);
             }
             listBot.RemoveAt(0);
         }
     }
-    public void CameraEndGame()
-    {
-        environmentMap.cameraEndGame.gameObject.SetActive(false);
-        CameraManager.Instance.helicopterCamera.cameraMain.enabled = (true);
-    }
+    #endregion
     public List<DataItemWinLeaderboardUI> listDataItemWinLeaderBoard = new List<DataItemWinLeaderboardUI>();
     private void OnCompleteDataLeaderboard()
     {
@@ -350,26 +358,25 @@ public class GameCoordinator : MonoBehaviour
 
         AddResultItemsToLeaderboard(listResult, ref countIndex);
         AddRemainingItemsToLeaderboard(listRemain, ref countIndex);
-    }
 
-    private void AddResultItemsToLeaderboard(List<BaseMotorbike> listResult, ref int countIndex)
-    {
-        foreach (var item in listResult)
+        void AddResultItemsToLeaderboard(List<BaseMotorbike> listResult, ref int countIndex)
         {
-            DataItemWinLeaderboardUI data = CreateLeaderboardData(item, ref countIndex);
-            listDataItemWinLeaderBoard.Add(data);
+            foreach (var item in listResult)
+            {
+                DataItemWinLeaderboardUI data = CreateLeaderboardData(item, ref countIndex);
+                listDataItemWinLeaderBoard.Add(data);
+            }
+        }
+
+        void AddRemainingItemsToLeaderboard(List<BaseMotorbike> listRemain, ref int countIndex)
+        {
+            foreach (var item in listRemain)
+            {
+                DataItemWinLeaderboardUI data = CreateLeaderboardData(item, ref countIndex, true);
+                listDataItemWinLeaderBoard.Add(data);
+            }
         }
     }
-
-    private void AddRemainingItemsToLeaderboard(List<BaseMotorbike> listRemain, ref int countIndex)
-    {
-        foreach (var item in listRemain)
-        {
-            DataItemWinLeaderboardUI data = CreateLeaderboardData(item, ref countIndex, true);
-            listDataItemWinLeaderBoard.Add(data);
-        }
-    }
-
     private DataItemWinLeaderboardUI CreateLeaderboardData(BaseMotorbike item, ref int countIndex, bool isRemaining = false)
     {
         DataItemWinLeaderboardUI data = new DataItemWinLeaderboardUI
@@ -383,8 +390,19 @@ public class GameCoordinator : MonoBehaviour
 
         countIndex++;
         return data;
-    }
 
+
+        string GetMotorName(int idMotor)
+        {
+            DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(idMotor);
+            return motor.nameMotor;
+        }
+
+        string GetName(ETeam eTeam, string strMyName)
+        {
+            return eTeam == ETeam.Player ? DataManager.Instance.GameData.name : strMyName;
+        }
+    }
     private string GetTimeForItem(BaseMotorbike item, bool isRemaining)
     {
         float timeEach = item.timePlay;
@@ -393,18 +411,30 @@ public class GameCoordinator : MonoBehaviour
             timeEach = timePlay + DisFromTarget(item) / (item.inforMotorbike.maxSpeed + UnityEngine.Random.Range(-5, 5));
         }
 
-        return GameUtil.FloatTimeSecondToUnixTime(timeEach, true,"","","","");
-    }
+        return GameUtil.FloatTimeSecondToUnixTime(timeEach, true, "", "", "", "");
 
-    private string GetMotorName(int idMotor)
-    {
-        DB_Motor motor = DataManager.Instance.motorSO.GetDBMotor(idMotor);
-        return motor.nameMotor;
-    }
 
-    private string GetName(ETeam eTeam, string strMyName)
-    {
-        return eTeam == ETeam.Player ? DataManager.Instance.GameData.name : strMyName;
+        float DisFromTarget(BaseMotorbike mine)
+        {
+            int cur = mine.currentIndex;
+            int next = wavingPointGizmos.GetLastIndex();
+            var disMe = mine.GetDistanceFromTarget();
+            int length = wavingPointGizmos.allWavePoint.Length;
+            next = next + (db_Level.lapRequire - mine.round) * length;
+            cur++;
+            next++;
+            float disReal = 0;
+            for (int i = cur; i < next; i++)
+            {
+                int indexMe = i % length;
+                int indexReal = (i + 1) % length;
+                float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
+                disReal += dis;
+            }
+            disReal = disReal - disMe;
+
+            return disReal;
+        }
     }
     private void InitLeaderBoard()
     {
@@ -415,10 +445,10 @@ public class GameCoordinator : MonoBehaviour
     }
     private void StartUpdateLeaderBoard()
     {
-        StopUpdateLeaderBoard();
+        StopIEUpdateLeaderBoard();
         corUpdateLeaderBoard = StartCoroutine(IEUpdateLeaderBoard());
     }
-    private void StopUpdateLeaderBoard()
+    private void StopIEUpdateLeaderBoard()
     {
         if (corUpdateLeaderBoard != null)
         {
@@ -428,24 +458,22 @@ public class GameCoordinator : MonoBehaviour
     private Coroutine corUpdateLeaderBoard = null;
     private IEnumerator IEUpdateLeaderBoard()
     {
-
         while (true)
         {
             yield return null;
-            UpdateLeaderBoard();
             timePlay += Time.deltaTime;
+            UpdateLeaderBoard();
             UpdateCoordinator();
         }
     }
-
     private void UpdateCoordinator()
     {
-        if(uiGameplay == null)
+        if (uiGameplay == null)
         {
             return;
         }
         uiGameplay.UpdateUI();
-        uiGameplay.SetFXLineSpeed(myMotorbike.Speed, myMotorbike.inforMotorbike.maxSpeed);
+
     }
     private void UpdateDbLeaderBoardInGameUI()
     {
@@ -484,32 +512,11 @@ public class GameCoordinator : MonoBehaviour
         var disMe = mine.GetDistanceFromTarget();
 
         int length = wavingPointGizmos.allWavePoint.Length;
-        next = next + (enemy.round - mine.round)* length;
-        if(cur == next)
+        next = next + (enemy.round - mine.round) * length;
+        if (cur == next)
         {
             return disMe - disEnemy;
         }
-        cur++;
-        next++;
-        float disReal = 0;
-        for (int i = cur  ;i < next;i++)
-        {
-            int indexMe = i % length;
-            int indexReal = (i+1) % length;
-            float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
-            disReal += dis;
-        }
-        disReal = disReal - disEnemy + disMe;
-
-        return disReal;
-    }
-    private float DisFromTarget(BaseMotorbike mine)
-    {
-        int cur = mine.currentIndex;
-        int next = wavingPointGizmos.GetLastIndex();
-        var disMe = mine.GetDistanceFromTarget();
-        int length = wavingPointGizmos.allWavePoint.Length;
-        next = next + (db_Level.lapRequire - mine.round) * length;
         cur++;
         next++;
         float disReal = 0;
@@ -520,7 +527,7 @@ public class GameCoordinator : MonoBehaviour
             float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
             disReal += dis;
         }
-        disReal = disReal - disMe;
+        disReal = disReal - disEnemy + disMe;
 
         return disReal;
     }
@@ -529,7 +536,7 @@ public class GameCoordinator : MonoBehaviour
     {
         for (int i = 0; i < listLeaderBoard.Count; i++)
         {
-            if(listLeaderBoard[i] == null)
+            if (listLeaderBoard[i] == null)
             {
                 return;
             }
@@ -551,29 +558,44 @@ public class GameCoordinator : MonoBehaviour
         });
 
         UpdateDbLeaderBoardInGameUI();
-        uiGameplay.UpdateDistanceLeaderBoard(listDBLeaderBoardInGame);
-        curTime += Time.deltaTime;
-        if(curTime > 1f)
-        {
-            UpdateVisualLeaderboard();
-            curTime = 0;
-        }
-
+        UpdateVisualLeaderboard();
     }
     private float curTime = 0;
     private void UpdateVisualLeaderboard()
     {
-        int length = listLeaderBoard.Count;
-        for (int i = 0; i < length; i++)
+        uiGameplay.UpdateDistanceLeaderBoard(listDBLeaderBoardInGame);
+
+        curTime += Time.deltaTime;
+        if (curTime > 1f)
         {
-            var item = listLeaderBoard[i];
-            item.UpdateIndex(i + 1);
+            UpdateVisualIndexLeaderboard();
+            curTime = 0;
         }
-        uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
+        
+        void UpdateVisualIndexLeaderboard()
+        {
+            int length = listLeaderBoard.Count;
+            for (int i = 0; i < length; i++)
+            {
+                var item = listLeaderBoard[i];
+                item.UpdateIndex(i + 1);
+            }
+            uiGameplay.UpdateLeaderBoard(listDBLeaderBoardInGame);
+        }
     }
 
 
 
+    #region Other Action
+    public void ShowHideUIController(bool status)
+    {
+        if (gameState == EGameState.Finish)
+        {
+            return;
+        }
+        uiGameplay.SetStatusUIController(status);
+    }
+    #endregion
     private void SetNameEditor(GameObject ob, string name)
     {
 #if UNITY_EDITOR

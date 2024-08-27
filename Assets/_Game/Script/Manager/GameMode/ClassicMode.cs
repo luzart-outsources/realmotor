@@ -20,10 +20,10 @@ public class ClassicMode : BaseMode
         InitData(level);
         UIManager.Instance.LoadScene(() =>
         {
-            gameCoordinator.StartGame(db_Level);
+            gameCoordinator.InitStartGame(db_Level);
         }, () =>
         {
-            gameCoordinator.StartInGame();
+            gameCoordinator.OnStartVisualInGame();
         });
         gameCoordinator.ActionOnEndGame = OnEndGame;
     }
@@ -41,7 +41,7 @@ public class ClassicMode : BaseMode
         }
         base.OnEndGame(isWin);
         this.isWin = isWin;
-        GameManager.Instance.gameCoordinator.EndGame(isWin);
+        GameManager.Instance.gameCoordinator.EndGameData(isWin);
         if(GameManager.Instance.gameCoordinator.myMotorbike.eState == EStateMotorbike.Finish)
         {
             ReceiveRewardWin(isWin);
