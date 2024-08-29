@@ -106,7 +106,17 @@ public static class KeyFirebase
     public static string ClickClaimAdsWin = "claim_ads_win";
     public static string ReceiveResource = "receive_resource";
     public static string ClickBtnAddCoin = "click_btn_addcoin";
+    public static string StepShowLeaderboard = "step_show_leaderboard";
+    public static string StepShowInforGold = "step_show_inforgold";
+    public static string StepShowUpgrade = "step_show_upgrade";
+    public static string StepClickRace = "step_click_race";
+    public static string StepBackUpgrade = "step_back_upgrade";
+    public static string StepClickUpgradeUpgrade = "step_click_upgrade_upgrade";
 
+    public static string StepUpgradeMotor(int indexStats)
+    {
+        return $"step_upgrade_motor_{indexStats}";
+    }
     public static string UpgradeMotor(int indexStats)
     {
         return $"upgrade_motor_{indexStats}";

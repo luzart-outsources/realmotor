@@ -50,7 +50,7 @@ public class UISelectLevel : UIBase
     private void ClickBack()
     {
         Hide();
-        UIManager.Instance.ShowUI(UIName.SelectLevel);
+        UIManager.Instance.ShowGarage();
     }
     public override void Show(Action onHideDone)
     {
