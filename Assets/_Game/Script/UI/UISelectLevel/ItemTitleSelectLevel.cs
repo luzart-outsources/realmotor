@@ -11,7 +11,7 @@ public class ItemTitleSelectLevel : ButtonSelect
     protected override void Start()
     {
         base.Start();
-        GameUtil.ButtonOnClick(btn, ClickAction, IsAnim, KeyAds.BtnSelectLevelTitle);
+        GameUtil.ButtonOnClick(btn, ClickAction, IsAnim);
     }
     public void SetTextTitle(string str)
     {

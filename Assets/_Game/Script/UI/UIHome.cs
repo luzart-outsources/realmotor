@@ -14,7 +14,7 @@ public class UIHome : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
+        GameUtil.ButtonOnClick(btnRacing, ClickRacing, true, KeyAds.BtnHomeRacing);
         GameUtil.ButtonOnClick(btnGarage, ClickGarage, true);
         GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true);
         GameUtil.ButtonOnClick(btnShop, ClickShop, true);
@@ -23,7 +23,7 @@ public class UIHome : UIBase
     }
     private void ClickRacing()
     {
-        AdsWrapperManager.Instance.ShowInter(KeyAds.BtnHomeRacing, () => UIManager.Instance.ShowUI(UIName.SelectMode));
+        UIManager.Instance.ShowUI(UIName.SelectLevel);
     }
     private void ClickGarage()
     {

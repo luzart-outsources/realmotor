@@ -96,7 +96,7 @@ public class UIUpgrade : UIBase
     }
     private void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectMode);
+        UIManager.Instance.ShowUI(UIName.SelectLevel);
     }
     private void ClickSettings()
     {

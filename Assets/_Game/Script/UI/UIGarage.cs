@@ -86,7 +86,7 @@ public class UIGarage : UIBase
     }
     public void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectMode);
+        UIManager.Instance.ShowUI(UIName.SelectLevel);
     }
     public void ClickUpgrade()
     {
