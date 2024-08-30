@@ -20,7 +20,7 @@ public class BaseMotorbike : MonoBehaviour
     [SerializeField]
     private LayerMask layerCheckPoint;
     private string _strMyName;
-    public string strMyName 
+    public string strMyName
     {
         get
         {
@@ -30,20 +30,20 @@ public class BaseMotorbike : MonoBehaviour
         {
             inforRacing.InitName(value);
             _strMyName = value;
-        } 
+        }
     }
     public ETeam eTeam { get; set; }
     [SerializeField]
     private Transform parentVisualMotor;
     [SerializeField]
     private InforRacing inforRacing;
-    
-    public DB_Motorbike dbMotorbike { get; set; }   
+
+    public DB_Motorbike dbMotorbike { get; set; }
     private DB_Character dbCharacter;
 
     public SoundMotorbike soundMotorbike;
     private List<int> listIndex = new List<int>();
-    public EStateMotorbike eState{ get; set; }
+    public EStateMotorbike eState { get; set; }
 
     public Transform parentCam;
     public Transform targetCameraStartGame;
@@ -69,7 +69,7 @@ public class BaseMotorbike : MonoBehaviour
     {
         get
         {
-            if(inforMotorbike != null)
+            if (inforMotorbike != null)
             {
                 float maxSpeed = inforMotorbike.maxSpeed;
                 float currentSpeed = Speed;
@@ -110,9 +110,9 @@ public class BaseMotorbike : MonoBehaviour
         this.inforRacing.Initialize(this);
         GetCurrentCheckPoint();
         //transform.LookAt(GameManager.Instance.gameCoordinator.wavingPointGizmos.GetTransformIndex(currentIndex));
-        if(eTeam == ETeam.Player)
+        if (eTeam == ETeam.Player)
         {
-            CameraManager.Instance.SetFollowCamera(posCamera,this);
+            CameraManager.Instance.SetFollowCamera(posCamera, this);
         }
         InitAction();
         isFall = false;
@@ -128,7 +128,7 @@ public class BaseMotorbike : MonoBehaviour
         var prefabs = ResourcesManager.Instance.LoadMotor(db_Motor.idVisualMotor);
         baseMotor.visualMotor = Instantiate(prefabs, parentVisualMotor);
         baseMotor.visualMotor.transform.localPosition = Vector3.zero;
-        baseMotor.transform.localScale = Vector3.one*0.53f;
+        baseMotor.transform.localScale = Vector3.one * 0.53f;
         baseCharacter.InitSpawn(db_Character);
         baseMotor.InitSpawn();
         eState = EStateMotorbike.Start;
@@ -139,9 +139,13 @@ public class BaseMotorbike : MonoBehaviour
         currentIndex = 0;
         listIndex.Add(0);
     }
+    private void OnAdsReInitialize()
+    {
+        AdsWrapperManager.Instance.ShowInter(KeyAds.OnCollisionWall, ReInitialize);
+    }
     public void ReInitialize()
     {
-        if(eState != EStateMotorbike.Finish)
+        if (eState != EStateMotorbike.Finish)
         {
             eState = EStateMotorbike.None;
             if (eTeam == ETeam.Player)
@@ -319,7 +323,7 @@ public class BaseMotorbike : MonoBehaviour
         UnHorizontal();
         isFall = true;
         autoRotation.enabled = true;
-        GameUtil.Instance.WaitAndDo(this,2f, ReInitialize);
+        GameUtil.Instance.WaitAndDo(this,2f, OnAdsReInitialize);
     }
     public void StartRace()
     {

@@ -23,7 +23,7 @@ public class UIHome : UIBase
     }
     private void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectMode);
+        AdsWrapperManager.Instance.ShowInter(KeyAds.BtnHomeRacing, () => UIManager.Instance.ShowUI(UIName.SelectMode));
     }
     private void ClickGarage()
     {

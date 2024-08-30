@@ -1,5 +1,6 @@
 using Cinemachine;
 using DG.Tweening;
+using DynamicShadowProjector.Sample;
 using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
@@ -285,11 +286,16 @@ public class GameCoordinator : MonoBehaviour
                 {
                     FirebaseNotificationLog.LogLevel(KeyFirebase.LevelFail, db_Level.level);
                 }
-                GameUtil.Instance.WaitAndDo(5f, () => ActionOnEndGame?.Invoke(isWin));
+                GameUtil.Instance.WaitAndDo(5f, () => OnEndGameShowAds(isWin));
                 OnVisualEndGame();
             }
         }
 
+    }
+    private void OnEndGameShowAds(bool isWin)
+    {
+        AdsWrapperManager.Instance.ShowInter(KeyAds.OnEndRace, () => ActionOnEndGame?.Invoke(isWin));
+        
     }
     private Sequence sqEndGame;
     private void OnVisualEndGame()

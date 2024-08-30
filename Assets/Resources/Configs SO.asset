@@ -16,7 +16,7 @@ MonoBehaviour:
   firebaseDebuggable: 0
   useAdImpressionValue: 0
   useAppOpenAdmob: 1
-  ignoreAppOpenFirstTime: 1
+  ignoreAppOpenFirstTime: 0
   waitAppOpenTimer: 5
   appOpenIdAdmobAndroid: ca-app-pub-7184522407199366/3769224855
   appOpenIdAdmobIOS: ca-app-pub-7184522407199366/9704547008
@@ -45,7 +45,7 @@ MonoBehaviour:
   adsConfigsAndroid: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
-    true,   "minTimeInterstitialShow": 50,   "decreaseInterTPI": 2,   "interstitial":
+    true,   "minTimeInterstitialShow": 30,   "decreaseInterTPI": 2,   "interstitial":
     [     {       "pos": "btn_garage_racing",       "isShow": true,       "timeShow":
     60     },     {       "pos": "btn_garage_racer",       "isShow": true,      
     "timeShow": 60     },     {       "pos": "btn_garage_upgrade",       "isShow":
@@ -71,11 +71,14 @@ MonoBehaviour:
     "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_resume",      
     "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_restart",      
     "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_home",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_home_racing",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "on_collision_wall",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "on_end_race",      
     "isShow": true,       "timeShow": 60     }   ],   "isEnableNative": false }'
   adsConfigsIOS: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
-    true,   "minTimeInterstitialShow": 50,   "decreaseInterTPI": 2,   "interstitial":
+    true,   "minTimeInterstitialShow": 30,   "decreaseInterTPI": 2,   "interstitial":
     [     {       "pos": "btn_garage_racing",       "isShow": true,       "timeShow":
     60     },     {       "pos": "btn_garage_racer",       "isShow": true,      
     "timeShow": 60     },     {       "pos": "btn_garage_upgrade",       "isShow":
@@ -101,6 +104,9 @@ MonoBehaviour:
     "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_resume",      
     "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_restart",      
     "isShow": true,       "timeShow": 60     },     {       "pos": "btn_resume_home",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "btn_home_racing",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "on_collision_wall",      
+    "isShow": true,       "timeShow": 60     },     {       "pos": "on_end_race",      
     "isShow": true,       "timeShow": 60     }   ],   "isEnableNative": false }'
   customConfigsAndroid: '{   "levelShowAds": 0,   "levelShowRate":0 }'
   customConfigsIOS: '{   "levelShowAds": 0,   "levelShowRate":0 }'

@@ -49,6 +49,7 @@ public static class KeyAds
 
     // Button Inter
     public const string BtnGarageRacing = "btn_garage_racing";
+    public const string BtnHomeRacing = "btn_home_racing";
     public const string BtnGarageRacer = "btn_garage_racer";
     public const string BtnGarageUpgarde = "btn_garage_upgrade";
     public const string BtnGarageSettings = "btn_garage_settings";
@@ -75,6 +76,10 @@ public static class KeyAds
     public const string BtnResumeHome = "btn_resume_home";
 
     // End Button
+
+    //Inter
+    public const string OnCollisionWall = "on_collision_wall";
+    public const string OnEndRace = "on_end_race";
 }
 public enum PositionAds
 {
