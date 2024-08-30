@@ -141,7 +141,7 @@ public class BaseMotorbike : MonoBehaviour
     }
     private void OnAdsReInitialize()
     {
-        if(eTeam == ETeam.Player)
+        if(eTeam == ETeam.Player && eState != EStateMotorbike.Finish)
         {
             AdsWrapperManager.Instance.ShowInter(KeyAds.OnCollisionWall, ReInitialize);
         }
