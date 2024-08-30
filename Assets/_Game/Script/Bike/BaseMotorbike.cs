@@ -141,7 +141,15 @@ public class BaseMotorbike : MonoBehaviour
     }
     private void OnAdsReInitialize()
     {
-        AdsWrapperManager.Instance.ShowInter(KeyAds.OnCollisionWall, ReInitialize);
+        if(eTeam == ETeam.Player)
+        {
+            AdsWrapperManager.Instance.ShowInter(KeyAds.OnCollisionWall, ReInitialize);
+        }
+        else
+        {
+            ReInitialize();
+        }
+
     }
     public void ReInitialize()
     {
