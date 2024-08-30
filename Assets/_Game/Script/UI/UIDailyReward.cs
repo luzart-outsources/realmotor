@@ -69,7 +69,13 @@ public class UIDailyReward : UIBase
             EStateClaimReward eState = GetEStateClaim(index);
             item.Initialize(index, eState, dataDailyRewardUI, ClickItem);
         }
-        bool isEnableX2 = itemDailyRewardUIs[dailyRewardManager.Today].eStateClaim == EStateClaimReward.CanReceive;
+        int today = dailyRewardManager.Today;
+        if(today >= itemDailyRewardUIs.Length)
+        {
+            btnX2Reward.gameObject.SetActive(false);
+            return;
+        }
+        bool isEnableX2 = itemDailyRewardUIs[today].eStateClaim == EStateClaimReward.CanReceive;
         btnX2Reward.gameObject.SetActive(isEnableX2);
     }
     private EStateClaimReward GetEStateClaim(int index)

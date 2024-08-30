@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b5a6030cbad434297fac6c47fb3c69, type: 3}
   m_Name: Configs SO
   m_EditorClassIdentifier: 
-  debuggable: 1
+  debuggable: 0
   firebaseDebuggable: 0
   useAdImpressionValue: 0
-  useAppOpenAdmob: 0
-  ignoreAppOpenFirstTime: 0
-  waitAppOpenTimer: 0
+  useAppOpenAdmob: 1
+  ignoreAppOpenFirstTime: 1
+  waitAppOpenTimer: 5
   appOpenIdAdmobAndroid: ca-app-pub-5457807375754173/2517346224
   appOpenIdAdmobIOS: ca-app-pub-5457807375754173/9074149742
   isUseCollapByDefault: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
   adsConfigsAndroid: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
-    true,   "minTimeInterstitialShow": 30,   "decreaseInterTPI": 2,   "interstitial":
+    true,   "minTimeInterstitialShow": 50,   "decreaseInterTPI": 2,   "interstitial":
     [     {       "pos": "btn_garage_racing",       "isShow": true,       "timeShow":
     60     },     {       "pos": "btn_garage_racer",       "isShow": true,      
     "timeShow": 60     },     {       "pos": "btn_garage_upgrade",       "isShow":
@@ -75,7 +75,7 @@ MonoBehaviour:
   adsConfigsIOS: '{   "banner": {     "isShow": true,     "isAutoShow": true,    
     "pos": 1   },   "openApp": {     "isShowWhenResume": true,     "isShowAfterFullScreenAds":
     false,     "isShowAfterFullScreenAds2": false   },   "isEnableInterstitial":
-    true,   "minTimeInterstitialShow": 30,   "decreaseInterTPI": 2,   "interstitial":
+    true,   "minTimeInterstitialShow": 50,   "decreaseInterTPI": 2,   "interstitial":
     [     {       "pos": "btn_garage_racing",       "isShow": true,       "timeShow":
     60     },     {       "pos": "btn_garage_racer",       "isShow": true,      
     "timeShow": 60     },     {       "pos": "btn_garage_upgrade",       "isShow":

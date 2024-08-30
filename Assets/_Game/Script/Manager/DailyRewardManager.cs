@@ -69,7 +69,27 @@ public class DailyRewardManager : MonoBehaviour
     }
     public bool IsClaimDay(int day)
     {
+        if(day >= dataDailyReward.isClaim.Length)
+        {
+            return true;
+        }
         return dataDailyReward.isClaim[day];
+    }
+    public bool IsDontClaimAnyDay()
+    {
+        int length = dataDailyReward.isClaim.Length;
+        for (int i = 0; i < length; i++)
+        {
+            if(i > Today)
+            {
+                return false;
+            }
+            if (!dataDailyReward.isClaim[i])
+            {
+                return true;
+            }
+        }
+        return false;
     }
     public void ClaimReward(int day = -1)
     {
