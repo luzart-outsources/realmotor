@@ -137,6 +137,7 @@ public class BaseMotorbike : MonoBehaviour
     {
         round = 0;
         currentIndex = 0;
+        countDead = 0;
         listIndex.Add(0);
     }
     private void OnAdsReInitialize()
@@ -316,6 +317,7 @@ public class BaseMotorbike : MonoBehaviour
         //Brake();
     }
 
+    public int countDead = 0;
     private void OnVisualCharacterCollisionWall (Vector3 velocity)
     {
         if(eState != EStateMotorbike.Finish)
@@ -331,6 +333,7 @@ public class BaseMotorbike : MonoBehaviour
         UnHorizontal();
         isFall = true;
         autoRotation.enabled = true;
+        countDead++;
         GameUtil.Instance.WaitAndDo(this,2f, OnAdsReInitialize);
     }
     public void StartRace()

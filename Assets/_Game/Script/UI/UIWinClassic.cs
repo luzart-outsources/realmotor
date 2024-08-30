@@ -78,11 +78,19 @@ public class UIWinClassic : UIBase
 
         twMissOut?.Kill();
         btnMissOut.gameObject.SetActive(false);
-        twMissOut = DOVirtual.DelayedCall(3f, () =>
+        twMissOut = DOVirtual.DelayedCall(2f, () =>
         {
             btnMissOut.gameObject.SetActive(true);
         });
+        PushFirebaseInforGold();
     }
+    private void PushFirebaseInforGold()
+    {
+        ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+        FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepShowInforGold, param);
+    }
+
+
     public List<ItemLeaderboard> listItemWinLeaderboard = new List<ItemLeaderboard>();
     private List<DataItemWinLeaderboardUI> listDataItemWinLeaderboardUI = new List<DataItemWinLeaderboardUI>();
     private int indexMe;
@@ -118,7 +126,13 @@ public class UIWinClassic : UIBase
             obScreen.SetActive(true);
             OnMoveItem();
             OnShowCompleteAnim?.Invoke();
+            PushFirebaseOnShowLeaderboard();
         });
+    }
+    private void PushFirebaseOnShowLeaderboard()
+    {
+       ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+       FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepShowLeaderboard, param);
     }
     private int level;
     public void InitLevel(int level)
@@ -228,8 +242,16 @@ public class UIWinClassic : UIBase
             UIManager.Instance.ShowGarage();
         }, () =>
         {
-            UIManager.Instance.ShowUI(UIName.Upgrade);
+           var ui =  UIManager.Instance.ShowUI<UIUpgrade>(UIName.Upgrade);
+           ui.isOutUIWin = true;
+            ui.level = level;
+            PushShowStepFirebaseShowUpgrade();
         },1,1);
+    }
+    private void PushShowStepFirebaseShowUpgrade()
+    {
+        ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+        FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepShowUpgrade, param);
     }
 }
 [System.Serializable]

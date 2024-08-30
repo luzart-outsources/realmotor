@@ -273,10 +273,13 @@ public class GameCoordinator : MonoBehaviour
         PushFirebaseEndGame(isWin);
         void PushFirebaseEndGame(bool isWin)
         {
-            FirebaseNotificationLog.LogLevel(KeyFirebase.EndLevel, db_Level.level);
+            ParameterFirebaseCustom[] param = new ParameterFirebaseCustom[2];
+            param[0] = new ParameterFirebaseCustom(KeyTypeFirebase.Amount,myMotorbike.countDead.ToString());
+            param[1] = new ParameterFirebaseCustom(KeyTypeFirebase.Level, db_Level.level.ToString());
+            FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.EndLevel, param);
             if (!isWin)
             {
-                FirebaseNotificationLog.LogLevel(KeyFirebase.LevelFail, db_Level.level);
+                FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.LevelFail, param);
             }
         }
 

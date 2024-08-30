@@ -23,10 +23,13 @@ public class UIUpgrade : UIBase
     public Sprite[] allSprite;
     public TMP_Text txtCur, txtUpgrade;
     public UIShiny uiShiny;
+
+    public bool isOutUIWin { get; set; } = false;
+    public int level { get; set; }
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnUpgradeUpgrade);
+        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true,KeyAds.BtnUpgradeBack);
         GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
         GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
@@ -85,7 +88,19 @@ public class UIUpgrade : UIBase
     }
     private void ClickBack()
     {
-        UIManager.Instance.ShowGarage(UIName.Garage);
+        if (isOutUIWin)
+        {
+            ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+            FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepBackUpgrade, param);
+        }
+
+        UIManager.Instance.ShowGarage(UIName.Garage, onDone : OnDoneShowGarage);
+    }
+    private void OnDoneShowGarage()
+    {
+        UIGarage ui = UIManager.Instance.GetUiActive<UIGarage>(UIName.Garage);
+        ui.isOutInWin = true;
+        ui.level = level;
     }
     private void ClickUpgrade()
     {
@@ -93,10 +108,22 @@ public class UIUpgrade : UIBase
         data.type = new DataTypeResource(RES_type.Gold);
         data.amount = -db_Resbuy.valueBuy;
         DataManager.Instance.AddRes(data, UpgradeComplete);
+        if (isOutUIWin)
+        {
+            ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+            FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepClickUpgradeUpgrade, param);
+        }
     }
     private void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectMode);
+       var ui = UIManager.Instance.ShowUI<UISelectLevel>(UIName.SelectLevel);
+        if (isOutUIWin)
+        {
+            ui.isOutClickLevel = true;
+            ui.level = level;
+            ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+            FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepClickRace, param);
+        }
     }
     private void ClickSettings()
     {
@@ -108,13 +135,28 @@ public class UIUpgrade : UIBase
         int idCurMotor = DataManager.Instance.GameData.idCurMotor;
         DataManager.Instance.UpgradeMotor(idCurMotor, indexStats);
 
-
-        ParameterFirebaseCustom parameter = new ParameterFirebaseCustom(KeyTypeFirebase.Res, new DataTypeResource(RES_type.Bike, idCurMotor).ToKeyString);
-        FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.UpgradeMotor(indexStats), parameter);
-
         uiShiny.Play(false);
         AudioManager.Instance.PlaySFXUpgradeMotor();
         RefreshUI();
+
+        PushFirebase();
+
+        void PushFirebase()
+        {
+            int[] array = ConfigStats.GetLevelsUpgrade(idCurMotor);
+            ParameterFirebaseCustom[] param = new ParameterFirebaseCustom[2];
+            param[0] = new ParameterFirebaseCustom(KeyTypeFirebase.Res, new DataTypeResource(RES_type.Bike, idCurMotor).ToKeyString);
+            param[1] = new ParameterFirebaseCustom(KeyTypeFirebase.Amount, (array[indexStats]).ToString());
+            if (isOutUIWin)
+            {
+                FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepUpgradeMotor(indexStats), param);
+            }
+            else
+            {
+                FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.UpgradeMotor(indexStats), param);
+            }
+
+        }
     }
     private void SwitchStats()
     {

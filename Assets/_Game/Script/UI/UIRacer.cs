@@ -42,7 +42,7 @@ public class UIRacer : UIBase
     }
     private void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectMode);
+        UIManager.Instance.ShowUI(UIName.SelectLevel);
     }
     public override void Hide()
     {

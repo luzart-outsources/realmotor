@@ -113,10 +113,10 @@ namespace MoreMountains.HighroadEngine
 
             CalculateValues();
 
-            if(baseMotorBike!= null && baseMotorBike.eTeam == ETeam.Player)
-            {
-                Debug.Log($"Acce {_acceleration} + Direction {_direction}");
-            }
+            //if(baseMotorBike!= null && baseMotorBike.eTeam == ETeam.Player)
+            //{
+            //    Debug.Log($"Acce {_acceleration} + Direction {_direction}");
+            //}
 
 
 
