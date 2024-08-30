@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SoundSettingsSlider : SoundSettings
 {
     public Slider sliderMusic;
-    public Text txtValueMusic;
+    public TMP_Text txtValueMusic;
     public Slider sliderSFX;
-    public Text txtValueSFX;
+    public TMP_Text txtValueSFX;
 
     protected override void Setup()
     {
@@ -32,7 +33,7 @@ public class SoundSettingsSlider : SoundSettings
         UpdateText(txtValueSFX, x);
         AudioManager.Instance.volumnSFX = x / 100f;
     }
-    private void UpdateText(Text tx, float x)
+    private void UpdateText(TMP_Text tx, float x)
     {
         tx.text = $"{x}%";
     }
