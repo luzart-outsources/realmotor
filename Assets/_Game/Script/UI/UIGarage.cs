@@ -75,10 +75,12 @@ public class UIGarage : UIBase
     public void ClickShop()
     {
         UIManager.Instance.ShowUI(UIName.AddCoin);
+
     }
     public void ClickBack()
     {
         UIManager.Instance.ShowGarage(UIName.Home);
+        PushFirebaseIfOutInWin(KeyFirebase.StepClickBackGarage);
     }
     public void ClickSettings()
     {
@@ -86,7 +88,14 @@ public class UIGarage : UIBase
     }
     public void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectLevel);
+        var ui = UIManager.Instance.ShowUI<UISelectLevel>(UIName.SelectLevel);
+        if (isOutInWin)
+        {
+            ui.isOutClickLevel = true;
+            ui.level = level;
+        }
+
+        PushFirebaseIfOutInWin(KeyFirebase.StepClickRacingGarage);
     }
     public void ClickUpgrade()
     {
@@ -95,6 +104,7 @@ public class UIGarage : UIBase
     public void ClickRacer()
     {
         UIManager.Instance.ShowGarage(UIName.Racer);
+        PushFirebaseIfOutInWin(KeyFirebase.StepClickRacerGarage);
     }
     public void InitGara(GarageManager gara)
     {
@@ -342,6 +352,17 @@ public class UIGarage : UIBase
     {
 
     }
-    public TweenAnimation[] tws; 
+
+    private void PushFirebaseIfOutInWin(string key)
+    {
+        if (!isOutInWin)
+        {
+            return;
+        }
+        ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
+        FirebaseNotificationLog.LogWithLevelMax(key, param);
+    }
+    public bool isOutInWin { get; set; } = false;
+    public int level { get; set; } = 0;
 
 }

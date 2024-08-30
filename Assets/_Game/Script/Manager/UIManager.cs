@@ -83,11 +83,11 @@ public class UIManager : Singleton<UIManager>
     {
         ShowUI<UIBase>(uIScreen, onHideDone);
     }
-    public void ShowGarage(UIName uiName = UIName.Garage, UIName uiIgnore = UIName.LoadScene)
+    public void ShowGarage(UIName uiName = UIName.Garage, UIName uiIgnore = UIName.LoadScene, Action onDone = null)
     {
-        ResourcesManager.Instance.LoadSceneGarage((garage) => ShowScreen(uiName,garage, uiIgnore));
+        ResourcesManager.Instance.LoadSceneGarage((garage) => ShowScreen(uiName,garage, uiIgnore, onDone));
     }
-    private void ShowScreen(UIName uiName, GarageManager garage, UIName uiIgnore = UIName.LoadScene)
+    private void ShowScreen(UIName uiName, GarageManager garage, UIName uiIgnore = UIName.LoadScene, Action onDone = null)
     {
         HideAllUIIgnore(uiIgnore);
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
@@ -134,6 +134,7 @@ public class UIManager : Singleton<UIManager>
                     break;
                 }
         }
+        onDone?.Invoke();
         AudioManager.Instance.PlayMusicBg();
     }
     public T ShowUI<T>(UIName uIScreen, Action onHideDone = null) where T : UIBase

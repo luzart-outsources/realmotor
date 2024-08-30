@@ -29,7 +29,7 @@ public class UIUpgrade : UIBase
     protected override void Setup()
     {
         base.Setup();
-        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true, KeyAds.BtnUpgradeUpgrade);
+        GameUtil.ButtonOnClick(btnUpgrade, ClickUpgrade, true);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true,KeyAds.BtnUpgradeBack);
         GameUtil.ButtonOnClick(btnSettings, ClickSettings, true);
         GameUtil.ButtonOnClick(btnRacing, ClickRacing, true);
@@ -94,7 +94,13 @@ public class UIUpgrade : UIBase
             FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepBackUpgrade, param);
         }
 
-        UIManager.Instance.ShowGarage(UIName.Garage);
+        UIManager.Instance.ShowGarage(UIName.Garage, onDone : OnDoneShowGarage);
+    }
+    private void OnDoneShowGarage()
+    {
+        UIGarage ui = UIManager.Instance.GetUiActive<UIGarage>(UIName.Garage);
+        ui.isOutInWin = true;
+        ui.level = level;
     }
     private void ClickUpgrade()
     {
@@ -110,9 +116,11 @@ public class UIUpgrade : UIBase
     }
     private void ClickRacing()
     {
-        UIManager.Instance.ShowUI(UIName.SelectLevel);
+       var ui = UIManager.Instance.ShowUI<UISelectLevel>(UIName.SelectLevel);
         if (isOutUIWin)
         {
+            ui.isOutClickLevel = true;
+            ui.level = level;
             ParameterFirebaseCustom param = new ParameterFirebaseCustom(KeyTypeFirebase.Level, level.ToString());
             FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepClickRace, param);
         }

@@ -106,12 +106,23 @@ public static class KeyFirebase
     public static string ClickClaimAdsWin = "claim_ads_win";
     public static string ReceiveResource = "receive_resource";
     public static string ClickBtnAddCoin = "click_btn_addcoin";
+
+    public static string ClickRestartResume = "click_restart_resume";
+    public static string ClickHomeResume = "click_home_resume";
+
+
     public static string StepShowLeaderboard = "step_show_leaderboard";
     public static string StepShowInforGold = "step_show_inforgold";
     public static string StepShowUpgrade = "step_show_upgrade";
     public static string StepClickRace = "step_click_race";
     public static string StepBackUpgrade = "step_back_upgrade";
     public static string StepClickUpgradeUpgrade = "step_click_upgrade_upgrade";
+    public static string StepClickBackGarage = "step_click_back_garage";
+    public static string StepClickRacerGarage = "step_click_racer_garage";
+    public static string StepClickRacingGarage = "step_click_racing_garage";
+    public static string StepClickBackUILevel = "step_click_back_ui_level";
+    public static string StepClickUILevelInGame = "step_click_ui_level_in";
+
 
     public static string StepUpgradeMotor(int indexStats)
     {

@@ -51,6 +51,13 @@ public class UISelectLevel : UIBase
     {
         Hide();
         UIManager.Instance.ShowGarage();
+
+
+
+        if (isOutClickLevel)
+        {
+            FirebaseNotificationLog.LogLevel(KeyFirebase.StepClickBackUILevel, level);
+        }
     }
     public override void Show(Action onHideDone)
     {
@@ -170,9 +177,23 @@ public class UISelectLevel : UIBase
     {
         int level = item.db_Level.level;
         GameManager.Instance.PlayGameMode(EGameMode.Classic, level);
+
+        // 
+        if (isOutClickLevel)
+        {
+            ParameterFirebaseCustom[] param = new ParameterFirebaseCustom[2];
+            param[0] = new ParameterFirebaseCustom(KeyTypeFirebase.Amount, level.ToString());
+            param[1] = new ParameterFirebaseCustom(KeyTypeFirebase.Level, this.level.ToString());
+            FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.StepClickUILevelInGame, param);
+        }
+
     }
     private void OnDisable()
     {
         this.DOKill(false);
     }
+
+
+    public int level;
+    public bool isOutClickLevel = false;
 }
