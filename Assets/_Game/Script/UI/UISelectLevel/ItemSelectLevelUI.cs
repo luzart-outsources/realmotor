@@ -42,7 +42,7 @@ public class ItemSelectLevelUI : MonoBehaviour
     }
     private void Start()
     {
-        GameUtil.ButtonOnClick(btn, Click, true);
+        GameUtil.ButtonOnClick(btn, Click, true, KeyAds.BtnSelectLevelLevel);
     }
     private void Click()
     {
