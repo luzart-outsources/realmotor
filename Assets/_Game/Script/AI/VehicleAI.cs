@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 namespace MoreMountains.HighroadEngine
 {
@@ -46,10 +47,16 @@ namespace MoreMountains.HighroadEngine
 		protected int _newDirection;
 		protected float _stuckTime = 0f;
 		protected Vector3 _lastPosition;
-
-		/// <summary>
-		/// Initialization
-		/// </summary>
+        private LayerMask layerFinishLine;
+        private BaseMotorbike motorPlayer;
+        private void Start()
+        {
+            int layer = LayerMask.NameToLayer("FinishLine");
+            layerFinishLine = 1 << layer;
+        }
+        /// <summary>
+        /// Initialization
+        /// </summary>
 
         public override void Initialized(BaseMotorbike baseMotorbike)
         {
@@ -65,6 +72,7 @@ namespace MoreMountains.HighroadEngine
             baseMotorBike.GetCurrentCheckPoint();
             _currentWaypoint = baseMotorbike.currentIndex;
             _targetWaypoint = _AIWaypoints[_currentWaypoint];
+            motorPlayer = GameManager.Instance.gameCoordinator.myMotorbike;
         }
 
         /// <summary>
@@ -101,9 +109,8 @@ namespace MoreMountains.HighroadEngine
 
         private void OnAIMoveNormal()
         {
-            if (IsStuck())
+            if (IsAIMovementFinishLine())
             {
-                //_controller.Respawn();
                 return;
             }
 
@@ -112,13 +119,6 @@ namespace MoreMountains.HighroadEngine
             EvaluateDirection();
 
             CalculateValues();
-
-            //if(baseMotorBike!= null && baseMotorBike.eTeam == ETeam.Player)
-            //{
-            //    Debug.Log($"Acce {_acceleration} + Direction {_direction}");
-            //}
-
-
 
             // we update controller inputs
             if (_acceleration > 0)
@@ -144,6 +144,62 @@ namespace MoreMountains.HighroadEngine
             else
             {
                 UnHorizontal();
+            }
+        }
+        private float radiusFinishLine = 100f;
+        private bool IsAIMovementFinishLine()
+        {
+            if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
+            {
+                bool isCollisionFinishLine = false;
+                var cols = Physics.OverlapSphere(transform.position, radiusFinishLine, layerFinishLine);
+                int length = cols.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    if(cols[i] != null)
+                    {
+                        isCollisionFinishLine = true;
+                        break;
+                    }
+
+                }
+                if (isCollisionFinishLine && IsRoundFinal)
+                {
+                    Brake();
+                    return true;
+                }
+            }
+            return false;
+        }
+        public float disFarMotor = 100f;
+        public bool IsAIMovementFarPlayer()
+        {
+            //if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
+            //{
+            //    if(GameManager.Instance.gameCoordinator.DisFrom2Player(baseMotorBike,motorPlayer) >= disFarMotor)
+            //    {
+            //        return true;
+            //    }
+            //}
+            return false;
+        }
+        private bool IsRoundFinal
+        {
+            get
+            {
+                if(baseMotorBike == null)
+                {
+                    return false;
+                }
+                if(baseMotorBike.round >= GameManager.Instance.gameCoordinator.db_Level.lapRequire&& baseMotorBike.listIndex.Count >=3)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
 

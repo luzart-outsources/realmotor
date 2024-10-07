@@ -42,7 +42,7 @@ public class BaseMotorbike : MonoBehaviour
     private DB_Character dbCharacter;
 
     public SoundMotorbike soundMotorbike;
-    private List<int> listIndex = new List<int>();
+    public List<int> listIndex = new List<int>();
     public EStateMotorbike eState { get; set; }
 
     public Transform parentCam;

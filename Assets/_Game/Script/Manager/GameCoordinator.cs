@@ -496,7 +496,7 @@ public class GameCoordinator : MonoBehaviour
                 }
                 else
                 {
-                    db.distance = Mathf.Abs(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
+                    db.distance = /*Mathf.Abs*/(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
                 }
             }
 #if ENABLE_TEST_LEADERBOARD
@@ -507,7 +507,7 @@ public class GameCoordinator : MonoBehaviour
             listDBLeaderBoardInGame.Add(db);
         }
     }
-    private float DisFrom2Player(BaseMotorbike mine, BaseMotorbike enemy)
+    public float DisFrom2Player(BaseMotorbike mine, BaseMotorbike enemy)
     {
         int cur = mine.currentIndex;
         int next = enemy.currentIndex;
@@ -516,9 +516,18 @@ public class GameCoordinator : MonoBehaviour
 
         int length = wavingPointGizmos.allWavePoint.Length;
         next = next + (enemy.round - mine.round) * length;
+        float factor = 1f;
         if (cur == next)
         {
             return disMe - disEnemy;
+        }
+        else if( cur > next)
+        {
+            factor = 1;
+        }
+        else
+        {
+            factor = -1;
         }
         cur++;
         next++;
@@ -530,7 +539,7 @@ public class GameCoordinator : MonoBehaviour
             float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
             disReal += dis;
         }
-        disReal = disReal - disEnemy + disMe;
+        disReal = (disReal - (disMe - disEnemy) *factor)*factor;
 
         return disReal;
     }
