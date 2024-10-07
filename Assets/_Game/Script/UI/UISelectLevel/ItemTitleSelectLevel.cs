@@ -5,14 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemTitleSelectLevel : ButtonSelect
+public class ItemTitleSelectLevel :MonoBehaviour
 {
     public TMP_Text txtTitle;
-    protected override void Start()
-    {
-        base.Start();
-        GameUtil.ButtonOnClick(btn, ClickAction, IsAnim);
-    }
+    
     public void SetTextTitle(string str)
     {
         txtTitle.text = str;

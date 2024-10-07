@@ -12,7 +12,10 @@ public class ItemSelectLevelUI : MonoBehaviour
     public Button btn;
     public TMP_Text txtLevel;
     public TMP_Text txtName;
+    public TMP_Text txtCoin;
     public Image imIcon;
+    public Image imLock;
+    public Image imComplete;
     public GameObject obBlack;
     public GroupBaseSelect groupBaseSelect;
     private Action<ItemSelectLevelUI> actionSelectUI;
@@ -23,16 +26,21 @@ public class ItemSelectLevelUI : MonoBehaviour
     {
         this.actionSelectUI = actionSelectUI;
         this.db_Level = db_Level;
+        DataManager data = DataManager.Instance;
+        int goldLv = data.dB_ResourceSO.GoldInLevel[db_Level.level];
+
         imIcon.sprite = db_Level.spIcon;
+        if(txtCoin) txtCoin.text = $"+{goldLv}";
         txtLevel.text = $"Level {db_Level.level+1}";
         txtName.text = $"{db_Level.name}";
-        if(db_Level.level == DataManager.Instance.CurrentLevel)
+
+        if(db_Level.level == data.CurrentLevel)
         {
             eState = EStateSelectLevelUI.Current;
         }
-        else if(db_Level.level < DataManager.Instance.CurrentLevel)
+        else if(db_Level.level < data.CurrentLevel)
         {
-            eState = EStateSelectLevelUI.None;
+            eState = EStateSelectLevelUI.Complete;
         }
         else
         {
@@ -74,18 +82,27 @@ public class ItemSelectLevelUI : MonoBehaviour
                 {
                     SelectUnOpen(true);
                     SelectCurrentLine(false);
+                    SelectComplete(false);
                     break;
                 }
             case EStateSelectLevelUI.Current:
                 {
                     SelectUnOpen(true);
                     SelectCurrentLine(true);
+                    SelectComplete(false);
                     break;
                 }
             case EStateSelectLevelUI.UnOpen:
                 {
                     SelectUnOpen(false);
                     SelectCurrentLine(false);
+                    break;
+                }
+            case EStateSelectLevelUI.Complete:
+                {
+                    SelectUnOpen(true);
+                    SelectCurrentLine(false);
+                    SelectComplete(true);
                     break;
                 }
         }
@@ -97,12 +114,21 @@ public class ItemSelectLevelUI : MonoBehaviour
     public void SelectUnOpen(bool status)
     {
         obBlack.SetActive(!status);
+        imLock.gameObject.SetActive(!status);
+        imComplete.gameObject.SetActive(status);
         btn.interactable= status;
     }
+    public void SelectComplete(bool status)
+    {
+        obBlack.SetActive(status);
+        imComplete.gameObject.SetActive(status);
+    }
+
     private void OnDisable()
     {
         this.DOKill(true);
     }
+
 }
 [System.Serializable]
 public enum EStateSelectLevelUI
@@ -110,4 +136,5 @@ public enum EStateSelectLevelUI
     None = 0,
     Current = 1,
     UnOpen = 2,
+    Complete = 3
 }

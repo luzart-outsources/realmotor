@@ -17,6 +17,9 @@ public class CountdownUI : MonoBehaviour
     public Action onDone;
     public TMP_Text txt;
     public bool IsInitOnStart = false;
+
+    public Transform countdownImage;
+    public Sprite[] countdownSprites;
     private void Start()
     {
         if (IsInitOnStart)
@@ -31,6 +34,7 @@ public class CountdownUI : MonoBehaviour
         currentCount = firstCount;
         this.onDone = onDone;
         SetText(currentCount.ToString());
+        //SetImage(currentCount);
         StartCountDown();
 
     }
@@ -51,6 +55,7 @@ public class CountdownUI : MonoBehaviour
             yield return wait;
             currentCount--;
             SetText(currentCount.ToString());
+            //SetImage(currentCount);
             if (currentCount == targetCount)
             {
                 onDone?.Invoke();
@@ -63,6 +68,15 @@ public class CountdownUI : MonoBehaviour
         txt.text = str;
         tw?.Kill();
         tw = txt.transform.DOPunchScale(Vector3.one * 1.1f - Vector3.one, 0.5f, 1, 1);
+    }
+    private void SetImage(int count)
+    {
+        if (count > 0 && count <= countdownSprites.Length)
+        {
+            countdownImage.GetComponent<Image>().sprite = countdownSprites[count - 1];
+            tw?.Kill();
+            tw = countdownImage.DOPunchScale(Vector3.one * 1.1f - Vector3.one, 0.5f, 1, 1);
+        }
     }
     private void OnDisable()
     {

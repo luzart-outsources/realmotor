@@ -17,7 +17,7 @@ public class UIGameplay : UIBase
     public CountdownUI countdown;
     private DB_Level db_Level;
     private float minClockwise = 0.1f;
-    private float maxClockwise = 0.72f;
+    private float maxClockwise = 0.8f;
     public Image imClockFilled;
     public ParticleSystem fxLine;
     public CanvasGroup canvasGroupStartGame;
