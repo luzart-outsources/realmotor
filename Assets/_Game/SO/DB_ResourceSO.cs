@@ -67,4 +67,6 @@ public class DB_ResourceSO : ScriptableObject
     //    dataRes.amount = dataResPos.amount + dataResPosUpgrade.amount * pos + dataResUpgradeLevel.amount * level;
     //    return dataRes;
     //}
+
+    public DataResource resGiftLevel;
 }

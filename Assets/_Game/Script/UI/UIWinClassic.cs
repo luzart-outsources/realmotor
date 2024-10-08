@@ -3,6 +3,7 @@ using Eco.TweenAnimation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -211,6 +212,7 @@ public class UIWinClassic : UIBase
     {
         DataManager.Instance.ReceiveRes(new DataResource(new DataTypeResource(RES_type.Gold), (int)((x - 1) * dataWin.Total)));
         UIManager.Instance.ShowCoinSpawn(null, OnHide);
+        //DataManager.Instance.
     }
     private void ClickClaimReward(float x)
     {
@@ -242,10 +244,23 @@ public class UIWinClassic : UIBase
             UIManager.Instance.ShowGarage();
         }, () =>
         {
-           var ui =  UIManager.Instance.ShowUI<UIUpgrade>(UIName.Upgrade);
-           ui.isOutUIWin = true;
-            ui.level = level;
-            PushShowStepFirebaseShowUpgrade();
+            if (DataManager.Instance.CurrentLevel == 7)
+            {
+                var data = DataManager.Instance.dB_ResourceSO.resGiftLevel;
+                DataManager.Instance.ReceiveRes(data);
+                var uiRes = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
+                uiRes.Initialize(null, data);
+            }
+            else
+            {
+                var ui = UIManager.Instance.ShowUI<UIUpgrade>(UIName.Upgrade);
+                ui.isOutUIWin = true;
+                ui.level = level;
+                PushShowStepFirebaseShowUpgrade();
+            }
+
+
+            
         },1,1);
     }
     private void PushShowStepFirebaseShowUpgrade()
