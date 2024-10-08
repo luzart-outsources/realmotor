@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 6616759744287066542}
   - component: {fileID: 1665259223729949086}
   - component: {fileID: 2033895489495349458}
-  - component: {fileID: 864055657210996515}
   - component: {fileID: 3750288469738627861}
   m_Layer: 5
   m_Name: btnSubmit
@@ -417,31 +416,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &864055657210996515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990260984659387065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51b698d9f322ee449f9ba58e123ba9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  btn: {fileID: 2033895489495349458}
-  _dataRes:
-    type:
-      type: 1
-      id: 0
-    amount: 2000
-    idIcon: 0
-    idBg: 0
-    spIcon: {fileID: 0}
-    spBg: {fileID: 0}
-  resUI: {fileID: 0}
-  isAnim: 1
-  typeWhere: 0
 --- !u!114 &3750288469738627861
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -78,7 +78,7 @@ public class UIWinClassic : UIBase
 
         twMissOut?.Kill();
         btnMissOut.gameObject.SetActive(false);
-        twMissOut = DOVirtual.DelayedCall(2f, () =>
+        twMissOut = DOVirtual.DelayedCall(1.5f, () =>
         {
             btnMissOut.gameObject.SetActive(true);
         });
