@@ -63,7 +63,7 @@ MonoBehaviour:
   obDustGroundBack: {fileID: 1033220425052235221}
   fxDustGroundFront: {fileID: 7589923876628954025}
   fxDustGroundBack: {fileID: 8728623472406980719}
-  motorShake: {fileID: 5970019469561241762}
+  motorShake: {fileID: 5191093238838849977}
   motorbikeInfo:
     maxSpeed: 100
     acceleration: 20
@@ -93,6 +93,14 @@ PrefabInstance:
     - target: {fileID: 1650149096997846387, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_Name
       value: AfterWheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1650149096997846387, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699068793869426079, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1699068793869426079, guid: 87dd5814db584774f933eda8079f6bc0, type: 3}
       propertyPath: m_IsActive
@@ -250,6 +258,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1313559040819742571, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313559040819742571, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -285,6 +297,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -5986999065064936246, guid: 9c7045ba9386c3b4cb74c1079faf4bc3, type: 3}
+    - target: {fileID: 3480405476436259972, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548323703416394856, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5576746036231253985, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -292,6 +312,10 @@ PrefabInstance:
     - target: {fileID: 7648438520902380107, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
       propertyPath: m_Name
       value: FrontWheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648438520902380107, guid: 04bfd21070d750e4f9a039e30e91843f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -418,9 +442,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -5252823542028804343, guid: 9500522186c5c2b4c9389d3d7bb93b27, type: 3}
   m_PrefabInstance: {fileID: 2064976001638110715}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5970019469561241762 stripped
+--- !u!4 &5191093238838849977 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -3570930470201477799, guid: 9500522186c5c2b4c9389d3d7bb93b27, type: 3}
+  m_CorrespondingSourceObject: {fileID: -3124878602970897342, guid: 9500522186c5c2b4c9389d3d7bb93b27, type: 3}
   m_PrefabInstance: {fileID: 2064976001638110715}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2079002893937625180
@@ -435,11 +459,27 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4215361848490707793, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832040340896205338, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5186754858667023575, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6014632440846670300, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6308858425928060689, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586272595975263660, guid: 3fa1c6ff1cea23b49a4fe555a37b2587, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
