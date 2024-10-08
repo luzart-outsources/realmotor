@@ -18,6 +18,7 @@ public class UISelectLevel : UIBase
     public Transform parentTitleSpawn;
     public ItemTitleSelectLevel itemTitleSelectLevel;
     public int indexThemeLevel;
+    int maxIndex = 5;
     public List<ItemChangeTitle> listchangeTitle = new List<ItemChangeTitle>();
 
     public ScrollRect scrollRect;
@@ -88,7 +89,7 @@ public class UISelectLevel : UIBase
     private void OnClickTitle(ButtonSelect btnSelect)
     {
         int temp = indexThemeLevel + (btnSelect.index > 0 ? 1 : -1);
-        indexThemeLevel = Mathf.Max(0, temp);
+        indexThemeLevel = Mathf.Clamp(temp, 0, maxIndex);
         SpawnLevel(indexThemeLevel);
     }
     public float timeShowLevelEach = 0.18f;
