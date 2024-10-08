@@ -548,6 +548,36 @@ public class GameCoordinator : MonoBehaviour
 
         return disReal;
     }
+    public float DisFromPlayer(BaseMotorbike mine, int ene)
+    {
+        int me = mine.currentIndex;
+        int round = 0, min =0, max = 0;
+        if (me > ene)
+        {
+            round = 1;
+            min = ene;
+            max = me;
+        }
+        else
+        {
+            min = me;
+            max = ene;
+        }
+        int length = wavingPointGizmos.allWavePoint.Length;
+        ene = ene + round * length;
+        me++;
+        ene++;
+        float disReal = 0;
+        for (int i = min; i < max; i++)
+        {
+            int indexMe = i % length;
+            int indexReal = (i + 1) % length;
+            float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
+            disReal += dis;
+        }
+        return disReal;
+
+    }
 
     private void UpdateLeaderBoard()
     {

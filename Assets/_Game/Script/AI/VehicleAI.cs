@@ -49,6 +49,13 @@ namespace MoreMountains.HighroadEngine
 		protected Vector3 _lastPosition;
         private LayerMask layerFinishLine;
         private BaseMotorbike motorPlayer;
+        private GameCoordinator gameCoordinator
+        {
+            get
+            {
+                return GameManager.Instance.gameCoordinator;
+            }
+        }
         private void Start()
         {
             int layer = LayerMask.NameToLayer("FinishLine");
@@ -61,7 +68,7 @@ namespace MoreMountains.HighroadEngine
         public override void Initialized(BaseMotorbike baseMotorbike)
         {
             base.Initialized(baseMotorbike);
-            List<Vector3> ais = GameManager.Instance.gameCoordinator.wavingPointGizmos.GetAllWavePoint();
+            List<Vector3> ais = gameCoordinator.wavingPointGizmos.GetAllWavePoint();
             int length = ais.Count;
             for (int i = 0; i < length; i++)
             {
@@ -72,7 +79,7 @@ namespace MoreMountains.HighroadEngine
             baseMotorBike.GetCurrentCheckPoint();
             _currentWaypoint = baseMotorbike.currentIndex;
             _targetWaypoint = _AIWaypoints[_currentWaypoint];
-            motorPlayer = GameManager.Instance.gameCoordinator.myMotorbike;
+            motorPlayer = gameCoordinator.myMotorbike;
         }
 
         /// <summary>
@@ -109,10 +116,22 @@ namespace MoreMountains.HighroadEngine
         private bool IsCanMove = true;
         private void OnAIMoveNormal()
         {
+            if(DataManager.Instance.CurrentLevel >= 10)
+            {
+                Move();
+            }
+            else
+            {
+                ClaimMove();
+            }
+        }
+        private void ClaimMove()
+        {
             if (IsAIMovementFinishLine() && DataManager.Instance.CurrentLevel <= 5)
             {
                 UnVerticle();
                 UnHorizontal();
+                Brake();
                 return;
             }
             if (IsAIMovementFarPlayer())
@@ -130,9 +149,6 @@ namespace MoreMountains.HighroadEngine
             {
                 Move();
             }
-
-
-
         }
         private void Move()
         {
@@ -174,16 +190,10 @@ namespace MoreMountains.HighroadEngine
             if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
             {
                 bool isCollisionFinishLine = false;
-                var cols = Physics.OverlapSphere(transform.position, radiusFinishLine, layerFinishLine);
-                int length = cols.Length;
-                for (int i = 0; i < length; i++)
+                float distance = gameCoordinator.DisFromPlayer(baseMotorBike, gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1);
+                if (distance <= radiusFinishLine)
                 {
-                    if(cols[i] != null)
-                    {
-                        isCollisionFinishLine = true;
-                        break;
-                    }
-
+                    isCollisionFinishLine = true;
                 }
                 if (isCollisionFinishLine && IsRoundFinal)
                 {
@@ -197,7 +207,7 @@ namespace MoreMountains.HighroadEngine
         {
             if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
             {
-                float distance = GameManager.Instance.gameCoordinator.DisFrom2Player(baseMotorBike, motorPlayer);
+                float distance = gameCoordinator.DisFrom2Player(baseMotorBike, motorPlayer);
                 if (distance >= disFarMotor)
                 {
                     return true;
@@ -210,7 +220,7 @@ namespace MoreMountains.HighroadEngine
         {
             if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
             {
-                float distance = GameManager.Instance.gameCoordinator.DisFrom2Player(baseMotorBike, motorPlayer);
+                float distance = gameCoordinator.DisFrom2Player(baseMotorBike, motorPlayer);
                 if (distance <= disNearMotor)
                 {
                     return true;
@@ -226,7 +236,7 @@ namespace MoreMountains.HighroadEngine
                 {
                     return false;
                 }
-                if(baseMotorBike.round >= GameManager.Instance.gameCoordinator.db_Level.lapRequire - 1&& baseMotorBike.listIndex.Count >=3)
+                if(baseMotorBike.round >= gameCoordinator.db_Level.lapRequire - 1&& baseMotorBike.listIndex.Count >= gameCoordinator.wavingPointGizmos.allWavePoint.Length*0.6f)
                 {
                     return true;
                 }

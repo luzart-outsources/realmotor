@@ -194,7 +194,7 @@ public class BaseMotorbike : MonoBehaviour
             if (wavingPoint == null) continue;
             var allWayPoint = GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint;
             int waveIndex = wavingPoint.indexPoint;
-            bool isLastWavePoint = (waveIndex >= allWayPoint.Length - 3);
+            bool isLastWavePoint = (waveIndex >= allWayPoint.Length*4/5);
             // Nếu đây là điểm cuối cùng và danh sách chỉ số chưa có đủ 3 phần tử
             if (isLastWavePoint && listIndex.Count < allWayPoint.Length*3/5) return;
 
