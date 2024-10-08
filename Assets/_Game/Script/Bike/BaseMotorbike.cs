@@ -1,4 +1,4 @@
-using MoreMountains.HighroadEngine;
+﻿using MoreMountains.HighroadEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ public class BaseMotorbike : MonoBehaviour
     private MiniMapPlayer miniMapPlayer;
     private BaseController baseController;
     public InforMotorbike inforMotorbike;
+    [Sirenix.OdinInspector.ShowInInspector]
     public int currentIndex { get; set; } = 0;
     [SerializeField]
     private float radiusCheckPoint = 10f;
@@ -51,6 +52,7 @@ public class BaseMotorbike : MonoBehaviour
 
     public Transform posCamera;
 
+    [Sirenix.OdinInspector.ShowInInspector]
     public int round { get; set; } = 0;
     public float Speed => baseMotor.Speed;
     public bool isFall { get; set; } = false;
@@ -174,50 +176,39 @@ public class BaseMotorbike : MonoBehaviour
     }
     public void GetCurrentCheckPoint()
     {
-        if (isFall)
-        {
-            return;
-        }
-        //if(eState == EStateMotorbike.Finish)
-        //{
-        //    return;
-        //}
-        List<Collider> listCol = GetListCol(1);
-        if(listCol !=null && listCol.Count > 0)
-        {
-            listCol.Sort(
-                (collider1, collider2)
-                            => DistanceForWavingPoint(collider1.transform).CompareTo(DistanceForWavingPoint(collider2.transform))
-                            );
-            foreach (var c in listCol)
-            {
-                var checkPointCol = c.GetComponent<WavingPoint>();
-                if (checkPointCol != null)
-                {
-                    int currentIndex = checkPointCol.indexPoint;
-                    if (currentIndex == GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1)
-                    {
-                        if (listIndex.Count >=3)
-                        {
-                            this.currentIndex = currentIndex;
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        this.currentIndex = currentIndex;
-                    }
-                    if (!listIndex.Contains(currentIndex))
-                    {
-                        listIndex.Add(currentIndex);
-                    }
-                    return;
+        if (isFall) return;
 
-                }
+        // Lấy danh sách các Collider gần nhất
+        List<Collider> nearbyColliders = GetListCol(1);
+        if (nearbyColliders == null || nearbyColliders.Count == 0) return;
+
+        // Sắp xếp các Collider theo khoảng cách đến điểm WavingPoint
+        nearbyColliders.Sort((c1, c2) =>
+            DistanceForWavingPoint(c1.transform).CompareTo(DistanceForWavingPoint(c2.transform))
+        );
+
+        // Duyệt qua các Collider và xử lý điểm WavingPoint hợp lệ đầu tiên
+        foreach (var collider in nearbyColliders)
+        {
+            WavingPoint wavingPoint = collider.GetComponent<WavingPoint>();
+            if (wavingPoint == null) continue;
+            var allWayPoint = GameManager.Instance.gameCoordinator.wavingPointGizmos.allWavePoint;
+            int waveIndex = wavingPoint.indexPoint;
+            bool isLastWavePoint = (waveIndex >= allWayPoint.Length - 3);
+            // Nếu đây là điểm cuối cùng và danh sách chỉ số chưa có đủ 3 phần tử
+            if (isLastWavePoint && listIndex.Count < allWayPoint.Length*3/5) return;
+
+            // Cập nhật chỉ số điểm hiện tại
+            currentIndex = waveIndex;
+
+            // Thêm chỉ số mới vào danh sách nếu chưa tồn tại
+            if (!listIndex.Contains(waveIndex))
+            {
+                listIndex.Add(waveIndex);
             }
+
+            // Kết thúc xử lý sau khi tìm thấy điểm WavingPoint hợp lệ đầu tiên
+            return;
         }
     }
     private List<Collider> GetListCol(int factor)

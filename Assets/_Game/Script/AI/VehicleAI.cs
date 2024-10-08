@@ -106,14 +106,36 @@ namespace MoreMountains.HighroadEngine
 
 			
         }
-
+        private bool IsCanMove = true;
         private void OnAIMoveNormal()
         {
-            if (IsAIMovementFinishLine())
+            if (IsAIMovementFinishLine() && DataManager.Instance.CurrentLevel <= 5)
             {
+                UnVerticle();
+                UnHorizontal();
                 return;
             }
+            if (IsAIMovementFarPlayer())
+            {
+                UnVerticle();
+                UnHorizontal();
+                IsCanMove = false;
+                return;
+            }
+            if (IsAIMovementNearPlayer())
+            {
+                IsCanMove = true;
+            }
+            if (IsCanMove)
+            {
+                Move();
+            }
 
+
+
+        }
+        private void Move()
+        {
             EvaluateNextWaypoint();
 
             EvaluateDirection();
@@ -146,7 +168,7 @@ namespace MoreMountains.HighroadEngine
                 UnHorizontal();
             }
         }
-        private float radiusFinishLine = 100f;
+        private float radiusFinishLine = 200f;
         private bool IsAIMovementFinishLine()
         {
             if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
@@ -165,7 +187,6 @@ namespace MoreMountains.HighroadEngine
                 }
                 if (isCollisionFinishLine && IsRoundFinal)
                 {
-                    Brake();
                     return true;
                 }
             }
@@ -174,13 +195,27 @@ namespace MoreMountains.HighroadEngine
         public float disFarMotor = 100f;
         public bool IsAIMovementFarPlayer()
         {
-            //if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
-            //{
-            //    if(GameManager.Instance.gameCoordinator.DisFrom2Player(baseMotorBike,motorPlayer) >= disFarMotor)
-            //    {
-            //        return true;
-            //    }
-            //}
+            if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
+            {
+                float distance = GameManager.Instance.gameCoordinator.DisFrom2Player(baseMotorBike, motorPlayer);
+                if (distance >= disFarMotor)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public float disNearMotor = -20f;
+        public bool IsAIMovementNearPlayer()
+        {
+            if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
+            {
+                float distance = GameManager.Instance.gameCoordinator.DisFrom2Player(baseMotorBike, motorPlayer);
+                if (distance <= disNearMotor)
+                {
+                    return true;
+                }
+            }
             return false;
         }
         private bool IsRoundFinal
@@ -191,7 +226,7 @@ namespace MoreMountains.HighroadEngine
                 {
                     return false;
                 }
-                if(baseMotorBike.round >= GameManager.Instance.gameCoordinator.db_Level.lapRequire&& baseMotorBike.listIndex.Count >=3)
+                if(baseMotorBike.round >= GameManager.Instance.gameCoordinator.db_Level.lapRequire - 1&& baseMotorBike.listIndex.Count >=3)
                 {
                     return true;
                 }
@@ -444,8 +479,10 @@ namespace MoreMountains.HighroadEngine
                     Gizmos.DrawLine(_AIWaypoints[i], _AIWaypoints[next]);
                 }
             }
-			#endif
-		}
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, radiusFinishLine);
+#endif
+        }
 
 	}
 

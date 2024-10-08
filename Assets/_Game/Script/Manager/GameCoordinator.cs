@@ -496,7 +496,7 @@ public class GameCoordinator : MonoBehaviour
                 }
                 else
                 {
-                    db.distance = /*Mathf.Abs*/(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
+                    db.distance = Mathf.Abs(DisFrom2Player(myMotorbike, listLeaderBoard[i - 1]));
                 }
             }
 #if ENABLE_TEST_LEADERBOARD
@@ -509,37 +509,42 @@ public class GameCoordinator : MonoBehaviour
     }
     public float DisFrom2Player(BaseMotorbike mine, BaseMotorbike enemy)
     {
-        int cur = mine.currentIndex;
-        int next = enemy.currentIndex;
+        int me = mine.currentIndex;
+        int ene = enemy.currentIndex;
         var disEnemy = enemy.GetDistanceFromTarget();
         var disMe = mine.GetDistanceFromTarget();
 
         int length = wavingPointGizmos.allWavePoint.Length;
-        next = next + (enemy.round - mine.round) * length;
+        ene = ene + (enemy.round - mine.round) * length;
+        me++;
+        ene++;
+        int min = 0, max = 0;
         float factor = 1f;
-        if (cur == next)
+        if (me == ene)
         {
             return disMe - disEnemy;
         }
-        else if( cur > next)
-        {
+        else if( me > ene)
+        { 
             factor = 1;
+            min = ene;
+            max = me;
         }
         else
         {
             factor = -1;
+            min = me;
+            max = ene;
         }
-        cur++;
-        next++;
         float disReal = 0;
-        for (int i = cur; i < next; i++)
+        for (int i = min; i < max; i++)
         {
             int indexMe = i % length;
             int indexReal = (i + 1) % length;
             float dis = Vector3.Distance(wavingPointGizmos.allWavePoint[indexMe].transform.position, wavingPointGizmos.allWavePoint[indexReal].transform.position);
             disReal += dis;
         }
-        disReal = (disReal - (disMe - disEnemy) *factor)*factor;
+        disReal = (disReal - (disEnemy - disMe) *factor)*factor;
 
         return disReal;
     }
