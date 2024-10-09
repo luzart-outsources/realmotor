@@ -63,9 +63,25 @@ public class UIUpgrade : UIBase
         }
         else
         {
-            ClickItemUpgradePopUp(itemUpgradePopups[0]);
+            int indexConfirm = GetIndexConfirm();
+            ClickItemUpgradePopUp(itemUpgradePopups[indexConfirm]);
         }
 
+    }
+    private int GetIndexConfirm()
+    {
+        int idCurMotor = DataManager.Instance.GameData.idCurMotor;
+        int[] levelUpgrades = ConfigStats.GetLevelsUpgrade(idCurMotor);
+        int length = levelUpgrades.Length;
+        for (int i = 0; i < length; i++)
+        {
+            if (levelUpgrades[i] >= 5)
+            {
+                continue;
+            }
+            return i;
+        }
+        return 0;
     }
     private void ClickItem(ItemUpgradePopUp item)
     {

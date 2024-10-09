@@ -248,7 +248,7 @@ public class UIWinClassic : UIBase
             {
                 var data = DataManager.Instance.dB_ResourceSO.resGiftLevel;
                 DataManager.Instance.ReceiveRes(data);
-                var uiRes = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
+                var uiRes = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes, UIManager.Instance.RefreshUI);
                 uiRes.Initialize(null, data);
             }
             else
