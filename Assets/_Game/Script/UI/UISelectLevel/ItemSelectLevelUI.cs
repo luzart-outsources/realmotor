@@ -115,7 +115,7 @@ public class ItemSelectLevelUI : MonoBehaviour
     {
         groupBaseSelect.Select(status);
         imSelect.DOKill();
-        imSelect.DOFade(0f, 1f).SetLoops(-1, LoopType.Yoyo);
+        imSelect.DOFade(0f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuad);
     }
     public void SelectUnOpen(bool status)
     {
