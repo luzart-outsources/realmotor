@@ -190,7 +190,12 @@ namespace MoreMountains.HighroadEngine
             if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)
             {
                 bool isCollisionFinishLine = false;
-                float distance = gameCoordinator.DisFromPlayer(baseMotorBike, gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1);
+                int maxPoint = gameCoordinator.wavingPointGizmos.allWavePoint.Length - 1;
+                if(gameCoordinator.db_Level.level == 0)
+                {
+                    maxPoint = 287;
+                }
+                float distance = gameCoordinator.DisFromPlayer(baseMotorBike, maxPoint);
                 if (distance <= radiusFinishLine)
                 {
                     isCollisionFinishLine = true;

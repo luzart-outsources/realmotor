@@ -36,7 +36,7 @@ public class ItemSelectLevelUI : MonoBehaviour
         txtLevel.text = $"Level {db_Level.level+1}";
         txtName.text = $"{db_Level.name}";
         var level = db_Level.level + 1;
-        if(obGift && level == 7) obGift.SetActive(true);
+        if(level == 7) obGift?.SetActive(true);
 
         if(db_Level.level == data.CurrentLevel)
         {

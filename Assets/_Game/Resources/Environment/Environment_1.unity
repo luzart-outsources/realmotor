@@ -5838,6 +5838,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: intensityMotorLighting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
+      propertyPath: isOverrideMotorLighting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1222554405407221733, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.19322968

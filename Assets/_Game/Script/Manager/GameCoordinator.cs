@@ -511,6 +511,12 @@ public class GameCoordinator : MonoBehaviour
     {
         int me = mine.currentIndex;
         int ene = enemy.currentIndex;
+        int roundMe = mine.round;
+        int roundEne = enemy.round;
+        if (db_Level.level == 0)
+        {
+            roundMe = 0;
+        }
         if(me <0 || ene < 0)
         {
             return 0;
@@ -519,7 +525,7 @@ public class GameCoordinator : MonoBehaviour
         var disMe = mine.GetDistanceFromTarget();
 
         int length = wavingPointGizmos.allWavePoint.Length;
-        ene = ene + (enemy.round - mine.round) * length;
+        ene = ene + (roundEne - roundMe) * length;
         me++;
         ene++;
         int min = 0, max = 0;

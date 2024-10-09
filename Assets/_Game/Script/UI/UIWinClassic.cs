@@ -248,8 +248,14 @@ public class UIWinClassic : UIBase
             {
                 var data = DataManager.Instance.dB_ResourceSO.resGiftLevel;
                 DataManager.Instance.ReceiveRes(data);
-                var uiRes = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes, UIManager.Instance.RefreshUI);
-                uiRes.Initialize(null, data);
+                DataManager.Instance.GameData.idCurMotor = 3;
+                var uiRes = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
+                uiRes.Initialize(() =>
+                {
+                    var uiGarage = UIManager.Instance.GetUiActive<UIGarage>(UIName.Garage);
+                    uiGarage.RefreshOnShow();
+                    UIManager.Instance.RefreshUI();
+                }, data);
             }
             else
             {

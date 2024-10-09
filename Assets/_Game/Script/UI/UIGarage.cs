@@ -116,7 +116,7 @@ public class UIGarage : UIBase
         CameraManager.Instance.helicopterCamera.gameObject.SetActive(false);
         RefreshOnShow();
     }
-    private void RefreshOnShow()
+    public void RefreshOnShow()
     {
         currentItemClick = DataManager.Instance.GameData.idCurMotor;
         SpawnList();
