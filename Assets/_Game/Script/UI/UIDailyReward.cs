@@ -110,7 +110,7 @@ public class UIDailyReward : UIBase
     {
         DataManager.Instance.ReceiveRes(itemDailyRewardUI.groupDataResources.groupDataResources);
         var ui = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
-        ui.Initialize(RefreshUI, itemDailyRewardUI.groupDataResources.groupDataResources);
+        ui.Initialize(Hide, itemDailyRewardUI.groupDataResources.groupDataResources);
     }
     private void ShowToast()
     {

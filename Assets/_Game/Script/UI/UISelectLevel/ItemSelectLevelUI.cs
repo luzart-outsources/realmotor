@@ -16,7 +16,9 @@ public class ItemSelectLevelUI : MonoBehaviour
     public Image imIcon;
     public Image imLock;
     public Image imComplete;
+    public Image imSelect;
     public GameObject obBlack;
+    public GameObject obGift;
     public GroupBaseSelect groupBaseSelect;
     private Action<ItemSelectLevelUI> actionSelectUI;
     public DB_Level db_Level;
@@ -33,6 +35,8 @@ public class ItemSelectLevelUI : MonoBehaviour
         if(txtCoin) txtCoin.text = $"+{goldLv}";
         txtLevel.text = $"Level {db_Level.level+1}";
         txtName.text = $"{db_Level.name}";
+        var level = db_Level.level + 1;
+        if(obGift && level == 7) obGift.SetActive(true);
 
         if(db_Level.level == data.CurrentLevel)
         {
@@ -110,6 +114,8 @@ public class ItemSelectLevelUI : MonoBehaviour
     public void SelectCurrentLine(bool status)
     {
         groupBaseSelect.Select(status);
+        imSelect.DOKill();
+        imSelect.DOFade(0f, 1f).SetLoops(-1, LoopType.Yoyo);
     }
     public void SelectUnOpen(bool status)
     {
