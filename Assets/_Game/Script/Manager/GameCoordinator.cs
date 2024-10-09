@@ -511,6 +511,10 @@ public class GameCoordinator : MonoBehaviour
     {
         int me = mine.currentIndex;
         int ene = enemy.currentIndex;
+        if(me <0 || ene < 0)
+        {
+            return 0;
+        }
         var disEnemy = enemy.GetDistanceFromTarget();
         var disMe = mine.GetDistanceFromTarget();
 
