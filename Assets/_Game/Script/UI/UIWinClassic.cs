@@ -262,6 +262,7 @@ public class UIWinClassic : UIBase
                 var ui = UIManager.Instance.ShowUI<UIUpgrade>(UIName.Upgrade);
                 ui.isOutUIWin = true;
                 ui.level = level;
+                if (DataManager.Instance.CurrentLevel == 2) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
                 PushShowStepFirebaseShowUpgrade();
             }
 

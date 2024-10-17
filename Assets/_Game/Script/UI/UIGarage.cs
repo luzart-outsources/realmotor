@@ -1,4 +1,5 @@
 using AirFishLab.ScrollingList;
+using BG_Library.NET;
 using DG.Tweening;
 using Eco.TweenAnimation;
 using System;
@@ -74,13 +75,24 @@ public class UIGarage : UIBase
     }
     public void ClickShop()
     {
-        UIManager.Instance.ShowUI(UIName.AddCoin);
+        //UIManager.Instance.ShowUI(UIName.AddCoin);
+        UIManager.Instance.ShowUI(UIName.Shop);
 
     }
     public void ClickBack()
     {
-        UIManager.Instance.ShowGarage(UIName.Home);
+        Hide();
+        UIManager.Instance.ShowUI(UIName.Home);
         PushFirebaseIfOutInWin(KeyFirebase.StepClickBackGarage);
+
+        if (!AdsManager.IAP_RemoveAds)
+        {
+            UIManager.Instance.ShowUI(UIName.RemoveAds);
+        }
+        else
+        {
+            if (!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+        }
     }
     public void ClickSettings()
     {
@@ -166,6 +178,7 @@ public class UIGarage : UIBase
     {
         base.RefreshUI();
         DB_Motor dbGet = DataManager.Instance.motorSO.GetDBMotor(itemCache.db_Motorbike.idMotor).Clone();
+        
         int[] levelUpgrade = new int[4];
         bool isHasData = DataManager.Instance.IsHasMotor(itemCache.db_Motorbike.idMotor, ref levelUpgrade);
         bool[] isMaxData = DataManager.Instance.IsMaxDataArray(itemCache.db_Motorbike.idMotor);
@@ -235,6 +248,11 @@ public class UIGarage : UIBase
                     StatusOther();
                     break;
                 }
+            case TypeBuy.BeginnerBundle:
+                {
+                    StatusOther();
+                    break;
+                }
         }
     }
     private void DisableAllButton()
@@ -300,6 +318,12 @@ public class UIGarage : UIBase
                     BuyOther();
                     break;
                 }
+            case TypeBuy.BeginnerBundle:
+                {
+                    Debug.Log("Beginner Bundle");
+                    BuyBeginnerBundle();
+                    break;
+                }
         }
     }
 
@@ -351,6 +375,10 @@ public class UIGarage : UIBase
     private void BuyOther()
     {
 
+    }
+    private void BuyBeginnerBundle()
+    {
+        UIManager.Instance.ShowUI<UIBegginerBundle>(UIName.BeginnerBundle);
     }
 
     private void PushFirebaseIfOutInWin(string key)

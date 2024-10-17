@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: dirt_grass
-  m_Shader: {fileID: 4800000, guid: 6803aa2236ffca54cb5fa1dc317a22cb, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - DiffuseReflectOn
   - Rendered_Texture
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -55,18 +55,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1.12, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: b0febdd17972414084046a7ed759e482, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1.12, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b0febdd17972414084046a7ed759e482, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -92,9 +92,9 @@ Material:
     - _GlossyReflections: 1
     - _MetalicnessIntensity: 1
     - _MetalicnessScale: 500
-    - _Metallic: 0
+    - _Metallic: 0.637
     - _Mode: 0
-    - _OcclusionStrength: 1
+    - _OcclusionStrength: 0.261
     - _Parallax: 0.02
     - _RefIntensity: 0
     - _RefVisibility: 0.1

@@ -6220,6 +6220,7 @@ Transform:
   - {fileID: 2345281809704295259}
   - {fileID: 5323944532863417869}
   - {fileID: 7095246443535641221}
+  - {fileID: 9214640880544212474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3970734084713082468
@@ -6249,6 +6250,7 @@ MonoBehaviour:
   parentVisualMotor: {fileID: 8275714411754204416}
   inforRacing: {fileID: 6273031448351745310}
   soundMotorbike: {fileID: 1706009557263487193}
+  listIndex: 
   parentCam: {fileID: 7764731331384706181}
   targetCameraStartGame: {fileID: 4773413557235074498}
   autoRotation: {fileID: 1267806185943832661}
@@ -7102,4 +7104,74 @@ Transform:
 Animator:
   m_CorrespondingSourceObject: {fileID: 3434880260824971072, guid: 7ce17f9db8f7e734e83e181f8c6cb02c, type: 3}
   m_PrefabInstance: {fileID: 6079237074106793648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9218977712487351958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7016999980269543957}
+    m_Modifications:
+    - target: {fileID: 1212621847204179, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_Name
+      value: Road Normal Dirt Dust Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199563763902635328, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199563763902635328, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1873450859
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+--- !u!4 &9214640880544212474 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4671197315605356, guid: 07250520af408f141b43f09c7dc9f0a4, type: 3}
+  m_PrefabInstance: {fileID: 9218977712487351958}
   m_PrefabAsset: {fileID: 0}

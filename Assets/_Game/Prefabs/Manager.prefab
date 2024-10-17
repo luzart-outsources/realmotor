@@ -343,6 +343,56 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1218905378729682037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6841580419106881234}
+  - component: {fileID: 1880870583096751978}
+  m_Layer: 0
+  m_Name: IAPManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6841580419106881234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218905378729682037}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1748368523962841705}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880870583096751978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218905378729682037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abd4fabdbf24311855965359c61627b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iapProductStats:
+  - {fileID: 11400000, guid: a1c58586dd2afbf4da6da8937a0bfe76, type: 2}
+  - {fileID: 11400000, guid: bc7bb9359d1430547898240064b93a91, type: 2}
+  - {fileID: 11400000, guid: fbe43a642d132a1489f3e01343bd7cf0, type: 2}
+  - {fileID: 11400000, guid: 64681d4322e21264e9ef24e8849ab972, type: 2}
+  - {fileID: 11400000, guid: 06c0ac3e3e83f8445aba2dd9d5d38872, type: 2}
 --- !u!1 &1960012209848098992
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +523,7 @@ MonoBehaviour:
   resourceBuySO: {fileID: 11400000, guid: 7fc72d5463e5b684ebbcf26128a6c03e, type: 2}
   spriteResourceSO: {fileID: 11400000, guid: f0af84f34623a26439738d851f0ff601, type: 2}
   dailyRewardManager: {fileID: 5546234178109984985}
+  isBeginnerBundle: 0
 --- !u!1 &2945237618997133233
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +710,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 1000
+      amount: 200
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -668,7 +719,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 1500
+      amount: 400
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -685,7 +736,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 2000
+      amount: 600
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -702,7 +753,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 3000
+      amount: 1000
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -711,7 +762,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 2500
+      amount: 1200
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -728,7 +779,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 3500
+      amount: 1500
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -745,7 +796,7 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 5000
+      amount: 2000
       idIcon: 1
       idBg: 0
       spIcon: {fileID: 0}
@@ -828,13 +879,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761719155331888998}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.9063079, z: -0.42261827, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3111241312857183946}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 180, z: 0}
 --- !u!108 &4766002551756379380
 Light:
   m_ObjectHideFlags: 0
@@ -847,7 +898,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -906,6 +957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748368523962841705}
+  - component: {fileID: 1095497165110800803}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -935,8 +987,21 @@ Transform:
   - {fileID: 6001902957189588526}
   - {fileID: 916080928974499498}
   - {fileID: 3159213246140823105}
+  - {fileID: 6841580419106881234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1095497165110800803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7062897448495686203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5d460c41161274faea5a5bef81f20d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9016466144197071362
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3159213246140823105}
   - component: {fileID: 7373225746297156289}
+  - component: {fileID: 4841750527698706073}
   m_Layer: 0
   m_Name: AdsManager
   m_TagString: Untagged
@@ -1012,3 +1078,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6859e40fb27d31a48a201432aa458446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4841750527698706073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9194412217942474123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0ba0aeec9576748b9cc6d524dc2c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataResource:
+  - groupDataResources: []
+  - groupDataResources: []
+  - groupDataResources: []
+  - groupDataResources: []
+  - groupDataResources: []

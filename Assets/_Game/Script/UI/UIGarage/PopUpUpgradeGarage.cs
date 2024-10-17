@@ -23,8 +23,9 @@ public class PopUpUpgradeGarage : MonoBehaviour
         txtName.text = db.nameMotor;
         txtNameModel.text = db.nameModelMotor;
         txtRank.text = $"Rank {db.rank}";
-        InforMotorbike inforMax = db.GetInforMotorbikeMax();
-        txtPR.text = $"PR {db.inforMotorbike.PR}/{inforMax.PR}";
+        var info = DataManager.Instance.motorSO.dB_Motors[db.idMotor].Clone();
+        InforMotorbike inforMax = info.GetInforMotorbikeMax();
+        txtPR.text = $"PR <color=#C6FE2B>{db.inforMotorbike.PR}</color>/{inforMax.PR}";
         ShowData(itemUpgradeGarageRefs[0], "Top Speed", db.inforMotorbike.maxSpeed,db.inforUpgrade.maxSpeed, inforMax.maxSpeed, isMaxData[0]);
         ShowData(itemUpgradeGarageRefs[1], "Acceleration", db.inforMotorbike.acceleration,  db.inforUpgrade.acceleration,inforMax.acceleration, isMaxData[1]);
         ShowData(itemUpgradeGarageRefs[2], "Handling", db.inforMotorbike.handling, db.inforUpgrade.handling,inforMax.handling, isMaxData[2]);

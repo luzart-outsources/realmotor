@@ -24,16 +24,19 @@ public class DataManager : Singleton<DataManager>
     [Space, Header("DailyRewardManager")]
     public DailyRewardManager dailyRewardManager;
 
+    [Space, Header("IAP")]
+    public bool isBeginnerBundle = false;
+
     private const string KEY_GAME_DATA = "key_gamedata";
     public void Initialize()
     {
         LoadGameData();
-        dailyRewardManager.InitData();  
+        dailyRewardManager.InitData();
     }
     private void LoadGameData()
     {
         _gameData = SaveLoadUtil.LoadDataPrefs<GameData>(KEY_GAME_DATA);
-        if(_gameData == null)
+        if (_gameData == null)
         {
             _gameData = new GameData();
         }
@@ -65,7 +68,7 @@ public class DataManager : Singleton<DataManager>
         }
 
 
-    } 
+    }
     private void AddRes(DataTypeResource type, int amount)
     {
         GameRes.AddRes(type, amount);
@@ -76,12 +79,12 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < length; i++)
         {
             DataResource resource = dataResource[i];
-            if(resource.type.type == RES_type.Bike)
+            if (resource.type.type == RES_type.Bike)
             {
                 DB_Motorbike db = new DB_Motorbike(resource.type.id);
                 BuyMotorbike(db);
             }
-            else if(resource.type.type == RES_type.Helmet)
+            else if (resource.type.type == RES_type.Helmet)
             {
                 BuyHelmet(resource.type.id);
             }
@@ -101,7 +104,7 @@ public class DataManager : Singleton<DataManager>
         {
             var dataRes = new ParameterFirebaseCustom(KeyTypeFirebase.Res, $"{resource.type.ToKeyString}");
             var dataAmount = new ParameterFirebaseCustom(KeyTypeFirebase.Amount, $"{resource.amount}");
-            ParameterFirebaseCustom [] para = new ParameterFirebaseCustom[] {dataRes, dataAmount};
+            ParameterFirebaseCustom[] para = new ParameterFirebaseCustom[] { dataRes, dataAmount };
             FirebaseNotificationLog.LogWithLevelMax(KeyFirebase.ReceiveResource, para);
         }
     }
@@ -121,7 +124,7 @@ public class DataManager : Singleton<DataManager>
     public int GetAdsCurrentResource(DataTypeResource dataType)
     {
         DataGetByAds data = GetDataGetByAds(dataType);
-        if(data != null)
+        if (data != null)
         {
             return data.ads;
         }
@@ -142,7 +145,7 @@ public class DataManager : Singleton<DataManager>
         {
             if (list[i].type.Compare(dataType))
             {
-                return list[i]; 
+                return list[i];
             }
         }
         return null;
@@ -153,7 +156,7 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < length; i++)
         {
             var car = GameData.motorbikeDatas[i];
-            if(car.idMotor == idMotor)
+            if (car.idMotor == idMotor)
             {
                 car.levelUpgrades[indexStats]++;
             }
@@ -170,7 +173,7 @@ public class DataManager : Singleton<DataManager>
             value = data.ads;
         }
         value += count;
-        if(data != null)
+        if (data != null)
         {
             data.ads = value;
         }
@@ -211,7 +214,7 @@ public class DataManager : Singleton<DataManager>
     public void BuyHelmet(int id)
     {
         List<int> list = new List<int>();
-        if(_gameData.listHelmet != null)
+        if (_gameData.listHelmet != null)
         {
             list = _gameData.listHelmet;
         }
@@ -220,7 +223,7 @@ public class DataManager : Singleton<DataManager>
             list.Add(id);
         }
         _gameData.listHelmet = list;
-        if(_gameData.curCharacter == null)
+        if (_gameData.curCharacter == null)
         {
             _gameData.curCharacter = new DB_Character();
         }
@@ -248,7 +251,7 @@ public class DataManager : Singleton<DataManager>
         SaveGameData();
     }
 
-    public bool IsHasMotor(int idMotor, ref int [] levelUpgrades)
+    public bool IsHasMotor(int idMotor, ref int[] levelUpgrades)
     {
         levelUpgrades = new int[4];
         for (int i = 0; i < _gameData.motorbikeDatas.Count; i++)
@@ -307,7 +310,7 @@ public class DataManager : Singleton<DataManager>
     }
     public bool IsHasHelmet(int id)
     {
-        if(_gameData.listHelmet == null || _gameData.listHelmet.Count == 0)
+        if (_gameData.listHelmet == null || _gameData.listHelmet.Count == 0)
         {
             return false;
         }
@@ -355,7 +358,7 @@ public class InforMotorbike
     }
     public int[] ToArray()
     {
-        int [] array = new int[4];
+        int[] array = new int[4];
         array[0] = (int)maxSpeed;
         array[1] = (int)acceleration;
         array[2] = (int)handling;
@@ -366,7 +369,7 @@ public class InforMotorbike
     {
         get
         {
-            return maxSpeed+ acceleration+ handling + brake;
+            return maxSpeed + acceleration + handling + brake;
         }
     }
 }

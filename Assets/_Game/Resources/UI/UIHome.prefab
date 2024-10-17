@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Player:
     play: 1
     initialPlayDelay: 2.54
-    duration: 1
+    duration: 2
     loop: 1
     loopDelay: 1
     updateMode: 0
@@ -359,7 +359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8.5811}
+  m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 81.8364, y: 71.1621}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7131166691413496447
@@ -787,7 +787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.2, y: 12.1}
+  m_AnchoredPosition: {x: 9.2, y: 10}
   m_SizeDelta: {x: 76, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8920431878805549576
@@ -1000,7 +1000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 148.6, y: 276.3}
+  m_AnchoredPosition: {x: 148, y: 276}
   m_SizeDelta: {x: 132, y: 132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7925478159395167679
@@ -1410,7 +1410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 289, y: 278}
+  m_AnchoredPosition: {x: 289, y: 276}
   m_SizeDelta: {x: 132, y: 132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9208659357724503558
@@ -1569,7 +1569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 429.9, y: 276.3}
+  m_AnchoredPosition: {x: 429.9, y: 276}
   m_SizeDelta: {x: 132, y: 132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &202135059222213369
@@ -2075,7 +2075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 10}
+  m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 84, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4994655526845512606
@@ -2472,6 +2472,10 @@ PrefabInstance:
       propertyPath: m_EffectFactor
       value: 0.8757291
       objectReference: {fileID: 0}
+    - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_Player.duration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2534,6 +2538,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9106493164431215539}
     m_Modifications:
+    - target: {fileID: 955954358954977424, guid: 44a46c45832022745a92f4f62ba9501a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4919348531813664968, guid: 44a46c45832022745a92f4f62ba9501a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

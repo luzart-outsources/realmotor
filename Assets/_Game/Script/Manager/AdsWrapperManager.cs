@@ -73,6 +73,7 @@ public static class KeyAds
     public const string BtnRacerBuyHelmet = "btn_racer_buy_helmet";
     public const string BtnRacerBuyClothes = "btn_racer_buy_clothes";
     public const string BtnUpgradeBack = "btn_upgrade_back";
+    public const string BtnShopBack = "btn_shop_back";
     public const string BtnUpgradeUpgrade = "btn_upgrade_upgrade";
     public const string BtnSettingsBack = "btn_settings_back";
     public const string BtnWinClassicNext = "btn_winclassic_next";

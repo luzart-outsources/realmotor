@@ -10,7 +10,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.66, g: 0.59708005, b: 0.4884, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 0.96665204, b: 0.9103774, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.6
@@ -5103,11 +5103,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 244833961630366648, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.1
+      value: -7.82
       objectReference: {fileID: 0}
     - target: {fileID: 244833961630366648, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 678432460174568291, guid: 7b5b876ae999e2542b4fa005617679b7, type: 3}
       propertyPath: intensityMotorLighting
@@ -8990,7 +8990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e56d8d0498d66c74681000f80b46bdb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -11.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e56d8d0498d66c74681000f80b46bdb1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12040,8 +12040,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 6442e884eb226e745993fc6f25bf64e9, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 28172631a69d29e4481f01f6446f481b, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 00b3775632f74994b93228cfe23b537c, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

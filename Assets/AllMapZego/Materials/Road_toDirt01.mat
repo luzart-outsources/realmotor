@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Road_toDirt01
-  m_Shader: {fileID: 4800000, guid: 6803aa2236ffca54cb5fa1dc317a22cb, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - DiffuseReflectOn
   - Rendered_Texture
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ccc9f14d1bd84094beeb5c4be6b15503, type: 3}
+        m_Texture: {fileID: 2800000, guid: b0febdd17972414084046a7ed759e482, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b0febdd17972414084046a7ed759e482, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -88,13 +88,13 @@ Material:
     - _DiffuseUVScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 1
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _MetalicnessIntensity: 1
     - _MetalicnessScale: 500
-    - _Metallic: 0
+    - _Metallic: 0.6
     - _Mode: 0
-    - _OcclusionStrength: 1
+    - _OcclusionStrength: 0.393
     - _Parallax: 0.02
     - _RefIntensity: 0
     - _RefVisibility: 0.1
@@ -104,7 +104,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.9764151, b: 0.9764151, a: 1}
     - _DecalColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -38,7 +38,7 @@ public class UIRacer : UIBase
     }
     public void ClickShop()
     {
-        UIManager.Instance.ShowUI(UIName.AddCoin);
+        UIManager.Instance.ShowUI(UIName.Shop);
     }
     private void ClickRacing()
     {
@@ -295,6 +295,11 @@ public class UIRacer : UIBase
                     StatusOther();
                     break;
                 }
+            case TypeBuy.BeginnerBundle:
+                {
+                    StatusOther();
+                    break;
+                }
         }
     }
     private void DisableAllButton()
@@ -332,6 +337,12 @@ public class UIRacer : UIBase
         obBuyOther.gameObject.SetActive(true);
         txtValueOther.text = resourcesBuy.strOther;
     }
+    private void StatusBeginnerBundle()
+    {
+        btnBuy.gameObject.SetActive(true);
+        obBuyOther.gameObject.SetActive(true);
+        txtValueOther.text = resourcesBuy.strOther;
+    }
     private void ClickBuy()
     {
         switch (resourcesBuy.typeBuy)
@@ -356,6 +367,11 @@ public class UIRacer : UIBase
                     break;
                 }
             case TypeBuy.Other:
+                {
+                    BuyOther();
+                    break;
+                }
+            case TypeBuy.BeginnerBundle:
                 {
                     BuyOther();
                     break;
@@ -430,6 +446,7 @@ public class UIRacer : UIBase
     {
 
     }
+    
     //private void InitScrollItemRacer()
     //{
     //    var data = DataManager.Instance.resourceBuySO.dbResBuyHelmet;

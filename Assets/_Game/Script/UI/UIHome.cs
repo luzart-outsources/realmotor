@@ -35,7 +35,7 @@ public class UIHome : UIBase
     }
     public void ClickShop()
     {
-        UIManager.Instance.ShowUI(UIName.AddCoin);
+        UIManager.Instance.ShowUI(UIName.Shop);
     }
     private void ClickSettings()
     {

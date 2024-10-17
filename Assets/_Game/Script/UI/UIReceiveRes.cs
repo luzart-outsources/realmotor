@@ -20,7 +20,7 @@ public class UIReceiveRes : UIBase
         onDone?.Invoke();
         Hide();
     }
-    public void Initialize( Action onDone = null, params DataResource[] data)
+    public void Initialize(Action onDone = null, params DataResource[] data)
     {
         this.onDone = onDone;
         listResUI.InitResUI(data);

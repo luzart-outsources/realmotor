@@ -227,6 +227,7 @@ public enum TypeBuy
     Ads =2,
     IAP = 3,
     Other = 4,
+    BeginnerBundle = 5,
 }
 [System.Serializable]
 public class DB_ResourcesUpgradeMotor

@@ -198,4 +198,5 @@ public enum RES_type
     Bike =2,
     Helmet = 3,
     Body = 4,
+    RemoveAds = 5,
 }

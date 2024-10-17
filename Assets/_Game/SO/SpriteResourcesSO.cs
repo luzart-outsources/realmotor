@@ -13,15 +13,15 @@ public class SpriteResourcesSO : ScriptableObject
 
     [SerializeField]
     private Sprite[] spBg;
-    
+
     private Dictionary<DataTypeResource, Sprite[]> dictSpriteRes = new Dictionary<DataTypeResource, Sprite[]>();
 
     private void InitDictSprite()
     {
-        if(dictSpriteRes == null || dictSpriteRes.Count == 0)
+        if (dictSpriteRes == null || dictSpriteRes.Count == 0)
         {
             dictSpriteRes.Clear();
-            for(int i = 0; i < spriteRes.Length; i++)
+            for (int i = 0; i < spriteRes.Length; i++)
             {
                 var data = spriteRes[i];
                 if (!dictSpriteRes.ContainsKey(data.dataType))
@@ -34,9 +34,9 @@ public class SpriteResourcesSO : ScriptableObject
     public Sprite GetSpriteIcon(DataResource data)
     {
         InitDictSprite();
-        if(dictSpriteRes.TryGetValue(data.type, out var sprite))
+        if (dictSpriteRes.TryGetValue(data.type, out var sprite))
         {
-            if(sprite != null && sprite[data.idIcon]!=null)
+            if (sprite != null && sprite[data.idIcon] != null)
             {
                 return sprite[data.idIcon];
             }
@@ -49,15 +49,15 @@ public class SpriteResourcesSO : ScriptableObject
     }
     public Sprite GetSpriteBG(int index)
     {
-        if(index == 0)
+        if (index == 0)
         {
             return null;
         }
-        if(index < spBg.Length)
+        if (index < spBg.Length)
         {
             return spBg[index];
         }
-        return null;    
+        return null;
     }
 }
 
