@@ -82,7 +82,15 @@ public class GarageManager : MonoBehaviour
     {
         characterVisual.InitDBCharacter(DataManager.Instance.GameData.curCharacter);
     }
-
+    public void ChangeCameraHome()
+    {
+        twMoveRos?.Kill();
+        twMovePos?.Kill();
+        cameraMain.transform.rotation = transformCameraGarage.transform.rotation;
+        cameraMain.transform.position = transformCameraGarage.transform.position;
+        twMovePos = cameraMain.transform.DOMove(transformFirstCameraGarage.position, 0.3f);
+        twMoveRos = cameraMain.transform.DORotateQuaternion(transformFirstCameraGarage.rotation, 0.3f);
+    }
     public void ChangeCameraMotor()
     {
         twMoveRos?.Kill();
@@ -97,8 +105,8 @@ public class GarageManager : MonoBehaviour
         twMoveRos?.Kill();
         twMovePos?.Kill();
         animator.Play("OrcIdle");
-        cameraMain.transform.rotation = transformFirstCameraHeader.transform.rotation;
-        cameraMain.transform.position = transformFirstCameraHeader.transform.position;
+        //cameraMain.transform.rotation = transformCameraGarage.transform.rotation;
+        //cameraMain.transform.position = transformCameraGarage.transform.position;
         twMovePos = cameraMain.transform.DOMove(transformCameraHeader.position, 0.3f);
         twMoveRos = cameraMain.transform.DORotateQuaternion(transformCameraHeader.rotation, 0.3f);
     }

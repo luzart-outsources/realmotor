@@ -128,6 +128,7 @@ public class UIManager : Singleton<UIManager>
                     uiHome.garageManager = garage;
                     garage.SetActiveMotorCharacter(true);
                     garage.OnInScreenUIGarage();
+                    garage.ChangeCameraHome();
                     uiHome.RefreshUI();
                     break;
                 }
