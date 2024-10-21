@@ -82,16 +82,20 @@ public class UIGarage : UIBase
     public void ClickBack()
     {
         Hide();
-        UIManager.Instance.ShowUI(UIName.Home);
+        UIManager.Instance.ShowGarage(UIName.Home);
         PushFirebaseIfOutInWin(KeyFirebase.StepClickBackGarage);
 
         if (!AdsManager.IAP_RemoveAds)
         {
-            UIManager.Instance.ShowUI(UIName.RemoveAds);
-        }
-        else
-        {
-            if (!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+            var level = DataManager.Instance.CurrentLevel;
+            if (level%3 == 0 || level == 1)
+            {
+                UIManager.Instance.ShowUI(UIName.RemoveAds);
+            }
+            if(level%5 == 0)
+            {
+                if (!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+            }
         }
     }
     public void ClickSettings()
@@ -199,6 +203,7 @@ public class UIGarage : UIBase
         if (garageManager != null)
         {
             garageManager.SpawnMotorVisual(itemCache.db_Motorbike.idMotor);
+            garageManager.RotateCurrentMotor();
             garageManager.SetMyCharacter();
         }
         scrollView.FocusOnRectTransform(itemCache.rectTransform);

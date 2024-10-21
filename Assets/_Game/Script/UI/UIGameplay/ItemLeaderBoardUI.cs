@@ -1,7 +1,9 @@
+using BG_Library.Common;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemLeaderBoardUI : MonoBehaviour
 {
@@ -21,9 +23,10 @@ public class ItemLeaderBoardUI : MonoBehaviour
     public TMP_Text txtName;
     public GameObject obPlayer;
     public GameObject obBot;
+    public Image imSpace;
     public TMP_Text txtDistance;
     public TMP_Text txtRound,txtPoint,txtDisIndex;
-
+    public List<Color> listColor;
     public DB_LeaderBoardInGame data {  get; private set; }
     private const string WhiteColor = "#FFFFFF";
     private const string BlackColor = "#000000";
@@ -36,6 +39,8 @@ public class ItemLeaderBoardUI : MonoBehaviour
         obPlayer.SetActive(isPlayer);
         string color = isPlayer ? BlackColor : WhiteColor;
         txtDistance.gameObject.SetActive(isPlayer);
+        var random = new RandomNoRepeat<Color>(listColor);
+        imSpace.color = random.Random();
         txtIndex.text = $"<color={color}>{db.index+1}</color>";
         txtName.text = $"<color={color}>{db.name}</color>";
         if(db.distance == 0)

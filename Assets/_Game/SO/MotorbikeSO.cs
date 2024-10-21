@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using System.Collections;
+using BG_Library.Common;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Text;
@@ -122,6 +123,7 @@ public class MotorbikeSO : ScriptableObject
     {
         int count = 0;
         List<DB_MotorbikeBot> list = new List<DB_MotorbikeBot>();
+        var random = new RandomNoRepeat<DB_CharacterBot>(characterSO.dB_CharacterBots);
         for (int j = 0; j < 6; j++)
         {
             for (int i = 0; i < motorSO.db_MotorBots.Length; i++)
@@ -132,7 +134,7 @@ public class MotorbikeSO : ScriptableObject
                 bot.db_Motorbike.levelUpgrade = j;
                 bot.id = count;
                 bot.name = $"BOT {Random.Range(i, 1000)}";
-                bot.idCharacterBot = Random.Range(0,characterSO.dB_CharacterBots.Length);
+                bot.idCharacterBot = random.Random().id;
                 list.Add(bot);
                 count++;
             }
@@ -147,11 +149,12 @@ public class MotorbikeSO : ScriptableObject
     [Button]
     private void ResetNameDB()
     {
+        var random = new RandomNoRepeat<string>(racerNames);
         int length = db_Bots.Length;
         for (int i = 0; i < length; i++)
         {
             var bot = db_Bots[i];
-            bot.name = racerNames[Random.Range(0, racerNames.Length)];
+            bot.name = random.Random();
         }
     }
 }

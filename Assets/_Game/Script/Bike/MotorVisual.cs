@@ -194,6 +194,10 @@ public class MotorVisual : MonoBehaviour
     }
     public void ShakeX()
     {
+        if(motorShake== null)
+        {
+            return;
+        }
         Vector3 euler = motorShake.transform.localEulerAngles;
         Sequence sq = DOTween.Sequence();
         sq.AppendCallback(() => motorShake.transform.localEulerAngles = new Vector3(euler.x - 0.5f, euler.y, euler.z));

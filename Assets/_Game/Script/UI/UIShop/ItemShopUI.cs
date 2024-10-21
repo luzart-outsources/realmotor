@@ -1,8 +1,6 @@
 using BG_Library.IAP;
 using BG_Library.NET;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders.Rendering;
-using System.Collections;
-using System.Collections.Generic;
+using IngameDebugConsole;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,6 +56,10 @@ public class ItemShopUI : MonoBehaviour
     public void BuyBeginnerBundle()
     {
         IAPManager.PurchaseProduct("BEGINNER_BUNDLE", _iapProductStats.Id);
+        if (type == ShopItemType.BeginnerBundle)
+        {
+            gameObject.SetActive(false);
+        }
 
     }
     public void BuyCoin(string numCoin)

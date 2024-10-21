@@ -11,6 +11,7 @@ public class GarageManager : MonoBehaviour
 {
     [Space, Header("Motor")]
     public GameObject obMotor;
+    public float valueRotateCurrentMotor = 293f;
     public Transform parentSpawn;
     public Transform parentSpawnMotor;
     public MotorVisual _motorCache;
@@ -55,6 +56,12 @@ public class GarageManager : MonoBehaviour
         _motorCache.transform.localPosition = Vector3.zero;
         softShadowProjector.SetCommandBufferDirty();
     }
+
+    public void RotateCurrentMotor()
+    {
+        obMotor.transform.DORotate(new Vector3(0, valueRotateCurrentMotor, 0), 0);
+    }
+
     private void RemoveMotorCache()
     {
         if(_motorCache != null)

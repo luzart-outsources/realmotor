@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,8 @@ public class DataManager : Singleton<DataManager>
     [Space, Header("BaseGameLuzart")]
     public GameData _gameData;
     public GameData GameData => _gameData;
+    public DBPackSO dbPackSO;
+
 
     [Space, Header("DB")]
     public LevelSO levelSO;
@@ -324,6 +326,37 @@ public class DataManager : Singleton<DataManager>
         }
         return _gameData.listBody.Contains(id);
     }
+    public bool IsHasBuyPack(string productId)
+    {
+        return GameData.listPack.Exists(pack => pack.productId == productId);
+    }
+
+    public int GetPackPurchaseCount(string productId)
+    {
+        PackPurchaseData pack = GameData.listPack.Find(p => p.productId == productId);
+        return pack != null ? pack.count : 0;
+    }
+
+    public void SaveBuyPack(string productId)
+    {
+        if (string.IsNullOrEmpty(productId))
+        {
+            return;
+        }
+
+        // Kiểm tra xem gói đã tồn tại trong danh sách chưa
+        PackPurchaseData existingPack = GameData.listPack.Find(pack => pack.productId == productId);
+        if (existingPack != null)
+        {
+            existingPack.count++; // Tăng số lần mua nếu đã tồn tại
+        }
+        else
+        {
+            GameData.listPack.Add(new PackPurchaseData(productId, 1)); // Thêm gói mới với số lần mua là 1
+        }
+
+        SaveGameData();
+    }
 }
 [System.Serializable]
 public class GameData
@@ -331,13 +364,26 @@ public class GameData
     public string name = "Player";
     public int level = 0;
     public DB_Character curCharacter;
+    public bool isUserIAP = false;
     public int idCurMotor;
     public List<DB_Motorbike> motorbikeDatas = new List<DB_Motorbike>();
     public List<DataGetByAds> getBuyAds = new List<DataGetByAds>();
     public List<int> listHelmet = new List<int>();
     public List<int> listBody = new List<int>();
     public DataDailyReward dailyReward = new DataDailyReward();
+    public List<PackPurchaseData> listPack = new List<PackPurchaseData>();
+}
+[System.Serializable]
+public class PackPurchaseData
+{
+    public string productId;
+    public int count;
 
+    public PackPurchaseData(string productId, int count)
+    {
+        this.productId = productId;
+        this.count = count;
+    }
 }
 [System.Serializable]
 public class InforMotorbike

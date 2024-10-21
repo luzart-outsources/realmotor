@@ -49,7 +49,9 @@ public class UIHome : UIBase
     {
         base.RefreshUI();
         int idMotor = DataManager.Instance.GameData.idCurMotor;
+        Debug.Log(idMotor);
         garageManager.SpawnMotorVisual(idMotor);
+        garageManager.RotateCurrentMotor();
         DB_Motor db_Motor = DataManager.Instance.motorSO.GetDBMotor(idMotor);
         int[] levelsUpgrade = ConfigStats.GetLevelsUpgrade(idMotor);
         InforMotorbike infor = ConfigStats.GetInforMotorbike(idMotor, levelsUpgrade);

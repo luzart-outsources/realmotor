@@ -233,7 +233,7 @@ public class MoveMovementRigid : MotorMovement
             {
                 if (currentSpeed / motorbikeInfo.maxSpeed >= percentSpeed)
                 {
-                    handling = handling - sensor * (currentSpeed - percentSpeed * motorbikeInfo.maxSpeed);
+                    handling = handling - sensor * (currentSpeed - percentSpeed * motorbikeInfo.maxSpeed)/ motorbikeInfo.maxSpeed * motorbikeInfo.handling;
                 }
             }
             float turn = 0;

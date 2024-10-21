@@ -396,6 +396,7 @@ MonoBehaviour:
   uiName: 0
   closeBtn: {fileID: 0}
   isCache: 0
+  isAnimBtnClose: 0
   UIController: {fileID: 3919046270030074520}
   btnPause: {fileID: 7262782633070103153}
   leaderBoard: {fileID: 3517945966700290130}
@@ -3438,9 +3439,9 @@ RectTransform:
   - {fileID: 6441121139471384224}
   m_Father: {fileID: 8305546106027316491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 188.455, y: -20.1418}
   m_SizeDelta: {x: 377, y: 40.2836}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8755668093419200013
@@ -3459,10 +3460,22 @@ MonoBehaviour:
   txtName: {fileID: 4144970957844454448}
   obPlayer: {fileID: 1414542451897773730}
   obBot: {fileID: 4022386517670646942}
+  imSpace: {fileID: 2946934898691676207}
   txtDistance: {fileID: 8048185353383707806}
   txtRound: {fileID: 7465083512123888119}
   txtPoint: {fileID: 3819364043068998674}
   txtDisIndex: {fileID: 5236197400955213814}
+  listColor:
+  - {r: 0.38470095, g: 0.8962264, b: 0.6472374, a: 1}
+  - {r: 0.41568628, g: 0.7497119, b: 0.79607844, a: 1}
+  - {r: 0.36124954, g: 0.5365361, b: 0.7735849, a: 1}
+  - {r: 0.8301887, g: 0.39551443, b: 0.789417, a: 1}
+  - {r: 0.74419516, g: 0.8117647, b: 0.32549018, a: 1}
+  - {r: 0.9622642, g: 0.26779994, b: 0.89690286, a: 1}
+  - {r: 1, g: 0.70829535, b: 0.6784314, a: 1}
+  - {r: 0.5754717, g: 0.1004361, b: 0.1004361, a: 1}
+  - {r: 0.9433962, g: 0.3426486, b: 0.4488068, a: 1}
+  - {r: 0, g: 0.8013716, b: 1, a: 1}
 --- !u!1 &6120307234123527755
 GameObject:
   m_ObjectHideFlags: 0

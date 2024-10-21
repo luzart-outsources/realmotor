@@ -131,7 +131,12 @@ namespace MoreMountains.HighroadEngine
             {
                 UnVerticle();
                 UnHorizontal();
-                Brake();
+                baseMotorBike.Speed = Mathf.Clamp(baseMotorBike.Speed, 15f, Time.deltaTime);
+                if (baseMotorBike.Speed <= 5)
+                {
+                    baseMotorBike.Speed = 10f;
+                }
+
                 return;
             }
             if (IsAIMovementFarPlayer())
@@ -184,7 +189,7 @@ namespace MoreMountains.HighroadEngine
                 UnHorizontal();
             }
         }
-        private float radiusFinishLine = 200f;
+        private float radiusFinishLine = 250f;
         private bool IsAIMovementFinishLine()
         {
             if (baseMotorBike != null && baseMotorBike.eTeam == ETeam.AI)

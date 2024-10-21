@@ -8,6 +8,7 @@ public class UIBase : MonoBehaviour
     public UIName uiName = UIName.None;
     public Button closeBtn;
     public bool isCache = false;
+    public bool isAnimBtnClose = false;
 
     protected bool isSetup = false;
     protected System.Action onHideDone;
@@ -16,7 +17,7 @@ public class UIBase : MonoBehaviour
     {
         if (closeBtn != null)
         {
-            GameUtil.ButtonOnClick(closeBtn, OnClickClose);
+            GameUtil.ButtonOnClick(closeBtn, OnClickClose, isAnimBtnClose);
             // closeBtn.onClick.AddListener(OnClickClose);
         }
     }

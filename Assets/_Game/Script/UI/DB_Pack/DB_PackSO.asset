@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bb43b49aeb4914199a927cdbe4428b, type: 3}
+  m_Name: DB_PackSO
+  m_EditorClassIdentifier: 
+  dbPack:
+  - productId: BEGINNER_BUNDLE
+    maxBuy: 1
+    isRemoveAds: 0
+    gift:
+      groupDataResources:
+      - type:
+          type: 0
+          id: 0
+        amount: 0
+        idIcon: 0
+        idBg: 0
+        spIcon: {fileID: 0}
+        spBg: {fileID: 0}
+    resourcesOther:
+      groupDataResources: []
+    where: 

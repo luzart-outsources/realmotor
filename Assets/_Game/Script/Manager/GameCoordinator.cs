@@ -223,6 +223,7 @@ public class GameCoordinator : MonoBehaviour
             VehicleAI controller = bot.gameObject.AddComponent<VehicleAI>();
             bot.Initialize(infor, controller, ETeam.AI);
             bot.InitStartRace();
+            Debug.Log(db.name);
             bot.strMyName = db.name;
         }
     }

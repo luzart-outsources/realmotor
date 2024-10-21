@@ -13,7 +13,17 @@ public class BaseMotor : MonoBehaviour
     public BaseMotorbike baseMotorbike {  get; private set; }
     public ELayerRaycastMotorbike ELayerCurrent;
     private bool IsBrake = false;
-    public float Speed => movementMotor.currentSpeed;
+    public float Speed
+    {
+        get
+        {
+            return movementMotor.currentSpeed;
+        }
+        set
+        {
+            movementMotor.currentSpeed = value;
+        }
+    }
 
     public Action<Vector3> ActionCollisionWall = null;
     public Action<ResultOnCollisionLayer> actionOnCollisionLayer;

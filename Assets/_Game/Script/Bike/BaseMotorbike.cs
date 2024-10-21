@@ -54,7 +54,17 @@ public class BaseMotorbike : MonoBehaviour
 
     [Sirenix.OdinInspector.ShowInInspector]
     public int round { get; set; } = 0;
-    public float Speed => baseMotor.Speed;
+    public float Speed
+    {
+        get
+        {
+            return baseMotor.Speed;
+        }
+        set
+        {
+            baseMotor.Speed = value;
+        }
+    }
     public bool isFall { get; set; } = false;
 
     public float timePlay { get; set; }

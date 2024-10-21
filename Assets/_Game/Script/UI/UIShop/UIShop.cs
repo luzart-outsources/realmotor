@@ -10,7 +10,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 public class UIShop : UIBase
 {
     public Button btnBack;
-    List<ItemShopUI> listItemShopUIs = new List<ItemShopUI>();
+    public List<ItemShopUI> listItemShopUIs = new List<ItemShopUI>();
 
     protected override void Setup()
     {
