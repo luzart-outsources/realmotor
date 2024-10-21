@@ -26,14 +26,14 @@ public class UIShop : UIBase
     {
         Hide();
         //UIManager.Instance.ShowGarage(UIName.Home);
-        if (!AdsManager.IAP_RemoveAds)
+        /*if (!AdsManager.IAP_RemoveAds)
         {
             UIManager.Instance.ShowUI(UIName.RemoveAds);
         }
         else
         {
             if(!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
-        }
+        }*/
     }
    
 }

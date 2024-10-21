@@ -88,13 +88,16 @@ public class UIGarage : UIBase
         if (!AdsManager.IAP_RemoveAds)
         {
             var level = DataManager.Instance.CurrentLevel;
-            if (level%3 == 0 || level == 1)
+            if (level > 0)
             {
-                UIManager.Instance.ShowUI(UIName.RemoveAds);
-            }
-            if(level%5 == 0)
-            {
-                if (!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+                if (level % 3 == 0)
+                {
+                    UIManager.Instance.ShowUI(UIName.RemoveAds);
+                }
+                if (level % 5 == 0)
+                {
+                    if (!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+                }
             }
         }
     }
