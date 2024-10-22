@@ -64,6 +64,7 @@ public class ShopIAP : MonoBehaviour
                 DataManager.Instance.ReceiveRes(new DataResource(new DataTypeResource(RES_type.Gold), product.PackRewardValue));
                 ui.Initialize(() => {
                     var uiShop = UIManager.Instance.GetUiActive<UIShop>(UIName.Shop);
+                    uiShop.RefreshUI();
                     UIManager.Instance.RefreshUI();
                 }, new DataResource(new DataTypeResource(RES_type.Gold), product.PackRewardValue));
                 Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, false);
@@ -74,13 +75,15 @@ public class ShopIAP : MonoBehaviour
                 DataManager.Instance.ReceiveRes(dataResource[0].groupDataResources);
                 ui.Initialize(() => {
                     var uiShop = UIManager.Instance.GetUiActive<UIShop>(UIName.Shop);
+                    uiShop.RefreshUI();
                     UIManager.Instance.RefreshUI();
                 }, dataResource[0].groupDataResources);
 
                 break;
             case "Motor":
                 DataManager.Instance.ReceiveRes(dataResource[1].groupDataResources);
-                DataManager.Instance.isBeginnerBundle = true;
+                DataManager.Instance.GameData.isBeginnerBundle = true;
+                DataManager.Instance.SaveGameData();
                 Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, false);
                 ui.Initialize(() => {
                     var uiGarage = UIManager.Instance.GetUiActive<UIGarage>(UIName.Shop);

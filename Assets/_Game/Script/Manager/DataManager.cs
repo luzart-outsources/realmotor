@@ -26,9 +26,6 @@ public class DataManager : Singleton<DataManager>
     [Space, Header("DailyRewardManager")]
     public DailyRewardManager dailyRewardManager;
 
-    [Space, Header("IAP")]
-    public bool isBeginnerBundle = false;
-
     private const string KEY_GAME_DATA = "key_gamedata";
     public void Initialize()
     {
@@ -372,6 +369,9 @@ public class GameData
     public List<int> listBody = new List<int>();
     public DataDailyReward dailyReward = new DataDailyReward();
     public List<PackPurchaseData> listPack = new List<PackPurchaseData>();
+    public bool isBeginnerBundle = false;
+    public bool isFirstWatchRemoveAd = false;
+    public bool isFirstWatchBundle = false;
 }
 [System.Serializable]
 public class PackPurchaseData

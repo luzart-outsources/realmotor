@@ -717,6 +717,7 @@ MonoBehaviour:
   uiName: 0
   closeBtn: {fileID: 0}
   isCache: 0
+  isAnimBtnClose: 0
   btnBack: {fileID: 4968126673677958051}
   btnUpgrade: {fileID: 8359049911395620576}
   btnSettings: {fileID: 0}
@@ -1581,7 +1582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0
+  m_EffectFactor: 0.5995104
   m_Width: 0.11
   m_Rotation: 120
   m_Softness: 0.01
@@ -2324,7 +2325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 300
   m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0
+  m_EffectFactor: 0.18930863
   m_Width: 0.11
   m_Rotation: 135
   m_Softness: 0.01
@@ -2538,6 +2539,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4683400652243588042}
     m_Modifications:
     - target: {fileID: 1154930415720510055, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_text
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154930415720510055, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_fontSize
       value: 43
       objectReference: {fileID: 0}
@@ -2551,7 +2556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1716815218660946513, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 106
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 1716815218660946513, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2564,6 +2569,10 @@ PrefabInstance:
     - target: {fileID: 1946564673140135968, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_SizeDelta.y
       value: 42.617
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946564673140135968, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2135081742596067394, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2657,6 +2666,10 @@ PrefabInstance:
       propertyPath: typeWhere
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6466571175821881801, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: _dataRes.amount
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6917039941362119763, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Name
       value: btnAds
@@ -2679,7 +2692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_EffectFactor
-      value: 0
+      value: 0.5995104
       objectReference: {fileID: 0}
     - target: {fileID: 7371246132365456895, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Player.duration

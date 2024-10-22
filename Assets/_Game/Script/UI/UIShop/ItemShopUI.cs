@@ -16,14 +16,7 @@ public class ItemShopUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (type == ShopItemType.RemoveAds && AdsManager.IAP_RemoveAds)
-        {
-            gameObject.SetActive(false);
-        }
-        if (type == ShopItemType.BeginnerBundle && DataManager.Instance.isBeginnerBundle)
-        {
-            gameObject.SetActive(false);
-        }
+        CheckItem();
     }
 
     private void Start()
@@ -36,6 +29,18 @@ public class ItemShopUI : MonoBehaviour
         string priceString = IAPManager.GetPriceString(_iapProductStats.Id);
         _priceText.text = priceString;
         Debug.Log(priceString);
+    }
+
+    public void CheckItem()
+    {
+        if (type == ShopItemType.RemoveAds && AdsManager.IAP_RemoveAds)
+        {
+            gameObject.SetActive(false);
+        }
+        if (type == ShopItemType.BeginnerBundle && DataManager.Instance.GameData.isBeginnerBundle)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void SelectBuy()
@@ -51,16 +56,10 @@ public class ItemShopUI : MonoBehaviour
     public void SelectRemoveAds()
     {
         IAPManager.PurchaseProduct("REMOVE_AD", _iapProductStats.Id);
-        gameObject.SetActive(false);
     }
     public void BuyBeginnerBundle()
     {
         IAPManager.PurchaseProduct("BEGINNER_BUNDLE", _iapProductStats.Id);
-        if (type == ShopItemType.BeginnerBundle)
-        {
-            gameObject.SetActive(false);
-        }
-
     }
     public void BuyCoin(string numCoin)
     {
@@ -69,7 +68,7 @@ public class ItemShopUI : MonoBehaviour
     private void OnShowDone()
     {
         Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, true);
-        DataManager.Instance.ReceiveRes(new DataResource(new DataTypeResource(RES_type.Gold), 5000));
+        DataManager.Instance.ReceiveRes(new DataResource(new DataTypeResource(RES_type.Gold), 500));
         UIManager.Instance.ShowCoinSpawn();
 
     }

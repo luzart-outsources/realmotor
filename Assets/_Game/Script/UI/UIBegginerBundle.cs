@@ -1,5 +1,6 @@
 using BG_Library.IAP;
 using BG_Library.NET;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +10,11 @@ using UnityEngine.UI;
 public class UIBegginerBundle : UIBase
 {
     public GroupDataResources dataResource = new GroupDataResources();
-
-    public Button btnBack; private void Awake()
+    public CanvasGroup canvasGroup;
+    public Button btnBack;
+    private void Awake()
     {
+        canvasGroup.alpha = 0f;
         IAPManager.PurchaseResultListener += OnPurchaseComplete;
     }
 
@@ -21,6 +24,7 @@ public class UIBegginerBundle : UIBase
     }
     protected override void Setup()
     {
+        canvasGroup.DOFade(1f, 0.4f);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true);
     }
     public override void Show(Action onHideDone)
@@ -38,7 +42,7 @@ public class UIBegginerBundle : UIBase
     }
     public void ClickBack()
     {
-        Hide();
+        canvasGroup.DOFade(0f, 0.3f).OnComplete(Hide);
         //UIManager.Instance.ShowUI(UIName.Home);
     }
     private void OnPurchaseComplete(IAPPurchaseResult iAPPurchaseResult)
@@ -82,9 +86,11 @@ public class UIBegginerBundle : UIBase
         {
             case "Motor":
                 DataManager.Instance.ReceiveRes(dataResource.groupDataResources);
-                DataManager.Instance.isBeginnerBundle = true;
+                DataManager.Instance.GameData.isBeginnerBundle = true;
+                DataManager.Instance.SaveGameData();
                 Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, false);
-                ui.Initialize(() => {
+                ui.Initialize(() =>
+                {
                     Hide();
                     var uiGarage = UIManager.Instance.GetUiActive<UIGarage>(UIName.Garage);
                     UIManager.Instance.RefreshUI();

@@ -452,6 +452,7 @@ MonoBehaviour:
   uiName: 0
   closeBtn: {fileID: 0}
   isCache: 0
+  isAnimBtnClose: 0
   btnRacing: {fileID: 4148324803507417970}
   btnGarage: {fileID: 6391333739468267490}
   btnUpgrade: {fileID: 5714364005666069667}
@@ -2372,9 +2373,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9106493164431215539}
     m_Modifications:
+    - target: {fileID: 1154930415720510055, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_text
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1716815218660946513, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716815218660946513, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 83.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946564673140135968, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.3
       objectReference: {fileID: 0}
     - target: {fileID: 4997990921099485044, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Material
@@ -2463,6 +2476,10 @@ PrefabInstance:
     - target: {fileID: 6466571175821881801, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: typeWhere
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6466571175821881801, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
+      propertyPath: _dataRes.amount
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6917039941362119763, guid: 4ff7d35bd05709e4693958c12039d41a, type: 3}
       propertyPath: m_Name

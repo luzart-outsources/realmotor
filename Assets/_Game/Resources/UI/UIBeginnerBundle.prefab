@@ -364,7 +364,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Get This Bike\n\rDicatee Stormrider Fx2024\r"
+  m_text: 'Get This Bike
+
+    Ghoul 2023'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}
   m_sharedMaterial: {fileID: -5376924483083650008, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}
@@ -675,8 +677,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 46
+  m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1340,6 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7295739707071158138}
   - component: {fileID: 1494750967650365870}
+  - component: {fileID: 2914791765382147991}
   m_Layer: 5
   m_Name: UIBeginnerBundle
   m_TagString: Untagged
@@ -1404,7 +1407,20 @@ MonoBehaviour:
       idBg: 0
       spIcon: {fileID: 0}
       spBg: {fileID: 0}
+  canvasGroup: {fileID: 2914791765382147991}
   btnBack: {fileID: 8154876257966137369}
+--- !u!225 &2914791765382147991
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7095946868902808996}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7273579716810037590
 GameObject:
   m_ObjectHideFlags: 0

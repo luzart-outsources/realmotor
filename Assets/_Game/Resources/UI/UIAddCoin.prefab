@@ -53,6 +53,7 @@ MonoBehaviour:
   uiName: 0
   closeBtn: {fileID: 8743788803502225730}
   isCache: 0
+  isAnimBtnClose: 0
 --- !u!1 &779730425266768898
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +272,7 @@ MonoBehaviour:
     type:
       type: 1
       id: 0
-    amount: 2000
+    amount: 500
     idIcon: 0
     idBg: 0
     spIcon: {fileID: 0}
@@ -513,7 +514,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2000
+  m_text: 500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}
   m_sharedMaterial: {fileID: -5376924483083650008, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}

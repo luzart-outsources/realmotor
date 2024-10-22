@@ -88,15 +88,31 @@ public class UIGarage : UIBase
         if (!AdsManager.IAP_RemoveAds)
         {
             var level = DataManager.Instance.CurrentLevel;
+            var data = DataManager.Instance;
+
+            if (level % 3 == 0)
+            {
+                if (!data.GameData.isFirstWatchRemoveAd) UIManager.Instance.ShowUI(UIName.RemoveAds);
+                data.GameData.isFirstWatchRemoveAd = true;
+            }
+            else
+            {
+                data.GameData.isFirstWatchRemoveAd = false;
+            }
+
             if (level > 0)
             {
-                if (level % 3 == 0)
-                {
-                    UIManager.Instance.ShowUI(UIName.RemoveAds);
-                }
                 if (level % 5 == 0)
                 {
-                    if (!DataManager.Instance.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+                    if (!data.GameData.isBeginnerBundle && !data.GameData.isFirstWatchBundle)
+                    {
+                        UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+                    }
+                    data.GameData.isFirstWatchBundle = true;
+                }
+                else
+                {
+                    data.GameData.isFirstWatchBundle = false;
                 }
             }
         }
@@ -127,7 +143,7 @@ public class UIGarage : UIBase
     }
     public void InitGara(GarageManager gara)
     {
-        
+
     }
     public override void Show(Action onHideDone)
     {
@@ -146,13 +162,13 @@ public class UIGarage : UIBase
     private void SpawnList()
     {
         int length = allDBMotor.Length;
-        List<DB_Motorbike> listDB = new List<DB_Motorbike> ();
+        List<DB_Motorbike> listDB = new List<DB_Motorbike>();
         for (int i = 0; i < length; i++)
         {
             int index = i;
             DB_Motorbike db = new DB_Motorbike();
             int idMotor = allDBMotor[index].idMotor;
-            int [] levelUpgrades = new int[4];
+            int[] levelUpgrades = new int[4];
             db.idMotor = idMotor;
             db.isHas = DataManager.Instance.IsHasMotor(idMotor, ref levelUpgrades);
             db.levelUpgrades = levelUpgrades;
@@ -185,7 +201,7 @@ public class UIGarage : UIBase
     {
         base.RefreshUI();
         DB_Motor dbGet = DataManager.Instance.motorSO.GetDBMotor(itemCache.db_Motorbike.idMotor).Clone();
-        
+
         int[] levelUpgrade = new int[4];
         bool isHasData = DataManager.Instance.IsHasMotor(itemCache.db_Motorbike.idMotor, ref levelUpgrade);
         bool[] isMaxData = DataManager.Instance.IsMaxDataArray(itemCache.db_Motorbike.idMotor);
@@ -360,10 +376,10 @@ public class UIGarage : UIBase
     private void OnDoneShowAds()
     {
         DataTypeResource dataType = new DataTypeResource(RES_type.Bike, itemCache.currentIndex);
-        DataManager.Instance.AddGetAdsResource(dataType,1);
+        DataManager.Instance.AddGetAdsResource(dataType, 1);
         int curIndex = DataManager.Instance.GetAdsCurrentResource(dataType);
         int maxIndex = resourcesBuy.valueBuy;
-        if(curIndex >= maxIndex)
+        if (curIndex >= maxIndex)
         {
             AudioManager.Instance.PlaySFXUnlockMotor();
             DataManager.Instance.ReceiveRes(resourcesBuy.dataRes);
@@ -386,7 +402,7 @@ public class UIGarage : UIBase
     }
     private void BuyBeginnerBundle()
     {
-        UIManager.Instance.ShowUI<UIBegginerBundle>(UIName.BeginnerBundle);
+        if (!DataManager.Instance.GameData.isBeginnerBundle) UIManager.Instance.ShowUI<UIBegginerBundle>(UIName.BeginnerBundle);
     }
 
     private void PushFirebaseIfOutInWin(string key)

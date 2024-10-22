@@ -1,5 +1,6 @@
 using BG_Library.IAP;
 using BG_Library.NET;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ using UnityEngine.UI;
 public class UIRemoveAds : UIBase
 {
     public GroupDataResources dataResource = new GroupDataResources();
+    public CanvasGroup canvasGroup;
     public Button btnBack;
 
     private void Awake()
     {
+        canvasGroup.alpha = 0f;
         IAPManager.PurchaseResultListener += OnPurchaseComplete;
     }
 
@@ -23,6 +26,7 @@ public class UIRemoveAds : UIBase
 
     protected override void Setup()
     {
+        canvasGroup.DOFade(1f, 0.4f);
         GameUtil.ButtonOnClick(btnBack, ClickBack, true);
     }
     public override void Show(Action onHideDone)
@@ -36,7 +40,7 @@ public class UIRemoveAds : UIBase
 
     public void ClickBack()
     {
-        Hide();
+        canvasGroup.DOFade(0f, 0.3f).OnComplete(Hide);
         //UIManager.Instance.ShowUI(UIName.Home);
     }
     private void OnPurchaseComplete(IAPPurchaseResult iAPPurchaseResult)

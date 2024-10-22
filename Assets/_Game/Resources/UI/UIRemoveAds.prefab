@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +5000 Coin
+  m_text: +2000 Coin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}
   m_sharedMaterial: {fileID: -5376924483083650008, guid: ae9941fbdca6a524c9811d28e6fbdda1, type: 2}
@@ -466,8 +466,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 46
+  m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -878,6 +878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5626762108505929645}
   - component: {fileID: 2882029534486511199}
+  - component: {fileID: 4836571325975757743}
   m_Layer: 5
   m_Name: UIRemoveAds
   m_TagString: Untagged
@@ -923,6 +924,7 @@ MonoBehaviour:
   uiName: 23
   closeBtn: {fileID: 0}
   isCache: 0
+  isAnimBtnClose: 0
   dataResource:
     groupDataResources:
     - type:
@@ -936,12 +938,25 @@ MonoBehaviour:
     - type:
         type: 1
         id: 0
-      amount: 5000
+      amount: 2000
       idIcon: 0
       idBg: 0
       spIcon: {fileID: 0}
       spBg: {fileID: 0}
+  canvasGroup: {fileID: 4836571325975757743}
   btnBack: {fileID: 7430013172169569552}
+--- !u!225 &4836571325975757743
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983446219601773282}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3913678328726566436
 GameObject:
   m_ObjectHideFlags: 0

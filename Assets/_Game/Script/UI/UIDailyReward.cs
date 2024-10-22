@@ -111,7 +111,7 @@ public class UIDailyReward : UIBase
         DataManager.Instance.ReceiveRes(itemDailyRewardUI.groupDataResources.groupDataResources);
         var ui = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
         ui.Initialize(Hide, itemDailyRewardUI.groupDataResources.groupDataResources);
-        UIManager.Instance.ShowUI(UIName.BeginnerBundle);
+        if(!DataManager.Instance.GameData.isBeginnerBundle) UIManager.Instance.ShowUI(UIName.BeginnerBundle);
     }
     private void ShowToast()
     {

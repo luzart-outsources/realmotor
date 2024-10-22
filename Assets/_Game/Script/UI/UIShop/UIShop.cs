@@ -21,7 +21,13 @@ public class UIShop : UIBase
     {
         base.Show(onHideDone);
     }
-
+    public override void RefreshUI()
+    {
+        for (int i = 0; i < listItemShopUIs.Count; i++)
+        {
+            listItemShopUIs[i].CheckItem();
+        }
+    }
     void ClickBack()
     {
         Hide();
