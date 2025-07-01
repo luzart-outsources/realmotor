@@ -85,7 +85,7 @@ public class UIGarage : UIBase
         UIManager.Instance.ShowGarage(UIName.Home);
         PushFirebaseIfOutInWin(KeyFirebase.StepClickBackGarage);
 
-        if (!AdsManager.IAP_RemoveAds)
+        //if (!AdsManager.IAP_RemoveAds)
         {
             var level = DataManager.Instance.CurrentLevel;
             var data = DataManager.Instance;

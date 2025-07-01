@@ -1,4 +1,4 @@
-using BG_Library.IAP;
+//using BG_Library.IAP;
 using BG_Library.NET;
 using IngameDebugConsole;
 using TMPro;
@@ -12,31 +12,31 @@ public class ItemShopUI : MonoBehaviour
     Button btnRemoveAds;
     [SerializeField] ShopItemType type;
     [SerializeField] private TMP_Text _priceText;
-    [SerializeField] private IAPProductStats _iapProductStats;
+    //[SerializeField] private IAPProductStats _iapProductStats;
 
     private void OnEnable()
     {
         CheckItem();
     }
 
-    private void Start()
-    {
-        IAPManager.CheckInitializedAndHandle(OnInitializedComplete);
-    }
-    private void OnInitializedComplete()
-    {
-        if (_iapProductStats == null) return;
-        string priceString = IAPManager.GetPriceString(_iapProductStats.Id);
-        _priceText.text = priceString;
-        Debug.Log(priceString);
-    }
+    //private void Start()
+    //{
+    //    IAPManager.CheckInitializedAndHandle(OnInitializedComplete);
+    //}
+    //private void OnInitializedComplete()
+    //{
+    //    if (_iapProductStats == null) return;
+    //    string priceString = IAPManager.GetPriceString(_iapProductStats.Id);
+    //    _priceText.text = priceString;
+    //    Debug.Log(priceString);
+    //}
 
     public void CheckItem()
     {
-        if (type == ShopItemType.RemoveAds && AdsManager.IAP_RemoveAds)
-        {
-            gameObject.SetActive(false);
-        }
+        //if (type == ShopItemType.RemoveAds && AdsManager.IAP_RemoveAds)
+        //{
+        //    gameObject.SetActive(false);
+        //}
         if (type == ShopItemType.BeginnerBundle && DataManager.Instance.GameData.isBeginnerBundle)
         {
             gameObject.SetActive(false);
@@ -53,18 +53,18 @@ public class ItemShopUI : MonoBehaviour
         AdsWrapperManager.Instance.ShowReward(KeyAds.ClickButtonWatchAds, OnShowDone, OnShowFailed);
     }
 
-    public void SelectRemoveAds()
-    {
-        IAPManager.PurchaseProduct("REMOVE_AD", _iapProductStats.Id);
-    }
-    public void BuyBeginnerBundle()
-    {
-        IAPManager.PurchaseProduct("BEGINNER_BUNDLE", _iapProductStats.Id);
-    }
-    public void BuyCoin(string numCoin)
-    {
-        IAPManager.PurchaseProduct("BUY_COIN_" + numCoin, _iapProductStats.Id);
-    }
+    //public void SelectRemoveAds()
+    //{
+    //    IAPManager.PurchaseProduct("REMOVE_AD", _iapProductStats.Id);
+    //}
+    //public void BuyBeginnerBundle()
+    //{
+    //    IAPManager.PurchaseProduct("BEGINNER_BUNDLE", _iapProductStats.Id);
+    //}
+    //public void BuyCoin(string numCoin)
+    //{
+    //    IAPManager.PurchaseProduct("BUY_COIN_" + numCoin, _iapProductStats.Id);
+    //}
     private void OnShowDone()
     {
         Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, true);

@@ -1,4 +1,4 @@
-﻿using BG_Library.IAP;
+﻿//using BG_Library.IAP;
 using BG_Library.NET;
 using Sirenix.OdinInspector;
 using System;
@@ -54,38 +54,38 @@ public abstract class BaseUIPack: UIBase
     }
     public virtual void BuyIAP()
     {
-        IAPManager.PurchaseResultListener += OnPurchaseComplete;
+        //IAPManager.PurchaseResultListener += OnPurchaseComplete;
         SetBuyProduct();
     }
     private void SetBuyProduct()
     {
-        IAPManager.PurchaseProduct(db_Pack.where, db_Pack.productId);
+        //IAPManager.PurchaseProduct(db_Pack.where, db_Pack.productId);
     }
-    private void OnPurchaseComplete(IAPPurchaseResult iappurchaseresult)
-    {
-        IAPManager.PurchaseResultListener -= OnPurchaseComplete;
-        switch (iappurchaseresult.Result)
-        {
-            case IAPPurchaseResult.EResult.Complete:
-                OnCompleteBuy();
-                DataManager.Instance.GameData.isUserIAP = true;
-                // iappurchaseresult.Product.Reward - Reward setup in stats
-                // iappurchaseresult.Product.Reward.PackRewardValue - give reward amount
-                // iappurchaseresult.Product.Reward.Reward - Type Reward > REMOVE_AD, CURRENCY (CASH OR GOLD), CUSTOM (Item Or Tool)
-                // iappurchaseresult.Product.Reward.atlas - Reward give Currency Id or Item, Tool Id (example: CASH, GOLD, TOOL_1...)
-                // todo give product reward
-                break;
-            case IAPPurchaseResult.EResult.WrongInstance:
-                // Purchase faield: IAP Manager instance null (Read Setup IAP)  
-                break;
-            case IAPPurchaseResult.EResult.WrongProduct:
-                // Purchase faield: can't find product with id 
-                break;
-            case IAPPurchaseResult.EResult.WrongStoreController:
-                // Purchase faield: IAP initialized faield
-                break;
-        }
-    }
+    //private void OnPurchaseComplete(IAPPurchaseResult iappurchaseresult)
+    //{
+    //    IAPManager.PurchaseResultListener -= OnPurchaseComplete;
+    //    switch (iappurchaseresult.Result)
+    //    {
+    //        case IAPPurchaseResult.EResult.Complete:
+    //            OnCompleteBuy();
+    //            DataManager.Instance.GameData.isUserIAP = true;
+    //            // iappurchaseresult.Product.Reward - Reward setup in stats
+    //            // iappurchaseresult.Product.Reward.PackRewardValue - give reward amount
+    //            // iappurchaseresult.Product.Reward.Reward - Type Reward > REMOVE_AD, CURRENCY (CASH OR GOLD), CUSTOM (Item Or Tool)
+    //            // iappurchaseresult.Product.Reward.atlas - Reward give Currency Id or Item, Tool Id (example: CASH, GOLD, TOOL_1...)
+    //            // todo give product reward
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongInstance:
+    //            // Purchase faield: IAP Manager instance null (Read Setup IAP)  
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongProduct:
+    //            // Purchase faield: can't find product with id 
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongStoreController:
+    //            // Purchase faield: IAP initialized faield
+    //            break;
+    //    }
+    //}
     protected virtual void OnCompleteBuy()
     {
         DataManager.Instance.SaveBuyPack(db_Pack.productId);
@@ -159,7 +159,7 @@ public class PackItem: MonoBehaviour
     public Button btnBuy;
     protected virtual void Awake()
     {
-        GameUtil.ButtonOnClick(btnBuy, BuyIAP, true);
+        //GameUtil.ButtonOnClick(btnBuy, BuyIAP, true);
     }
     public virtual void Initialize()
     {
@@ -183,40 +183,40 @@ public class PackItem: MonoBehaviour
     {
 
     }
-    public virtual void BuyIAP()
-    {
-        IAPManager.PurchaseResultListener += OnPurchaseComplete;
-        SetBuyProduct();
-    }
-    private void SetBuyProduct()
-    {
-        IAPManager.PurchaseProduct(db_Pack.where, db_Pack.productId);
-    }
-    private void OnPurchaseComplete(IAPPurchaseResult iappurchaseresult)
-    {
-        IAPManager.PurchaseResultListener -= OnPurchaseComplete;
-        switch (iappurchaseresult.Result)
-        {
-            case IAPPurchaseResult.EResult.Complete:
-                OnCompleteBuy();
-                DataManager.Instance.GameData.isUserIAP = true;
-                // iappurchaseresult.Product.Reward - Reward setup in stats
-                // iappurchaseresult.Product.Reward.PackRewardValue - give reward amount
-                // iappurchaseresult.Product.Reward.Reward - Type Reward > REMOVE_AD, CURRENCY (CASH OR GOLD), CUSTOM (Item Or Tool)
-                // iappurchaseresult.Product.Reward.atlas - Reward give Currency Id or Item, Tool Id (example: CASH, GOLD, TOOL_1...)
-                // todo give product reward
-                break;
-            case IAPPurchaseResult.EResult.WrongInstance:
-                // Purchase faield: IAP Manager instance null (Read Setup IAP)  
-                break;
-            case IAPPurchaseResult.EResult.WrongProduct:
-                // Purchase faield: can't find product with id 
-                break;
-            case IAPPurchaseResult.EResult.WrongStoreController:
-                // Purchase faield: IAP initialized faield
-                break;
-        }
-    }
+    //public virtual void BuyIAP()
+    //{
+    //    IAPManager.PurchaseResultListener += OnPurchaseComplete;
+    //    SetBuyProduct();
+    //}
+    //private void SetBuyProduct()
+    //{
+    //    IAPManager.PurchaseProduct(db_Pack.where, db_Pack.productId);
+    //}
+    //private void OnPurchaseComplete(IAPPurchaseResult iappurchaseresult)
+    //{
+    //    IAPManager.PurchaseResultListener -= OnPurchaseComplete;
+    //    switch (iappurchaseresult.Result)
+    //    {
+    //        case IAPPurchaseResult.EResult.Complete:
+    //            OnCompleteBuy();
+    //            DataManager.Instance.GameData.isUserIAP = true;
+    //            // iappurchaseresult.Product.Reward - Reward setup in stats
+    //            // iappurchaseresult.Product.Reward.PackRewardValue - give reward amount
+    //            // iappurchaseresult.Product.Reward.Reward - Type Reward > REMOVE_AD, CURRENCY (CASH OR GOLD), CUSTOM (Item Or Tool)
+    //            // iappurchaseresult.Product.Reward.atlas - Reward give Currency Id or Item, Tool Id (example: CASH, GOLD, TOOL_1...)
+    //            // todo give product reward
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongInstance:
+    //            // Purchase faield: IAP Manager instance null (Read Setup IAP)  
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongProduct:
+    //            // Purchase faield: can't find product with id 
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongStoreController:
+    //            // Purchase faield: IAP initialized faield
+    //            break;
+    //    }
+    //}
     protected virtual void OnCompleteBuy()
     {
 

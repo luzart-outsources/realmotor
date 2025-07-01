@@ -1,4 +1,4 @@
-using BG_Library.IAP;
+//using BG_Library.IAP;
 using BG_Library.NET;
 using DG.Tweening;
 using System;
@@ -15,12 +15,12 @@ public class UIBegginerBundle : UIBase
     private void Awake()
     {
         canvasGroup.alpha = 0f;
-        IAPManager.PurchaseResultListener += OnPurchaseComplete;
+        //IAPManager.PurchaseResultListener += OnPurchaseComplete;
     }
 
     private void OnDestroy()
     {
-        IAPManager.PurchaseResultListener -= OnPurchaseComplete;
+       // IAPManager.PurchaseResultListener -= OnPurchaseComplete;
     }
     protected override void Setup()
     {
@@ -45,58 +45,58 @@ public class UIBegginerBundle : UIBase
         canvasGroup.DOFade(0f, 0.3f).OnComplete(Hide);
         //UIManager.Instance.ShowUI(UIName.Home);
     }
-    private void OnPurchaseComplete(IAPPurchaseResult iAPPurchaseResult)
-    {
-        switch (iAPPurchaseResult.Result)
-        {
-            case IAPPurchaseResult.EResult.Complete:
-                var rew = iAPPurchaseResult.Product.Rewards;
-                foreach (var iap in rew)
-                    BuySuccess(iap);
+    //private void OnPurchaseComplete(IAPPurchaseResult iAPPurchaseResult)
+    //{
+    //    switch (iAPPurchaseResult.Result)
+    //    {
+    //        case IAPPurchaseResult.EResult.Complete:
+    //            var rew = iAPPurchaseResult.Product.Rewards;
+    //            foreach (var iap in rew)
+    //                BuySuccess(iap);
 
-                break;
-            case IAPPurchaseResult.EResult.Restore:
-                break;
-            case IAPPurchaseResult.EResult.WrongProduct:
-                // Purchase faield: can't find product with id 
-                break;
-            case IAPPurchaseResult.EResult.WrongInstance:
-                // Purchase faield: IAP Manager instance null (Read Setup IAP)   
-                break;
-            case IAPPurchaseResult.EResult.WrongStoreController:
-                // Purchase faield: IAP initialized faield
-                break;
-            case IAPPurchaseResult.EResult.PurchaseFailed:
-                break;
-            default:
-                break;
-        }
-    }
+    //            break;
+    //        case IAPPurchaseResult.EResult.Restore:
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongProduct:
+    //            // Purchase faield: can't find product with id 
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongInstance:
+    //            // Purchase faield: IAP Manager instance null (Read Setup IAP)   
+    //            break;
+    //        case IAPPurchaseResult.EResult.WrongStoreController:
+    //            // Purchase faield: IAP initialized faield
+    //            break;
+    //        case IAPPurchaseResult.EResult.PurchaseFailed:
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
 
-    void BuySuccess(IAPProductStats.PurchaseReward product)
-    {
-        /*if (product.Reward == IAPProductStats.EReward.REMOVE_AD)
-        {
-            AdsManager.Ins.PurchaseRemoveAds();
-            return;
-        }*/
-        var ui = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
+    //void BuySuccess(IAPProductStats.PurchaseReward product)
+    //{
+    //    /*if (product.Reward == IAPProductStats.EReward.REMOVE_AD)
+    //    {
+    //        AdsManager.Ins.PurchaseRemoveAds();
+    //        return;
+    //    }*/
+    //    var ui = UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes);
 
-        switch (product.atlas)
-        {
-            case "Motor":
-                DataManager.Instance.ReceiveRes(dataResource.groupDataResources);
-                DataManager.Instance.GameData.isBeginnerBundle = true;
-                DataManager.Instance.SaveGameData();
-                Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, false);
-                ui.Initialize(() =>
-                {
-                    Hide();
-                    var uiGarage = UIManager.Instance.GetUiActive<UIGarage>(UIName.Garage);
-                    UIManager.Instance.RefreshUI();
-                }, dataResource.groupDataResources);
-                break;
+    //    switch (product.atlas)
+    //    {
+    //        case "Motor":
+    //            DataManager.Instance.ReceiveRes(dataResource.groupDataResources);
+    //            DataManager.Instance.GameData.isBeginnerBundle = true;
+    //            DataManager.Instance.SaveGameData();
+    //            Observer.Instance.Notify(ObserverKey.CoinObserverDontAuto, false);
+    //            ui.Initialize(() =>
+    //            {
+    //                Hide();
+    //                var uiGarage = UIManager.Instance.GetUiActive<UIGarage>(UIName.Garage);
+    //                UIManager.Instance.RefreshUI();
+    //            }, dataResource.groupDataResources);
+    //            break;
 
-        }
-    }
+    //    }
+    //}
 }
