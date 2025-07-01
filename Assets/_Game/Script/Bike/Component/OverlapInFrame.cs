@@ -1,33 +1,36 @@
-using UnityEngine;
-
-public class OverlapInFrame : OverlapEachFrame
+namespace Luzart
 {
-    public override ResultRaycast GetResultRaycast()
+    using UnityEngine;
+    
+    public class OverlapInFrame : OverlapEachFrame
     {
-        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, valueX * boxCollider.size, Quaternion.identity, layerMask);
-        if (colliders != null)
+        public override ResultRaycast GetResultRaycast()
         {
-            bool isCollider = false;
-            for (int i = 0; i < colliders.Length; i++)
+            var colliders = Physics.OverlapBox(transform.position + boxCollider.center, valueX * boxCollider.size, Quaternion.identity, layerMask);
+            if (colliders != null)
             {
-                if (colliders[i] != null)
+                bool isCollider = false;
+                for (int i = 0; i < colliders.Length; i++)
                 {
-                    isCollider = true;
-                    break;
+                    if (colliders[i] != null)
+                    {
+                        isCollider = true;
+                        break;
+                    }
+    
                 }
-
+                IsCheckEditor(isCollider);
+    
+                if (isCollider)
+                {
+                    resultRaycast = new ResultRaycast();
+                    resultRaycast.hit = hit;
+                    resultRaycast.eLayer = eLayer;
+                    return resultRaycast;
+                }
+    
             }
-            IsCheckEditor(isCollider);
-
-            if (isCollider)
-            {
-                resultRaycast = new ResultRaycast();
-                resultRaycast.hit = hit;
-                resultRaycast.eLayer = eLayer;
-                return resultRaycast;
-            }
-
+            return null;
         }
-        return null;
     }
 }

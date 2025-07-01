@@ -1,38 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class OverlapBike : OverlapEachFrame
+namespace Luzart
 {
-    [SerializeField]
-    private BaseMotorbike baseMotorbike;
-    public override ResultRaycast GetResultRaycast()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class OverlapBike : OverlapEachFrame
     {
-        bool isCollider = false;
-        var resultRaycast = new ResultOverlapBool();
-        resultRaycast.eLayer = eLayer;
-        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
-        if (colliders != null)
+        [SerializeField]
+        private BaseMotorbike baseMotorbike;
+        public override ResultRaycast GetResultRaycast()
         {
-            for (int i = 0; i < colliders.Length; i++)
+            bool isCollider = false;
+            var resultRaycast = new ResultOverlapBool();
+            resultRaycast.eLayer = eLayer;
+            var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
+            if (colliders != null)
             {
-                if (colliders[i] != null && colliders[i].GetComponentInParent<BaseMotorbike>()!= baseMotorbike)    
+                for (int i = 0; i < colliders.Length; i++)
                 {
-                    isCollider = true;
-                    break;
+                    if (colliders[i] != null && colliders[i].GetComponentInParent<BaseMotorbike>()!= baseMotorbike)    
+                    {
+                        isCollider = true;
+                        break;
+                    }
                 }
             }
-        }
-        IsCheckEditor(isCollider);
-        if (isCollider)
-        {
-            resultRaycast.isFinishRaycast = true;
-            return resultRaycast;
-        }
-        else
-        {
-            resultRaycast.isFinishRaycast = false;
-            return resultRaycast;
+            IsCheckEditor(isCollider);
+            if (isCollider)
+            {
+                resultRaycast.isFinishRaycast = true;
+                return resultRaycast;
+            }
+            else
+            {
+                resultRaycast.isFinishRaycast = false;
+                return resultRaycast;
+            }
         }
     }
 }

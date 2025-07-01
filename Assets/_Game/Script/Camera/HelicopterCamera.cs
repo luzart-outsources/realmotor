@@ -1,300 +1,303 @@
-﻿using UnityEngine;
-
-public class HelicopterCamera : MonoBehaviour
+namespace Luzart
 {
-    public Camera cameraMain;
-
-    public Animator animator;
-    public Transform PrimaryTarget;
-    public GameObject SecondaryTarget;
-    public float distance = 20.0f;
-    public float height = 5.0f;
-    public float heightDamping = 2.0f;
-
-    public float lookAtHeight = 0.0f;
-
-    public BaseMotorbike baseMotorbike;
-
-    public float rotationSnapTime = 0.3F;
-
-    public float distanceSnapTime;
-    public float distanceMultiplier;
-    float initialdistanceMultiplier;
-
-    private Vector3 lookAtVector;
-
-    private float usedDistance;
-
-    float wantedRotationAngle;
-    float wantedHeight;
-
-    float currentRotationAngle;
-    float currentHeight;
-
-    Vector3 wantedPosition;
-
-    private float yVelocity = 0.0F;
-    private float zVelocity = 0.0F;
-    PerfectMouseLook perfectMouseLook;
-    float LateRot;
-    public bool counterRotation;
-    //MotorbikeController motorbikeController;
-    bool changed, prevFallen;
-
-
-    void Start()
+    using UnityEngine;
+    
+    public class HelicopterCamera : MonoBehaviour
     {
-        //perfectMouseLook = GetComponent<PerfectMouseLook>();
-        initialdistanceMultiplier = distanceMultiplier;
-
-        //motorbikeController = FindObjectOfType<MotorbikeController>();
-    }
-    public void SetTargetFollow(Transform target)
-    {
-        PrimaryTarget = target;
-        if (PrimaryTarget != null)
+        public Camera cameraMain;
+    
+        public Animator animator;
+        public Transform PrimaryTarget;
+        public GameObject SecondaryTarget;
+        public float distance = 20.0f;
+        public float height = 5.0f;
+        public float heightDamping = 2.0f;
+    
+        public float lookAtHeight = 0.0f;
+    
+        public BaseMotorbike baseMotorbike;
+    
+        public float rotationSnapTime = 0.3F;
+    
+        public float distanceSnapTime;
+        public float distanceMultiplier;
+        float initialdistanceMultiplier;
+    
+        private Vector3 lookAtVector;
+    
+        private float usedDistance;
+    
+        float wantedRotationAngle;
+        float wantedHeight;
+    
+        float currentRotationAngle;
+        float currentHeight;
+    
+        Vector3 wantedPosition;
+    
+        private float yVelocity = 0.0F;
+        private float zVelocity = 0.0F;
+        PerfectMouseLook perfectMouseLook;
+        float LateRot;
+        public bool counterRotation;
+        //MotorbikeController motorbikeController;
+        bool changed, prevFallen;
+    
+    
+        void Start()
         {
-            baseMotorbike = PrimaryTarget.GetComponent<BaseMotorbike>();
+            //perfectMouseLook = GetComponent<PerfectMouseLook>();
+            initialdistanceMultiplier = distanceMultiplier;
+    
+            //motorbikeController = FindObjectOfType<MotorbikeController>();
         }
-
-        IsFirstTimeFinish = false;
-        IsFirstTimeNone = false;
-        IsFirstTimeStart = false;
-    }
-
-    void LateUpdate()
-    {
-        //if(motorbikeController.fallen!=prevFallen)
-        //changed = false;
-        //prevFallen = motorbikeController.fallen;
-
-        //if (motorbikeController.fallen && changed == false)
-        //{
-        //    if(SecondaryTarget == null)
-        //    target = GameObject.FindGameObjectWithTag("Ragdoll").transform.Find("Armature/Hips");
-        //    parentRigidbody = target.gameObject.GetComponent<Rigidbody>();
-        //    changed = true;
-        //}
-
-        //else if(motorbikeController.fallen == false && changed == false)
-        //{
-        //    target = PrimaryTarget.transform;
-        //    parentRigidbody = PrimaryTarget.GetComponent<Rigidbody>();
-        //    changed = true;
-        //}
-
-        if (PrimaryTarget == null)
+        public void SetTargetFollow(Transform target)
         {
-            return;
-        }
-
-        if (baseMotorbike == null)
-        {
-            CameraNone();
-            return;
-        }
-        switch (baseMotorbike.eState)
-        {
-            case EStateMotorbike.None:
-                {
-                    CameraNone();
-                    break;
-                }
-            case EStateMotorbike.Start:
-                {
-                    CameraStart();
-                    break;
-                }
-            case EStateMotorbike.Finish:
-                {
-                    CameraNone();
-                    break;
-                }
-        }
-
-
-    }
-    [SerializeField]
-    private LayerMask _layerGround;
-    private LayerMask layerGround
-    {
-        get
-        {
-            if (_layerGround == default)
+            PrimaryTarget = target;
+            if (PrimaryTarget != null)
             {
-                LayerMask layerGround = LayerMask.NameToLayer("Ground");
-                LayerMask layerRoad = LayerMask.NameToLayer("Road");
-                _layerGround |= (1 << layerGround);
-                _layerGround |= (1 << layerRoad);
+                baseMotorbike = PrimaryTarget.GetComponent<BaseMotorbike>();
             }
-            return _layerGround;
+    
+            IsFirstTimeFinish = false;
+            IsFirstTimeNone = false;
+            IsFirstTimeStart = false;
         }
-    }
-    private float YPosCamera(Vector3 pos)
-    {
-        RaycastHit hit;
-        bool isRay = Physics.Raycast(pos, Vector3.down, out hit, 100f, layerGround);
-        if (isRay)
+    
+        void LateUpdate()
         {
-            if (hit.distance <= 1f)
+            //if(motorbikeController.fallen!=prevFallen)
+            //changed = false;
+            //prevFallen = motorbikeController.fallen;
+    
+            //if (motorbikeController.fallen && changed == false)
+            //{
+            //    if(SecondaryTarget == null)
+            //    target = GameObject.FindGameObjectWithTag("Ragdoll").transform.Find("Armature/Hips");
+            //    parentRigidbody = target.gameObject.GetComponent<Rigidbody>();
+            //    changed = true;
+            //}
+    
+            //else if(motorbikeController.fallen == false && changed == false)
+            //{
+            //    target = PrimaryTarget.transform;
+            //    parentRigidbody = PrimaryTarget.GetComponent<Rigidbody>();
+            //    changed = true;
+            //}
+    
+            if (PrimaryTarget == null)
             {
-                return hit.point.y + 1f;
+                return;
+            }
+    
+            if (baseMotorbike == null)
+            {
+                CameraNone();
+                return;
+            }
+            switch (baseMotorbike.eState)
+            {
+                case EStateMotorbike.None:
+                    {
+                        CameraNone();
+                        break;
+                    }
+                case EStateMotorbike.Start:
+                    {
+                        CameraStart();
+                        break;
+                    }
+                case EStateMotorbike.Finish:
+                    {
+                        CameraNone();
+                        break;
+                    }
+            }
+    
+    
+        }
+        [SerializeField]
+        private LayerMask _layerGround;
+        private LayerMask layerGround
+        {
+            get
+            {
+                if (_layerGround == default)
+                {
+                    LayerMask layerGround = LayerMask.NameToLayer("Ground");
+                    LayerMask layerRoad = LayerMask.NameToLayer("Road");
+                    _layerGround |= (1 << layerGround);
+                    _layerGround |= (1 << layerRoad);
+                }
+                return _layerGround;
             }
         }
-        return pos.y;
-    }
-    public Vector3 GetTargetPosition(Transform target)
-    {
-        float wantedHeight = target.transform.position.y + height;
-        float wantedRotationAngle = target.transform.eulerAngles.y;
-
-        Vector3 wantedPosition = target.transform.position;
-        wantedPosition.y = wantedHeight;
-
-        float adjustedDistance = distance;
-
-        wantedPosition += Quaternion.Euler(0, wantedRotationAngle, 0) * new Vector3(0, 0, -adjustedDistance);
-
-        wantedPosition.y = YPosCamera(wantedPosition);
-
-        return wantedPosition;
-    }
-    public Quaternion GetRotation(Transform target)
-    {
-        Vector3 lookAtVector = new Vector3(0, lookAtHeight, 0);
-        Vector3 lookAtPosition = target.transform.position + lookAtVector;
-        return Quaternion.LookRotation(lookAtPosition - wantedPosition);
-    }
-    private void CameraNone()
-    {
-        LerpCamera();
-        LookAtFlash();
-    }
-    private void CameraStart()
-    {
-        LerpCamera();
-        LookAtSmooth();
-    }
-    private void LerpCamera()
-    {
-        wantedHeight = PrimaryTarget.transform.position.y + height;
-        currentHeight = transform.position.y;
-
-        wantedRotationAngle = PrimaryTarget.transform.eulerAngles.y;
-        currentRotationAngle = transform.eulerAngles.y;
-        //if (counterRotation)
-        //{
-        //    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        //        LateRot += 0.333f;
-        //    else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        //        LateRot -= 0.333f;
-        //    else
-        //        LateRot = Mathf.Lerp(LateRot, 0, 0.1f);
-        //    LateRot = Mathf.Clamp(LateRot, -50 / (parentRigidbody.velocity.magnitude / 20) + 1, 50 / (parentRigidbody.velocity.magnitude / 20) + 1);
-        //}
-        currentRotationAngle = Mathf.SmoothDampAngle(currentRotationAngle, wantedRotationAngle + LateRot, ref yVelocity, rotationSnapTime);
-        currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
-
-        wantedPosition = PrimaryTarget.transform.position;
-        wantedPosition.y = currentHeight;
-        float speed = 0;
-        if (baseMotorbike != null)
+        private float YPosCamera(Vector3 pos)
         {
-            speed = baseMotorbike.Speed / baseMotorbike.inforMotorbike.maxSpeed;
+            RaycastHit hit;
+            bool isRay = Physics.Raycast(pos, Vector3.down, out hit, 100f, layerGround);
+            if (isRay)
+            {
+                if (hit.distance <= 1f)
+                {
+                    return hit.point.y + 1f;
+                }
+            }
+            return pos.y;
         }
-        rotationSnapTime = maxRotationSnaptime - speed * (maxRotationSnaptime - mínRotationSnaptime);
-        speed = Mathf.Clamp(speed, 0, 1) * 10;
-
-
-        usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
-        if (baseMotorbike != null)
+        public Vector3 GetTargetPosition(Transform target)
         {
-            if(baseMotorbike.valueVerticle < 0)
-            {
-                if(typeVertical!= TypeVertical.Down)
-                {
-                    curTime = 0;
-                    Keyframe firstKey = curveMinFOV.keys[0];
-                    firstKey.value = cameraFOV;
-                    curveMinFOV.MoveKey(0, firstKey);
-                }
-                typeVertical = TypeVertical.Down;
-                curTime += Time.deltaTime;
-                cameraFOV = curveMinFOV.Evaluate(curTime);
-                isUpper = true;
-            }
-            else if(baseMotorbike.valueVerticle > 0)
-            {
-                if (typeVertical != TypeVertical.Up)
-                {
-                    curTime = 0;
-                    Keyframe firstKey = curveMaxFOV.keys[0];
-                    firstKey.value = cameraFOV;
-                    curveMaxFOV.MoveKey(0, firstKey);
-                }
-                typeVertical = TypeVertical.Up;
-                curTime += Time.deltaTime;
-                cameraFOV = curveMaxFOV.Evaluate(curTime);
-            }
-            else
-            {
-                if(isUpper)
-                {
-                    curTimeUnVerticle = 0;
-                }
-                curTimeUnVerticle += Time.deltaTime;
-                if(curTimeUnVerticle >= 1)
-                {
-                    usedDistance = Mathf.SmoothDampAngle(usedDistance, distance, ref zVelocity, distanceSnapTime);
-                }
-                cameraFOV = Mathf.Lerp(cameraFOV, 60, Time.deltaTime / 2);
-                typeVertical = TypeVertical.None;
-                isUpper = false;
-            }
-
+            float wantedHeight = target.transform.position.y + height;
+            float wantedRotationAngle = target.transform.eulerAngles.y;
+    
+            Vector3 wantedPosition = target.transform.position;
+            wantedPosition.y = wantedHeight;
+    
+            float adjustedDistance = distance;
+    
+            wantedPosition += Quaternion.Euler(0, wantedRotationAngle, 0) * new Vector3(0, 0, -adjustedDistance);
+    
+            wantedPosition.y = YPosCamera(wantedPosition);
+    
+            return wantedPosition;
         }
-        cameraMain.fieldOfView = cameraFOV;
-        wantedPosition += Quaternion.Euler(0, currentRotationAngle, 0) * new Vector3(0, 0, -usedDistance);
-
-        wantedPosition.y = YPosCamera(wantedPosition);
-
-        transform.position = wantedPosition;
+        public Quaternion GetRotation(Transform target)
+        {
+            Vector3 lookAtVector = new Vector3(0, lookAtHeight, 0);
+            Vector3 lookAtPosition = target.transform.position + lookAtVector;
+            return Quaternion.LookRotation(lookAtPosition - wantedPosition);
+        }
+        private void CameraNone()
+        {
+            LerpCamera();
+            LookAtFlash();
+        }
+        private void CameraStart()
+        {
+            LerpCamera();
+            LookAtSmooth();
+        }
+        private void LerpCamera()
+        {
+            wantedHeight = PrimaryTarget.transform.position.y + height;
+            currentHeight = transform.position.y;
+    
+            wantedRotationAngle = PrimaryTarget.transform.eulerAngles.y;
+            currentRotationAngle = transform.eulerAngles.y;
+            //if (counterRotation)
+            //{
+            //    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            //        LateRot += 0.333f;
+            //    else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            //        LateRot -= 0.333f;
+            //    else
+            //        LateRot = Mathf.Lerp(LateRot, 0, 0.1f);
+            //    LateRot = Mathf.Clamp(LateRot, -50 / (parentRigidbody.velocity.magnitude / 20) + 1, 50 / (parentRigidbody.velocity.magnitude / 20) + 1);
+            //}
+            currentRotationAngle = Mathf.SmoothDampAngle(currentRotationAngle, wantedRotationAngle + LateRot, ref yVelocity, rotationSnapTime);
+            currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
+    
+            wantedPosition = PrimaryTarget.transform.position;
+            wantedPosition.y = currentHeight;
+            float speed = 0;
+            if (baseMotorbike != null)
+            {
+                speed = baseMotorbike.Speed / baseMotorbike.inforMotorbike.maxSpeed;
+            }
+            rotationSnapTime = maxRotationSnaptime - speed * (maxRotationSnaptime - mínRotationSnaptime);
+            speed = Mathf.Clamp(speed, 0, 1) * 10;
+    
+    
+            usedDistance = Mathf.SmoothDampAngle(usedDistance, distance + (speed * distanceMultiplier), ref zVelocity, distanceSnapTime);
+            if (baseMotorbike != null)
+            {
+                if(baseMotorbike.valueVerticle < 0)
+                {
+                    if(typeVertical!= TypeVertical.Down)
+                    {
+                        curTime = 0;
+                        Keyframe firstKey = curveMinFOV.keys[0];
+                        firstKey.value = cameraFOV;
+                        curveMinFOV.MoveKey(0, firstKey);
+                    }
+                    typeVertical = TypeVertical.Down;
+                    curTime += Time.deltaTime;
+                    cameraFOV = curveMinFOV.Evaluate(curTime);
+                    isUpper = true;
+                }
+                else if(baseMotorbike.valueVerticle > 0)
+                {
+                    if (typeVertical != TypeVertical.Up)
+                    {
+                        curTime = 0;
+                        Keyframe firstKey = curveMaxFOV.keys[0];
+                        firstKey.value = cameraFOV;
+                        curveMaxFOV.MoveKey(0, firstKey);
+                    }
+                    typeVertical = TypeVertical.Up;
+                    curTime += Time.deltaTime;
+                    cameraFOV = curveMaxFOV.Evaluate(curTime);
+                }
+                else
+                {
+                    if(isUpper)
+                    {
+                        curTimeUnVerticle = 0;
+                    }
+                    curTimeUnVerticle += Time.deltaTime;
+                    if(curTimeUnVerticle >= 1)
+                    {
+                        usedDistance = Mathf.SmoothDampAngle(usedDistance, distance, ref zVelocity, distanceSnapTime);
+                    }
+                    cameraFOV = Mathf.Lerp(cameraFOV, 60, Time.deltaTime / 2);
+                    typeVertical = TypeVertical.None;
+                    isUpper = false;
+                }
+    
+            }
+            cameraMain.fieldOfView = cameraFOV;
+            wantedPosition += Quaternion.Euler(0, currentRotationAngle, 0) * new Vector3(0, 0, -usedDistance);
+    
+            wantedPosition.y = YPosCamera(wantedPosition);
+    
+            transform.position = wantedPosition;
+        }
+        private bool isUpper = false;
+        private float curTimeUnVerticle = 0;
+        private enum TypeVertical
+        {
+            None = 0,
+            Up = 1,
+            Down =2 ,
+        }
+        private TypeVertical typeVertical;
+        private float curTime = 0;
+        private float cameraFOV = 60f;
+        public AnimationCurve curveMinFOV;
+        public AnimationCurve curveMaxFOV;
+        private void LookAtFlash()
+        {
+            lookAtVector = new Vector3(0, lookAtHeight, 0);
+    
+            transform.LookAt(PrimaryTarget.transform.position + lookAtVector);
+        }
+        private void LookAtSmooth()
+        {
+            // Tính toán vị trí nhìn của camera
+            lookAtVector = new Vector3(0, lookAtHeight, 0);
+            Vector3 lookAtPosition = PrimaryTarget.transform.position + lookAtVector;
+    
+            // Sử dụng Quaternion.Slerp để làm mượt góc quay của camera
+            Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSnapTime);
+        }
+    
+    
+    
+        private bool IsFirstTimeNone = false;
+        private bool IsFirstTimeStart = false;
+        private bool IsFirstTimeFinish = false;
+        public float mínRotationSnaptime = 0.5f;
+        public float maxRotationSnaptime = 2f;
     }
-    private bool isUpper = false;
-    private float curTimeUnVerticle = 0;
-    private enum TypeVertical
-    {
-        None = 0,
-        Up = 1,
-        Down =2 ,
-    }
-    private TypeVertical typeVertical;
-    private float curTime = 0;
-    private float cameraFOV = 60f;
-    public AnimationCurve curveMinFOV;
-    public AnimationCurve curveMaxFOV;
-    private void LookAtFlash()
-    {
-        lookAtVector = new Vector3(0, lookAtHeight, 0);
-
-        transform.LookAt(PrimaryTarget.transform.position + lookAtVector);
-    }
-    private void LookAtSmooth()
-    {
-        // Tính toán vị trí nhìn của camera
-        lookAtVector = new Vector3(0, lookAtHeight, 0);
-        Vector3 lookAtPosition = PrimaryTarget.transform.position + lookAtVector;
-
-        // Sử dụng Quaternion.Slerp để làm mượt góc quay của camera
-        Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSnapTime);
-    }
-
-
-
-    private bool IsFirstTimeNone = false;
-    private bool IsFirstTimeStart = false;
-    private bool IsFirstTimeFinish = false;
-    public float mínRotationSnaptime = 0.5f;
-    public float maxRotationSnaptime = 2f;
 }

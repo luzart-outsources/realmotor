@@ -1,29 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-public class UICoinSpawn : UIBase
+namespace Luzart
 {
-    public CoinsSpawn coinSpawn;
-    public void InitCoinSpawn(Action onFirstTimeMoveTo = null, Action onCompleteMoveTo = null, Transform target = null)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using System;
+    public class UICoinSpawn : UIBase
     {
-        if(target == null)
+        public CoinsSpawn coinSpawn;
+        public void InitCoinSpawn(Action onFirstTimeMoveTo = null, Action onCompleteMoveTo = null, Transform target = null)
         {
-            var coinObserver = FindObjectOfType<CoinObserver>();
-            if(coinObserver != null)
+            if(target == null)
             {
-                target = coinObserver.imCoin.transform;
+                var coinObserver = FindObjectOfType<CoinObserver>();
+                if(coinObserver != null)
+                {
+                    target = coinObserver.imCoin.transform;
+                }
+                if(target != null)
+                {
+                    coinSpawn.target = target;  
+                }
             }
-            if(target != null)
+            Action onDoneAll = () =>
             {
-                coinSpawn.target = target;  
-            }
+                onCompleteMoveTo?.Invoke();
+                Hide();
+            };
+            coinSpawn.SpawnCoins(onFirstTimeMoveTo, onDoneAll);
         }
-        Action onDoneAll = () =>
-        {
-            onCompleteMoveTo?.Invoke();
-            Hide();
-        };
-        coinSpawn.SpawnCoins(onFirstTimeMoveTo, onDoneAll);
     }
 }

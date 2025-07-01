@@ -1,7 +1,10 @@
-﻿using UnityEngine;
-
-public class CompetitiveDrivingCheck : MonoBehaviour
+namespace Luzart
 {
-    // This empty class is used to implement competive driving.
-    // DON'T DELETE IT!
+    using UnityEngine;
+    
+    public class CompetitiveDrivingCheck : MonoBehaviour
+    {
+        // This empty class is used to implement competive driving.
+        // DON'T DELETE IT!
+    }
 }

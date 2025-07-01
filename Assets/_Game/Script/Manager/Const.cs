@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Const 
+namespace Luzart
 {
-    public static int LayerBikeBody = 6;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class Const 
+    {
+        public static int LayerBikeBody = 6;
+    }
 }

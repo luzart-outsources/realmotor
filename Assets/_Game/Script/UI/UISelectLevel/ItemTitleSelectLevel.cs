@@ -1,16 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class ItemTitleSelectLevel :MonoBehaviour
+namespace Luzart
 {
-    public TMP_Text txtTitle;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.UI;
     
-    public void SetTextTitle(string str)
+    public class ItemTitleSelectLevel :MonoBehaviour
     {
-        txtTitle.text = str;
+        public TMP_Text txtTitle;
+        
+        public void SetTextTitle(string str)
+        {
+            txtTitle.text = str;
+        }
     }
 }

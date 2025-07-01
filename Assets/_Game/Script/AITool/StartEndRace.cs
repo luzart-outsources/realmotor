@@ -1,53 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StartEndRace : MonoBehaviour
+namespace Luzart
 {
-    public Transform[] startPoint;
-    [Sirenix.OdinInspector.Button]
-    public void GetAllStartPoint()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class StartEndRace : MonoBehaviour
     {
-        GetChildStartPoint();
-
-    }
-    public void GetRaycast(Transform item)
-    {
-        int layer = LayerMask.NameToLayer("Road");
-        LayerMask layerRoad = 1 << layer;
-        RaycastHit rayUp, rayDown;
-        bool isRayUp = Physics.Raycast(item.position, Vector3.up, out rayUp, Mathf.Infinity, layerRoad);
-        bool isRayDown = Physics.Raycast(item.position + 100 * Vector3.up, Vector3.down, out rayDown, Mathf.Infinity, layerRoad);
-        if (isRayUp)
+        public Transform[] startPoint;
+        [Sirenix.OdinInspector.Button]
+        public void GetAllStartPoint()
         {
-            item.transform.position = rayUp.point;
+            GetChildStartPoint();
+    
         }
-        else if (isRayDown)
+        public void GetRaycast(Transform item)
         {
-            item.transform.position = rayDown.point;
-        }
-    }
-    private void GetChildStartPoint()
-    {
-        List<GameObject> listEndRace = GameUtil.FindGameObjectsByName("EndRace");
-        startPoint = transform.GetComponentsInChildren<Transform>();
-        List<Transform> listWave = new List<Transform>();
-        for (int i = 0; i < startPoint.Length; i++)
-        {
-            if (!startPoint[i].name.Contains("StartPoint"))
+            int layer = LayerMask.NameToLayer("Road");
+            LayerMask layerRoad = 1 << layer;
+            RaycastHit rayUp, rayDown;
+            bool isRayUp = Physics.Raycast(item.position, Vector3.up, out rayUp, Mathf.Infinity, layerRoad);
+            bool isRayDown = Physics.Raycast(item.position + 100 * Vector3.up, Vector3.down, out rayDown, Mathf.Infinity, layerRoad);
+            if (isRayUp)
             {
-                continue;
+                item.transform.position = rayUp.point;
             }
-            listWave.Add(startPoint[i]);
+            else if (isRayDown)
+            {
+                item.transform.position = rayDown.point;
+            }
         }
-        startPoint = listWave.ToArray();
-        for (int i = 0;i < startPoint.Length;i++)
+        private void GetChildStartPoint()
         {
-            GetRaycast(startPoint[i]);
-        }
-        for (int i = 0; i < listEndRace.Count; i++)
-        {
-            GetRaycast(listEndRace[i].transform);
+            List<GameObject> listEndRace = GameUtil.FindGameObjectsByName("EndRace");
+            startPoint = transform.GetComponentsInChildren<Transform>();
+            List<Transform> listWave = new List<Transform>();
+            for (int i = 0; i < startPoint.Length; i++)
+            {
+                if (!startPoint[i].name.Contains("StartPoint"))
+                {
+                    continue;
+                }
+                listWave.Add(startPoint[i]);
+            }
+            startPoint = listWave.ToArray();
+            for (int i = 0;i < startPoint.Length;i++)
+            {
+                GetRaycast(startPoint[i]);
+            }
+            for (int i = 0; i < listEndRace.Count; i++)
+            {
+                GetRaycast(listEndRace[i].transform);
+            }
         }
     }
 }

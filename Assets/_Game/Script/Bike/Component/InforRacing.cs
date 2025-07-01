@@ -1,30 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class InforRacing : MonoBehaviour
+namespace Luzart
 {
-    public TMP_Text txtIndex;
-    public TMP_Text txtName;
-    private BaseMotorbike baseMotorbike;
-
-    public void Initialize(BaseMotorbike baseMotorbike)
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    
+    public class InforRacing : MonoBehaviour
     {
-        if(baseMotorbike != null)
+        public TMP_Text txtIndex;
+        public TMP_Text txtName;
+        private BaseMotorbike baseMotorbike;
+    
+        public void Initialize(BaseMotorbike baseMotorbike)
         {
-            this.baseMotorbike = baseMotorbike;
+            if(baseMotorbike != null)
+            {
+                this.baseMotorbike = baseMotorbike;
+            }
+            bool isMe = baseMotorbike.eTeam == ETeam.Player;
+            gameObject.SetActive(!isMe);
         }
-        bool isMe = baseMotorbike.eTeam == ETeam.Player;
-        gameObject.SetActive(!isMe);
-    }
-    public void InitName(string name)
-    {
-        txtName.text = name;
-    }
-
-    public void UpdateIndex(int index)
-    {
-        txtIndex.text = index.ToString();
+        public void InitName(string name)
+        {
+            txtName.text = name;
+        }
+    
+        public void UpdateIndex(int index)
+        {
+            txtIndex.text = index.ToString();
+        }
     }
 }

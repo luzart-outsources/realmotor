@@ -1,29 +1,32 @@
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class UIToast : UIBase
+namespace Luzart
 {
-    public CanvasGroup canvasGroup;
-    public TMP_Text txtNoti;
-    private Sequence sq;
-    public void Init(string str)
+    using DG.Tweening;
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    
+    public class UIToast : UIBase
     {
-        txtNoti.text = str;
-        sq?.Kill();
-        sq = DOTween.Sequence();
-        sq.AppendInterval(1f);
-        sq.Append(DOVirtual.Float(1, 0, 0.5f, (x) =>
+        public CanvasGroup canvasGroup;
+        public TMP_Text txtNoti;
+        private Sequence sq;
+        public void Init(string str)
         {
-            canvasGroup.alpha = x;
-        }));
-        sq.AppendCallback(Hide);
-       
+            txtNoti.text = str;
+            sq?.Kill();
+            sq = DOTween.Sequence();
+            sq.AppendInterval(1f);
+            sq.Append(DOVirtual.Float(1, 0, 0.5f, (x) =>
+            {
+                canvasGroup.alpha = x;
+            }));
+            sq.AppendCallback(Hide);
+           
+        }
     }
-}
-public static class KeyToast
-{
-    public const string NoInternetLoadAds = "No Internet to Load Ads. \n Try Again";
+    public static class KeyToast
+    {
+        public const string NoInternetLoadAds = "No Internet to Load Ads. \n Try Again";
+    }
 }

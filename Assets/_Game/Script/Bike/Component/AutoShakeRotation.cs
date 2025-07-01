@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class AutoShakeRotation : MonoBehaviour
+namespace Luzart
 {
-
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class AutoShakeRotation : MonoBehaviour
+    {
+    
+    }
 }

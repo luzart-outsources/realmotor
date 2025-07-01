@@ -1,67 +1,70 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
-public class ButtonTopDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+namespace Luzart
 {
-    public Button btn;
-    public Action OnClickDown;
-    public Action OnClickUp;
-    public Image[] ims;
-    public Sprite[] spriteDowns;
-    public Sprite[] spriteUps;
-
-    public void AddListener(Action clickDown, Action clickUp)
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.UI;
+    
+    public class ButtonTopDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        this.OnClickDown = clickDown;
-        this.OnClickUp = clickUp;   
-    }
-    private void SetSprite(Image im, Sprite sp)
-    {
-        if(im != null)
+        public Button btn;
+        public Action OnClickDown;
+        public Action OnClickUp;
+        public Image[] ims;
+        public Sprite[] spriteDowns;
+        public Sprite[] spriteUps;
+    
+        public void AddListener(Action clickDown, Action clickUp)
         {
-            im.sprite = sp;
+            this.OnClickDown = clickDown;
+            this.OnClickUp = clickUp;   
         }
-    }
-    private bool isUp = false;
-    private void SetAllSprite(Image[] ims, Sprite[] sps)
-    {
-        if(ims != null)
+        private void SetSprite(Image im, Sprite sp)
         {
-            for(int i = 0; i < ims.Length; i++)
+            if(im != null)
             {
-                SetSprite(ims[i], sps[i]);
+                im.sprite = sp;
             }
         }
-    }
-
-    public void ForcePointUp()
-    {
-        if (isUp)
+        private bool isUp = false;
+        private void SetAllSprite(Image[] ims, Sprite[] sps)
         {
-            return;
+            if(ims != null)
+            {
+                for(int i = 0; i < ims.Length; i++)
+                {
+                    SetSprite(ims[i], sps[i]);
+                }
+            }
         }
-        isUp = true;
-        OnClickUp?.Invoke();
-        SetAllSprite(ims, spriteUps);
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        isUp = false;
-        OnClickDown?.Invoke();
-        SetAllSprite(ims, spriteDowns);
-    }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (isUp)
+    
+        public void ForcePointUp()
         {
-            return;
+            if (isUp)
+            {
+                return;
+            }
+            isUp = true;
+            OnClickUp?.Invoke();
+            SetAllSprite(ims, spriteUps);
         }
-        isUp = true;
-        OnClickUp?.Invoke();
-        SetAllSprite(ims, spriteUps);
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            isUp = false;
+            OnClickDown?.Invoke();
+            SetAllSprite(ims, spriteDowns);
+        }
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (isUp)
+            {
+                return;
+            }
+            isUp = true;
+            OnClickUp?.Invoke();
+            SetAllSprite(ims, spriteUps);
+        }
     }
 }

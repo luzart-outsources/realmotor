@@ -1,17 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class ProgressBarUI : MonoBehaviour
+namespace Luzart
 {
-    public Image imFill;
-    public virtual void SetSlider(float prePercent, float targetPercent, float time, Action onDone)
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class ProgressBarUI : MonoBehaviour
     {
-        GameUtil.Instance.StartLerpValue(this, prePercent, targetPercent, time, (x) =>
+        public Image imFill;
+        public virtual void SetSlider(float prePercent, float targetPercent, float time, Action onDone)
         {
-            imFill.fillAmount = x;
-        }, onDone);
+            GameUtil.Instance.StartLerpValue(this, prePercent, targetPercent, time, (x) =>
+            {
+                imFill.fillAmount = x;
+            }, onDone);
+        }
     }
 }

@@ -1,14 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class ItemLeaderboard : MonoBehaviour
+namespace Luzart
 {
-    public int index;
-    public void Initialize(int index)
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    
+    public class ItemLeaderboard : MonoBehaviour
     {
-        this.index = index;
+        public int index;
+        public void Initialize(int index)
+        {
+            this.index = index;
+        }
+    
     }
-
 }

@@ -1,28 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LineUpgradeSlider : MonoBehaviour
+namespace Luzart
 {
-    public LineUpgrade[] allLines; 
-    public void SetLevelUpgrade(int levelUpgrade)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class LineUpgradeSlider : MonoBehaviour
     {
-        SetArray(levelUpgrade);
-    }
-    private void SetArray(int index)
-    {
-        for (int i = 0; i < allLines.Length; i++)
+        public LineUpgrade[] allLines; 
+        public void SetLevelUpgrade(int levelUpgrade)
         {
-            bool isLight = false;
-            if(i < index)
+            SetArray(levelUpgrade);
+        }
+        private void SetArray(int index)
+        {
+            for (int i = 0; i < allLines.Length; i++)
             {
-                isLight = true;
+                bool isLight = false;
+                if(i < index)
+                {
+                    isLight = true;
+                }
+                else
+                {
+                    isLight= false;
+                }
+                allLines[i].SetActiveLine(isLight);
             }
-            else
-            {
-                isLight= false;
-            }
-            allLines[i].SetActiveLine(isLight);
         }
     }
 }

@@ -1,10 +1,13 @@
-
-
-public class ItemChangeTitle : ButtonSelect
+namespace Luzart
 {
-    protected override void Start()
+    
+    
+    public class ItemChangeTitle : ButtonSelect
     {
-        base.Start();
-        GameUtil.ButtonOnClick(btn, ClickAction, IsAnim);
+        protected override void Start()
+        {
+            base.Start();
+            GameUtil.ButtonOnClick(btn, ClickAction, IsAnim);
+        }
     }
 }

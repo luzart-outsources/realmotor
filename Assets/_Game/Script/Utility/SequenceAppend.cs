@@ -1,67 +1,70 @@
-using UnityEngine;
-using UnityEngine.Events;
-using DG.Tweening;
-
-public class SequenceAppend : MonoBehaviour
+namespace Luzart
 {
-    public DB_ActionTween[] listAction;
-    public Sequence sequence;
-    private void OnEnable()
+    using UnityEngine;
+    using UnityEngine.Events;
+    using DG.Tweening;
+    
+    public class SequenceAppend : MonoBehaviour
     {
-        AddTweenFrom();
-    }
-    private void AddTweenFrom(int value = 0)
-    {
-        if (listAction == null || listAction.Length == 0) return;
-        ResetTween();
-        sequence = DOTween.Sequence();
-        for (int i = value; i < listAction.Length; i++)
+        public DB_ActionTween[] listAction;
+        public Sequence sequence;
+        private void OnEnable()
         {
-            var idx = i;
-            var a = listAction[idx];
-            Tween tw = DOVirtual.DelayedCall(a.delay, () =>
-            {
-                a.isCallBack = true;
-                a.action.Invoke();
-            });
-            sequence.Append(tw);
+            AddTweenFrom();
         }
-    }
-    private void OnDisable()
-    {
-        if (listAction == null || listAction.Length == 0) return;
-        ResetTween();
-    }
-    private void ResetTween()
-    {
-        if (sequence != null)
+        private void AddTweenFrom(int value = 0)
         {
-            sequence.Kill();
-        }
-    }
-    public void NextStepDelay()
-    {
-        for (int i = 0; i < listAction.Length; i++)
-        {
-            if (!listAction[i].isCallBack)
+            if (listAction == null || listAction.Length == 0) return;
+            ResetTween();
+            sequence = DOTween.Sequence();
+            for (int i = value; i < listAction.Length; i++)
             {
-                var a = listAction[i];
-                a.isCallBack = true;
-                a.action.Invoke();
-                ResetTween();
-                AddTweenFrom(i + 1);
-                break;
+                var idx = i;
+                var a = listAction[idx];
+                Tween tw = DOVirtual.DelayedCall(a.delay, () =>
+                {
+                    a.isCallBack = true;
+                    a.action.Invoke();
+                });
+                sequence.Append(tw);
+            }
+        }
+        private void OnDisable()
+        {
+            if (listAction == null || listAction.Length == 0) return;
+            ResetTween();
+        }
+        private void ResetTween()
+        {
+            if (sequence != null)
+            {
+                sequence.Kill();
+            }
+        }
+        public void NextStepDelay()
+        {
+            for (int i = 0; i < listAction.Length; i++)
+            {
+                if (!listAction[i].isCallBack)
+                {
+                    var a = listAction[i];
+                    a.isCallBack = true;
+                    a.action.Invoke();
+                    ResetTween();
+                    AddTweenFrom(i + 1);
+                    break;
+                }
             }
         }
     }
-}
-[System.Serializable]
-public class DB_ActionTween
-{
-#if UNITY_EDITOR
-    public string nameAction;
-#endif
-    public UnityEvent action;
-    public float delay;
-    public bool isCallBack { get; set; }
+    [System.Serializable]
+    public class DB_ActionTween
+    {
+    #if UNITY_EDITOR
+        public string nameAction;
+    #endif
+        public UnityEvent action;
+        public float delay;
+        public bool isCallBack { get; set; }
+    }
 }

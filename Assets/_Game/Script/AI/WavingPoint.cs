@@ -1,24 +1,27 @@
-using Sirenix.OdinInspector;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class WavingPoint : MonoBehaviour
+namespace Luzart
 {
-    private int _indexPoint = -1;
-    public int indexPoint
+    using Sirenix.OdinInspector;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class WavingPoint : MonoBehaviour
     {
-        get
+        private int _indexPoint = -1;
+        public int indexPoint
         {
-            if(_indexPoint == -1)
+            get
             {
-                _indexPoint = transform.GetSiblingIndex();
+                if(_indexPoint == -1)
+                {
+                    _indexPoint = transform.GetSiblingIndex();
+                }
+                return _indexPoint;
             }
-            return _indexPoint;
         }
-    }
-    private void Awake()
-    {
-        _indexPoint = transform.GetSiblingIndex();
+        private void Awake()
+        {
+            _indexPoint = transform.GetSiblingIndex();
+        }
     }
 }

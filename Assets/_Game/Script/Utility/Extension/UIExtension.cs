@@ -1,123 +1,126 @@
-﻿using System.Collections.Generic;
-using System;
-using UnityEngine.Events;
-using UnityEngine.UI;
-using UnityEngine;
-
-public static class UIExtension
+namespace Luzart
 {
-    public static void OnClickAnim(this Button btn, UnityAction action)
+    using System.Collections.Generic;
+    using System;
+    using UnityEngine.Events;
+    using UnityEngine.UI;
+    using UnityEngine;
+    
+    public static class UIExtension
     {
-        if (btn == null)
+        public static void OnClickAnim(this Button btn, UnityAction action)
         {
-            return;
-        }
-        var effect = btn.GetComponent<EffectButton>();
-        if (effect == null)
-        {
-            effect = btn.gameObject.AddComponent<EffectButton>();
-        }
-        btn.onClick.RemoveAllListeners();
-        btn.onClick.AddListener(() =>
-        {
-            action?.Invoke();
-        });
-    }
-    public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform)
-    {
-        Canvas.ForceUpdateCanvases();
-
-        Vector3[] itemCorners = new Vector3[4];
-        itemRectTransform.GetWorldCorners(itemCorners);
-        Vector3[] viewCorners = new Vector3[4];
-        scrollRect.viewport.GetWorldCorners(viewCorners);
-
-        float difference = 0;
-
-        if (scrollRect.horizontal)
-        {
-            if (itemCorners[2].x > viewCorners[2].x)
+            if (btn == null)
             {
-                difference = itemCorners[2].x - viewCorners[2].x;
+                return;
             }
-            else if (itemCorners[0].x < viewCorners[0].x)
+            var effect = btn.GetComponent<EffectButton>();
+            if (effect == null)
             {
-                difference = itemCorners[0].x - viewCorners[0].x;
+                effect = btn.gameObject.AddComponent<EffectButton>();
             }
-
-            float width = viewCorners[2].x - viewCorners[0].x;
-            float normalizedDifference = difference / width;
-
-            Vector2 posCurrent = scrollRect.content.anchoredPosition;
-            Vector2 size = scrollRect.content.sizeDelta;
-
-            float newX = posCurrent.x - normalizedDifference * size.x;
-            float minX = 0;
-            float maxX = scrollRect.content.sizeDelta.x - scrollRect.viewport.rect.width;
-
-            scrollRect.content.anchoredPosition = new Vector2(Mathf.Clamp(newX, minX, maxX), posCurrent.y);
-        }
-        else
-        {
-            if (itemCorners[1].y > viewCorners[1].y)
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() =>
             {
-                difference = itemCorners[1].y - viewCorners[1].y;
-            }
-            else if (itemCorners[0].y < viewCorners[0].y)
+                action?.Invoke();
+            });
+        }
+        public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform)
+        {
+            Canvas.ForceUpdateCanvases();
+    
+            Vector3[] itemCorners = new Vector3[4];
+            itemRectTransform.GetWorldCorners(itemCorners);
+            Vector3[] viewCorners = new Vector3[4];
+            scrollRect.viewport.GetWorldCorners(viewCorners);
+    
+            float difference = 0;
+    
+            if (scrollRect.horizontal)
             {
-                difference = itemCorners[0].y - viewCorners[0].y;
+                if (itemCorners[2].x > viewCorners[2].x)
+                {
+                    difference = itemCorners[2].x - viewCorners[2].x;
+                }
+                else if (itemCorners[0].x < viewCorners[0].x)
+                {
+                    difference = itemCorners[0].x - viewCorners[0].x;
+                }
+    
+                float width = viewCorners[2].x - viewCorners[0].x;
+                float normalizedDifference = difference / width;
+    
+                Vector2 posCurrent = scrollRect.content.anchoredPosition;
+                Vector2 size = scrollRect.content.sizeDelta;
+    
+                float newX = posCurrent.x - normalizedDifference * size.x;
+                float minX = 0;
+                float maxX = scrollRect.content.sizeDelta.x - scrollRect.viewport.rect.width;
+    
+                scrollRect.content.anchoredPosition = new Vector2(Mathf.Clamp(newX, minX, maxX), posCurrent.y);
             }
-
-            float height = viewCorners[1].y - viewCorners[0].y;
-            float normalizedDifference = difference / height;
-
-            Vector2 posCurrent = scrollRect.content.anchoredPosition;
-            Vector2 size = scrollRect.content.sizeDelta;
-
-            float newY = posCurrent.y - normalizedDifference * size.y;
-            float minY = 0;
-            float maxY = scrollRect.content.sizeDelta.y - scrollRect.viewport.rect.height;
-
-            scrollRect.content.anchoredPosition = new Vector2(posCurrent.x, Mathf.Clamp(newY, minY, maxY));
+            else
+            {
+                if (itemCorners[1].y > viewCorners[1].y)
+                {
+                    difference = itemCorners[1].y - viewCorners[1].y;
+                }
+                else if (itemCorners[0].y < viewCorners[0].y)
+                {
+                    difference = itemCorners[0].y - viewCorners[0].y;
+                }
+    
+                float height = viewCorners[1].y - viewCorners[0].y;
+                float normalizedDifference = difference / height;
+    
+                Vector2 posCurrent = scrollRect.content.anchoredPosition;
+                Vector2 size = scrollRect.content.sizeDelta;
+    
+                float newY = posCurrent.y - normalizedDifference * size.y;
+                float minY = 0;
+                float maxY = scrollRect.content.sizeDelta.y - scrollRect.viewport.rect.height;
+    
+                scrollRect.content.anchoredPosition = new Vector2(posCurrent.x, Mathf.Clamp(newY, minY, maxY));
+            }
         }
-    }
-
-    public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform, float elasticity)
-    {
-        scrollRect.elasticity = 0.5f;
-        FocusOnRectTransform(scrollRect, itemRectTransform);
-    }
-    public static void SetInteractable(this Button bt, bool interactable)
-    {
-        var graphics = bt.GetComponentsInChildren<MaskableGraphic>();
-        bt.interactable = interactable;
-        for (int i = 0; i < graphics.Length; i++)
+    
+        public static void FocusOnRectTransform(this ScrollRect scrollRect, RectTransform itemRectTransform, float elasticity)
         {
-            graphics[i].color = interactable ? bt.colors.normalColor : bt.colors.disabledColor;
+            scrollRect.elasticity = 0.5f;
+            FocusOnRectTransform(scrollRect, itemRectTransform);
         }
-    }
-
-    public static int SumRange(this IList<int> collection, int min, int max)
-    {
-        int num = 0;
-        for (var i = min; i <= max && i < collection.Count; i++)
+        public static void SetInteractable(this Button bt, bool interactable)
         {
-            int obj = collection[i];
-            num += obj;
+            var graphics = bt.GetComponentsInChildren<MaskableGraphic>();
+            bt.interactable = interactable;
+            for (int i = 0; i < graphics.Length; i++)
+            {
+                graphics[i].color = interactable ? bt.colors.normalColor : bt.colors.disabledColor;
+            }
         }
-
-        return num;
-    }
-
-    public static int IndexOf<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
-    {
-        int num = 0;
-        foreach (T obj in collection)
+    
+        public static int SumRange(this IList<int> collection, int min, int max)
         {
-            if (predicate(obj))
-                return num;
-            ++num;
+            int num = 0;
+            for (var i = min; i <= max && i < collection.Count; i++)
+            {
+                int obj = collection[i];
+                num += obj;
+            }
+    
+            return num;
         }
-        return -1;
+    
+        public static int IndexOf<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            int num = 0;
+            foreach (T obj in collection)
+            {
+                if (predicate(obj))
+                    return num;
+                ++num;
+            }
+            return -1;
+        }
     }
 }

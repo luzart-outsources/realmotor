@@ -1,31 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class ResUI : MonoBehaviour
+namespace Luzart
 {
-    public Image imIcon;
-    public Image imBg;
-    public TMP_Text txt;
-    public string preStr = "";
-    public string endStr = "";
-
-    public void InitData(DataResource dataRes)
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class ResUI : MonoBehaviour
     {
-        if(imIcon != null)
+        public Image imIcon;
+        public Image imBg;
+        public TMP_Text txt;
+        public string preStr = "";
+        public string endStr = "";
+    
+        public void InitData(DataResource dataRes)
         {
-            imIcon.sprite = DataManager.Instance.spriteResourceSO.GetSpriteIcon(dataRes);
+            if(imIcon != null)
+            {
+                imIcon.sprite = DataManager.Instance.spriteResourceSO.GetSpriteIcon(dataRes);
+            }
+            if(imBg != null)
+            {
+                imBg.sprite = DataManager.Instance.spriteResourceSO.GetSpriteIcon(dataRes);
+            }
+            if(txt != null)
+            {
+                txt.text = $"{preStr}{dataRes.amount}{endStr}";
+            }
+    
         }
-        if(imBg != null)
-        {
-            imBg.sprite = DataManager.Instance.spriteResourceSO.GetSpriteIcon(dataRes);
-        }
-        if(txt != null)
-        {
-            txt.text = $"{preStr}{dataRes.amount}{endStr}";
-        }
-
     }
 }

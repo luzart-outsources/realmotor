@@ -1,29 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class BtnSettings : MonoBehaviour
+namespace Luzart
 {
-    public Button _btn;
-    private Button btn
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class BtnSettings : MonoBehaviour
     {
-        get
+        public Button _btn;
+        private Button btn
         {
-            if(_btn == null)
+            get
             {
-                _btn = GetComponent<Button>();
+                if(_btn == null)
+                {
+                    _btn = GetComponent<Button>();
+                }
+                return _btn;
             }
-            return _btn;
         }
+        void Start()
+        {
+            GameUtil.ButtonOnClick(btn, ClickSettings,true);
+        }
+        private void ClickSettings()
+        {
+            UIManager.Instance.ShowUI(UIName.Settings);
+        }
+    
     }
-    void Start()
-    {
-        GameUtil.ButtonOnClick(btn, ClickSettings,true);
-    }
-    private void ClickSettings()
-    {
-        UIManager.Instance.ShowUI(UIName.Settings);
-    }
-
 }

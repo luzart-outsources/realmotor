@@ -108,7 +108,7 @@ namespace AirFishLab.ScrollingList
         {
             if (TryGetComponent<Button>(out var button)) 
             {
-                GameUtil.ButtonOnClick(button, OnButtonClick);
+                Luzart.GameUtil.ButtonOnClick(button, OnButtonClick);
             }
         }
 

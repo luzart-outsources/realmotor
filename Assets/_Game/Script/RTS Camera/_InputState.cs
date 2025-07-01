@@ -1,6 +1,9 @@
-public enum _InputState
+namespace Luzart
 {
-	On,
-	Down,
-	Up
+    public enum _InputState
+    {
+    	On,
+    	Down,
+    	Up
+    }
 }

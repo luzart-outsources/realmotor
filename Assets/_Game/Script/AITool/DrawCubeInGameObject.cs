@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DrawCubeInGameObject : MonoBehaviour
+namespace Luzart
 {
-    [SerializeField]
-    private Vector3 size = Vector3.one;
-
-    private void OnDrawGizmos()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class DrawCubeInGameObject : MonoBehaviour
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(transform.position, size);
+        [SerializeField]
+        private Vector3 size = Vector3.one;
+    
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawCube(transform.position, size);
+        }
     }
 }

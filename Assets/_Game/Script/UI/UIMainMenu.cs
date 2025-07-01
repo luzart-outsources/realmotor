@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class UIMainMenu : UIBase
+namespace Luzart
 {
-    public Button btnPlay;
-    protected override void Setup()
+    using System.Collections;
+    using System.Collections.Generic;
+    using Unity.VisualScripting;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class UIMainMenu : UIBase
     {
-        base.Setup();
-        GameUtil.ButtonOnClick(btnPlay, ClickPlay, true);
-    }
-    private void ClickPlay()
-    {
-
+        public Button btnPlay;
+        protected override void Setup()
+        {
+            base.Setup();
+            GameUtil.ButtonOnClick(btnPlay, ClickPlay, true);
+        }
+        private void ClickPlay()
+        {
+    
+        }
     }
 }

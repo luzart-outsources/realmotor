@@ -1,35 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class OverlapFinishLine : OverlapEachFrame
+namespace Luzart
 {
-    public override ResultRaycast GetResultRaycast()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class OverlapFinishLine : OverlapEachFrame
     {
-        bool isCollider = false;
-        var resultRaycast = new ResultOverlapBool();
-        resultRaycast.eLayer = eLayer;
-        var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
-        if (colliders != null)
+        public override ResultRaycast GetResultRaycast()
         {
-            for (int i = 0; i < colliders.Length; i++)
+            bool isCollider = false;
+            var resultRaycast = new ResultOverlapBool();
+            resultRaycast.eLayer = eLayer;
+            var colliders = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size, Quaternion.identity, layerMask);
+            if (colliders != null)
             {
-                if (colliders[i] != null)
+                for (int i = 0; i < colliders.Length; i++)
                 {
-                    isCollider = true;
-                    break;
+                    if (colliders[i] != null)
+                    {
+                        isCollider = true;
+                        break;
+                    }
                 }
             }
-        }
-        if (isCollider)
-        {
-            resultRaycast.isFinishRaycast = true;
-            return resultRaycast;
-        }
-        else
-        {
-            resultRaycast.isFinishRaycast = false;
-            return resultRaycast;
+            if (isCollider)
+            {
+                resultRaycast.isFinishRaycast = true;
+                return resultRaycast;
+            }
+            else
+            {
+                resultRaycast.isFinishRaycast = false;
+                return resultRaycast;
+            }
         }
     }
 }

@@ -1,75 +1,78 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class UISettings : UIBase
+namespace Luzart
 {
-    public Button btnBack;
-    public SoundSettings soundSettings;
-    public ButtonSelect[] buttonSelectsQuality;
-    public ButtonSelect[] buttonSelectsControls;
-    private ButtonSelect cacheQuality;
-    private ButtonSelect cacheControls;
-    protected override void Setup()
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class UISettings : UIBase
     {
-        base.Setup();
-        GameUtil.ButtonOnClick(btnBack, ClickBack, true, KeyAds.BtnSettingsBack);
-    }
-    public override void Show(Action onHideDone)
-    {
-        base.Show(onHideDone);
-        soundSettings.Show();
-        InitQuality();
-        InitControls();
-    }
-    private void ClickBack()
-    {
-        Hide();
-    }
-    private void InitQuality()
-    {
-        int length = buttonSelectsQuality.Length;
-        for (int i = 0; i < length; i++)
+        public Button btnBack;
+        public SoundSettings soundSettings;
+        public ButtonSelect[] buttonSelectsQuality;
+        public ButtonSelect[] buttonSelectsControls;
+        private ButtonSelect cacheQuality;
+        private ButtonSelect cacheControls;
+        protected override void Setup()
         {
-            var btn = buttonSelectsQuality[i];
-            if (btn != null)
+            base.Setup();
+            GameUtil.ButtonOnClick(btnBack, ClickBack, true, KeyAds.BtnSettingsBack);
+        }
+        public override void Show(Action onHideDone)
+        {
+            base.Show(onHideDone);
+            soundSettings.Show();
+            InitQuality();
+            InitControls();
+        }
+        private void ClickBack()
+        {
+            Hide();
+        }
+        private void InitQuality()
+        {
+            int length = buttonSelectsQuality.Length;
+            for (int i = 0; i < length; i++)
             {
-                int index = i;
-                btn.InitAction( index, ClickQuality);
+                var btn = buttonSelectsQuality[i];
+                if (btn != null)
+                {
+                    int index = i;
+                    btn.InitAction( index, ClickQuality);
+                }
             }
         }
-    }
-    private void InitControls()
-    {
-        int length = buttonSelectsControls.Length;
-        for (int i = 0; i < length; i++)
+        private void InitControls()
         {
-            var btn = buttonSelectsControls[i];
-            if (btn != null)
+            int length = buttonSelectsControls.Length;
+            for (int i = 0; i < length; i++)
             {
-                int index = i;
-                btn.InitAction(index, ClickControls);
+                var btn = buttonSelectsControls[i];
+                if (btn != null)
+                {
+                    int index = i;
+                    btn.InitAction(index, ClickControls);
+                }
             }
         }
-    }
-    private void ClickQuality(ButtonSelect btn)
-    {
-        if (cacheQuality != null)
+        private void ClickQuality(ButtonSelect btn)
         {
-            cacheQuality.Select(false);
+            if (cacheQuality != null)
+            {
+                cacheQuality.Select(false);
+            }
+            cacheQuality = btn;
+            cacheQuality.Select(true);
         }
-        cacheQuality = btn;
-        cacheQuality.Select(true);
-    }
-    private void ClickControls(ButtonSelect btn)
-    {
-        if (cacheControls != null)
+        private void ClickControls(ButtonSelect btn)
         {
-            cacheControls.Select(false);
+            if (cacheControls != null)
+            {
+                cacheControls.Select(false);
+            }
+            cacheControls = btn;
+            cacheControls.Select(true);
         }
-        cacheControls = btn;
-        cacheControls.Select(true);
     }
 }

@@ -1,9 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MiniMapEnvironment : MonoBehaviour
+namespace Luzart
 {
-    public Camera cameraMiniMap;
-
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class MiniMapEnvironment : MonoBehaviour
+    {
+        public Camera cameraMiniMap;
+    
+    }
 }

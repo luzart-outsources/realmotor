@@ -1,94 +1,97 @@
-using System.Collections;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
-public class EffectButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+namespace Luzart
 {
-    public bool isAutoButton = false;
-    private Button btn;
-
-    private Vector3 m_localScale = Vector3.one;
-    public float valueScale = 0.9f;
-    private float timeScale = 0.1f;
-    private void Awake()
+    using System.Collections;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.UI;
+    
+    public class EffectButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
-        if (!isAutoButton)
+        public bool isAutoButton = false;
+        private Button btn;
+    
+        private Vector3 m_localScale = Vector3.one;
+        public float valueScale = 0.9f;
+        private float timeScale = 0.1f;
+        private void Awake()
         {
-            btn = GetComponent<Button>();
+            if (!isAutoButton)
+            {
+                btn = GetComponent<Button>();
+            }
         }
-    }
-    private Coroutine corIEScale = null;
-    private IEnumerator IEScale()
-    {
-        float time = 0;
-        //float delta = (scale - 1) / (timeScale / Time.deltaTime);
-        while (time <= timeScale && transform.localScale.x >= m_localScale.x * valueScale)
+        private Coroutine corIEScale = null;
+        private IEnumerator IEScale()
         {
-            yield return null;
-            time += Time.deltaTime;
-            transform.localScale = ((valueScale - 1) * time / timeScale + 1) * m_localScale;
+            float time = 0;
+            //float delta = (scale - 1) / (timeScale / Time.deltaTime);
+            while (time <= timeScale && transform.localScale.x >= m_localScale.x * valueScale)
+            {
+                yield return null;
+                time += Time.deltaTime;
+                transform.localScale = ((valueScale - 1) * time / timeScale + 1) * m_localScale;
+            }
+            transform.localScale = m_localScale * valueScale;
         }
-        transform.localScale = m_localScale * valueScale;
-    }
-    private Coroutine corIEDeScale = null;
-    private IEnumerator IEDeScale()
-    {
-        float time = timeScale;
-        //float delta = (scale - 1) / (timeScale / Time.deltaTime);
-        while (time <= timeScale && transform.localScale.x < m_localScale.x)
+        private Coroutine corIEDeScale = null;
+        private IEnumerator IEDeScale()
         {
-            yield return null;
-            time -= Time.deltaTime;
-            transform.localScale = ((valueScale - 1) * time / timeScale + 1) * m_localScale;
-        }
-        transform.localScale = m_localScale;
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (!btn.interactable)
-        {
-            return;
-        }
-        if (corIEScale != null)
-        {
-            StopCoroutine(corIEScale);
-        }
-        if (corIEDeScale != null)
-        {
-            StopCoroutine(corIEDeScale);
+            float time = timeScale;
+            //float delta = (scale - 1) / (timeScale / Time.deltaTime);
+            while (time <= timeScale && transform.localScale.x < m_localScale.x)
+            {
+                yield return null;
+                time -= Time.deltaTime;
+                transform.localScale = ((valueScale - 1) * time / timeScale + 1) * m_localScale;
+            }
             transform.localScale = m_localScale;
         }
-        corIEScale = StartCoroutine(IEScale());
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (!btn.interactable)
+        public void OnPointerDown(PointerEventData eventData)
         {
-            return;
+            if (!btn.interactable)
+            {
+                return;
+            }
+            if (corIEScale != null)
+            {
+                StopCoroutine(corIEScale);
+            }
+            if (corIEDeScale != null)
+            {
+                StopCoroutine(corIEDeScale);
+                transform.localScale = m_localScale;
+            }
+            corIEScale = StartCoroutine(IEScale());
         }
-        if (corIEDeScale != null)
+    
+        public void OnPointerUp(PointerEventData eventData)
         {
-            StopCoroutine(corIEDeScale);
+            if (!btn.interactable)
+            {
+                return;
+            }
+            if (corIEDeScale != null)
+            {
+                StopCoroutine(corIEDeScale);
+            }
+            if (corIEScale != null)
+            {
+                StopCoroutine(corIEScale);
+            }
+            corIEDeScale = StartCoroutine(IEDeScale());
+    
         }
-        if (corIEScale != null)
+        private void OnDisable()
         {
-            StopCoroutine(corIEScale);
+            if (corIEDeScale != null)
+            {
+                StopCoroutine(corIEDeScale);
+            }
+            if (corIEScale != null)
+            {
+                StopCoroutine(corIEScale);
+            }
+            transform.localScale = m_localScale;
         }
-        corIEDeScale = StartCoroutine(IEDeScale());
-
-    }
-    private void OnDisable()
-    {
-        if (corIEDeScale != null)
-        {
-            StopCoroutine(corIEDeScale);
-        }
-        if (corIEScale != null)
-        {
-            StopCoroutine(corIEScale);
-        }
-        transform.localScale = m_localScale;
     }
 }

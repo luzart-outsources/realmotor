@@ -1,90 +1,93 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BaseController : MonoBehaviour
+namespace Luzart
 {
-    protected BaseMotorbike baseMotorBike;
-    protected bool IsInit = false;
-    public virtual void Initialized(BaseMotorbike baseMotorbike)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class BaseController : MonoBehaviour
     {
-        this.baseMotorBike = baseMotorbike;
-        IsInit = true;
-    }
-    public virtual void FixedUpdateController()
-    {
-        
-    }
-    public virtual void UpdateController()
-    {
-        if (!IsInit)
+        protected BaseMotorbike baseMotorBike;
+        protected bool IsInit = false;
+        public virtual void Initialized(BaseMotorbike baseMotorbike)
         {
-            return;
+            this.baseMotorBike = baseMotorbike;
+            IsInit = true;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        public virtual void FixedUpdateController()
         {
-            MoveUp();
+            
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        public virtual void UpdateController()
         {
-            Brake();
+            if (!IsInit)
+            {
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                MoveUp();
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                Brake();
+            }
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                UnVerticle();
+            }
+            if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                UnVerticle();
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MoveRight();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MoveLeft();
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                UnHorizontal();
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                UnHorizontal();
+            }
         }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        public virtual void MoveLeft()
         {
-            UnVerticle();
+            baseMotorBike.MoveLeft();
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        public virtual void MoveRight()
         {
-            UnVerticle();
+            baseMotorBike.MoveRight();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        public virtual void MoveUp()
         {
-            MoveRight();
+            baseMotorBike.MoveUp();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        public virtual void Brake()
         {
-            MoveLeft();
+            baseMotorBike.Brake();
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        public virtual void UnHorizontal()
         {
-            UnHorizontal();
+            baseMotorBike.UnHorizontal();
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        public virtual void UnVerticle()
         {
-            UnHorizontal();
+            baseMotorBike.UnVerticle();
         }
-    }
-    public virtual void MoveLeft()
-    {
-        baseMotorBike.MoveLeft();
-    }
-    public virtual void MoveRight()
-    {
-        baseMotorBike.MoveRight();
-    }
-    public virtual void MoveUp()
-    {
-        baseMotorBike.MoveUp();
-    }
-    public virtual void Brake()
-    {
-        baseMotorBike.Brake();
-    }
-    public virtual void UnHorizontal()
-    {
-        baseMotorBike.UnHorizontal();
-    }
-    public virtual void UnVerticle()
-    {
-        baseMotorBike.UnVerticle();
-    }
-    public void MoveVisual(Vector3 velocity)
-    {
-        baseMotorBike.MoveVisual(velocity);
-    }
-
-    public void MoveSteerVisual(int steerInput, float currentSpeed)
-    {
-        baseMotorBike.MoveSteerVisual(steerInput, currentSpeed);
+        public void MoveVisual(Vector3 velocity)
+        {
+            baseMotorBike.MoveVisual(velocity);
+        }
+    
+        public void MoveSteerVisual(int steerInput, float currentSpeed)
+        {
+            baseMotorBike.MoveSteerVisual(steerInput, currentSpeed);
+        }
     }
 }

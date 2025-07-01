@@ -1,7 +1,10 @@
-public enum _InputType
+namespace Luzart
 {
-	None,
-	Mouse1,
-	Mouse2,
-	Touch
+    public enum _InputType
+    {
+    	None,
+    	Mouse1,
+    	Mouse2,
+    	Touch
+    }
 }

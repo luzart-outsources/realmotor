@@ -1,29 +1,32 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class UIReceiveRes : UIBase
+namespace Luzart
 {
-    public Button btn;
-    public ListResUI listResUI;
-    private Action onDone;
-
-    protected override void Setup()
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class UIReceiveRes : UIBase
     {
-        base.Setup();
-        GameUtil.ButtonOnClick(btn, ClickButton, true);
+        public Button btn;
+        public ListResUI listResUI;
+        private Action onDone;
+    
+        protected override void Setup()
+        {
+            base.Setup();
+            GameUtil.ButtonOnClick(btn, ClickButton, true);
+        }
+        private void ClickButton()
+        {
+            onDone?.Invoke();
+            Hide();
+        }
+        public void Initialize(Action onDone = null, params DataResource[] data)
+        {
+            this.onDone = onDone;
+            listResUI.InitResUI(data);
+        }
+    
     }
-    private void ClickButton()
-    {
-        onDone?.Invoke();
-        Hide();
-    }
-    public void Initialize(Action onDone = null, params DataResource[] data)
-    {
-        this.onDone = onDone;
-        listResUI.InitResUI(data);
-    }
-
 }
